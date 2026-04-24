@@ -1,0 +1,19 @@
+/* Arquivo de definição de variáveis e cores */
+
+:root {
+  /*CORES PRINCIPAIS */
+  --cor-primaria: #ffc5d3;
+  --cor-secundaria: #222;
+  --cor-fundo: #d9d9d9;
+  --azul-principal: #55cbcd;
+  --azul-secundário: #2b7a7c;
+  --azul-textos: #1b4e4f;
+
+  /*CORES NEUTRAS */
+  --preto: #000;
+  --branco: #fff;
+  --cinza: #d1d1d1;
+
+  /* OUTROS */
+  --radius: 8px;
+}
