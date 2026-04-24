@@ -1,9 +1,14 @@
 /* --- VARIÁVEIS E BASE --- */
+
 :root {
   --primary-color: #2ecc71;
+
   --primary-dark: #27ae60;
+
   --secondary-color: #2c3e50;
+
   --secondary-hover: #34495e;
+
   --bg-light: #f4f7f6;
   --white: #ffffff;
   --transition: 0.3s ease;
@@ -24,18 +29,22 @@ body {
 }
 
 /* Personalização do Scrollbar */
+
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color);
   border-radius: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-light);
 }
 
 /* --- HEADER --- */
+
 .main-header {
   background: var(--white);
   display: flex;
@@ -73,7 +82,7 @@ body {
   color: white;
   border: none;
   cursor: pointer;
-  transition: background var(--transition);
+  transition: var(--transition);
 }
 
 .busca-grupo button:hover {
@@ -95,10 +104,11 @@ body {
 }
 
 .link-admin {
-  color: var(--primary-color) !important;
+  color: var(--primary-color);
 }
 
 /* --- FOOTER --- */
+
 .main-footer {
   background: var(--secondary-color);
   color: white;
@@ -117,18 +127,22 @@ body {
   flex: 1;
   min-width: 250px;
 }
+
 .footer-section h4 {
   color: var(--primary-color);
   margin-bottom: 15px;
 }
+
 .footer-section ul {
   list-style: none;
 }
+
 .footer-section a {
   color: #bdc3c7;
   text-decoration: none;
   font-size: 0.9rem;
 }
+
 .footer-section a:hover {
   color: var(--primary-color);
 }
@@ -142,7 +156,7 @@ body {
   color: #bdc3c7;
 }
 
-/* Ajuste telas menores */
+/* Ajuste básico para telas menores */
 @media (max-width: 768px) {
   .main-header {
     flex-direction: column;
