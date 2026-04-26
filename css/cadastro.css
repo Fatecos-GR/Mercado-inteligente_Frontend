@@ -1,0 +1,36 @@
+/* Ajustes extras para o formulário de cadastro */
+.login-form h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+}
+
+.social-footer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.social-footer span {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.social-footer span:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Garante que o link não tenha sublinhado no botão secundário */
+.left-side a {
+  text-decoration: none;
+}

@@ -1,0 +1,18 @@
+/* Ajuste para telas de coluna única (Recuperar Senha) */
+.glass-container.single-column {
+  max-width: 500px; /* Mais estreito para focar no centro */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  min-height: auto; /* Altura automática baseada no conteúdo */
+  padding: 20px;
+}
+
+.glass-container.single-column .right-side {
+  flex: 1;
+  padding: 40px;
+}
+
+/* Estilo para o parágrafo de instrução */
+.login-form p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
