@@ -1,0 +1,138 @@
+/* produto.css */
+
+.product-view-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide a tela em duas colunas iguais */
+  gap: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 15px;
+}
+
+/* Galeria de Imagens */
+.product-gallery {
+  position: relative;
+  text-align: center;
+}
+
+.main-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.badge-frete {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(to right, #ff9900, #33cc33);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+/* Detalhes do Produto */
+.product-title {
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.current-price {
+  font-size: 2.2rem;
+  color: var(--primary-color); /* Roxo do seu projeto */
+  margin: 15px 0 5px;
+}
+
+.installments {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+
+/* Ações de Compra */
+.product-actions {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #f5f5f5;
+}
+
+.qty-btn {
+  padding: 10px 15px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.quantity-selector input {
+  width: 40px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+}
+
+.btn-buy {
+  flex: 1;
+  background: #00e676; /* Verde vibrante da imagem */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-buy:hover {
+  filter: brightness(1.1);
+}
+
+/* Frete */
+.shipping-section {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.shipping-input {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.shipping-input input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.btn-calc {
+  background: #e0e0e0;
+  border: none;
+  padding: 0 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #666;
+}
+
+.no-cep {
+  font-size: 0.8rem;
+  color: #999;
+  text-decoration: none;
+}
