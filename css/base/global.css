@@ -24,7 +24,7 @@
 body {
   font-family: "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-light);
-  color: var(--secondary-color);
+  color: var(--white);
   line-height: 1.6;
 }
 
@@ -46,7 +46,7 @@ body {
 /* --- HEADER --- */
 
 .main-header {
-  background: var(--white);
+  background: var(--secondary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -65,13 +65,15 @@ body {
 .busca-grupo {
   display: flex;
   border: 1px solid #ddd;
-  border-radius: 1px;
+  border-radius: 50px;
   overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02) inset;
 }
 
 .busca-grupo input {
   flex-grow: 1;
-  padding: 10px;
+  padding: 12px 20px;
   border: none;
   outline: none;
 }
@@ -86,9 +88,8 @@ body {
 }
 
 .busca-grupo button:hover {
-  background: var(--primary-dark);
+  filter: brightness(1.1); /* Brilha suavemente ao passar o mouse */
 }
-
 .header-actions {
   display: flex;
   gap: 20px;
@@ -96,7 +97,7 @@ body {
 
 .header-actions a {
   text-decoration: none;
-  color: var(--secondary-color);
+  color: var(--white);
   font-weight: bold;
   display: flex;
   align-items: center;
