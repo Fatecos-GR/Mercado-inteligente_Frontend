@@ -3,138 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título da página -->
     <title>Melior | Seu Mercado Online</title>
 
+    <!-- Ícone da página -->
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+
+    <!-- CSS BASE -->
     <link rel="stylesheet" href="css/base/global.css" />
     <link rel="stylesheet" href="css/base/colors.css" />
+
+    <!-- CSS DOS COMPONENTES -->
+    <link rel="stylesheet" href="css/components/header.css" />
+    <link rel="stylesheet" href="css/components/footer.css" />
+
+    <!-- CSS ESPECÍFICO -->
     <link rel="stylesheet" href="css/home.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="js/main.js" defer></script>
+
+    <!-- Icones -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
-    <header class="main-header">
-      <div class="logo">
-        <h1>MELIOR</h1>
-      </div>
+    <!-- Link do Header -->
+    <header id="main-header"></header>
 
-      <div class="header-busca">
-        <div class="busca-grupo">
-          <input type="text" placeholder="Busque nossos produtos..." />
-          <button>Buscar</button>
-        </div>
-      </div>
-
-      <nav class="header-actions">
-        <a href="#">Minha Conta</a>
-        <a href="#" class="carrinho">🛒 Meu Carrinho</a>
-        <a href="#" class="link-admin">Painel Admin</a>
-      </nav>
-    </header>
-
-    <section class="hero-banner">
-      <div class="banner-container">
-        <div class="banner-content">
+    <!-- Conteúdo Principal -->
+    <main id="main-container">
+      <!-- Banner -->
+      <section id="hero-banner">
+        <div id="banner-content">
           <h2>Aproveite Nosso Site!</h2>
           <p>Frete Grátis na primeira compra</p>
         </div>
-      </div>
-    </section>
-
-    <main class="products-section">
-      <h2 class="section-title">Produtos em Destaque</h2>
-
-      <div class="product-grid">
-        <div class="card-destaque">
-          <h3>Conheça nossos <br /><span>Produtos</span></h3>
-          <p>Qualidade de sempre agora online.</p>
-          <button class="btn-ver-mais">Ver todos</button>
-        </div>
-
-        <div class="product-list">
-          <article class="product-card">
-            <div class="product-img">
-              <img
-                src="https://via.placeholder.com/150x150.png?text=Produto+Amido"
-                alt="Amido de Milho 200g"
-              />
-            </div>
-            <div class="product-info">
-              <span class="product-name">Amido de Milho 200g</span>
-              <span class="product-price">R$ 4,50</span>
-              <button class="btn-add">Adicionar</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-img">
-              <img
-                src="https://via.placeholder.com/150x150.png?text=Produto+Arroz"
-                alt="Arroz Integral 1kg"
-              />
-            </div>
-            <div class="product-info">
-              <span class="product-name">Arroz Integral 1kg</span>
-              <span class="product-price">R$ 7,80</span>
-              <button class="btn-add">Adicionar</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-img">
-              <img
-                src="https://via.placeholder.com/150x150.png?text=Produto+Feijao"
-                alt="Feijão Carioca 1kg"
-              />
-            </div>
-            <div class="product-info">
-              <span class="product-name">Feijão Carioca 1kg</span>
-              <span class="product-price">R$ 9,20</span>
-              <button class="btn-add">Adicionar</button>
-            </div>
-          </article>
-
-          <article class="product-card">
-            <div class="product-img">
-              <img
-                src="https://via.placeholder.com/150x150.png?text=Produto+Leite"
-                alt="Leite Integral 1L"
-              />
-            </div>
-            <div class="product-info">
-              <span class="product-name">Leite Integral 1L</span>
-              <span class="product-price">R$ 5,10</span>
-              <button class="btn-add">Adicionar</button>
-            </div>
-          </article>
-        </div>
-      </div>
+      </section>
     </main>
 
-    <footer class="main-footer">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>Sobre o Melior</h4>
-          <p>Seu mercado digital inteligente para o dia a dia.</p>
-        </div>
-        <div class="footer-section">
-          <h4>Departamentos</h4>
-          <ul>
-            <li><a href="#">Hortifruti</a></li>
-            <li><a href="#">Limpeza</a></li>
-            <li><a href="#">Bebidas</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Ajuda</h4>
-          <ul>
-            <li><a href="#">Meus Pedidos</a></li>
-            <li><a href="#">Fale Conosco</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>
-          &copy; 2026 Melior Mercado - Desenvolvido para Trabalho Integrador.
-        </p>
-      </div>
-    </footer>
+    <!-- Rodapé -->
+    <footer id="main-footer"></footer>
   </body>
 </html>

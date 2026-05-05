@@ -1,19 +1,15 @@
 /* Arquivo de definição de variáveis e cores */
 
 :root {
-  /*CORES PRINCIPAIS */
-  --cor-primaria: #ffc5d3;
-  --cor-secundaria: #222;
-  --cor-fundo: #d9d9d9;
-  --azul-principal: #55cbcd;
-  --azul-secundário: #2b7a7c;
-  --azul-textos: #1b4e4f;
+  --verde-primario: #2ecc71;
 
-  /*CORES NEUTRAS */
-  --preto: #000;
-  --branco: #fff;
-  --cinza: #d1d1d1;
+  --verde-escuro: #27ae60;
 
-  /* OUTROS */
-  --radius: 8px;
+  --cinza-escuro: #2c3e50;
+
+  --secondary-hover: #34495e;
+
+  --bg-light: #f4f7f6;
+
+  --branco: #fdfdfd;
 }
