@@ -1,5 +1,8 @@
 /* Página Principal */
 
+/* Import do CSS dos cards de brinquedo */
+@import "/css/components/cardProduto.css";
+
 #main-container {
   padding: 20px;
 }

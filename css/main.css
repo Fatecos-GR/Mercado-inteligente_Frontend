@@ -1,0 +1,7 @@
+/* Base do CSS */
+@import "base/colors.css";
+@import "base/global.css";
+
+/* Componentes */
+@import "components/header.css";
+@import "components/footer.css";
