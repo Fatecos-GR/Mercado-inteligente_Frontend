@@ -4,78 +4,105 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Melior | Meu Perfil</title>
-    <link rel="stylesheet" href="css/base/global.css" />
-    <link rel="stylesheet" href="css/base/colors.css" />
-    <link rel="stylesheet" href="css/perfil.css" />
+
+    <!-- Link do FontAwesome para carregar os ícones do menu lateral -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Seus arquivos CSS -->
+    <link rel="stylesheet" href="../css/base/global.css" />
+    <link rel="stylesheet" href="../css/base/colors.css" />
+    <link rel="stylesheet" href="../css/pages/perfil.css" />
   </head>
   <body>
+    <!-- Link do Header -->
+    <header id="main-header"></header>
+
     <div class="profile-container">
+      <!-- MENU LATERAL -->
       <aside class="profile-sidebar">
-        <div class="user-avatar">
-          <img src="img/placeholder.png" alt="Foto do Usuário" />
-          <h3>Olá, Usuário!</h3>
-        </div>
         <nav class="profile-nav">
-          <a href="#" class="active"> Painel Geral</a>
-          <a href="#">Meus Pedidos</a>
-          <a href="#">Meus Endereços</a>
-          <a href="#">Cartões Salvos</a>
-          <a href="index.html" class="logout"> Sair</a>
+          <a href="#" class="active">
+            <i class="fa-regular fa-user"></i> Dados Pessoais
+          </a>
+          <a href="#"> <i class="fa-solid fa-house"></i> Endereços </a>
+          <a href="#"> <i class="fa-solid fa-truck-fast"></i> Meus Pedidos </a>
+          <a href="#"> <i class="fa-regular fa-credit-card"></i> Cartões </a>
+          <a href="#"> <i class="fa-regular fa-heart"></i> Minhas Listas </a>
+          <a href="#"> <i class="fa-regular fa-bell"></i> Meus Alertas </a>
+
+          <hr class="nav-divider" />
+
+          <a href="index.html" class="logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+          </a>
         </nav>
       </aside>
 
+      <!-- CONTEÚDO PRINCIPAL -->
       <main class="profile-content">
-        <header class="content-header">
-          <h2>Meu Perfil</h2>
-          <button class="btn-edit">Editar Dados</button>
-        </header>
+        <h2 class="section-title">Dados cadastrais</h2>
 
-        <section class="info-grid">
-          <div class="info-card">
-            <h4>Dados Pessoais</h4>
-            <p><strong>Nome:</strong> Usuário Exemplo</p>
-            <p><strong>E-mail:</strong> usuario@email.com</p>
-            <p><strong>CPF:</strong> ***.***.***-**</p>
-          </div>
-          <div class="info-card">
-            <h4>Endereço Principal</h4>
-            <p>Rua das Flores, 123</p>
-            <p>Bairro Jardim - São Paulo/SP</p>
-            <p>CEP: 00000-000</p>
-          </div>
-        </section>
+        <div class="data-card">
+          <div class="data-grid">
+            <!-- Linha 1 -->
+            <div class="data-field col-5">
+              <label>Nome completo</label>
+              <!-- O ID ajudará o JavaScript a injetar o nome do usuário logado -->
+              <div class="field-value" id="user-nome">Nome do Usuário</div>
+            </div>
+            <div class="data-field col-4">
+              <label>CPF/CNPJ</label>
+              <div class="field-value" id="user-doc">000.000.000-00</div>
+            </div>
+            <div class="data-field col-3">
+              <label>RG</label>
+              <div class="field-value" id="user-rg">00.000.000-0</div>
+            </div>
 
-        <section class="recent-orders">
-          <h3>Últimos Pedidos</h3>
-          <table class="orders-table">
-            <thead>
-              <tr>
-                <th>Nº Pedido</th>
-                <th>Data</th>
-                <th>Status</th>
-                <th>Total</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>#1052</td>
-                <td>20/04/2026</td>
-                <td><span class="status-badge delivered">Entregue</span></td>
-                <td>R$ 45,90</td>
-                <td><a href="#" class="order-link">Ver detalhes</a></td>
-              </tr>
-              <tr>
-                <td>#1048</td>
-                <td>15/04/2026</td>
-                <td><span class="status-badge pending">A caminho</span></td>
-                <td>R$ 120,00</td>
-                <td><a href="#" class="order-link">Ver detalhes</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+            <!-- Linha 2 -->
+            <div class="data-field col-4">
+              <label>Data de nascimento</label>
+              <div class="field-value" id="user-nascimento">DD/MM/AAAA</div>
+            </div>
+            <div class="data-field transparent col-4">
+              <label>Gênero</label>
+              <div class="field-value" id="user-genero">
+                Selecione uma opção
+              </div>
+            </div>
+            <div class="data-field col-4">
+              <label>Celular</label>
+              <div class="field-value" id="user-celular">(00) 00000-0000</div>
+            </div>
+
+            <!-- Linha 3 -->
+            <div class="data-field col-6">
+              <label>E-mail</label>
+              <div class="field-value" id="user-email">usuario@email.com</div>
+            </div>
+          </div>
+
+          <!-- Preferências de Notificação -->
+          <div class="preferences">
+            <label class="checkbox-label">
+              <input type="checkbox" id="pref-sms" />
+              Quero receber ofertas incríveis por SMS.
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="pref-email" />
+              Quero receber ofertas incríveis por e-mail.
+            </label>
+          </div>
+        </div>
+
+        <button class="btn-edit-data">Editar dados</button>
       </main>
     </div>
+
+    <!-- Rodapé -->
+    <footer id="main-footer"></footer>
   </body>
 </html>
