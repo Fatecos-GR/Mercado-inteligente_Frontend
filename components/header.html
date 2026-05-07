@@ -1,31 +1,57 @@
-<header class="main-header">
-  <div class="header-logo">
-    <a href="index.html" style="text-decoration: none">
-      <h2 style="color: var(--primary-color)">MELIOR</h2>
-    </a>
+<header id="main-header">
+  <!-- LINHA SUPERIOR (Logo, Busca, Ações e Carrinho) -->
+  <div id="header-top">
+    <!-- Título / Logo -->
+    <div id="title-header">
+      <a href="index.html">MELIOR</a>
+    </div>
+
+    <div id="header-busca">
+      <form autocomplete="off" id="header-search-form">
+        <input type="text" placeholder="O que você procura hoje?" />
+        <button type="submit">Buscar</button>
+      </form>
+    </div>
+
+    <!-- Botões de Ação Verticais -->
+    <div id="header-actions">
+      <!-- Admin -->
+      <a href="admin_dashboard.html" class="action-btn-vertical">
+        <i class="fa-solid fa-lock"></i>
+        <span>Admin</span>
+      </a>
+
+      <!-- Perfil -->
+      <a href="perfil.html" class="action-btn-vertical">
+        <i class="fa-regular fa-user"></i>
+        <span>Olá, Heitor</span>
+      </a>
+
+      <!-- Carrinho Estilo Pílula -->
+      <a href="carrinho.html" class="cart-pill-btn">
+        <div class="cart-value-box">
+          <span class="currency">R$</span>
+          <span class="value">0,00</span>
+        </div>
+        <div class="cart-icon-circle">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+      </a>
+    </div>
   </div>
 
-  <div class="header-busca">
-    <form class="busca-grupo">
-      <input type="text" placeholder="O que você procura hoje?" />
-      <button type="submit">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-    </form>
-  </div>
+  <!-- LINHA INFERIOR (Departamentos) -->
+  <div id="header-bottom">
+    <button class="btn-departamentos">
+      <i class="fa-solid fa-bars"></i>
+      Comprar por departamento
+    </button>
 
-  <div class="header-actions">
-    <a href="perfil.html" title="Minha Conta">
-      <i class="fa-regular fa-user"></i>
-      <span>Perfil</span>
-    </a>
-    <a href="carrinho.html" title="Meu Carrinho">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span>Carrinho</span>
-    </a>
-    <a href="admin_dashboard.html" class="link-admin" title="Painel Admin">
-      <i class="fa-solid fa-lock"></i>
-      <span>Admin</span>
-    </a>
+    <nav class="nav-categorias">
+      <a href="#">Ofertas Melior</a>
+      <a href="#">Hortifruti</a>
+      <a href="#">Mercearia</a>
+      <a href="#">Limpeza</a>
+    </nav>
   </div>
 </header>
