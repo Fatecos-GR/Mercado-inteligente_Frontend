@@ -131,22 +131,47 @@
   font-weight: 500;
 }
 
-/* As "pílulas" cinzas */
-.field-value {
-  background: #eef2f5;
+.field-input {
+  width: 100%;
   padding: 12px 20px;
   border-radius: 30px;
-  color: var(--cinza-escuro);
   font-size: 0.95rem;
-  min-height: 45px;
-  display: flex;
-  align-items: center;
+  color: var(--cinza-escuro);
+  font-family: inherit;
+  border: 2px solid transparent;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-.data-field.transparent .field-value {
+/* Estado de leitura (bloqueado) */
+.field-input:disabled {
+  background: #eef2f5;
+  cursor: default;
+}
+
+/* Estado de edição (desbloqueado) */
+.field-input:not(:disabled) {
+  background: var(--branco);
+  border-color: var(--verde-primario);
+  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.15);
+}
+
+.field-input:focus {
+  border-color: var(--verde-escuro);
+}
+
+select.field-input {
+  appearance: none;
+  cursor: pointer;
+}
+
+select.field-input:disabled {
+  cursor: default;
+}
+
+.data-field.transparent .field-input:disabled {
   background: transparent;
   padding-left: 15px;
-  color: var(--cinza-escuro);
 }
 
 /* --- PREFERÊNCIAS E BOTÃO --- */

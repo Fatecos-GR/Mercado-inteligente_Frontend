@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Melior | Meu Perfil</title>
+
+    <!-- Link do FontAwesome para carregar os ícones do menu lateral -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Seus arquivos CSS -->
+    <!-- CSS BASE + COMPONENTES -->
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="css/pages/perfil.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="js/main.js" defer></script>
+
+    <!-- JAVASCRIPT ESPECÍFICO DESTA PÁGINA -->
+    <script src="js/perfil.js" defer></script>
+  </head>
+  <body>
+    <!-- Link do Header -->
+    <header id="main-header"></header>
+
+    <div class="profile-container">
+      <!-- MENU LATERAL -->
+      <aside class="profile-sidebar">
+        <nav class="profile-nav">
+          <a href="#" class="active" data-target="tab-dados">
+            <i class="fa-regular fa-user"></i> Dados Pessoais
+          </a>
+          <a href="#" data-target="tab-enderecos">
+            <i class="fa-solid fa-house"></i> Endereços
+          </a>
+          <a href="#" data-target="tab-pedidos">
+            <i class="fa-solid fa-truck-fast"></i> Meus Pedidos
+          </a>
+          <a href="#" data-target="tab-cartoes">
+            <i class="fa-regular fa-credit-card"></i> Cartões
+          </a>
+          <a href="#" data-target="tab-listas">
+            <i class="fa-regular fa-heart"></i> Minhas Listas
+          </a>
+          <a href="#" data-target="tab-alertas">
+            <i class="fa-regular fa-bell"></i> Meus Alertas
+          </a>
+          <hr class="nav-divider" />
+          <a href="index.html" class="logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
+          </a>
+        </nav>
+      </aside>
+
+      <!-- CONTEÚDO PRINCIPAL -->
+      <main class="profile-content">
+        <!-- SEÇÃO 1: DADOS CADASTRAIS (Aba Padrão) -->
+        <section id="tab-dados" class="content-section">
+          <h2 class="section-title">Dados cadastrais</h2>
+
+          <form id="form-perfil">
+            <div class="data-card">
+              <div class="data-grid">
+                <!-- Linha 1 -->
+                <div class="data-field col-5">
+                  <label for="user-nome">Nome completo</label>
+                  <input
+                    type="text"
+                    class="field-input"
+                    id="user-nome"
+                    value="Nome do Usuário"
+                    disabled
+                  />
+                </div>
+                <div class="data-field col-4">
+                  <label for="user-doc">CPF/CNPJ</label>
+                  <input
+                    type="text"
+                    class="field-input"
+                    id="user-doc"
+                    value="000.000.000-00"
+                    disabled
+                  />
+                </div>
+                <div class="data-field col-3">
+                  <label for="user-rg">RG</label>
+                  <input
+                    type="text"
+                    class="field-input"
+                    id="user-rg"
+                    value="00.000.000-0"
+                    disabled
+                  />
+                </div>
+
+                <!-- Linha 2 -->
+                <div class="data-field col-4">
+                  <label for="user-nascimento">Data de nascimento</label>
+                  <input
+                    type="date"
+                    class="field-input"
+                    id="user-nascimento"
+                    disabled
+                  />
+                </div>
+                <div class="data-field transparent col-4">
+                  <label for="user-genero">Gênero</label>
+                  <select class="field-input" id="user-genero" disabled>
+                    <option value="">Selecione uma opção</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outro">Outro</option>
+                    <option value="prefiro_nao_dizer">Prefiro não dizer</option>
+                  </select>
+                </div>
+                <div class="data-field col-4">
+                  <label for="user-celular">Celular</label>
+                  <input
+                    type="tel"
+                    class="field-input"
+                    id="user-celular"
+                    value="(00) 00000-0000"
+                    disabled
+                  />
+                </div>
+
+                <!-- Linha 3 -->
+                <div class="data-field col-6">
+                  <label for="user-email">E-mail</label>
+                  <input
+                    type="email"
+                    class="field-input"
+                    id="user-email"
+                    value="usuario@email.com"
+                    disabled
+                  />
+                </div>
+              </div>
+
+              <!-- Preferências de Notificação -->
+              <div class="preferences">
+                <label for="pref-sms" class="checkbox-label">
+                  <input type="checkbox" id="pref-sms" disabled />
+                  Quero receber ofertas incríveis por SMS.
+                </label>
+                <label for="pref-email" class="checkbox-label">
+                  <input type="checkbox" id="pref-email" disabled />
+                  Quero receber ofertas incríveis por e-mail.
+                </label>
+              </div>
+            </div>
+
+            <button type="button" class="btn-edit-data">Editar dados</button>
+          </form>
+        </section>
+
+        <!-- SEÇÃO 2: ENDEREÇOS -->
+        <section
+          id="tab-enderecos"
+          class="content-section"
+          style="display: none"
+        >
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+            "
+          >
+            <h2 class="section-title" style="margin: 0">Meus Endereços</h2>
+            <button class="btn-edit-data" style="padding: 8px 20px">
+              + Novo Endereço
+            </button>
+          </div>
+          <div class="data-card">
+            <h4 style="color: var(--verde-primario); margin-bottom: 10px">
+              Casa
+            </h4>
+            <p style="color: var(--cinza-escuro)">
+              Rua das Flores, 123 - Apto 45
+            </p>
+            <p style="color: #7f8c8d; font-size: 0.9rem; margin-bottom: 15px">
+              Bairro Jardim - São Paulo/SP - CEP: 00000-000
+            </p>
+            <div style="display: flex; gap: 15px">
+              <a
+                href="#"
+                style="
+                  color: var(--cinza-escuro);
+                  font-weight: bold;
+                  text-decoration: none;
+                "
+                >Editar</a
+              >
+              <a
+                href="#"
+                style="color: #e74c3c; font-weight: bold; text-decoration: none"
+                >Excluir</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- SEÇÃO 3: MEUS PEDIDOS -->
+        <section id="tab-pedidos" class="content-section" style="display: none">
+          <h2 class="section-title">Últimos Pedidos</h2>
+          <div class="data-card" style="padding: 20px">
+            <table
+              class="orders-table"
+              style="width: 100%; border-collapse: collapse; text-align: left"
+            >
+              <thead>
+                <tr style="border-bottom: 2px solid #eee">
+                  <th style="padding: 15px 10px">Nº Pedido</th>
+                  <th style="padding: 15px 10px">Data</th>
+                  <th style="padding: 15px 10px">Status</th>
+                  <th style="padding: 15px 10px">Total</th>
+                  <th style="padding: 15px 10px">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #eee">
+                  <td style="padding: 15px 10px; font-weight: bold">#1052</td>
+                  <td style="padding: 15px 10px; color: #7f8c8d">20/04/2026</td>
+                  <td style="padding: 15px 10px">
+                    <span
+                      style="
+                        background: #d4edda;
+                        color: #155724;
+                        padding: 5px 12px;
+                        border-radius: 20px;
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                      "
+                      >Entregue</span
+                    >
+                  </td>
+                  <td style="padding: 15px 10px">R$ 45,90</td>
+                  <td style="padding: 15px 10px">
+                    <a
+                      href="#"
+                      style="
+                        color: var(--verde-primario);
+                        font-weight: bold;
+                        text-decoration: none;
+                      "
+                      >Ver detalhes</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 15px 10px; font-weight: bold">#1048</td>
+                  <td style="padding: 15px 10px; color: #7f8c8d">15/04/2026</td>
+                  <td style="padding: 15px 10px">
+                    <span
+                      style="
+                        background: #fff3cd;
+                        color: #856404;
+                        padding: 5px 12px;
+                        border-radius: 20px;
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                      "
+                      >A caminho</span
+                    >
+                  </td>
+                  <td style="padding: 15px 10px">R$ 120,00</td>
+                  <td style="padding: 15px 10px">
+                    <a
+                      href="#"
+                      style="
+                        color: var(--verde-primario);
+                        font-weight: bold;
+                        text-decoration: none;
+                      "
+                      >Ver detalhes</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SEÇÃO 4: CARTÕES -->
+        <section id="tab-cartoes" class="content-section" style="display: none">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 20px;
+            "
+          >
+            <h2 class="section-title" style="margin: 0">Cartões Salvos</h2>
+            <button class="btn-edit-data" style="padding: 8px 20px">
+              + Novo Cartão
+            </button>
+          </div>
+          <div
+            class="data-card"
+            style="display: flex; align-items: center; gap: 20px"
+          >
+            <i
+              class="fa-brands fa-cc-mastercard"
+              style="font-size: 2.5rem; color: #333"
+            ></i>
+            <div style="flex: 1">
+              <h4 style="margin: 0; color: var(--cinza-escuro)">
+                Mastercard com final 4567
+              </h4>
+              <p style="margin: 5px 0 0; color: #7f8c8d; font-size: 0.9rem">
+                Vencimento: 12/29
+              </p>
+            </div>
+            <a
+              href="#"
+              style="color: #e74c3c; font-weight: bold; text-decoration: none"
+              >Excluir</a
+            >
+          </div>
+        </section>
+
+        <!-- SEÇÃO 5 E 6: LISTAS E ALERTAS (Placeholders prontas para receber conteúdo) -->
+        <section id="tab-listas" class="content-section" style="display: none">
+          <h2 class="section-title">Minhas Listas</h2>
+          <div class="data-card">
+            <p style="color: #7f8c8d">Você ainda não possui listas criadas.</p>
+          </div>
+        </section>
+
+        <section id="tab-alertas" class="content-section" style="display: none">
+          <h2 class="section-title">Meus Alertas</h2>
+          <div class="data-card">
+            <p style="color: #7f8c8d">Nenhuma notificação no momento.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Rodapé -->
+    <footer id="main-footer"></footer>
+  </body>
+</html>
