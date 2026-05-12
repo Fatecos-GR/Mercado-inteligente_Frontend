@@ -9,6 +9,27 @@ async function loadComponent(id, file) {
 }
 
 // ===============================
+// CARREGAR FONT AWESOME
+// ===============================
+function carregarIcones() {
+  // Evita duplicação
+  if (document.querySelector("link[data-fontawesome]")) return;
+
+  const link = document.createElement("link");
+
+  link.rel = "stylesheet";
+  link.href =
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css";
+
+  link.crossOrigin = "anonymous";
+  link.referrerPolicy = "no-referrer";
+
+  // Marcador para evitar carregar duas vezes
+  link.setAttribute("data-fontawesome", "true");
+
+  document.head.appendChild(link);
+}
+// ===============================
 // CARREGAR HEADER E FOOTER
 // ===============================
 
@@ -25,6 +46,7 @@ async function carregarLayout() {
 async function start() {
   //Componentes Modularizados
   await carregarLayout();
+  await carregarIcones();
 }
 
 start();
