@@ -47,3 +47,19 @@
   margin-bottom: 20px;
   font-size: 1.5rem;
 }
+
+/* --- VITRINE DA HOME --- */
+.home-vitrine {
+  max-width: 1100px; /* Largura máxima da vitrine */
+  margin: 40px auto; /* O 'auto' centraliza a vitrine na tela */
+  padding: 0 20px;
+}
+
+/* --- TÍTULO DAS CATEGORIAS --- */
+.vitrine-title {
+  color: var(--cinza-escuro);
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 25px;
+  text-align: left;
+}
