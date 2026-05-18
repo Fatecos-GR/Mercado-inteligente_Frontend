@@ -131,22 +131,47 @@
   font-weight: 500;
 }
 
-/* As "pílulas" cinzas */
-.field-value {
-  background: #eef2f5;
+.field-input {
+  width: 100%;
   padding: 12px 20px;
   border-radius: 30px;
-  color: var(--cinza-escuro);
   font-size: 0.95rem;
-  min-height: 45px;
-  display: flex;
-  align-items: center;
+  color: var(--cinza-escuro);
+  font-family: inherit;
+  border: 2px solid transparent;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-.data-field.transparent .field-value {
+/* Estado de leitura (bloqueado) */
+.field-input:disabled {
+  background: #eef2f5;
+  cursor: default;
+}
+
+/* Estado de edição (desbloqueado) */
+.field-input:not(:disabled) {
+  background: var(--branco);
+  border-color: var(--verde-primario);
+  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.15);
+}
+
+.field-input:focus {
+  border-color: var(--verde-escuro);
+}
+
+select.field-input {
+  appearance: none;
+  cursor: pointer;
+}
+
+select.field-input:disabled {
+  cursor: default;
+}
+
+.data-field.transparent .field-input:disabled {
   background: transparent;
   padding-left: 15px;
-  color: var(--cinza-escuro);
 }
 
 /* --- PREFERÊNCIAS E BOTÃO --- */
@@ -199,4 +224,132 @@
   .col-6 {
     grid-column: span 12;
   }
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header .section-title {
+  margin: 0;
+}
+
+.btn-add-new {
+  padding: 8px 20px;
+}
+
+.address-tag {
+  color: var(--verde-primario);
+  margin-bottom: 10px;
+}
+
+.address-street {
+  color: var(--cinza-escuro);
+}
+
+.address-city {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.action-edit {
+  color: var(--cinza-escuro);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.action-delete {
+  color: #e74c3c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.orders-card {
+  padding: 20px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.orders-table th {
+  padding: 15px 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.orders-table td {
+  padding: 15px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.col-bold {
+  font-weight: bold;
+}
+
+.col-date {
+  color: #7f8c8d;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status-delivered {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.action-view {
+  color: var(--verde-primario);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.credit-card-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.credit-card-icon {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.credit-card-info {
+  flex: 1;
+}
+
+.credit-card-name {
+  margin: 0;
+  color: var(--cinza-escuro);
+}
+
+.credit-card-expiry {
+  margin: 5px 0 0;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.placeholder-text {
+  color: #7f8c8d;
 }

@@ -3,10 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título da página -->
     <title>Melior | Recuperar Senha</title>
-    <link rel="stylesheet" href="css/base/global.css" />
-    <link rel="stylesheet" href="css/base/colors.css" />
-    <link rel="stylesheet" href="css/login.css" />
+
+    <!-- Ícone da página -->
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+
+    <!-- CSS BASE + COMPONENTES -->
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="css/pages/recuperar_senha.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="js/main.js" defer></script>
   </head>
   <body>
     <div class="login-page-wrapper">
@@ -14,14 +24,7 @@
         <div class="right-side">
           <form class="login-form">
             <h2>RECUPERAR ACESSO</h2>
-            <p
-              style="
-                text-align: center;
-                margin-bottom: 30px;
-                color: var(--primary-color);
-                opacity: 0.8;
-              "
-            >
+            <p>
               Insira seu e-mail cadastrado e enviaremos um link para você criar
               uma nova senha.
             </p>
@@ -39,17 +42,8 @@
               Enviar Link de Recuperação
             </button>
 
-            <div style="text-align: center; margin-top: 30px">
-              <a
-                href="login.html"
-                style="
-                  text-decoration: none;
-                  color: var(--primary-color);
-                  font-weight: bold;
-                "
-              >
-                ← Voltar para o Login
-              </a>
+            <div id="login-return">
+              <a href="login.html"> ← Voltar para o Login </a>
             </div>
           </form>
         </div>

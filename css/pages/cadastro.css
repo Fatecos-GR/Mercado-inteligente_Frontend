@@ -34,3 +34,8 @@
 .left-side a {
   text-decoration: none;
 }
+
+#temp-text {
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
