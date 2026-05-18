@@ -1,0 +1,18 @@
+/* --- COLOQUE ISSO NO SEU tabelas.css --- */
+.admin-table-wrapper {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.admin-data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-data-table th,
+.admin-data-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eeeeee;
+}
