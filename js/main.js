@@ -1,4 +1,9 @@
 // ===============================
+// IMPORTS
+// ===============================
+import { iniciarHome } from "./pages/home.js";
+
+// ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
 // ===============================
 
@@ -45,6 +50,14 @@ async function start() {
   //Componentes Modularizados
   await carregarLayout();
   await carregarIcones();
+
+  // Se esta na home
+  const isIndexPage = window.location.pathname.includes("index.html");
+
+  if (isIndexPage) {
+    iniciarHome();
+  }
 }
 
+// Inicialização
 start();
