@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - Admin Melior</title>
+    <link rel="stylesheet" href="css_admin/base_admin/estilo.css" />
+    <link rel="stylesheet" href="css_admin/componentes_admin/card.css" />
+  </head>
+  <body class="admin-layout-body">
+    <div class="admin-layout-sidebar">
+      <div class="admin-sidebar-block">
+        <div class="admin-sidebar-logo">
+          <h1>MELIOR</h1>
+        </div>
+        <div class="admin-sidebar-links">
+          <a href="dashboard.html" class="active">Dashboard</a>
+          <a href="estoque.html">Gestao de Estoque</a>
+          <a href="pedidos.html">Pedidos</a>
+          <a href="usuarios.html">Usuarios</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-layout-main">
+      <div class="admin-header-block">
+        <div class="admin-header-title">
+          <span>Dashboard Informativo</span>
+        </div>
+        <div class="admin-header-user">
+          <span>Usuario Administrador</span>
+          <a href="/logout">Sair</a>
+        </div>
+      </div>
+
+      <div class="admin-layout-content">
+        <div class="admin-content-heading">
+          <h2>Resumo das Operacoes</h2>
+        </div>
+
+        <div class="admin-cards-grid">
+          <div class="admin-card-box box-blue">
+            <h3>Vendas do Dia</h3>
+            <p>R$ 1.250,00</p>
+          </div>
+
+          <div class="admin-card-box box-green">
+            <h3>Novos Pedidos</h3>
+            <p>12</p>
+          </div>
+
+          <div class="admin-card-box box-red">
+            <h3>Itens Esgotados</h3>
+            <p>4</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

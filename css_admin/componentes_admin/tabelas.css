@@ -16,3 +16,26 @@
   text-align: left;
   border-bottom: 1px solid #eeeeee;
 }
+/* Classes para aplicar na coluna Status da tabela de pedidos */
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.status-pendente {
+  background-color: #f1c40f; /* Amarelo */
+  color: #ffffff;
+}
+
+.status-pago {
+  background-color: #2ecc71; /* Verde */
+  color: #ffffff;
+}
+
+.status-cancelado {
+  background-color: #e74c3c; /* Vermelho */
+  color: #ffffff;
+}
