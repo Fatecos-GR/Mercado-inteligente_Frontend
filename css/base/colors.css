@@ -1,6 +1,7 @@
 /* Arquivo de definição de variáveis e cores */
 
 :root {
+<<<<<<< HEAD
   /* Tons de Verde - Mofados/Oliva (Menos vibrantes) */
   --verde-primario: #5a7d65;
   --verde-escuro: #3d5a44;
@@ -15,4 +16,17 @@
   --cinza-escuro: #3c3c3c;
 
   --secondary-hover: #5d4037;
+=======
+  --verde-primario: #2ecc71;
+
+  --verde-escuro: #27ae60;
+
+  --cinza-escuro: #2c3e50;
+
+  --secondary-hover: #34495e;
+
+  --bg-light: #f4f7f6;
+
+  --branco: #fdfdfd;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 }

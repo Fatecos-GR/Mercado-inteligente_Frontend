@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos da Página de Perfil - Estilo Cozzy Afternoon Market */
 
 .profile-main {
@@ -22,6 +23,30 @@
   padding: 20px 0;
   height: fit-content;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+=======
+/* Componentes */
+@import "components/header.css";
+@import "components/footer.css";
+
+/* --- LAYOUT GERAL DO PERFIL --- */
+.profile-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  gap: 30px;
+  min-height: 80vh;
+}
+
+/* --- SIDEBAR MENU --- */
+.profile-sidebar {
+  width: 260px;
+  background: var(--branco);
+  border-radius: 8px;
+  /* Uma sombra super leve para destacar do fundo, caso seu fundo seja cinza claro */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  padding: 20px 0;
+  height: fit-content;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 }
 
 .profile-nav {
@@ -33,6 +58,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+<<<<<<< HEAD
   padding: 15px 30px;
   color: #8d8170;
   text-decoration: none;
@@ -40,11 +66,19 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+=======
+  padding: 15px 25px;
+  color: #7f8c8d;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
   border-left: 4px solid transparent;
   transition: all 0.2s ease;
 }
 
 .profile-nav a i {
+<<<<<<< HEAD
   font-size: 1.1rem;
   width: 20px;
   text-align: center;
@@ -60,10 +94,29 @@
   background-color: #f7f1e9;
   color: var(--verde-escuro);
   border-left-color: var(--verde-escuro);
+=======
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+}
+
+.profile-nav a:hover {
+  color: var(--cinza-escuro);
+  background: #f8f9fa;
+}
+
+/* Estado Ativo (Dados Pessoais) */
+.profile-nav a.active {
+  color: var(--cinza-escuro);
+  background: #f4f7f6;
+  border-left-color: var(--cinza-escuro);
+  font-weight: bold;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 }
 
 .nav-divider {
   border: none;
+<<<<<<< HEAD
   border-top: 1px solid #eee5d8;
   margin: 10px 25px;
 }
@@ -79,10 +132,28 @@
 
 /* CONTEÚDO PRINCIPAL */
 .profile-content-area {
+=======
+  border-top: 1px solid #f0f0f0;
+  margin: 10px 20px;
+}
+
+.profile-nav a.logout {
+  color: #95a5a6;
+}
+
+.profile-nav a.logout:hover {
+  color: #e74c3c;
+  background: #fdf3f2;
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+.profile-content {
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
   flex: 1;
 }
 
 .section-title {
+<<<<<<< HEAD
   color: var(--marrom-escuro);
   font-size: 1.4rem;
   font-weight: 800;
@@ -119,23 +190,73 @@
 .col-span-4 { grid-column: span 4; }
 .col-span-5 { grid-column: span 5; }
 .col-span-6 { grid-column: span 6; }
+=======
+  color: var(--cinza-escuro);
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+
+.data-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 35px;
+  background: var(--branco);
+  margin-bottom: 25px;
+}
+
+/* --- GRID DE DADOS --- */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    12,
+    1fr
+  ); /* Grid de 12 colunas para alinhamento perfeito */
+  gap: 25px 15px;
+  margin-bottom: 35px;
+}
+
+/* Classes para controlar a largura de cada campo baseada nas 12 colunas */
+.col-3 {
+  grid-column: span 3;
+}
+.col-4 {
+  grid-column: span 4;
+}
+.col-5 {
+  grid-column: span 5;
+}
+.col-6 {
+  grid-column: span 6;
+}
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 
 .data-field {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   gap: 8px;
+=======
+  gap: 6px;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 }
 
 .data-field label {
   font-size: 0.8rem;
+<<<<<<< HEAD
   font-weight: 700;
   color: #8d8170;
   text-transform: uppercase;
   margin-left: 2px;
+=======
+  color: #95a5a6;
+  margin-left: 15px;
+  font-weight: 500;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 }
 
 .field-input {
   width: 100%;
+<<<<<<< HEAD
   padding: 12px 15px;
   border: 1px solid #dcd3c1;
   border-radius: 2px;
@@ -322,6 +443,83 @@
 }
 
 /* RESPONSIVIDADE */
+=======
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  color: var(--cinza-escuro);
+  font-family: inherit;
+  border: 2px solid transparent;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Estado de leitura (bloqueado) */
+.field-input:disabled {
+  background: #eef2f5;
+  cursor: default;
+}
+
+/* Estado de edição (desbloqueado) */
+.field-input:not(:disabled) {
+  background: var(--branco);
+  border-color: var(--verde-primario);
+  box-shadow: 0 2px 8px rgba(46, 204, 113, 0.15);
+}
+
+.field-input:focus {
+  border-color: var(--verde-escuro);
+}
+
+select.field-input {
+  appearance: none;
+  cursor: pointer;
+}
+
+select.field-input:disabled {
+  cursor: default;
+}
+
+.data-field.transparent .field-input:disabled {
+  background: transparent;
+  padding-left: 15px;
+}
+
+/* --- PREFERÊNCIAS E BOTÃO --- */
+.preferences {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  cursor: pointer;
+}
+
+.btn-edit-data {
+  background: var(--cinza-escuro);
+  color: var(--branco);
+  border: none;
+  padding: 12px 35px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-edit-data:hover {
+  background: var(--verde-primario);
+}
+
+/* Responsividade Básica */
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 @media (max-width: 900px) {
   .profile-container {
     flex-direction: column;
@@ -329,6 +527,7 @@
   .profile-sidebar {
     width: 100%;
   }
+<<<<<<< HEAD
   .data-grid-layout {
     grid-template-columns: 1fr;
   }
@@ -336,3 +535,143 @@
     grid-column: span 12;
   }
 }
+=======
+  .data-grid {
+    grid-template-columns: 1fr; /* Quebra para 1 coluna no celular */
+  }
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6 {
+    grid-column: span 12;
+  }
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header .section-title {
+  margin: 0;
+}
+
+.btn-add-new {
+  padding: 8px 20px;
+}
+
+.address-tag {
+  color: var(--verde-primario);
+  margin-bottom: 10px;
+}
+
+.address-street {
+  color: var(--cinza-escuro);
+}
+
+.address-city {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.action-edit {
+  color: var(--cinza-escuro);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.action-delete {
+  color: #e74c3c;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.orders-card {
+  padding: 20px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.orders-table th {
+  padding: 15px 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.orders-table td {
+  padding: 15px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.col-bold {
+  font-weight: bold;
+}
+
+.col-date {
+  color: #7f8c8d;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status-delivered {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.action-view {
+  color: var(--verde-primario);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.credit-card-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.credit-card-icon {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.credit-card-info {
+  flex: 1;
+}
+
+.credit-card-name {
+  margin: 0;
+  color: var(--cinza-escuro);
+}
+
+.credit-card-expiry {
+  margin: 5px 0 0;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.placeholder-text {
+  color: #7f8c8d;
+}
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6

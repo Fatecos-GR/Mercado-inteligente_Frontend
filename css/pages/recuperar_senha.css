@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos da Página de Recuperação de Senha - Estilo Cozzy Afternoon Market */
 
 .recovery-main {
@@ -144,4 +145,36 @@
   .recovery-form-section {
     padding: 30px 20px;
   }
+=======
+/* Ajuste para telas de coluna única (Recuperar Senha) */
+.glass-container.single-column {
+  max-width: 500px; /* Mais estreito para focar no centro */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  min-height: auto; /* Altura automática baseada no conteúdo */
+  padding: 20px;
+}
+
+.glass-container.single-column .right-side {
+  flex: 1;
+  padding: 40px;
+}
+
+/* Estilo para o parágrafo de instrução */
+.login-form p {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+  opacity: 0.8;
+}
+
+.login-form a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+#login-return {
+  text-align: center;
+  margin-top: 30px;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 }

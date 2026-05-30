@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos da Página de Cadastro - Estilo Cozzy Afternoon Market */
 
 .registration-main {
@@ -143,10 +144,34 @@
   border: 1px solid #dcd3c1;
   background: #faf8f5;
   color: var(--marrom-madeira);
+=======
+/* Ajustes extras para o formulário de cadastro */
+.login-form h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+}
+
+.social-footer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.social-footer span {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+<<<<<<< HEAD
   transition: all 0.2s ease;
 }
 
@@ -230,4 +255,21 @@
   .registration-info-section {
     padding: 30px 20px;
   }
+=======
+  transition: 0.3s;
+}
+
+.social-footer span:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Garante que o link não tenha sublinhado no botão secundário */
+.left-side a {
+  text-decoration: none;
+}
+
+#temp-text {
+  margin-bottom: 20px;
+  color: var(--primary-color);
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 }

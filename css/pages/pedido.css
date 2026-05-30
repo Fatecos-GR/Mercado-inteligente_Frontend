@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilos da Página de Pedido - Estilo Cozzy Afternoon Market */
 
 .order-details-main {
@@ -56,12 +57,49 @@
   align-items: center;
   justify-content: space-between;
   max-width: 900px;
+=======
+/* detalhes_pedido.css */
+
+.order-details-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.order-header {
+  margin-bottom: 30px;
+}
+
+.back-link {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* Estilização da Barra de Status */
+.order-status-box {
+  background: white;
+  padding: 40px 20px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+
+.status-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 800px;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
   margin: 0 auto;
 }
 
 .status-step {
   text-align: center;
   flex: 1;
+<<<<<<< HEAD
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -282,4 +320,117 @@
   .item-price-tag {
     margin-top: 10px;
   }
+=======
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.status-step .circle {
+  width: 40px;
+  height: 40px;
+  background: #eee;
+  border-radius: 50%;
+  line-height: 40px;
+  margin: 0 auto 10px;
+  font-size: 1.2rem;
+}
+
+.status-step.completed {
+  color: #2ecc71;
+}
+.status-step.completed .circle {
+  background: #2ecc71;
+  color: white;
+}
+
+.status-step.current {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+.status-step.current .circle {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 0 10px rgba(168, 139, 235, 0.5);
+}
+
+.status-line {
+  flex: 1;
+  height: 4px;
+  background: #eee;
+  margin-top: -25px;
+}
+
+.status-line.completed {
+  background: #2ecc71;
+}
+.status-line.active {
+  background: var(--primary-color);
+}
+
+/* Grid de Detalhes */
+.details-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+}
+
+.products-list-box,
+.summary-box {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.item-info {
+  flex: 1;
+}
+.item-info .name {
+  font-weight: bold;
+  color: #333;
+}
+.item-info .qty {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.summary-card {
+  margin-bottom: 25px;
+}
+.summary-card h4 {
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.total-box {
+  border-top: 2px solid #eee;
+  padding-top: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #666;
+}
+.row.total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-top: 10px;
+>>>>>>> ab5b8d25f7e6eecc0302481e0a30c0093eacedc6
 }
