@@ -1,0 +1,18 @@
+/* Arquivo de definição de variáveis e cores */
+
+:root {
+  /* Tons de Verde - Mofados/Oliva (Menos vibrantes) */
+  --verde-primario: #5a7d65;
+  --verde-escuro: #3d5a44;
+
+  /* Tons de Marrom - Quentes/Amadeirados */
+  --marrom-madeira: #8b5a2b;
+  --marrom-escuro: #4a2c1d;
+
+  /* Neutros Quentes - Creme/Pergaminho (Aconchegante) */
+  --bg-light: #f2ede4;
+  --branco: #faf8f5;
+  --cinza-escuro: #3c3c3c;
+
+  --secondary-hover: #5d4037;
+}

@@ -1,0 +1,28 @@
+/* Estilos Globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--white);
+  line-height: 1.6;
+}
+
+/* Personalização do Scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--verde-primario);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}

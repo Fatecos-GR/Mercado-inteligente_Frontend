@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Estoque - Admin Melior</title>
+    <link rel="stylesheet" href="css_admin/base_admin/estilo.css" />
+    <link rel="stylesheet" href="css_admin/componentes_admin/tabelas.css" />
+  </head>
+  <body class="admin-layout-body">
+    <div class="admin-layout-sidebar">
+      <div class="admin-sidebar-block">
+        <div class="admin-sidebar-logo">
+          <h1>MELIOR</h1>
+        </div>
+        <div class="admin-sidebar-links">
+          <a href="/admin/dashboard">Dashboard</a>
+          <a href="estoque.html" class="active">Gestao de Estoque</a>
+          <a href="pedidos.html">Pedidos</a>
+          <a href="usuarios.html">Usuarios</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-layout-main">
+      <div class="admin-header-block">
+        <div class="admin-header-title">
+          <span>Gestao de Estoque</span>
+        </div>
+        <div class="admin-header-user">
+          <span>Usuario Administrador</span>
+          <a href="/logout">Sair</a>
+        </div>
+      </div>
+
+      <div class="admin-layout-content">
+        <div class="admin-content-heading">
+          <h2>Produtos Cadastrados</h2>
+          <a href="form-produto.html" class="admin-btn-new">Novo Produto</a>
+        </div>
+
+        <div class="admin-table-wrapper">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Preco</th>
+                <th>Quantidade</th>
+                <th>Acoes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Arroz Integral 5kg</td>
+                <td>Alimentos</td>
+                <td>22.90</td>
+                <td>50</td>
+                <td>
+                  <a href="#" class="admin-btn-edit">Editar</a>
+                  <a href="#" class="admin-btn-delete">Excluir</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mercado Inteligente | Pedido Concluído</title>
+
+    <!-- Ícone da página -->
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+
+    <!-- CSS BASE + COMPONENTES -->
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="css/pages/conclusao_pedido.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="order-success-main">
+      <section class="order-success-container">
+        <header class="order-header">
+          <div class="steps-container">
+            <div class="step completed">
+              <span class="step-num"><i class="fas fa-check"></i></span>
+              <p>Carrinho</p>
+            </div>
+            <div class="step-line completed"></div>
+            <div class="step completed">
+              <span class="step-num"><i class="fas fa-check"></i></span>
+              <p>Identificação</p>
+            </div>
+            <div class="step-line completed"></div>
+            <div class="step completed">
+              <span class="step-num"><i class="fas fa-check"></i></span>
+              <p>Pagamento</p>
+            </div>
+            <div class="step-line completed"></div>
+            <div class="step active">
+              <span class="step-num">4</span>
+              <p>Concluído</p>
+            </div>
+          </div>
+        </header>
+
+        <section class="success-message-card">
+          <div class="success-icon-wrapper">
+            <i class="fas fa-shopping-basket"></i>
+          </div>
+          <h1 class="success-title">Pedido Realizado!</h1>
+          <p class="order-info">
+            O número do seu pedido é <strong class="order-id">#1052</strong>
+          </p>
+
+          <p class="thank-you-message">
+            Obrigado por comprar no <strong>Mercado Inteligente</strong>!<br />
+            Enviamos um e-mail com todos os detalhes da sua compra para você acompanhar.
+          </p>
+
+          <div class="success-actions">
+            <a href="perfil.html" class="btn-secondary">Acompanhar Pedido</a>
+            <a href="index.html" class="btn-primary">Voltar para a Loja</a>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+  </body>
+</html>

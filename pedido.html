@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título da página -->
+    <title>Mercado Inteligente | Pedido</title>
+
+    <!-- Ícone da página -->
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+
+    <!-- CSS BASE + COMPONENTES -->
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="css/pages/pedido.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="order-details-main">
+      <header class="order-header-info">
+        <a href="perfil.html" class="link-back">
+          <i class="fas fa-arrow-left"></i> Voltar aos pedidos
+        </a>
+        <h1 class="order-id-title">Pedido #1052</h1>
+        <p class="order-date-label">Realizado em 20 de Abril de 2026</p>
+      </header>
+
+      <!-- Estilização da Barra de Status Acolhedora -->
+      <section class="order-status-section">
+        <div class="status-stepper">
+          <div class="status-step is-completed">
+            <div class="status-circle"><i class="fas fa-check"></i></div>
+            <span class="status-label">Pedido Recebido</span>
+          </div>
+          <div class="status-connector is-completed"></div>
+          
+          <div class="status-step is-completed">
+            <div class="status-circle"><i class="fas fa-check"></i></div>
+            <span class="status-label">Pagamento Aprovado</span>
+          </div>
+          <div class="status-connector is-active"></div>
+          
+          <div class="status-step is-current">
+            <div class="status-circle"></div>
+            <span class="status-label">Em Transporte</span>
+          </div>
+          <div class="status-connector"></div>
+          
+          <div class="status-step">
+            <div class="status-circle"></div>
+            <span class="status-label">Entregue</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Grid de Detalhes Semântico -->
+      <div class="order-details-grid">
+        <section class="order-items-list">
+          <h3 class="section-subtitle">Itens do Pedido</h3>
+          <article class="order-item-card">
+            <img src="img/placeholder.png" alt="Amido de Milho" class="item-thumb" />
+            <div class="item-meta">
+              <p class="item-name">Amido de Milho 200g</p>
+              <p class="item-qty-label">Quantidade: 2</p>
+            </div>
+            <p class="item-price-tag">R$ 9,00</p>
+          </article>
+          
+          <article class="order-item-card">
+            <img src="img/placeholder.png" alt="Feijão Carioca" class="item-thumb" />
+            <div class="item-meta">
+              <p class="item-name">Feijão Carioca 1kg</p>
+              <p class="item-qty-label">Quantidade: 1</p>
+            </div>
+            <p class="item-price-tag">R$ 9,20</p>
+          </article>
+        </section>
+
+        <aside class="order-summary-aside">
+          <div class="summary-info-card">
+            <h4 class="card-mini-title">Endereço de Entrega</h4>
+            <address class="shipping-address">
+              Rua das Flores, 123<br />
+              São Paulo - SP | 00000-000
+            </address>
+          </div>
+
+          <div class="summary-info-card">
+            <h4 class="card-mini-title">Pagamento</h4>
+            <p class="payment-method-text">Cartão de Crédito (Final 4421)</p>
+            <p class="payment-installments-text">Parcelado em 1x</p>
+          </div>
+
+          <footer class="order-total-block">
+            <div class="summary-row">
+              <span class="row-label">Subtotal</span>
+              <span class="row-value">R$ 18,20</span>
+            </div>
+            <div class="summary-row">
+              <span class="row-label">Frete</span>
+              <span class="row-value">R$ 5,00</span>
+            </div>
+            <div class="summary-row is-total">
+              <span class="row-label">Total</span>
+              <span class="row-value">R$ 23,20</span>
+            </div>
+          </footer>
+        </aside>
+      </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+  </body>
+</html>

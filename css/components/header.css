@@ -1,0 +1,198 @@
+/* --- HEADER GERAL --- */
+#main-header {
+  background: var(--cinza-escuro);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Parte Superior */
+#header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  gap: 30px;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Logo */
+#title-header a {
+  text-decoration: none;
+  color: var(--verde-primario);
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+/* Busca */
+#header-busca {
+  flex-grow: 1;
+  max-width: 700px;
+}
+
+#header-search-form {
+  display: flex;
+  background: var(--branco);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 45px;
+}
+
+#header-search-form input {
+  flex-grow: 1;
+  padding: 0 20px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+}
+
+#header-search-form button {
+  padding: 0 30px;
+  background: var(--verde-primario);
+  color: var(--branco);
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#header-search-form button:hover {
+  background: var(--verde-escuro);
+}
+
+/* Botões de Ação */
+#header-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.action-btn-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  text-decoration: none;
+  color: var(--branco);
+  gap: 5px;
+  transition: color 0.2s;
+}
+
+.action-btn-vertical i {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.action-btn-vertical span {
+  font-size: 0.85rem;
+}
+
+.action-btn-vertical:hover {
+  color: var(--verde-primario);
+}
+
+/* Carrinho Estilo Pílula Branca */
+.cart-pill-btn {
+  display: flex;
+  align-items: center;
+  background: var(--branco);
+  border-radius: 50px;
+  height: 45px;
+  text-decoration: none;
+  padding-left: 15px;
+  margin-left: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cart-value-box {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  padding-right: 15px;
+  color: var(--cinza-escuro);
+}
+
+.cart-value-box .currency {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.cart-value-box .value {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.cart-icon-circle {
+  background: var(--verde-primario);
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--branco);
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+
+.cart-pill-btn:hover .cart-icon-circle {
+  transform: scale(1.05);
+  background: var(--verde-escuro);
+}
+
+/* --- LINHA INFERIOR (Menu Secundário) --- */
+#header-bottom {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.15
+  ); /* Cria a separação sutil de cores usando a própria cor do fundo */
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  height: 50px;
+}
+
+.btn-departamentos {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--branco);
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.2s;
+}
+
+.btn-departamentos:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-categorias {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-categorias a {
+  text-decoration: none;
+  color: var(--branco);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-categorias a:hover {
+  color: var(--verde-primario);
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título da página -->
+    <title>Mercado Inteligente | Recuperar Senha</title>
+
+    <!-- Ícone da página -->
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+
+    <!-- CSS BASE + COMPONENTES -->
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="css/pages/recuperar_senha.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="recovery-main">
+      <section class="recovery-container">
+        <div class="recovery-form-section">
+          <form class="recovery-form">
+            <h1 class="form-title">Recuperar Acesso</h1>
+            <p class="form-instruction">
+              Insira seu e-mail cadastrado e enviaremos um link para você criar
+              uma nova senha de acesso.
+            </p>
+
+            <div class="input-container">
+              <label for="recovery-email" class="sr-only">E-mail de Cadastro</label>
+              <div class="input-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  id="recovery-email"
+                  placeholder="Seu e-mail de cadastro"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary">
+              Enviar Link de Recuperação
+            </button>
+
+            <!-- Link para retorno ao login padronizado -->
+            <div id="login-return" class="form-footer">
+              <a href="login.html" class="link-back"> 
+                <i class="fas fa-arrow-left"></i> Voltar para o Login 
+              </a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+  </body>
+</html>

@@ -1,0 +1,203 @@
+/* --- FOOTER --- */
+#main-footer {
+  background: var(--cinza-escuro);
+  color: var(--branco);
+  padding: 40px 20px 20px;
+  margin-top: 40px;
+}
+
+#inner-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  gap: 30px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 220px;
+}
+
+/* Logo Melior no Footer */
+.footer-logo {
+  color: var(--verde-primario);
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.brand-slogan {
+  color: #bdc3c7;
+  font-size: 0.95rem;
+  margin-top: 10px;
+  line-height: 1.4;
+  max-width: 200px;
+}
+
+.footer-section h4 {
+  color: var(--branco);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Listas de Acesso Rápido */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-section a {
+  color: var(--branco);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+  color: var(--verde-primario);
+}
+
+/* Contato e Redes Sociais */
+.contact-section p {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-title {
+  margin-top: 25px;
+  font-size: 1rem !important;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: var(--verde-primario);
+  font-size: 1.8rem;
+}
+
+.social-icons a:hover {
+  filter: brightness(1.2);
+}
+
+/* Formulário de Newsletter */
+.newsletter-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.newsletter-section input {
+  padding: 12px 15px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.newsletter-section button {
+  padding: 12px 15px;
+  border-radius: 25px;
+  border: none;
+  background: var(--verde-primario);
+  color: var(--branco);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.newsletter-section button:hover {
+  background: var(--verde-escuro);
+}
+
+/* Footer Bottom (Pagamentos, Copyright e Botão Topo) */
+#footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.payment-methods h4 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.payment-icons {
+  display: flex;
+  gap: 10px;
+  font-size: 2rem;
+  color: #bdc3c7;
+  margin-bottom: 20px;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: #bdc3c7;
+  width: 100%;
+}
+
+/* Botão Voltar ao Topo */
+.back-to-top {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  background: var(--branco);
+  color: var(--cinza-escuro);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  background: var(--verde-primario);
+  color: var(--branco);
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+  #inner-footer {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .back-to-top {
+    position: static;
+    margin-top: 20px;
+    align-self: center;
+  }
+
+  #footer-bottom {
+    align-items: center;
+    text-align: center;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+}

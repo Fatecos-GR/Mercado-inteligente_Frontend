@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mercado Inteligente | Criar Conta</title>
+
+    <!-- Ícone da página -->
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+
+    <!-- CSS BASE + COMPONENTES -->
+    <link rel="stylesheet" href="css/main.css" />
+
+    <!-- CSS ESPECÍFICO -->
+    <link rel="stylesheet" href="css/pages/cadastro.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="registration-main">
+      <section class="registration-container">
+        <div class="registration-form-section">
+          <form class="registration-form">
+            <h1 class="form-title">Criar Conta</h1>
+
+            <div class="input-container">
+              <label for="full-name" class="sr-only">Nome Completo</label>
+              <div class="input-wrapper">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  id="full-name"
+                  placeholder="Nome Completo"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="input-container">
+              <label for="email" class="sr-only">E-mail</label>
+              <div class="input-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="E-mail" required />
+              </div>
+            </div>
+
+            <div class="input-container">
+              <label for="password" class="sr-only">Senha</label>
+              <div class="input-wrapper">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Senha"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="input-container">
+              <label for="confirm-password" class="sr-only">Confirmar Senha</label>
+              <div class="input-wrapper">
+                <i class="fas fa-shield-alt"></i>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  placeholder="Confirmar Senha"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary">Finalizar Cadastro</button>
+
+            <div class="form-footer">
+              <p>Ou cadastre-se com</p>
+              <div class="social-icons">
+                <button type="button" class="btn-social">
+                  <i class="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" class="btn-social">
+                  <i class="fab fa-instagram"></i>
+                </button>
+                <button type="button" class="btn-social">
+                  <i class="fab fa-twitter"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="registration-info-section">
+          <div class="info-content">
+            <h2 class="info-title">Já tem conta?</h2>
+            <p class="info-brand">Mercado Inteligente</p>
+            <p class="info-description">
+              Acesse sua conta para continuar suas compras e aproveitar nossas
+              ofertas.
+            </p>
+            <a href="login.html" class="btn-secondary">Fazer Login</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+  </body>
+</html>

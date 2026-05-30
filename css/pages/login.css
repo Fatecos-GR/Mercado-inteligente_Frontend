@@ -1,0 +1,273 @@
+/* Estilos da Página de Login - Estilo Cozzy Afternoon Market */
+
+.login-main {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--bg-light); /* Fundo creme/pergaminho quente */
+}
+
+.login-container {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  background-color: var(--branco);
+  border: 1px solid #dcd3c1; /* Borda cor de papel/areia */
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+/* Seção de Informação (Esquerda) */
+.login-info-section {
+  flex: 0.8;
+  background-color: #f7f1e9; /* Tom de creme areia suave */
+  color: var(--cinza-escuro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+  border-right: 1px solid #eee5d8;
+}
+
+.info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.info-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--marrom-escuro);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.info-brand {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--verde-escuro);
+}
+
+.info-description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #6d6458;
+  margin-bottom: 10px;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 10px 25px;
+  border: 1px solid var(--marrom-madeira);
+  background-color: transparent;
+  border-radius: 2px;
+  color: var(--marrom-madeira);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--marrom-madeira);
+  color: var(--branco);
+}
+
+/* Seção do Formulário (Direita) */
+.login-form-section {
+  flex: 1.2;
+  padding: 50px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-title {
+  font-size: 1.6rem;
+  color: var(--marrom-escuro);
+  margin-bottom: 10px;
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--verde-primario);
+  padding-bottom: 10px;
+}
+
+/* INPUTS ESTILIZADOS */
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper i {
+  position: absolute;
+  left: 12px;
+  color: var(--verde-escuro);
+  font-size: 0.9rem;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px 12px 10px 35px;
+  border: 1px solid #dcd3c1;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  background-color: #fffdfb;
+  color: var(--marrom-escuro);
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: var(--marrom-madeira);
+  background-color: #fff;
+}
+
+.btn-toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #a89f91;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.btn-toggle-password:hover {
+  color: var(--marrom-madeira);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Opções de Formuário */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #6d6458;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.forgot-password {
+  color: var(--marrom-madeira);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-primary {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  border: none;
+  padding: 14px;
+  border-radius: 2px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+  margin-top: 5px;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+/* Footer do Formulário */
+.form-footer {
+  text-align: center;
+  margin-top: 15px;
+  padding-top: 20px;
+  border-top: 1px solid #eee5d8;
+}
+
+.form-footer p {
+  font-size: 0.8rem;
+  color: #8d8170;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-social {
+  width: 38px;
+  height: 38px;
+  border-radius: 2px;
+  border: 1px solid #dcd3c1;
+  background: #faf8f5;
+  color: var(--marrom-madeira);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-social:hover {
+  background-color: var(--marrom-escuro);
+  color: var(--branco);
+  border-color: var(--marrom-escuro);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .login-info-section {
+    order: 2;
+    border-right: none;
+    border-top: 1px solid #eee5d8;
+    padding: 30px 20px;
+  }
+
+  .login-form-section {
+    order: 1;
+    padding: 40px 20px;
+  }
+}
