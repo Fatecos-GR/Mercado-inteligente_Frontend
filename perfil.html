@@ -19,230 +19,274 @@
     <!-- JAVASCRIPT PRINCIPAL -->
     <script src="js/main.js" defer></script>
 
-    <!-- JS da página (Temporário) -->
-    <script src="js/perfil.js" defer></script>
+    <!-- JS da página (Gerenciamento de abas e edição) -->
+    <script src="js/pages/perfil.js" defer></script>
   </head>
   <body>
     <header id="main-header"></header>
 
-    <div class="profile-container">
-      <aside class="profile-sidebar">
-        <nav class="profile-nav">
-          <a href="#" class="active" data-target="tab-dados">
-            <i class="fa-regular fa-user"></i> Dados Pessoais
-          </a>
-          <a href="#" data-target="tab-enderecos">
-            <i class="fa-solid fa-house"></i> Endereços
-          </a>
-          <a href="#" data-target="tab-pedidos">
-            <i class="fa-solid fa-truck-fast"></i> Meus Pedidos
-          </a>
-          <a href="#" data-target="tab-cartoes">
-            <i class="fa-regular fa-credit-card"></i> Cartões
-          </a>
-          <a href="#" data-target="tab-listas">
-            <i class="fa-regular fa-heart"></i> Minhas Listas
-          </a>
-          <a href="#" data-target="tab-alertas">
-            <i class="fa-regular fa-bell"></i> Meus Alertas
-          </a>
-          <hr class="nav-divider" />
-          <a href="index.html" class="logout">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
-          </a>
-        </nav>
-      </aside>
+    <main class="profile-main">
+      <div class="profile-container">
+        <!-- Menu Lateral Acolhedor -->
+        <aside class="profile-sidebar">
+          <nav class="profile-nav">
+            <a href="#" class="active" data-target="tab-dados">
+              <i class="far fa-user"></i> Dados Pessoais
+            </a>
+            <a href="#" data-target="tab-enderecos">
+              <i class="fas fa-home"></i> Endereços
+            </a>
+            <a href="#" data-target="tab-pedidos">
+              <i class="fas fa-box"></i> Meus Pedidos
+            </a>
+            <a href="#" data-target="tab-cartoes">
+              <i class="far fa-credit-card"></i> Cartões
+            </a>
+            <a href="#" data-target="tab-listas">
+              <i class="far fa-heart"></i> Minhas Listas
+            </a>
+            <a href="#" data-target="tab-alertas">
+              <i class="far fa-bell"></i> Meus Alertas
+            </a>
+            <hr class="nav-divider" />
+            <a href="index.html" class="link-logout">
+              <i class="fas fa-sign-out-alt"></i> Sair
+            </a>
+          </nav>
+        </aside>
 
-      <main class="profile-content">
-        <section id="tab-dados" class="content-section">
-          <h2 class="section-title">Dados cadastrais</h2>
+        <!-- Conteúdo Principal Dinâmico -->
+        <section class="profile-content-area">
+          <!-- Aba: Dados Pessoais -->
+          <section id="tab-dados" class="content-section">
+            <h2 class="section-title">Dados Cadastrais</h2>
 
-          <form id="form-perfil">
-            <div class="data-card">
-              <div class="data-grid">
-                <div class="data-field col-5">
-                  <label for="user-nome">Nome completo</label>
-                  <input
-                    type="text"
-                    class="field-input"
-                    id="user-nome"
-                    value="Nome do Usuário"
-                    disabled
-                  />
-                </div>
-                <div class="data-field col-4">
-                  <label for="user-doc">CPF/CNPJ</label>
-                  <input
-                    type="text"
-                    class="field-input"
-                    id="user-doc"
-                    value="000.000.000-00"
-                    disabled
-                  />
-                </div>
-                <div class="data-field col-3">
-                  <label for="user-rg">RG</label>
-                  <input
-                    type="text"
-                    class="field-input"
-                    id="user-rg"
-                    value="00.000.000-0"
-                    disabled
-                  />
+            <form id="form-perfil" class="profile-form">
+              <div class="profile-data-card">
+                <div class="data-grid-layout">
+                  <div class="data-field col-span-5">
+                    <label for="user-nome">Nome Completo</label>
+                    <input
+                      type="text"
+                      class="field-input"
+                      id="user-nome"
+                      value="Nome do Usuário"
+                      disabled
+                    />
+                  </div>
+                  <div class="data-field col-span-4">
+                    <label for="user-doc">CPF/CNPJ</label>
+                    <input
+                      type="text"
+                      class="field-input"
+                      id="user-doc"
+                      value="000.000.000-00"
+                      disabled
+                    />
+                  </div>
+                  <div class="data-field col-span-3">
+                    <label for="user-rg">RG</label>
+                    <input
+                      type="text"
+                      class="field-input"
+                      id="user-rg"
+                      value="00.000.000-0"
+                      disabled
+                    />
+                  </div>
+
+                  <div class="data-field col-span-4">
+                    <label for="user-nascimento">Data de Nascimento</label>
+                    <input
+                      type="date"
+                      class="field-input"
+                      id="user-nascimento"
+                      disabled
+                    />
+                  </div>
+                  <div class="data-field col-span-4">
+                    <label for="user-genero">Gênero</label>
+                    <select class="field-input" id="user-genero" disabled>
+                      <option value="">Selecione uma opção</option>
+                      <option value="masculino">Masculino</option>
+                      <option value="feminino">Feminino</option>
+                      <option value="outro">Outro</option>
+                      <option value="prefiro_nao_dizer">
+                        Prefiro não dizer
+                      </option>
+                    </select>
+                  </div>
+                  <div class="data-field col-span-4">
+                    <label for="user-celular">Celular</label>
+                    <input
+                      type="tel"
+                      class="field-input"
+                      id="user-celular"
+                      value="(00) 00000-0000"
+                      disabled
+                    />
+                  </div>
+
+                  <div class="data-field col-span-6">
+                    <label for="user-email">E-mail</label>
+                    <input
+                      type="email"
+                      class="field-input"
+                      id="user-email"
+                      value="usuario@email.com"
+                      disabled
+                    />
+                  </div>
                 </div>
 
-                <div class="data-field col-4">
-                  <label for="user-nascimento">Data de nascimento</label>
-                  <input
-                    type="date"
-                    class="field-input"
-                    id="user-nascimento"
-                    disabled
-                  />
-                </div>
-                <div class="data-field transparent col-4">
-                  <label for="user-genero">Gênero</label>
-                  <select class="field-input" id="user-genero" disabled>
-                    <option value="">Selecione uma opção</option>
-                    <option value="masculino">Masculino</option>
-                    <option value="feminino">Feminino</option>
-                    <option value="outro">Outro</option>
-                    <option value="prefiro_nao_dizer">Prefiro não dizer</option>
-                  </select>
-                </div>
-                <div class="data-field col-4">
-                  <label for="user-celular">Celular</label>
-                  <input
-                    type="tel"
-                    class="field-input"
-                    id="user-celular"
-                    value="(00) 00000-0000"
-                    disabled
-                  />
-                </div>
-
-                <div class="data-field col-6">
-                  <label for="user-email">E-mail</label>
-                  <input
-                    type="email"
-                    class="field-input"
-                    id="user-email"
-                    value="usuario@email.com"
-                    disabled
-                  />
+                <div class="marketing-preferences">
+                  <label for="pref-sms" class="custom-checkbox">
+                    <input type="checkbox" id="pref-sms" disabled />
+                    <span>Quero receber ofertas incríveis por SMS.</span>
+                  </label>
+                  <label for="pref-email" class="custom-checkbox">
+                    <input type="checkbox" id="pref-email" disabled />
+                    <span>Quero receber ofertas incríveis por e-mail.</span>
+                  </label>
                 </div>
               </div>
 
-              <div class="preferences">
-                <label for="pref-sms" class="checkbox-label">
-                  <input type="checkbox" id="pref-sms" disabled />
-                  Quero receber ofertas incríveis por SMS.
-                </label>
-                <label for="pref-email" class="checkbox-label">
-                  <input type="checkbox" id="pref-email" disabled />
-                  Quero receber ofertas incríveis por e-mail.
-                </label>
+              <button type="button" class="btn-edit-profile">
+                Editar dados
+              </button>
+            </form>
+          </section>
+
+          <!-- Aba: Endereços -->
+          <section
+            id="tab-enderecos"
+            class="content-section"
+            style="display: none"
+          >
+            <header class="tab-header">
+              <h2 class="section-title">Meus Endereços</h2>
+              <button class="btn-add-item">+ Novo Endereço</button>
+            </header>
+
+            <article class="info-data-card">
+              <h4 class="info-item-tag">Casa</h4>
+              <p class="info-item-main">Rua das Flores, 123 - Apto 45</p>
+              <p class="info-item-sub">
+                Bairro Jardim - São Paulo/SP - CEP: 00000-000
+              </p>
+              <div class="item-actions">
+                <a href="#" class="btn-action-edit">Editar</a>
+                <a href="#" class="btn-action-delete">Excluir</a>
+              </div>
+            </article>
+          </section>
+
+          <!-- Aba: Pedidos -->
+          <section
+            id="tab-pedidos"
+            class="content-section"
+            style="display: none"
+          >
+            <h2 class="section-title">Últimos Pedidos</h2>
+
+            <div class="info-data-card no-padding">
+              <div class="table-responsive">
+                <table class="profile-data-table">
+                  <thead>
+                    <tr>
+                      <th>Nº Pedido</th>
+                      <th>Data</th>
+                      <th>Status</th>
+                      <th>Total</th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-bold">#1052</td>
+                      <td class="text-muted">20/04/2026</td>
+                      <td>
+                        <span class="status-badge status-success"
+                          >Entregue</span
+                        >
+                      </td>
+                      <td class="text-bold">R$ 45,90</td>
+                      <td>
+                        <a href="pedido.html" class="btn-action-view"
+                          >Ver detalhes</a
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-bold">#1048</td>
+                      <td class="text-muted">15/04/2026</td>
+                      <td>
+                        <span class="status-badge status-warning"
+                          >A caminho</span
+                        >
+                      </td>
+                      <td class="text-bold">R$ 120,00</td>
+                      <td>
+                        <a href="pedido.html" class="btn-action-view"
+                          >Ver detalhes</a
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
+          </section>
 
-            <button type="button" class="btn-edit-data">Editar dados</button>
-          </form>
-        </section>
+          <!-- Aba: Cartões -->
+          <section
+            id="tab-cartoes"
+            class="content-section"
+            style="display: none"
+          >
+            <header class="tab-header">
+              <h2 class="section-title">Cartões Salvos</h2>
+              <button class="btn-add-item">+ Novo Cartão</button>
+            </header>
 
-        <section
-          id="tab-enderecos"
-          class="content-section"
-          style="display: none"
-        >
-          <div class="section-header">
-            <h2 class="section-title">Meus Endereços</h2>
-            <button class="btn-edit-data btn-add-new">+ Novo Endereço</button>
-          </div>
+            <article class="info-data-card card-flex">
+              <i class="fab fa-cc-mastercard icon-credit-card"></i>
+              <div class="card-meta">
+                <h4 class="card-name">Mastercard com final 4567</h4>
+                <p class="card-expiry">Vencimento: 12/29</p>
+              </div>
+              <a href="#" class="btn-action-delete">Excluir</a>
+            </article>
+          </section>
 
-          <div class="data-card">
-            <h4 class="address-tag">Casa</h4>
-            <p class="address-street">Rua das Flores, 123 - Apto 45</p>
-            <p class="address-city">
-              Bairro Jardim - São Paulo/SP - CEP: 00000-000
-            </p>
-            <div class="card-actions">
-              <a href="#" class="action-edit">Editar</a>
-              <a href="#" class="action-delete">Excluir</a>
+          <!-- Aba: Listas -->
+          <section
+            id="tab-listas"
+            class="content-section"
+            style="display: none"
+          >
+            <h2 class="section-title">Minhas Listas</h2>
+            <div class="info-data-card">
+              <p class="empty-state-text">
+                Você ainda não possui listas criadas.
+              </p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section id="tab-pedidos" class="content-section" style="display: none">
-          <h2 class="section-title">Últimos Pedidos</h2>
-
-          <div class="data-card orders-card">
-            <table class="orders-table">
-              <thead>
-                <tr>
-                  <th>Nº Pedido</th>
-                  <th>Data</th>
-                  <th>Status</th>
-                  <th>Total</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="col-bold">#1052</td>
-                  <td class="col-date">20/04/2026</td>
-                  <td>
-                    <span class="status-badge status-delivered">Entregue</span>
-                  </td>
-                  <td>R$ 45,90</td>
-                  <td><a href="#" class="action-view">Ver detalhes</a></td>
-                </tr>
-                <tr>
-                  <td class="col-bold">#1048</td>
-                  <td class="col-date">15/04/2026</td>
-                  <td>
-                    <span class="status-badge status-pending">A caminho</span>
-                  </td>
-                  <td>R$ 120,00</td>
-                  <td><a href="#" class="action-view">Ver detalhes</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section id="tab-cartoes" class="content-section" style="display: none">
-          <div class="section-header">
-            <h2 class="section-title">Cartões Salvos</h2>
-            <button class="btn-edit-data btn-add-new">+ Novo Cartão</button>
-          </div>
-
-          <div class="data-card credit-card-item">
-            <i class="fa-brands fa-cc-mastercard credit-card-icon"></i>
-            <div class="credit-card-info">
-              <h4 class="credit-card-name">Mastercard com final 4567</h4>
-              <p class="credit-card-expiry">Vencimento: 12/29</p>
+          <!-- Aba: Alertas -->
+          <section
+            id="tab-alertas"
+            class="content-section"
+            style="display: none"
+          >
+            <h2 class="section-title">Meus Alertas</h2>
+            <div class="info-data-card">
+              <p class="empty-state-text">Nenhuma notificação no momento.</p>
             </div>
-            <a href="#" class="action-delete">Excluir</a>
-          </div>
+          </section>
         </section>
-
-        <section id="tab-listas" class="content-section" style="display: none">
-          <h2 class="section-title">Minhas Listas</h2>
-          <div class="data-card">
-            <p class="placeholder-text">
-              Você ainda não possui listas criadas.
-            </p>
-          </div>
-        </section>
-
-        <section id="tab-alertas" class="content-section" style="display: none">
-          <h2 class="section-title">Meus Alertas</h2>
-          <div class="data-card">
-            <p class="placeholder-text">Nenhuma notificação no momento.</p>
-          </div>
-        </section>
-      </main>
-    </div>
+      </div>
+    </main>
 
     <footer id="main-footer"></footer>
   </body>

@@ -1,31 +1,147 @@
-/* Ajuste para telas de coluna única (Recuperar Senha) */
-.glass-container.single-column {
-  max-width: 500px; /* Mais estreito para focar no centro */
-  margin: 0 auto; /* Centraliza horizontalmente */
-  min-height: auto; /* Altura automática baseada no conteúdo */
-  padding: 20px;
+/* Estilos da Página de Recuperação de Senha - Estilo Cozzy Afternoon Market */
+
+.recovery-main {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: var(--bg-light); /* Fundo creme acolhedor */
 }
 
-.glass-container.single-column .right-side {
-  flex: 1;
-  padding: 40px;
+.recovery-container {
+  max-width: 500px; /* Estilo de coluna única centrado */
+  width: 100%;
+  background-color: var(--branco);
+  border: 1px solid #dcd3c1;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
-/* Estilo para o parágrafo de instrução */
-.login-form p {
+.recovery-form-section {
+  padding: 50px 40px;
+}
+
+.recovery-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-title {
+  font-size: 1.6rem;
+  color: var(--marrom-escuro);
   text-align: center;
-  margin-bottom: 30px;
-  color: var(--primary-color);
-  opacity: 0.8;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid var(--verde-primario);
+  padding-bottom: 15px;
+  margin-bottom: 5px;
 }
 
-.login-form a {
+.form-instruction {
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #6d6458;
+  margin-bottom: 10px;
+}
+
+/* INPUTS ESTILIZADOS */
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper i {
+  position: absolute;
+  left: 12px;
+  color: var(--verde-escuro);
+  font-size: 0.9rem;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 15px 12px 35px;
+  border: 1px solid #dcd3c1;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  background-color: #fffdfb;
+  color: var(--marrom-escuro);
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: var(--marrom-madeira);
+  background-color: #fff;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-primary {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  border: none;
+  padding: 15px;
+  border-radius: 2px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+/* Footer do Formulário */
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #eee5d8;
+}
+
+.link-back {
+  color: var(--marrom-madeira);
   text-decoration: none;
-  color: var(--primary-color);
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
 }
 
-#login-return {
-  text-align: center;
-  margin-top: 30px;
+.link-back:hover {
+  color: var(--marrom-escuro);
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .recovery-form-section {
+    padding: 30px 20px;
+  }
 }

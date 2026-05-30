@@ -19,35 +19,48 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    <div class="login-page-wrapper">
-      <div class="glass-container single-column">
-        <div class="right-side">
-          <form class="login-form">
-            <h2>RECUPERAR ACESSO</h2>
-            <p>
+    <header id="main-header"></header>
+
+    <main class="recovery-main">
+      <section class="recovery-container">
+        <div class="recovery-form-section">
+          <form class="recovery-form">
+            <h1 class="form-title">Recuperar Acesso</h1>
+            <p class="form-instruction">
               Insira seu e-mail cadastrado e enviaremos um link para você criar
-              uma nova senha.
+              uma nova senha de acesso.
             </p>
 
-            <div class="input-group">
-              <span class="icon"></span>
-              <input
-                type="email"
-                placeholder="SEU E-MAIL DE CADASTRO"
-                required
-              />
+            <div class="input-container">
+              <label for="recovery-email" class="sr-only"
+                >E-mail de Cadastro</label
+              >
+              <div class="input-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  id="recovery-email"
+                  placeholder="Seu e-mail de cadastro"
+                  required
+                />
+              </div>
             </div>
 
             <button type="submit" class="btn-primary">
               Enviar Link de Recuperação
             </button>
 
-            <div id="login-return">
-              <a href="login.html"> ← Voltar para o Login </a>
+            <!-- Link para retorno ao login padronizado -->
+            <div id="login-return" class="form-footer">
+              <a href="login.html" class="link-back">
+                <i class="fas fa-arrow-left"></i> Voltar para o Login
+              </a>
             </div>
           </form>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
+
+    <footer id="main-footer"></footer>
   </body>
 </html>

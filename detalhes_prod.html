@@ -19,44 +19,75 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    <main class="product-view-container">
-      <section class="product-gallery">
-        <div class="badge-frete">FRETE GRÁTIS</div>
-        <img src="img/placeholder.png" alt="Kit Bicho Green" class="main-img" />
-      </section>
+    <header id="main-header"></header>
 
-      <section class="product-details">
-        <h1 class="product-title">
-          [ FRETE GRÁTIS ] - KIT BICHO GREEN GATO 7KG + AREIA CATS BEST 4,3KG
-        </h1>
-
-        <div class="rating">
-          ⭐⭐⭐⭐⭐ <span class="rating-count">(1)</span>
-        </div>
-
-        <div class="price-container">
-          <h2 class="current-price">R$ 290,80</h2>
-          <p class="installments">3x de R$ 96,93 sem juros</p>
-        </div>
-
-        <div class="product-actions">
-          <div class="quantity-selector">
-            <button class="qty-btn">-</button>
-            <input type="number" value="1" min="1" />
-            <button class="qty-btn">+</button>
+    <main class="product-details-main">
+      <div class="product-details-container">
+        <section class="product-gallery">
+          <div class="shipping-badge">Frete Grátis</div>
+          <div class="main-image-wrapper">
+            <img
+              src="img/placeholder.png"
+              alt="Kit Bicho Green Gato"
+              class="product-image"
+            />
           </div>
-          <button class="btn-buy">COMPRAR</button>
-        </div>
+        </section>
 
-        <div class="shipping-section">
-          <p class="shipping-title">🚚 Meios de envio</p>
-          <div class="shipping-input">
-            <input type="text" placeholder="Seu CEP" />
-            <button class="btn-calc">CALCULAR</button>
+        <section class="product-info-section">
+          <header class="product-info-header">
+            <h1 class="product-title">
+              Kit Bicho Green Gato 7kg + Areia Cats Best 4,3kg
+            </h1>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-text">(1 avaliação)</span>
+            </div>
+          </header>
+
+          <div class="product-pricing">
+            <h2 class="current-price">R$ 290,80</h2>
+            <p class="installments-info">
+              ou 3x de <strong>R$ 96,93</strong> sem juros no cartão
+            </p>
           </div>
-          <a href="#" class="no-cep">Não sei meu CEP</a>
-        </div>
-      </section>
+
+          <div class="product-purchase-actions">
+            <div class="quantity-control">
+              <button class="qty-btn" aria-label="Diminuir quantidade">
+                <i class="fas fa-minus"></i>
+              </button>
+              <input type="number" value="1" min="1" readonly />
+              <button class="qty-btn" aria-label="Aumentar quantidade">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <button class="btn-buy-now">
+              <i class="fas fa-shopping-cart"></i> Comprar
+            </button>
+          </div>
+
+          <footer class="product-shipping-footer">
+            <div class="shipping-header">
+              <i class="fas fa-truck"></i>
+              <span class="shipping-label">Meios de envio</span>
+            </div>
+            <div class="shipping-input-group">
+              <input type="text" placeholder="00000-000" id="cep-input" />
+              <button class="btn-calculate-shipping">Calcular</button>
+            </div>
+            <a href="#" class="zip-code-help">Não sei meu CEP</a>
+          </footer>
+        </section>
+      </div>
     </main>
+
+    <footer id="main-footer"></footer>
   </body>
 </html>

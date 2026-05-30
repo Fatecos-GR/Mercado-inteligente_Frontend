@@ -19,77 +19,102 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    <main class="cart-container">
-      <header class="cart-header">
-        <h1>CARRINHO</h1>
-        <div class="steps-container">
-          <div class="step active">
-            <span class="step-num">1</span>
-            <p>Carrinho</p>
-          </div>
-          <div class="line"></div>
-          <div class="step">
-            <span class="step-num">2</span>
-            <p>Identificação</p>
-          </div>
-          <div class="line"></div>
-          <div class="step">
-            <span class="step-num">3</span>
-            <p>Pagamento</p>
-          </div>
-          <div class="line"></div>
-          <div class="step">
-            <span class="step-num">4</span>
-            <p>Concluído</p>
-          </div>
-        </div>
-      </header>
+    <header id="main-header"></header>
 
-      <section class="cart-content">
-        <div class="table-header">
-          <span class="col-product">Produto</span>
-          <span class="col-quantity">Quantidade</span>
-          <span class="col-value">Valor</span>
-        </div>
+    <main class="cart-main">
+      <section class="cart-container">
+        <header class="cart-header">
+          <h1 class="page-title">Carrinho</h1>
+          <div class="steps-container">
+            <div class="step active">
+              <span class="step-num">1</span>
+              <p>Carrinho</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <span class="step-num">2</span>
+              <p>Identificação</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <span class="step-num">3</span>
+              <p>Pagamento</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <span class="step-num">4</span>
+              <p>Concluído</p>
+            </div>
+          </div>
+        </header>
 
-        <div class="cart-item">
-          <div class="product-info">
-            <img src="img/placeholder.png" alt="Produto" />
-            <p class="product-name">Amido de Milho 200g</p>
-          </div>
-          <div class="quantity-controls">
-            <button class="qty-btn">-</button>
-            <input type="number" value="1" min="1" />
-            <button class="qty-btn">+</button>
-            <button class="remove-btn">🗑️ Remover</button>
-          </div>
-          <div class="value-info">
-            <p class="price">R$ 4,50</p>
-            <small>R$ 4,50 unid.</small>
-          </div>
-        </div>
+        <section class="cart-content">
+          <div class="cart-table">
+            <header class="table-header">
+              <span class="col-product">Produto</span>
+              <span class="col-quantity">Quantidade</span>
+              <span class="col-value">Valor</span>
+            </header>
 
-        <footer class="cart-footer">
-          <div class="shipping-calc">
-            <p>🚚 Preencha o CEP para calcular o frete</p>
-            <div class="cep-input">
-              <input type="text" placeholder="Informe seu CEP" />
-              <button class="btn-calc">Calcular</button>
+            <div id="cart-items-list" class="cart-items-container">
+              <!-- Os itens do carrinho serão renderizados dinamicamente pelo JS -->
+              <!-- Estrutura base para referência -->
+              <article class="cart-item">
+                <div class="product-info">
+                  <img src="img/placeholder.png" alt="Amido de Milho" />
+                  <p class="product-name">Amido de Milho 200g</p>
+                </div>
+                <div class="quantity-controls">
+                  <div class="qty-wrapper">
+                    <button class="qty-btn" aria-label="Diminuir quantidade">
+                      <i class="fas fa-minus"></i>
+                    </button>
+                    <input type="number" value="1" min="1" readonly />
+                    <button class="qty-btn" aria-label="Aumentar quantidade">
+                      <i class="fas fa-plus"></i>
+                    </button>
+                  </div>
+                  <button class="remove-btn">
+                    <i class="fas fa-trash-alt"></i> Remover
+                  </button>
+                </div>
+                <div class="value-info">
+                  <p class="item-price">R$ 4,50</p>
+                  <small class="unit-price">R$ 4,50 unid.</small>
+                </div>
+              </article>
             </div>
           </div>
 
-          <div class="cart-summary">
-            <div class="total-row">
-              <span>TOTAL</span>
-              <span class="total-price">R$ 4,50</span>
+          <footer class="cart-summary-section">
+            <div class="shipping-calculator">
+              <div class="shipping-header">
+                <i class="fas fa-truck"></i>
+                <p>Cálculo de Frete</p>
+              </div>
+              <div class="cep-input-group">
+                <input type="text" placeholder="00000-000" id="cep-input" />
+                <button class="btn-calc">Calcular</button>
+              </div>
             </div>
-            <div class="actions">
-              <a href="index.html" class="continue-link">Continuar Comprando</a>
-              <button class="btn-finalize">Finalizar Compra</button>
+
+            <div class="cart-total-container">
+              <div class="total-row">
+                <span class="total-label">Total</span>
+                <span class="total-value">R$ 4,50</span>
+              </div>
+              <div class="cart-actions">
+                <a href="index.html" class="link-continue"
+                  >Continuar Comprando</a
+                >
+                <button class="btn-finalize">Finalizar Compra</button>
+              </div>
             </div>
-          </div>
-        </footer>
+          </footer>
+        </section>
       </section>
     </main>
+
+    <footer id="main-footer"></footer>
   </body>
 </html>

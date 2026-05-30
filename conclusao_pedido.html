@@ -19,48 +19,57 @@
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    <main class="success-container">
-      <header class="cart-header">
-        <div class="steps-container">
-          <div class="step">
-            <span class="step-num">✔</span>
-            <p>Carrinho</p>
-          </div>
-          <div class="line completed"></div>
-          <div class="step">
-            <span class="step-num">✔</span>
-            <p>Identificação</p>
-          </div>
-          <div class="line completed"></div>
-          <div class="step">
-            <span class="step-num">✔</span>
-            <p>Pagamento</p>
-          </div>
-          <div class="line completed"></div>
-          <div class="step active">
-            <span class="step-num">4</span>
-            <p>Concluído</p>
-          </div>
-        </div>
-      </header>
+    <header id="main-header"></header>
 
-      <section class="success-card">
-        <div class="success-icon"></div>
-        <h1>PEDIDO REALIZADO!</h1>
-        <p class="order-number">
-          O número do seu pedido é <strong>#1052</strong>
-        </p>
+    <main class="order-success-main">
+      <section class="order-success-container">
+        <header class="order-header">
+          <div class="steps-container">
+            <div class="step completed">
+              <span class="step-num"><i class="fas fa-check"></i></span>
+              <p>Carrinho</p>
+            </div>
+            <div class="step-line completed"></div>
+            <div class="step completed">
+              <span class="step-num"><i class="fas fa-check"></i></span>
+              <p>Identificação</p>
+            </div>
+            <div class="step-line completed"></div>
+            <div class="step completed">
+              <span class="step-num"><i class="fas fa-check"></i></span>
+              <p>Pagamento</p>
+            </div>
+            <div class="step-line completed"></div>
+            <div class="step active">
+              <span class="step-num">4</span>
+              <p>Concluído</p>
+            </div>
+          </div>
+        </header>
 
-        <p class="message">
-          Obrigado por comprar no <strong>Melior Mercado</strong>!<br />
-          Enviamos um e-mail com todos os detalhes da sua compra.
-        </p>
+        <section class="success-message-card">
+          <div class="success-icon-wrapper">
+            <i class="fas fa-shopping-basket"></i>
+          </div>
+          <h1 class="success-title">Pedido Realizado!</h1>
+          <p class="order-info">
+            O número do seu pedido é <strong class="order-id">#1052</strong>
+          </p>
 
-        <div class="next-steps">
-          <a href="perfil.html" class="btn-outline">Acompanhar Pedido</a>
-          <a href="index.html" class="btn-primary">Voltar para a Loja</a>
-        </div>
+          <p class="thank-you-message">
+            Obrigado por comprar no <strong>Mercado Inteligente</strong>!<br />
+            Enviamos um e-mail com todos os detalhes da sua compra para você
+            acompanhar.
+          </p>
+
+          <div class="success-actions">
+            <a href="perfil.html" class="btn-secondary">Acompanhar Pedido</a>
+            <a href="index.html" class="btn-primary">Voltar para a Loja</a>
+          </div>
+        </section>
       </section>
     </main>
+
+    <footer id="main-footer"></footer>
   </body>
 </html>
