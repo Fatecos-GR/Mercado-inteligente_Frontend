@@ -2,6 +2,7 @@
 // IMPORTS
 // ===============================
 import { iniciarHome } from "./pages/home.js";
+import { iniciarPerfil } from "./pages/perfil.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
@@ -56,6 +57,13 @@ async function start() {
 
   if (isIndexPage) {
     iniciarHome();
+  }
+
+  // Se esta na tela de perfil
+  const isPerfilPage = window.location.pathname.includes("perfil.html");
+
+  if (isPerfilPage) {
+    iniciarPerfil();
   }
 }
 

@@ -1,72 +1,118 @@
-document.addEventListener("DOMContentLoaded", () => {
-  /**
-   * LÓGICA DO MENU LATERAL (ABAS)
-   * Gerencia a alternância de seções na página de perfil
-   */
+// ==========================
+// INICIALIZAÇÃO DA PÁGINA
+// ==========================
+
+export function iniciarPerfil() {
+  iniciarMenuLateral();
+  iniciarEdicaoPerfil();
+}
+
+// ==========================
+// MENU LATERAL (ABAS)
+// ==========================
+
+function iniciarMenuLateral() {
   const navLinks = document.querySelectorAll(
     ".profile-nav a:not(.link-logout)",
   );
+
   const sections = document.querySelectorAll(".content-section");
 
-  if (navLinks.length > 0) {
-    navLinks.forEach((link) => {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
+  if (!navLinks.length) return;
 
-        // 1. Remove classe ativa do menu e esconde todas as seções
-        navLinks.forEach((nav) => nav.classList.remove("active"));
-        sections.forEach((sec) => (sec.style.display = "none"));
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
 
-        // 2. Ativa o item clicado e mostra a seção correspondente
-        this.classList.add("active");
-        const targetId = this.getAttribute("data-target");
-        const targetSection = document.getElementById(targetId);
+      // Remove estado ativo
+      navLinks.forEach((nav) => nav.classList.remove("active"));
 
-        if (targetSection) {
-          targetSection.style.display = "block";
-        }
+      // Esconde todas as seções
+      sections.forEach((sec) => {
+        sec.style.display = "none";
       });
-    });
-  }
 
-  /**
-   * LÓGICA DE EDIÇÃO DE DADOS
-   * Alterna entre modo de leitura e edição no formulário de perfil
-   */
+      // Ativa menu clicado
+      this.classList.add("active");
+
+      // Mostra seção correspondente
+      const targetId = this.getAttribute("data-target");
+      const targetSection = document.getElementById(targetId);
+
+      if (targetSection) {
+        targetSection.style.display = "block";
+      }
+    });
+  });
+}
+
+// ==========================
+// EDIÇÃO DE PERFIL
+// ==========================
+
+function iniciarEdicaoPerfil() {
   const btnEdit = document.querySelector(".btn-edit-profile");
+
   const inputs = document.querySelectorAll(".field-input");
-  // Seleciona também os checkboxes para habilitar/desabilitar junto
+
   const checkboxes = document.querySelectorAll(
     '.marketing-preferences input[type="checkbox"]',
   );
 
-  if (btnEdit) {
-    btnEdit.addEventListener("click", () => {
-      const isEditing = btnEdit.classList.contains("is-editing");
+  if (!btnEdit) return;
 
-      if (isEditing) {
-        // SALVAR DADOS
-        inputs.forEach((input) => (input.disabled = true));
-        checkboxes.forEach((chk) => (chk.disabled = true));
+  btnEdit.addEventListener("click", () => {
+    const isEditing = btnEdit.classList.contains("is-editing");
 
-        btnEdit.classList.remove("is-editing");
-        btnEdit.textContent = "Editar dados";
-        btnEdit.style.backgroundColor = "var(--verde-escuro)";
+    if (isEditing) {
+      salvarDados(inputs, checkboxes, btnEdit);
+    } else {
+      habilitarEdicao(inputs, checkboxes, btnEdit);
+    }
+  });
+}
 
-        // Simulação de salvamento
-        alert("Dados atualizados com sucesso!");
-      } else {
-        // MODO EDIÇÃO
-        inputs.forEach((input) => (input.disabled = false));
-        checkboxes.forEach((chk) => (chk.disabled = false));
+// ==========================
+// HABILITAR EDIÇÃO
+// ==========================
 
-        btnEdit.classList.add("is-editing");
-        btnEdit.textContent = "Salvar dados";
-        btnEdit.style.backgroundColor = "var(--marrom-madeira)";
+function habilitarEdicao(inputs, checkboxes, btnEdit) {
+  inputs.forEach((input) => {
+    input.disabled = false;
+  });
 
-        const nameInput = document.getElementById("user-nome");
-        if (nameInput) nameInput.focus();
-      }
-    });
+  checkboxes.forEach((chk) => {
+    chk.disabled = false;
+  });
+
+  btnEdit.classList.add("is-editing");
+  btnEdit.textContent = "Salvar dados";
+  btnEdit.style.backgroundColor = "var(--marrom-madeira)";
+
+  const nameInput = document.getElementById("user-nome");
+
+  if (nameInput) {
+    nameInput.focus();
   }
-});
+}
+
+// ==========================
+// SALVAR DADOS
+// ==========================
+
+function salvarDados(inputs, checkboxes, btnEdit) {
+  inputs.forEach((input) => {
+    input.disabled = true;
+  });
+
+  checkboxes.forEach((chk) => {
+    chk.disabled = true;
+  });
+
+  btnEdit.classList.remove("is-editing");
+  btnEdit.textContent = "Editar dados";
+  btnEdit.style.backgroundColor = "var(--verde-escuro)";
+
+  // Simulação de salvamento
+  alert("Dados atualizados com sucesso!");
+}
