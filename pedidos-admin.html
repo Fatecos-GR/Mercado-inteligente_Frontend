@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título da página -->
+    <title>Pedidos - Admin Melior</title>
+
+    <!-- Ícone da página -->
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/pages/pedidos_admin.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script type="module" src="js/main.js" defer></script>
+  </head>
+  <body>
+    <div id="pedidos-admin-layout">
+      <!-- Sidebar -->
+      <div id="admin-sidebar"></div>
+
+      <div id="right-layout">
+        <!-- Header de Admin -->
+        <div id="admin-header"></div>
+
+        <main id="main-container">
+          <div class="admin-layout-content">
+            <div class="admin-content-heading">
+              <h2>Todos os Pedidos do Sistema</h2>
+            </div>
+
+            <div class="admin-table-wrapper">
+              <table class="admin-data-table">
+                <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Cliente</th>
+                    <th>Data</th>
+                    <th>Pagamento</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Acoes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1001</td>
+                    <td>Carlos Silva</td>
+                    <td>17/05/2026</td>
+                    <td>Pix</td>
+                    <td>145.90</td>
+                    <td>Em Separacao</td>
+                    <td>
+                      <a href="conclusao_pedido.html" class="admin-btn-edit"
+                        >Ver Itens</a
+                      >
+                      <a href="#" class="admin-btn-delete">Mudar Status</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1002</td>
+                    <td>Ana Souza</td>
+                    <td>17/05/2026</td>
+                    <td>Cartao de Credito</td>
+                    <td>62.30</td>
+                    <td>Pendente</td>
+                    <td>
+                      <a href="conclusao_pedido.html" class="admin-btn-edit"
+                        >Ver Itens</a
+                      >
+                      <a href="#" class="admin-btn-delete">Mudar Status</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
