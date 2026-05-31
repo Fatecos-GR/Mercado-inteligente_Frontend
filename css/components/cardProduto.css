@@ -1,7 +1,7 @@
 /* --- CARD PRINCIPAL MODERNO --- */
 .product-card {
   background: #ffffff;
-  border: none; /* Removendo a borda */
+  border: none;
   border-radius: 14px;
   padding: 20px;
   display: flex;
