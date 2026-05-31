@@ -1,3 +1,8 @@
+/* IMPORTS DOS COMPONENTES */
+@import "/css/components/card_dashboard.css";
+@import "/css/components/tabelas_estoque.css";
+@import "/css/components/forms_produto.css";
+
 /* Reset basico para eliminar espacos em branco do navegador */
 * {
   margin: 0;
