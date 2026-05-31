@@ -1,55 +1,119 @@
-/* Página de Estoque do Admin */
 /* IMPORTS DOS COMPONENTES */
-@import "/css/components/card_dashboard.css";
-@import "/css/components/tabelas_estoque.css";
 @import "/css/components/forms_produto.css";
+@import "/css/components/cardProduto_estoque.css";
+@import "/css/components/admin-sidebar.css";
+@import "/css/components/admin-header.css";
 
 /* IMPORT DO MAIN */
 @import "/css/main.css";
 
-body,
-html {
-  width: 100%;
-  height: 100%;
-  font-family: sans-serif;
-}
-
 /* Container do layout total */
-.admin-layout-body {
+#estoque-layout {
   display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
-/* Coluna da Esquerda (Sidebar) */
-.admin-layout-sidebar {
-  width: 260px;
-  background-color: #1a1a2e; /* Cor escura base */
-  color: #ffffff;
-}
-
-/* Coluna da Direita (Ganha o resto do espaco total) */
-.admin-layout-main {
+/* Parte da Direita */
+#right-layout {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   background-color: #f5f5f5;
 }
 
-/* Topo (Header) colado de ponta a ponta na direita */
-.admin-header-block {
-  width: 100%;
-  height: 60px;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  border-bottom: 1px solid #e0e0e0;
+/* MAIN */
+#main-container {
+  padding: 35px;
+  background-color: var(--bg-light);
+  min-height: 100vh;
 }
 
-/* Area interna onde ficam as tabelas e formularios */
-.admin-layout-content {
-  padding: 20px;
-  flex-grow: 1;
+/* TOPO */
+#estoque-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  gap: 20px;
+}
+
+#estoque-header h2 {
+  color: var(--cinza-escuro);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#estoque-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* BARRA DE BUSCA */
+#search-produto-container {
+  width: 800px;
+  height: 48px;
+  background-color: var(--branco);
+  border: 1px solid rgba(61, 90, 68, 0.12);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  transition: 0.2s ease;
+}
+
+/* FOCUS */
+#search-produto-container:focus-within {
+  border-color: var(--verde-primario);
+}
+
+/* ÍCONE */
+#search-produto-container i {
+  color: var(--verde-primario);
+  font-size: 0.95rem;
+  margin-right: 12px;
+}
+
+/* INPUT */
+#search-produto {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--cinza-escuro);
+  font-size: 0.95rem;
+}
+
+/* PLACEHOLDER */
+#search-produto::placeholder {
+  color: #999;
+}
+
+/* BOTÃO */
+#btn-adicionar-produto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--verde-primario);
+  color: var(--branco);
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+/* HOVER */
+#btn-adicionar-produto:hover {
+  background-color: var(--verde-escuro);
+}
+
+/* GRID */
+.admin-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
 }

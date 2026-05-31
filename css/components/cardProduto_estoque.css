@@ -1,0 +1,135 @@
+/* CARD DOS PRODUTOS NA TELA DE ESTOQUE*/
+.product-card {
+  background-color: var(--branco);
+  border: 1px solid rgba(61, 90, 68, 0.08);
+  border-radius: 18px;
+  padding: 22px;
+  transition: 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+}
+
+/* TOPO CARD */
+.product-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* ÍCONE */
+.product-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background-color: rgba(90, 125, 101, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-icon i {
+  color: var(--verde-escuro);
+  font-size: 1.1rem;
+}
+
+/* STATUS */
+.product-status {
+  background-color: rgba(90, 125, 101, 0.12);
+  color: var(--verde-escuro);
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.product-status.warning {
+  background-color: rgba(139, 90, 43, 0.12);
+  color: var(--marrom-madeira);
+}
+
+/* INFO */
+.product-info h3 {
+  color: var(--cinza-escuro);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.product-category {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* DETALHES */
+.product-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-item span {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.detail-item strong {
+  color: var(--cinza-escuro);
+  font-size: 1rem;
+}
+
+/* AÇÕES */
+.product-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.product-actions a {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+
+  padding: 10px;
+
+  border-radius: 10px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  transition: 0.2s ease;
+}
+
+/* EDITAR */
+.btn-edit {
+  background-color: rgba(90, 125, 101, 0.12);
+
+  color: var(--verde-escuro);
+}
+
+.btn-edit:hover {
+  background-color: rgba(90, 125, 101, 0.2);
+}
+
+/* EXCLUIR */
+.btn-delete {
+  background-color: rgba(139, 90, 43, 0.12);
+
+  color: var(--marrom-madeira);
+}
+
+.btn-delete:hover {
+  background-color: rgba(139, 90, 43, 0.2);
+}
