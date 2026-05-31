@@ -1,0 +1,21 @@
+/* IMPORTS DOS COMPONENTES */
+@import "/css/components/admin-sidebar.css";
+@import "/css/components/admin-header.css";
+
+/* IMPORT DO MAIN */
+@import "/css/main.css";
+
+/* Container do layout total */
+#adicionar-produto-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Parte da Direita */
+#right-layout {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
