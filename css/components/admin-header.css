@@ -1,0 +1,73 @@
+/* HEADER */
+#admin-header {
+  width: 100%;
+  height: 75px;
+  background-color: var(--bg-light);
+  border-bottom: 1px solid rgba(61, 90, 68, 0.12);
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* CONTAINER */
+.admin-header-block {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* TÍTULO */
+.admin-header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--verde-escuro);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.admin-header-title i {
+  font-size: 1.1rem;
+  color: var(--marrom-madeira);
+}
+
+/* ÁREA DIREITA */
+.admin-header-user {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* USUÁRIO */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--cinza-escuro);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.user-info i {
+  color: var(--verde-primario);
+  font-size: 0.95rem;
+}
+
+/* BOTÃO SAIR */
+.admin-header-user a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--marrom-madeira);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+/* HOVER */
+.admin-header-user a:hover {
+  color: var(--secondary-hover);
+}

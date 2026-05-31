@@ -2,6 +2,7 @@
 // IMPORTS
 // ===============================
 import { iniciarHome } from "./pages/home.js";
+
 import { iniciarPerfil } from "./pages/perfil.js";
 
 // ===============================
@@ -38,9 +39,20 @@ function carregarIcones() {
 // ===============================
 
 async function carregarLayout() {
-  // Função pede o ID do elemento e o arquivo html dele
-  await loadComponent("main-header", "components/header.html");
-  await loadComponent("main-footer", "components/footer.html");
+  // Função auxiliar
+  async function carregarSeExistir(id, arquivo) {
+    const elemento = document.getElementById(id);
+
+    // Se existir, carrega
+    if (elemento) {
+      await loadComponent(id, arquivo);
+    }
+  }
+
+  await carregarSeExistir("main-header", "components/header.html");
+  await carregarSeExistir("main-footer", "components/footer.html");
+  await carregarSeExistir("admin-header", "components/admin-header.html");
+  await carregarSeExistir("admin-sidebar", "components/admin-sidebar.html");
 }
 
 // ===============================
