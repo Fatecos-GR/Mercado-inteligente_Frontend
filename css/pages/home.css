@@ -1,9 +1,6 @@
 /* Página Principal --> Index  */
 
-/* Import do CSS Principal */
 @import "/css/main.css";
-
-/* Import do CSS dos cards de brinquedo */
 @import "/css/components/cardProduto.css";
 
 #main-container {
@@ -81,7 +78,7 @@
 #recommendation-tabs {
   display: flex;
   gap: 10px;
-  background: #f4f4f4;
+  background: var(--bg-light);
   padding: 6px;
   border-radius: 12px;
 }
@@ -98,7 +95,7 @@
 
 .tab.active {
   background: var(--verde-escuro);
-  color: white;
+  color: var(--branco);
 }
 
 /* CONTENT */
@@ -110,6 +107,142 @@
 
 .tab-content.active {
   display: block;
+}
+
+/* ===============================
+   CATEGORIAS
+=============================== */
+
+#categorias-section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#categories-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#categories-wrapper {
+  width: 65%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 0;
+  scrollbar-width: none;
+}
+
+#categories-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+#categories-carousel {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  min-width: max-content;
+}
+
+/* CARD DE CATEGORIA */
+.category-card {
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+/* BOLA COM FUNDO */
+.category-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--verde-escuro) 50%,
+    var(--verde-primario) 50%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* IMAGEM DO PRODUTO */
+.category-circle .category-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+/* TEXTO DA CATEGORIA */
+.category-card .category-title {
+  font-size: 0.9rem;
+  color: var(--cinza-escuro);
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+/* CARD DE CATEGORIA */
+.category-card {
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 0;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+/* BOLA COM FUNDO */
+.category-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--verde-escuro) 50%,
+    var(--verde-primario) 50%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-circle .category-img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
+
+.category-card .category-title {
+  font-size: 1rem;
+  color: var(--cinza-escuro);
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
 }
 
 /* GRID */
