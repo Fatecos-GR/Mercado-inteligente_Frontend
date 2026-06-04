@@ -1,9 +1,11 @@
-/* --- FOOTER --- */
+/* ===============================
+   FOOTER PRINCIPAL
+=============================== */
 #main-footer {
   background: var(--cinza-escuro);
   color: var(--branco);
-  padding: 40px 20px 20px;
-  margin-top: 40px;
+  padding: 60px 20px 20px; /* Aumentei um pouco o topo para dar respiro */
+  margin-top: 60px;
 }
 
 #inner-footer {
@@ -23,12 +25,12 @@
   min-width: 220px;
 }
 
-/* Logo Melior no Footer */
-.footer-logo {
-  color: var(--verde-primario);
-  font-size: 2.5rem;
-  font-weight: 900;
-  letter-spacing: 1px;
+/* --- LOGO DO FOOTER --- */
+.logo-img {
+  max-width: 140px;
+  height: auto;
+  display: block;
+  margin-bottom: 15px;
 }
 
 .brand-slogan {
@@ -36,29 +38,29 @@
   font-size: 0.95rem;
   margin-top: 10px;
   line-height: 1.4;
-  max-width: 200px;
+  max-width: 250px;
 }
 
 .footer-section h4 {
   color: var(--branco);
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-/* Listas de Acesso Rápido */
+/* --- LISTAS E LINKS --- */
 .footer-section ul {
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .footer-section a {
   color: var(--branco);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: color 0.2s ease;
 }
 
@@ -66,10 +68,10 @@
   color: var(--verde-primario);
 }
 
-/* Contato e Redes Sociais */
+/* --- CONTATO E REDES SOCIAIS --- */
 .contact-section p {
-  font-size: 0.9rem;
-  margin-bottom: 10px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -94,24 +96,25 @@
   filter: brightness(1.2);
 }
 
-/* Formulário de Newsletter */
+/* --- NEWSLETTER --- */
 .newsletter-section form {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  width: 100%;
 }
 
 .newsletter-section input {
-  padding: 12px 15px;
-  border-radius: 25px;
+  padding: 14px 15px;
+  border-radius: 8px;
   border: none;
   outline: none;
   font-size: 0.95rem;
 }
 
 .newsletter-section button {
-  padding: 12px 15px;
-  border-radius: 25px;
+  padding: 14px 15px;
+  border-radius: 8px;
   border: none;
   background: var(--verde-primario);
   color: var(--branco);
@@ -125,7 +128,7 @@
   background: var(--verde-escuro);
 }
 
-/* Footer Bottom (Pagamentos, Copyright e Botão Topo) */
+/* --- FOOTER BOTTOM --- */
 #footer-bottom {
   max-width: 1400px;
   margin: 0 auto;
@@ -156,7 +159,6 @@
   width: 100%;
 }
 
-/* Botão Voltar ao Topo */
 .back-to-top {
   position: absolute;
   right: 0;
@@ -179,25 +181,68 @@
   color: var(--branco);
 }
 
-/* Responsividade para Celulares */
+/* ===============================
+   RESPONSIVIDADE DO FOOTER
+=============================== */
+
+/* --- TABLETS (Até 1024px) --- */
+@media (max-width: 1024px) {
+  #inner-footer {
+    display: grid;
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Divide em 2 blocos de 2 no tablet */
+    gap: 40px;
+  }
+}
+
+/* --- CELULARES (Até 768px) --- */
 @media (max-width: 768px) {
   #inner-footer {
+    display: flex;
     flex-direction: column;
+    align-items: center; /* Centraliza tudo no celular */
+    text-align: center;
     gap: 40px;
+  }
+
+  /* Ajustes para alinhar os elementos centralizados */
+  .footer-section {
+    align-items: center;
+    width: 100%;
+  }
+
+  .brand-slogan {
+    max-width: 100%;
+  }
+
+  .contact-section p {
+    justify-content: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  /* Impede que o form fique gigante na tela inteira */
+  .newsletter-section form {
+    max-width: 300px;
+  }
+
+  /* Ajusta o rodapé final */
+  #footer-bottom {
+    align-items: center;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .payment-icons {
+    justify-content: center;
   }
 
   .back-to-top {
     position: static;
-    margin-top: 20px;
-    align-self: center;
-  }
-
-  #footer-bottom {
-    align-items: center;
-    text-align: center;
-  }
-
-  .copyright {
-    text-align: center;
+    margin-top: 30px;
   }
 }
