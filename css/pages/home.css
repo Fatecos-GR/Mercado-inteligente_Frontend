@@ -52,6 +52,21 @@
   border-radius: 0;
 }
 
+/* ===============================
+   LINK DO PRODUTO (Tira o sublinhado azul)
+=============================== */
+.product-link {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Faz o título manter a cor cinza-escuro original */
+  display: block; /* Garante que a área clicável ocupe o espaço todo da imagem */
+  cursor: pointer;
+}
+
+/* Opcional: Um efeitinho ao passar o mouse no nome do produto */
+.product-link:hover .product-title {
+  color: var(--verde-primario);
+}
+
 /* --- INDICADORES FLUTUANTES --- */
 .carousel-dots {
   display: flex;
