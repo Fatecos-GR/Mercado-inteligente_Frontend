@@ -79,5 +79,68 @@ async function start() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const selectOrdenacao = document.getElementById("ordenar-produtos");
+
+  // Selecione o grid específico que você quer ordenar (pode precisar ajustar a classe/ID dependendo de onde colocou o filtro)
+  const gridProdutos = document.querySelector(".products-grid");
+
+  if (selectOrdenacao && gridProdutos) {
+    selectOrdenacao.addEventListener("change", function () {
+      // 1. Pega todos os cards de produto e transforma em um Array
+      const cards = Array.from(gridProdutos.querySelectorAll(".product-card"));
+      const valorSelecionado = this.value;
+
+      // 2. Ordena o Array baseado na escolha
+      cards.sort((a, b) => {
+        // Pega os textos de preço
+        const precoTextoA = a.querySelector(".price-current").innerText;
+        const precoTextoB = b.querySelector(".price-current").innerText;
+
+        // Limpa a formatação (ex: "R$ 49,90" vira 49.90)
+        const precoA = parseFloat(
+          precoTextoA
+            .replace("R$", "")
+            .trim()
+            .replace(".", "")
+            .replace(",", "."),
+        );
+        const precoB = parseFloat(
+          precoTextoB
+            .replace("R$", "")
+            .trim()
+            .replace(".", "")
+            .replace(",", "."),
+        );
+
+        // Pega os títulos para a ordenação Alfabética
+        const tituloA = a
+          .querySelector(".product-title")
+          .innerText.toLowerCase();
+        const tituloB = b
+          .querySelector(".product-title")
+          .innerText.toLowerCase();
+
+        // 3. Verifica qual filtro foi escolhido e faz o cálculo
+        if (valorSelecionado === "menor-preco") {
+          return precoA - precoB; // Crescente
+        } else if (valorSelecionado === "maior-preco") {
+          return precoB - precoA; // Decrescente
+        } else if (valorSelecionado === "a-z") {
+          return tituloA.localeCompare(tituloB); // Alfabética
+        }
+
+        return 0; // Mantém a ordem padrão se for "Selecione..."
+      });
+
+      // 4. Limpa o grid atual e injeta os cards reordenados
+      gridProdutos.innerHTML = "";
+      cards.forEach((card) => {
+        gridProdutos.appendChild(card);
+      });
+    });
+  }
+});
+
 // Inicialização
 start();
