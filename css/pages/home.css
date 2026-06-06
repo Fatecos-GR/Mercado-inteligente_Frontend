@@ -7,11 +7,17 @@
    ESTRUTURA GLOBAL (O Segredo do Zoom)
 =============================== */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* ===============================
    ESTRUTURA GLOBAL (O Segredo do Zoom)
 =============================== */
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+/* ===============================
+   ESTRUTURA GLOBAL (O Segredo do Zoom)
+=============================== */
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 #main-container {
   padding-top: 20px;
   padding-left: 20px;
@@ -20,25 +26,37 @@
   max-width: 1400px;
   margin: 0 auto;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
   max-width: 1400px;
   margin: 0 auto;
+<<<<<<< HEAD
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 }
 
 /* ===============================
    1. BANNER CARROSSEL (Estilo Arco)
 =============================== */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* ===============================
    1. BANNER CARROSSEL (Estilo Arco)
 =============================== */
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+/* ===============================
+   1. BANNER CARROSSEL (Estilo Arco)
+=============================== */
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 #banner {
   width: 100%;
 }
@@ -46,31 +64,45 @@
 #carousel-container {
   position: relative;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   position: relative;
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+  position: relative;
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 0 0 50% 50% / 0 0 50px 50px;
 <<<<<<< HEAD
+<<<<<<< HEAD
   overflow: hidden;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
 =======
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
   border-radius: 0 0 50% 50% / 0 0 50px 50px;
   overflow: hidden;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+<<<<<<< HEAD
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 }
 
 #carousel-wrapper {
   display: flex;
   width: 100%;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   width: 100%;
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+  width: 100%;
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
   transition: transform 1s ease;
 }
 
@@ -79,10 +111,15 @@
   height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
   display: block;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
   display: block;
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+  height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
+  display: block;
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 }
 
 .banner-slide img {
@@ -116,11 +153,17 @@
   bottom: 25px;
   z-index: 10;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   position: absolute;
   bottom: 25px;
   z-index: 10;
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+  position: absolute;
+  bottom: 25px;
+  z-index: 10;
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 }
 
 .dot {
@@ -293,12 +336,15 @@
 #recommendations-header,
 .vitrine-title-container {
 <<<<<<< HEAD
+<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
   /* Margens gigantes esquerdas removidas! */
 =======
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 #recommendations-header,
 .vitrine-title-container {
   display: flex;
@@ -309,24 +355,36 @@
   /* Margens gigantes esquerdas removidas! */
   margin-bottom: 20px;
   /* Margens gigantes esquerdas removidas! */
+<<<<<<< HEAD
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 }
 
 #recommendations-header h2,
 .vitrine-title {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #recommendations-header h2,
 .vitrine-title {
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+#recommendations-header h2,
+.vitrine-title {
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
   color: var(--cinza-escuro);
   font-size: 1.8rem;
   font-weight: 900;
   margin-bottom: 20px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   margin-bottom: 20px;
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+  margin-bottom: 20px;
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 }
 
 /* TABS */
@@ -335,9 +393,13 @@
   gap: 10px;
   background: var(--bg-light);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   background: var(--bg-light);
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+  background: var(--bg-light);
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
   padding: 6px;
   border-radius: 12px;
 }
@@ -356,9 +418,13 @@
   background: var(--verde-escuro);
   color: var(--branco);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   color: var(--branco);
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+  color: var(--branco);
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 }
 
 .tab-content {
@@ -375,11 +441,17 @@
    4. GRID DE PRODUTOS
 =============================== */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* ===============================
    4. GRID DE PRODUTOS
 =============================== */
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+/* ===============================
+   4. GRID DE PRODUTOS
+=============================== */
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 .products-grid {
   display: grid;
   /* Ajustado para os cards ficarem mais finos e caberem mais na tela */
@@ -466,7 +538,10 @@
   display: flex;
   flex-direction: column;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
   /* Ajustado para os cards ficarem mais finos e caberem mais na tela */
   grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
   gap: 20px;
@@ -550,7 +625,10 @@
   max-width: 30%;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
   justify-content: center;
 }
 
@@ -813,7 +891,10 @@
   }
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 
 @keyframes morph {
   0% {
@@ -973,4 +1054,7 @@
     }
   }
 }
+<<<<<<< HEAD
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+=======
+>>>>>>> 930be767889da99764473fc63ae2506e47858b8a
