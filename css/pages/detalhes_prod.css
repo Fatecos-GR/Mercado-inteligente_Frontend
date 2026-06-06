@@ -1,8 +1,9 @@
 /* CSS PRINCIPAL */
 @import "/css/main.css";
 
-/* Estilos da Página de Detalhes do Produto - Estilo Cozzy Afternoon Market */
-
+/* ===============================
+   ESTRUTURA PRINCIPAL
+=============================== */
 .product-details-main {
   padding: 50px 20px;
   background-color: var(--bg-light);
@@ -19,21 +20,22 @@
   grid-template-columns: 1fr 1fr;
   gap: 50px;
   background-color: var(--branco);
-  border: 1px solid #dcd3c1;
-  border-radius: 4px;
+  border-radius: 12px; /* Arredondamento mais moderno */
   padding: 40px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra um pouco mais visível */
 }
 
-/* Galeria / Imagem */
+/* ===============================
+   GALERIA E IMAGEM
+=============================== */
 .product-gallery {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fffdfb;
-  border: 1px solid #eee5d8;
-  border-radius: 4px;
+  background-color: var(--branco);
+  border: 1px solid #eaeaea; /* Cinza claro neutro */
+  border-radius: 8px;
   padding: 20px;
 }
 
@@ -41,10 +43,10 @@
   position: absolute;
   top: 15px;
   left: 15px;
-  background-color: var(--marrom-madeira);
+  background-color: var(--marrom-madeira); /* Corrigido para a marca */
   color: var(--branco);
   padding: 6px 15px;
-  border-radius: 2px;
+  border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -66,7 +68,9 @@
   object-fit: contain;
 }
 
-/* Informações do Produto */
+/* ===============================
+   INFORMAÇÕES DO PRODUTO
+=============================== */
 .product-info-section {
   display: flex;
   flex-direction: column;
@@ -80,9 +84,9 @@
 
 .product-title {
   font-size: 1.8rem;
-  color: var(--marrom-escuro);
+  color: var(--cinza-escuro); /* Corrigido para a marca */
   line-height: 1.3;
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: 15px;
 }
 
@@ -99,10 +103,10 @@
 
 .rating-text {
   font-size: 0.85rem;
-  color: #8d8170;
+  color: #7f8c8d; /* Cinza genérico mais legível */
 }
 
-/* Preço */
+/* --- Preço --- */
 .product-pricing {
   display: flex;
   flex-direction: column;
@@ -112,20 +116,22 @@
 .current-price {
   font-size: 2.5rem;
   color: var(--verde-escuro);
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -1px;
 }
 
 .installments-info {
   font-size: 1rem;
-  color: #6d6458;
+  color: #7f8c8d;
 }
 
 .installments-info strong {
-  color: var(--marrom-escuro);
+  color: var(--cinza-escuro);
 }
 
-/* Ações */
+/* ===============================
+   AÇÕES DE COMPRA (Botões)
+=============================== */
 .product-purchase-actions {
   display: flex;
   gap: 20px;
@@ -134,46 +140,49 @@
 
 .quantity-control {
   display: flex;
-  border: 1px solid #dcd3c1;
-  border-radius: 2px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   overflow: hidden;
   height: 50px;
 }
 
 .qty-btn {
-  background: #fdfaf5;
+  background: var(--bg-light);
   border: none;
   width: 45px;
   cursor: pointer;
-  color: var(--marrom-escuro);
+  color: var(--cinza-escuro);
   font-size: 1rem;
   transition: background 0.2s;
 }
 
 .qty-btn:hover {
-  background: #f2ede4;
+  background: #e2e8f0;
 }
 
 .quantity-control input {
   width: 50px;
-  border-left: 1px solid #dcd3c1;
-  border-right: 1px solid #dcd3c1;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
   border-top: none;
   border-bottom: none;
   text-align: center;
   font-size: 1.1rem;
   font-weight: 700;
   background-color: var(--branco);
-  color: var(--marrom-escuro);
+  color: var(--cinza-escuro);
+  outline: none;
 }
 
 .btn-buy-now {
   flex: 1;
   height: 50px;
-  background-color: var(--verde-escuro);
+  background-color: var(
+    --verde-primario
+  ); /* Uniformizado com os outros botões do site */
   color: var(--branco);
   border: none;
-  border-radius: 2px;
+  border-radius: 6px;
   font-size: 1.1rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -182,20 +191,22 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  transition: filter 0.2s;
+  transition: 0.2s;
 }
 
 .btn-buy-now:hover {
-  filter: brightness(1.1);
+  background-color: var(--verde-escuro);
 }
 
-/* Frete */
+/* ===============================
+   ÁREA DE FRETE
+=============================== */
 .product-shipping-footer {
   margin-top: 10px;
   padding: 25px;
-  background-color: #f7f1e9;
-  border: 1px solid #eee5d8;
-  border-radius: 4px;
+  background-color: var(--bg-light); /* Limpo o bege antigo */
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
 }
 
 .shipping-header {
@@ -203,9 +214,9 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
-  color: var(--marrom-escuro);
+  color: var(--cinza-escuro);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .shipping-header i {
@@ -221,41 +232,50 @@
 .shipping-input-group input {
   flex: 1;
   padding: 12px;
-  border: 1px solid #dcd3c1;
-  border-radius: 2px;
-  background-color: #fffdfb;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: var(--branco);
   font-size: 0.9rem;
+  outline: none;
+}
+
+.shipping-input-group input:focus {
+  border-color: var(--verde-primario);
 }
 
 .btn-calculate-shipping {
-  background-color: var(--marrom-madeira);
+  background-color: var(
+    --marrom-madeira
+  ); /* Cor contrastante que combina com o header */
   color: var(--branco);
   border: none;
   padding: 0 25px;
-  border-radius: 2px;
+  border-radius: 6px;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: filter 0.2s;
+  transition: 0.2s;
 }
 
 .btn-calculate-shipping:hover {
-  filter: brightness(1.1);
+  background-color: #1a1a1a;
 }
 
 .zip-code-help {
   font-size: 0.8rem;
-  color: #8d8170;
+  color: #7f8c8d;
   text-decoration: underline;
   transition: color 0.2s;
 }
 
 .zip-code-help:hover {
-  color: var(--marrom-madeira);
+  color: var(--verde-primario);
 }
 
-/* Responsividade */
+/* ===============================
+   RESPONSIVIDADE
+=============================== */
 @media (max-width: 900px) {
   .product-details-container {
     grid-template-columns: 1fr;
@@ -267,7 +287,7 @@
   }
 
   .product-title {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -279,9 +299,14 @@
 
   .quantity-control {
     width: 100%;
+    justify-content: space-between; /* Melhora o toque no celular */
   }
 
   .qty-btn {
-    flex: 1;
+    width: 60px; /* Botões mais largos para dedo */
+  }
+
+  .quantity-control input {
+    flex: 1; /* Campo de texto preenche o meio fluido */
   }
 }
