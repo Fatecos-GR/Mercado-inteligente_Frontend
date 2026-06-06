@@ -1,9 +1,7 @@
-/* IMPORTS DOS COMPONENTES */
+/* 1. IMPORTS E ESTRUTURA BASE (Mantendo seu padrão) */
 @import "/css/components/card_dashboard.css";
 @import "/css/components/admin-sidebar.css";
 @import "/css/components/admin-header.css";
-
-/* IMPORT DO MAIN */
 @import "/css/main.css";
 
 /* Container do layout total */
@@ -18,18 +16,130 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 /* Conteúdo Principal */
 #main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 40px;
+  font-family: sans-serif;
 }
 
-#main-container h2 {
-  font-size: 30px;
+/* Cabeçalho do conteúdo alinhado ao card */
+.admin-layout-content {
+  width: 100%;
+  max-width: 1000px; /* Limite de largura para a tabela não esticar infinito */
+}
+
+.admin-content-heading h2 {
+  font-size: 1.6rem;
+  color: #1a2421;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+/* 2. ENVELOPE DA TABELA (ESTILO CARD CREME) */
+.admin-table-wrapper {
+  background-color: #f7f6f0;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01);
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Estutura interna da Tabela */
+.admin-data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* Cria um vão sutil entre as linhas */
+  text-align: left;
+}
+
+/* Cabeçalho da Tabela */
+.admin-data-table th {
+  color: #7a827f;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+}
+
+/* Linhas de dados (Fundo branco para cada linha simular um bloco limpo) */
+.admin-data-table tbody tr {
+  background-color: #ffffff;
+  transition: transform 0.2s;
+}
+
+/* Arredondando apenas os cantos externos das linhas */
+.admin-data-table tbody tr td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.admin-data-table tbody tr td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Células de dados */
+.admin-data-table td {
+  padding: 16px;
+  color: #1a2421;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+/* 3. BADGES DE STATUS (ETIQUETAS ARREDONDADAS) */
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Status: Pendente (Tom pastel amarelado/bege) */
+.status-pendente {
+  background-color: #f7e6c4;
+  color: #7c5e10;
+}
+
+/* Status: Em Separação (Tom pastel azul/esverdeado sutil) */
+.status-separacao {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+/* 4. BOTÕES DE AÇÃO (Padrão Arredondado) */
+.admin-btn-action {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin-right: 5px;
+  transition: background-color 0.2s;
+}
+
+/* Botão Ver Itens */
+.btn-view {
+  background-color: #38513d;
+  color: #ffffff;
+}
+.btn-view:hover {
+  background-color: #2b3f30;
+}
+
+/* Botão Mudar Status */
+.btn-status {
+  background-color: #e4e8e4;
+  color: #21342c;
+}
+.btn-status:hover {
+  background-color: #d5dad5;
 }

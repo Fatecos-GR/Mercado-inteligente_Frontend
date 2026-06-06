@@ -1,8 +1,7 @@
-/* IMPORTS DOS COMPONENTES */
+/* 
+1. IMPORTS DOS COMPONENTES E ESTRUTURA BASE */
 @import "/css/components/admin-sidebar.css";
 @import "/css/components/admin-header.css";
-
-/* IMPORT DO MAIN */
 @import "/css/main.css";
 
 /* Container do layout total */
@@ -17,5 +16,128 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
+  background-color: #ffffff; /* Mudado para branco para destacar o card creme */
+}
+
+/* CONTEÚDO PRINCIPAL E TÍTULOS */
+
+#main-container {
+  padding: 40px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza o formulário na tela */
+  font-family: sans-serif;
+}
+
+/* Estilo do H2 (Formulário de Cadastro) */
+#main-container h2 {
+  color: #1a2421;
+  font-size: 1.6rem;
+  margin-bottom: 5px;
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+/* Link de Voltar */
+.admin-btn-back {
+  display: inline-block;
+  color: #7a827f;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.admin-btn-back:hover {
+  text-decoration: underline;
+}
+
+/* DESIGN DO FORMULÁRIO (ESTILO CREME / ARREDONDADO IGUAL À REFERÊNCIA) */
+
+/* Caixa do formulário (o Card creme de fundo) */
+.admin-form-wrapper {
+  background-color: #f7f6f0; /* Fundo creme suave da imagem */
+  padding: 35px;
+  border-radius: 16px; /* Cantos bem arredondados */
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01);
+}
+
+.admin-main-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Agrupamento de cada campo (Label + Input) */
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Estilo das Labels */
+.admin-form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5c6461;
+}
+
+/* Inputs e Selects arredondados e elegantes */
+.admin-form-group input,
+.admin-form-group select {
+  padding: 14px 16px;
+  border: 1px solid #e1e3df;
+  background-color: #ffffff;
+  border-radius: 12px; /* Cantos arredondados como na foto */
+  font-size: 1rem;
+  color: #1a2421;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+/* Destaque ao clicar nos inputs */
+.admin-form-group input:focus,
+.admin-form-group select:focus {
+  border-color: #2d4a3e;
+}
+
+/* Linha com Preço e Quantidade lado a lado */
+.admin-form-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.admin-form-row .admin-form-group {
+  flex: 1; /* Faz os dois campos terem larguras iguais */
+}
+
+/* 4. BOTÃO SALVAR REGISTRO */
+.admin-form-actions {
+  margin-top: 10px;
+}
+
+/* Botão largo e acinzentado do estilo 'Editar' */
+.admin-btn-submit {
+  width: 100%;
+  background-color: #38513d; /* Fundo cinza esverdeado claro */
+  color: #fff; /* Texto verde escuro */
+  border: none;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.admin-btn-submit:hover {
+  background-color: #d5dad5;
 }
