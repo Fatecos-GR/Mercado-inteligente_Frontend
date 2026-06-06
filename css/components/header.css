@@ -21,12 +21,12 @@
 }
 
 /* Logo */
-#title-header a {
-  text-decoration: none;
-  color: var(--verde-primario);
-  font-size: 2.2rem;
-  font-weight: 900;
-  letter-spacing: 1px;
+#title-header a img {
+  height: 65px;
+  width: auto;
+  display: block;
+  transform: scale(1.2);
+  transform-origin: left center;
 }
 
 /* Busca */
@@ -195,4 +195,100 @@
 
 .nav-categorias a:hover {
   color: var(--verde-primario);
+}
+
+/* ===============================
+   RESPONSIVIDADE DO HEADER
+=============================== */
+
+/* --- TABLETS (até 1024px) --- */
+@media (max-width: 1024px) {
+  #header-top {
+    padding: 15px 20px;
+    gap: 20px;
+  }
+
+  #header-bottom {
+    padding: 0 20px;
+  }
+
+  /* Reduz um pouco o espaçamento das categorias para caberem melhor */
+  .nav-categorias {
+    gap: 15px;
+  }
+}
+
+/* --- CELULARES (até 768px) --- */
+@media (max-width: 768px) {
+  /* Permite que os itens quebrem para a linha de baixo */
+  #header-top {
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    gap: 10px;
+  }
+
+  /* 1. Logo na esquerda (Ordem 1) */
+  #title-header {
+    order: 1;
+  }
+
+  #title-header a img {
+    height: 45px; /* Reduz a logo no celular */
+    transform: scale(1); /* Remove o zoom para não vazar a tela */
+  }
+
+  /* 2. Botões na direita (Ordem 2) */
+  #header-actions {
+    order: 2;
+    gap: 15px;
+    margin-left: auto; /* Empurra os botões para o canto direito */
+  }
+
+  /* Esconde os textos "Admin" e "Conta" no celular para economizar espaço */
+  .action-btn-vertical span {
+    display: none;
+  }
+
+  .action-btn-vertical {
+    margin-top: 0;
+  }
+
+  /* Esconde o valor em Reais do carrinho no celular */
+  .cart-value-box {
+    display: none;
+  }
+
+  /* Transforma a pílula do carrinho em um círculo simples no celular */
+  .cart-pill-btn {
+    padding-left: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  /* 3. Barra de Busca ocupa 100% da linha de baixo (Ordem 3) */
+  #header-busca {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  #header-search-form button {
+    padding: 0 20px; /* Reduz o botão de busca para dar mais espaço ao texto */
+  }
+
+  /* 4. Menu Inferior rolável */
+  #header-bottom {
+    overflow-x: auto; /* Permite rolar os departamentos com o dedo */
+    white-space: nowrap; /* Impede que quebrem linha */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Esconde a barra de rolagem nativa */
+  }
+
+  #header-bottom::-webkit-scrollbar {
+    display: none;
+  }
 }

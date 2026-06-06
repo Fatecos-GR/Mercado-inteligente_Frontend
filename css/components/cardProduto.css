@@ -1,17 +1,20 @@
-/* --- CARD PRINCIPAL MODERNO --- */
+/* CARD PRINCIPAL */
 .product-card {
-  background: #ffffff;
+  background: var(--branco);
   border: none;
   border-radius: 14px;
   padding: 20px;
   display: flex;
+  margin-left: 100px;
   flex-direction: column;
   position: relative;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  min-height: 360px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); /* Sombra quase invisível */
+  min-height: 450px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
 
 .product-card:hover {
@@ -19,13 +22,13 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-/* --- ELEMENTOS FLUTUANTES --- */
+/* ELEMENTOS FLUTUANTES */
 .badge-blue {
   position: absolute;
   top: 15px;
   left: 15px;
-  background-color: #0094ff;
-  color: #ffffff;
+  background-color: var(--verde-primario);
+  color: var(--branco);
   font-size: 0.8rem;
   font-weight: 800;
   padding: 4px 10px;
@@ -33,22 +36,7 @@
   z-index: 2;
 }
 
-.heart-icon {
-  position: absolute;
-  top: 18px;
-  right: 15px;
-  color: #dcdcdc;
-  font-size: 1.3rem;
-  cursor: pointer;
-  z-index: 2;
-  transition: color 0.2s ease;
-}
-
-.heart-icon:hover {
-  color: #ff4d4d;
-}
-
-/* --- IMAGEM E TEXTOS --- */
+/* IMAGEM E TEXTOS */
 .card-image-wrapper {
   width: 100%;
   height: 160px;
@@ -67,7 +55,7 @@
 
 .product-title {
   font-size: 0.95rem;
-  color: #0a0045;
+  color: var(--cinza-escuro);
   font-weight: 700;
   margin: 0 0 15px 0;
   line-height: 1.3;
@@ -80,7 +68,7 @@
   height: 40px;
 }
 
-/* --- PREÇOS E BOTÃO --- */
+/* PREÇOS E BOTÃO */
 .product-pricing {
   display: flex;
   flex-direction: column;
@@ -91,29 +79,30 @@
 
 .price-old {
   font-size: 0.9rem;
-  color: #a0a0a0;
+  color: var(--cinza-escuro);
+  opacity: 0.6;
   text-decoration: line-through;
 }
 
 .price-current {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #0a0045;
+  color: var(--verde-escuro);
 }
 
 .btn-add-cart {
   width: 100%;
   background: transparent;
-  color: #0a0045;
-  border: 2px solid #0a0045;
+  color: var(--verde-escuro);
+  border: 2px solid var(--verde-escuro);
   padding: 10px;
-  border-radius: 30px; /* Formato pílula */
+  border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .btn-add-cart:hover {
-  background: #0a0045;
-  color: white;
+  background: var(--verde-escuro);
+  color: var(--branco);
 }
