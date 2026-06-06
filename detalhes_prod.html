@@ -3,16 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Título da página -->
     <title>Melior | Detalhes do Produto</title>
 
-    <!-- Ícone da página -->
     <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
 
-    <!-- CSS -->
     <link rel="stylesheet" href="css/pages/detalhes_prod.css" />
 
-    <!-- JAVASCRIPT PRINCIPAL -->
     <script type="module" src="js/main.js" defer></script>
   </head>
   <body>
@@ -24,8 +20,9 @@
           <div class="shipping-badge">Frete Grátis</div>
           <div class="main-image-wrapper">
             <img
+              id="detalhe-imagem"
               src="img/placeholder.png"
-              alt="Kit Bicho Green Gato"
+              alt="Carregando imagem..."
               class="product-image"
             />
           </div>
@@ -33,9 +30,10 @@
 
         <section class="product-info-section">
           <header class="product-info-header">
-            <h1 class="product-title">
-              Kit Bicho Green Gato 7kg + Areia Cats Best 4,3kg
+            <h1 class="product-title" id="detalhe-titulo">
+              Carregando produto...
             </h1>
+
             <div class="product-rating">
               <div class="stars">
                 <i class="fas fa-star"></i>
@@ -49,9 +47,9 @@
           </header>
 
           <div class="product-pricing">
-            <h2 class="current-price">R$ 290,80</h2>
-            <p class="installments-info">
-              ou 3x de <strong>R$ 96,93</strong> sem juros no cartão
+            <h2 class="current-price" id="detalhe-preco">R$ 0,00</h2>
+            <p class="installments-info" id="detalhe-parcelamento">
+              ou 3x de <strong>R$ 0,00</strong> sem juros no cartão
             </p>
           </div>
 

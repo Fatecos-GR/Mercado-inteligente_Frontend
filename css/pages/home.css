@@ -6,7 +6,16 @@
 /* ===============================
    ESTRUTURA GLOBAL (O Segredo do Zoom)
 =============================== */
+/* ===============================
+   ESTRUTURA GLOBAL (O Segredo do Zoom)
+=============================== */
 #main-container {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
@@ -18,28 +27,37 @@
 /* ===============================
    1. BANNER CARROSSEL (Estilo Arco)
 =============================== */
+/* ===============================
+   1. BANNER CARROSSEL (Estilo Arco)
+=============================== */
 #banner {
   width: 100%;
 }
 
 #carousel-container {
   position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 0 0 50% 50% / 0 0 50px 50px;
+  border-radius: 0 0 50% 50% / 0 0 50px 50px;
   overflow: hidden;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
 }
 
 #carousel-wrapper {
   display: flex;
   width: 100%;
+  width: 100%;
   transition: transform 1s ease;
 }
 
 .banner-slide {
   min-width: 100%;
+  height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
+  display: block;
   height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
   display: block;
 }
@@ -52,10 +70,28 @@
   border-radius: 0;
 }
 
+/* ===============================
+   LINK DO PRODUTO (Tira o sublinhado azul)
+=============================== */
+.product-link {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Faz o título manter a cor cinza-escuro original */
+  display: block; /* Garante que a área clicável ocupe o espaço todo da imagem */
+  cursor: pointer;
+}
+
+/* Opcional: Um efeitinho ao passar o mouse no nome do produto */
+.product-link:hover .product-title {
+  color: var(--verde-primario);
+}
+
 /* --- INDICADORES FLUTUANTES --- */
 .carousel-dots {
   display: flex;
   gap: 10px;
+  position: absolute;
+  bottom: 25px;
+  z-index: 10;
   position: absolute;
   bottom: 25px;
   z-index: 10;
@@ -65,14 +101,15 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--cinza-escuro);
   cursor: pointer;
   transition: 0.3s;
+  opacity: 75%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .dot.active {
-  background: var(--branco);
+  background: var(--verde-escuro);
   transform: scale(1.2);
 }
 
@@ -160,6 +197,66 @@
 }
 
 /* ===============================
+   FILTRO DE ORDENAÇÃO (Estilo Melior)
+=============================== */
+.filtro-ordenacao {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  margin-bottom: 25px;
+  margin-left: 40px;
+}
+
+.filtro-ordenacao label {
+  font-weight: 800;
+  color: var(--cinza-escuro);
+  font-size: 1.05rem;
+}
+
+.filtro-ordenacao select {
+  /* Espaçamento interno confortável */
+  padding: 10px 40px 10px 18px;
+
+  /* Arredondamento em formato de pílula, combinando com os botões e carrinho */
+  border-radius: 30px;
+
+  /* Borda com a cor da marca */
+  border: 2px solid var(--verde-primario);
+
+  outline: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cinza-escuro);
+  background-color: var(--branco);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+  /* Remove a setinha feia padrão do navegador */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Adiciona uma setinha personalizada e elegante usando uma imagem SVG em código */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232c3e50%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px top 50%;
+  background-size: 12px auto;
+}
+
+.filtro-ordenacao select:hover {
+  border-color: var(--verde-escuro);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px); /* Dá um leve "pulo" ao passar o mouse */
+}
+
+.filtro-ordenacao select:focus {
+  border-color: var(--verde-escuro);
+}
+
+/* ===============================
    3. VITRINES E RECOMENDAÇÕES (HEADERS)
 =============================== */
 #recommendations,
@@ -169,18 +266,26 @@
 
 #recommendations-header,
 .vitrine-title-container {
+#recommendations-header,
+.vitrine-title-container {
   display: flex;
   justify-content: space-between;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+  /* Margens gigantes esquerdas removidas! */
   margin-bottom: 20px;
   /* Margens gigantes esquerdas removidas! */
 }
 
 #recommendations-header h2,
 .vitrine-title {
+#recommendations-header h2,
+.vitrine-title {
   color: var(--cinza-escuro);
   font-size: 1.8rem;
   font-weight: 900;
+  margin-bottom: 20px;
   margin-bottom: 20px;
 }
 
@@ -188,6 +293,7 @@
 #recommendation-tabs {
   display: flex;
   gap: 10px;
+  background: var(--bg-light);
   background: var(--bg-light);
   padding: 6px;
   border-radius: 12px;
@@ -206,6 +312,7 @@
 .tab.active {
   background: var(--verde-escuro);
   color: var(--branco);
+  color: var(--branco);
 }
 
 .tab-content {
@@ -221,8 +328,94 @@
 /* ===============================
    4. GRID DE PRODUTOS
 =============================== */
+/* ===============================
+   4. GRID DE PRODUTOS
+=============================== */
 .products-grid {
   display: grid;
+  /* Ajustado para os cards ficarem mais finos e caberem mais na tela */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 10px 0;
+}
+
+/* ===============================
+   5. CLUBE MELIOR (3 COLUNAS)
+=============================== */
+#clube-melior {
+  margin: 80px 0;
+  background-color: var(--bg-light);
+  border-radius: 20px;
+  padding: 40px 50px;
+  overflow: hidden;
+}
+
+.clube-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* --- LADO ESQUERDO: TÍTULO --- */
+.clube-titulo-esq {
+  flex: 1.2;
+  max-width: 35%;
+}
+
+.clube-titulo-esq h2 {
+  font-size: 2.6rem;
+  color: var(--cinza-escuro);
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+  /* margin-left: 18rem removida para parar de esmagar o texto */
+}
+
+.clube-titulo-esq .destaque {
+  color: var(--verde-primario);
+}
+
+/* --- CENTRO: IMAGEM E BOLHA --- */
+.clube-imagem-centro {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Centraliza a bolha perfeitamente */
+  align-items: center;
+  position: relative;
+  min-height: 380px;
+}
+
+.bolha-fundo {
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  background: linear-gradient(
+    135deg,
+    var(--verde-primario),
+    var(--verde-escuro)
+  );
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  z-index: 0;
+  animation: morph 15s ease-in-out infinite;
+}
+
+.celular-mockup {
+  position: relative;
+  z-index: 1;
+  max-width: 220px;
+  height: auto;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+}
+
+/* --- LADO DIREITO: BENEFÍCIOS --- */
+.clube-beneficios-dir {
+  flex: 1;
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
   /* Ajustado para os cards ficarem mais finos e caberem mais na tela */
   grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
   gap: 20px;
@@ -340,6 +533,62 @@
 }
 
 /* ===============================
+   TOAST NOTIFICATION (Pop-up de Aviso)
+=============================== */
+#toast-container {
+  position: fixed;
+  top: 140px;
+  right: 25px;
+  z-index: 9999; /* Garante que fique por cima de tudo (header, imagens, etc) */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast-msg {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  /* Animação de entrada suave */
+  animation: slideInRight 0.3s ease forwards;
+  opacity: 1;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+/* Classe aplicada pelo JS na hora de sumir com o aviso */
+.toast-msg.esconder {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.toast-msg i {
+  font-size: 1.2rem;
+  color: #a8e6cf;
+}
+
+/* Animação que faz ele deslizar da direita para a esquerda */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ===============================
    6. ANIMAÇÕES GERAIS
 =============================== */
 @keyframes fade {
@@ -350,6 +599,165 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  50% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+}
+
+/* ===============================
+   7. RESPONSIVIDADE GLOBAL
+=============================== */
+
+/* --- TABLETS E NOTEBOOKS MENORES (até 1024px) --- */
+@media (max-width: 1024px) {
+  #main-container {
+    padding-top: 20px;
+  }
+
+  .banner-slide {
+    height: 350px;
+  }
+
+  .clube-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .clube-titulo-esq,
+  .clube-beneficios-dir {
+    max-width: 100%;
+  }
+
+  .clube-titulo-esq h2 {
+    font-size: 2.2rem;
+  }
+
+  .clube-imagem-centro {
+    min-height: 350px;
+  }
+
+  .clube-beneficios li {
+    justify-content: center;
+  }
+}
+
+/* --- CELULARES (até 768px) --- */
+@media (max-width: 768px) {
+  #carousel-container {
+    border-radius: 0 0 20% 20% / 0 0 25px 25px;
+  }
+
+  .banner-slide {
+    height: 200px;
+  }
+
+  .category-circle {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 8px;
+  }
+
+  .category-card {
+    min-width: 90px;
+  }
+
+  .category-card .category-title {
+    font-size: 0.85rem;
+  }
+
+  #recommendations-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  #recommendations-header h2,
+  .vitrine-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  #recommendation-tabs {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    justify-content: center;
+  }
+
+  #clube-melior {
+    padding: 30px 20px;
+    margin: 60px 0;
+  }
+
+  .clube-titulo-esq h2 {
+    font-size: 1.8rem;
+  }
+
+  .clube-imagem-centro {
+    min-height: 280px;
+    margin: 20px 0;
+  }
+
+  .bolha-fundo {
+    width: 250px;
+    height: 250px;
+  }
+
+  .celular-mockup {
+    max-width: 140px;
+  }
+
+  .clube-beneficios-dir h3 {
+    font-size: 1.2rem;
+  }
+
+  .clube-beneficios li {
+    font-size: 1rem;
+  }
+
+  /* --- CELULARES (até 768px) --- */
+  @media (max-width: 768px) {
+    /* 1. COMPENSAÇÃO DO CABEÇALHO GIGANTE NO MOBILE */
+
+    #main-container {
+      padding-top: 20px;
+    }
+
+    /* 2. CARROSSEL DE CATEGORIAS PERFEITO */
+    #categories-carousel {
+      gap: 12px;
+      padding: 0 15px;
+      flex-wrap: nowrap;
+    }
+
+    .category-card {
+      min-width: 80px;
+      flex: 0 0 auto;
+    }
+
+    .category-circle {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 8px;
+    }
+
+    .category-card .category-title {
+      font-size: 0.8rem;
+    }
   }
 }
 
