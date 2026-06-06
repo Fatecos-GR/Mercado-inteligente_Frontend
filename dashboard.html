@@ -4,33 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Título da página -->
     <title>Dashboard - Admin Melior</title>
 
-    <!-- Ícone da página -->
     <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
 
-    <!-- CSS -->
     <link rel="stylesheet" href="css/pages/dashboard.css" />
 
-    <!-- JAVASCRIPT PRINCIPAL -->
     <script type="module" src="js/main.js" defer></script>
   </head>
   <body>
-    <!-- Layout Principal -->
     <div id="dashboard-layout">
-      <!-- Sidebar -->
       <div id="admin-sidebar"></div>
 
       <div id="right-layout">
-        <!-- Header de Admin -->
         <div id="admin-header"></div>
 
         <main id="main-container">
-          <!-- Título -->
           <h2>Resumo das Operações</h2>
 
-          <!-- Organização dos Cards -->
           <div id="dashboard-cards-grid">
             <div class="dashboard-card box-blue">
               <h3>Vendas do Dia</h3>
@@ -46,6 +37,70 @@
               <h3>Itens Esgotados</h3>
               <p>4</p>
             </div>
+          </div>
+
+          <div class="dashboard-split-container">
+            <section class="dash-column-main">
+              <div class="dash-block-header">
+                <h3>Últimos Pedidos Recebidos</h3>
+                <a href="pedidos.html" class="dash-link-view">Ver todos</a>
+              </div>
+
+              <table class="admin-mini-table">
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Cliente</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1002</td>
+                    <td>Ana Souza</td>
+                    <td>R$ 62,30</td>
+                    <td>
+                      <span class="mini-status badge-pendente">Pendente</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1001</td>
+                    <td>Carlos Silva</td>
+                    <td>R$ 145,90</td>
+                    <td>
+                      <span class="mini-status badge-separacao"
+                        >Em Separação</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <section class="dash-column-side">
+              <div class="dash-block-header">
+                <h3>Alertas do Estoque</h3>
+              </div>
+
+              <div class="dash-alert-list">
+                <div class="dash-alert-item urgency-high">
+                  <div class="alert-info">
+                    <strong>Arroz Integral 5kg</strong>
+                    <small>Estoque crítico: 2 un.</small>
+                  </div>
+                  <span class="alert-tag">Repor</span>
+                </div>
+
+                <div class="dash-alert-item urgency-medium">
+                  <div class="alert-info">
+                    <strong>Feijão Carioca 1kg</strong>
+                    <small>Esgotado no sistema</small>
+                  </div>
+                  <span class="alert-tag">Zerar</span>
+                </div>
+              </div>
+            </section>
           </div>
         </main>
       </div>
