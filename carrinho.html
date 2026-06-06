@@ -53,34 +53,7 @@
               <span class="col-value">Valor</span>
             </header>
 
-            <div id="cart-items-list" class="cart-items-container">
-              <!-- Os itens do carrinho serão renderizados dinamicamente pelo JS -->
-              <!-- Estrutura base para referência -->
-              <article class="cart-item">
-                <div class="product-info">
-                  <img src="img/placeholder.png" alt="Amido de Milho" />
-                  <p class="product-name">Amido de Milho 200g</p>
-                </div>
-                <div class="quantity-controls">
-                  <div class="qty-wrapper">
-                    <button class="qty-btn" aria-label="Diminuir quantidade">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <input type="number" value="1" min="1" readonly />
-                    <button class="qty-btn" aria-label="Aumentar quantidade">
-                      <i class="fas fa-plus"></i>
-                    </button>
-                  </div>
-                  <button class="remove-btn">
-                    <i class="fas fa-trash-alt"></i> Remover
-                  </button>
-                </div>
-                <div class="value-info">
-                  <p class="item-price">R$ 4,50</p>
-                  <small class="unit-price">R$ 4,50 unid.</small>
-                </div>
-              </article>
-            </div>
+            <div id="cart-items-list" class="cart-items-container"></div>
           </div>
 
           <footer class="cart-summary-section">
@@ -98,7 +71,7 @@
             <div class="cart-total-container">
               <div class="total-row">
                 <span class="total-label">Total</span>
-                <span class="total-value">R$ 4,50</span>
+                <span class="total-value" id="total-carrinho">R$ 0,00</span>
               </div>
               <div class="cart-actions">
                 <a href="index.html" class="link-continue"
