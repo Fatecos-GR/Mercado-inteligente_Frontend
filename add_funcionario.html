@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar Funcionário | Admin Melior</title>
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/pages/add_funcionario.css" />
+    <script type="module" src="js/main.js" defer></script>
+  </head>
+  <body>
+    <div id="adicionar-funcionario-layout">
+      <div id="admin-sidebar"></div>
+
+      <div id="right-layout">
+        <div id="admin-header"></div>
+
+        <main id="main-container">
+          <div class="admin-form-wrapper">
+            <a href="usuarios.html" class="admin-btn-back"
+              >Voltar para a listagem</a
+            >
+            <h2>Cadastrar Novo Funcionário</h2>
+
+            <form
+              action="/admin/funcionarios/salvar"
+              method="POST"
+              class="admin-main-form"
+            >
+              <div class="admin-form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" name="nome" required />
+              </div>
+
+              <div class="admin-form-group">
+                <label for="email">E-mail Corporativo</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label for="cargo">Cargo / Função</label>
+                  <input
+                    type="text"
+                    id="cargo"
+                    name="cargo"
+                    placeholder="Ex: Operador de Caixa"
+                    required
+                  />
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="acesso">Nível de Acesso</label>
+                  <select id="acesso" name="acesso" required>
+                    <option value="">Selecione...</option>
+                    <option value="OPERADOR">Operador</option>
+                    <option value="ADMIN">Administrador</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="senha">Senha Inicial</label>
+                <input type="password" id="senha" name="senha" required />
+              </div>
+
+              <div class="admin-form-actions">
+                <button type="submit" class="admin-btn-submit">
+                  Salvar Funcionário
+                </button>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
