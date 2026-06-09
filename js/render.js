@@ -216,3 +216,25 @@ export function renderAdminCategoriaCard(categoria) {
     </article>
   `;
 }
+
+// ======================================
+// RESULTADOS DE BUSCA (TELA DE GESTÃO)
+// ======================================
+export function renderResultadoBuscaGestao(item) {
+  return `
+    <div
+      class="search-result-item"
+      data-id="${item.id}"
+    >
+
+      <div class="search-result-title">
+        ${item.nome}
+      </div>
+
+      <div class="search-result-description">
+        ${item.descricao || ""}
+      </div>
+
+    </div>
+  `;
+}

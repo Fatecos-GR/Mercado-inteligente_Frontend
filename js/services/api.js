@@ -36,6 +36,10 @@ async function request(endpoint, options = {}) {
 // CRUD PRODUTOS
 // ===============================
 
+export async function buscarProdutosPorNome(nome) {
+  return request(`/produtos/contem-nome/${nome}`);
+}
+
 export async function buscarProdutos() {
   return request(`/produtos`);
 }
@@ -44,6 +48,10 @@ export async function buscarProdutos() {
 // CRUD MARCAS
 // ===============================
 
+export async function buscarMarcasPorNome(nome) {
+  return request(`/marcas/contem-nome/${nome}`);
+}
+
 export async function buscarMarcas() {
   return request(`/marcas`);
 }
@@ -51,6 +59,10 @@ export async function buscarMarcas() {
 // ===============================
 // CRUD CATEGORIAS
 // ===============================
+
+export async function buscarCategoriasPorNome(nome) {
+  return request(`/categorias/contem-nome/${nome}`);
+}
 
 export async function buscarCategorias() {
   return request(`/categorias`);
