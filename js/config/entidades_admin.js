@@ -24,7 +24,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=produtos",
 
-    rotaFormulario: "/formulario.html?tipo=produtos",
+    rotaFormulario: "/form_admin.html?tipo=produtos",
 
     // ======================================
     // API
@@ -149,7 +149,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=marcas",
 
-    rotaFormulario: "/formulario.html?tipo=marcas",
+    rotaFormulario: "/form_admin.html?tipo=marcas",
 
     endpoint: "/marcas",
 
@@ -190,7 +190,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=categorias",
 
-    rotaFormulario: "/formulario.html?tipo=categorias",
+    rotaFormulario: "/form_admin.html?tipo=categorias",
 
     endpoint: "/categorias",
 
@@ -231,7 +231,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=fornecedores",
 
-    rotaFormulario: "/formulario.html?tipo=fornecedores",
+    rotaFormulario: "/form_admin.html?tipo=fornecedores",
 
     endpoint: "/fornecedores",
 

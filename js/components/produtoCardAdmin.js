@@ -9,7 +9,7 @@ export function renderProdutoCard(produto) {
   const warningClass = produto.estoqueDisponivel <= 10 ? "warning" : "";
 
   return `
-    <article class="product-card">
+    <article class="product-card"> 
 
       <div class="product-card-top">
 
