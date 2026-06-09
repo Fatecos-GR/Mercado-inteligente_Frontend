@@ -1,0 +1,164 @@
+/* ==========================================================================
+   1. IMPORTS E ESTRUTURA BASE (Padrão Melior)
+   ========================================================================== */
+@import "/css/components/admin-sidebar.css";
+@import "/css/components/admin-header.css";
+@import "/css/main.css";
+
+/* Container do layout total */
+#adicionar-funcionario-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Parte da Direita */
+#right-layout {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* Fundo branco limpo */
+}
+
+/* Conteúdo Principal */
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centraliza o formulário verticalmente */
+  padding: 40px;
+  font-family: sans-serif;
+}
+
+/* ==========================================================================
+   2. ENVELOPE DO FORMULÁRIO (ESTILO CARD CREME)
+   ========================================================================== */
+.admin-form-wrapper {
+  background-color: #f7f6f0; /* Fundo creme suave do projeto */
+  width: 100%;
+  max-width: 650px; /* Limita a largura para o formulário não esticar demais */
+  padding: 35px;
+  border-radius: 16px; /* Cantos arredondados padrão */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+/* Link de Voltar */
+.admin-btn-back {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #7a827f;
+  text-decoration: none;
+  margin-bottom: 15px;
+  transition: color 0.2s;
+}
+
+.admin-btn-back:hover {
+  color: #38513d;
+  text-decoration: underline;
+}
+
+.admin-form-wrapper h2 {
+  font-size: 1.5rem;
+  color: #1a2421;
+  margin: 0 0 25px 0;
+}
+
+/* ==========================================================================
+   3. CAMPOS DE ENTRADA (INPUTS E SELECTS)
+   ========================================================================== */
+.admin-main-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaçamento padrão entre as linhas do formulário */
+}
+
+/* Linha com múltiplos campos (Cargo e Acesso lado a lado) */
+.admin-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #21342c;
+}
+
+/* Estilização idêntica dos Inputs e Selects */
+.admin-form-group input,
+.admin-form-group select {
+  background-color: #ffffff;
+  border: 1px solid #e1e3df;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: #1a2421;
+  border-radius: 10px; /* Cantos levemente suavizados para os campos */
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+/* Efeito de foco (Focus) usando o verde do projeto */
+.admin-form-group input:focus,
+.admin-form-group select:focus {
+  border-color: #38513d;
+  box-shadow: 0 0 0 3px rgba(56, 81, 61, 0.1);
+}
+
+/* Ajuste fino para o select não ficar esquisito */
+.admin-form-group select {
+  cursor: pointer;
+  appearance: none; /* Remove a seta padrão do navegador para estilizar depois */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%237a827f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* ==========================================================================
+   4. BOTÃO DE SALVAR
+   ========================================================================== */
+.admin-form-actions {
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
+  margin-top: 10px;
+}
+
+.admin-btn-submit {
+  background-color: #38513d; /* Nosso verde principal */
+  color: #ffffff;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%; /* Ocupa tudo em telas menores, mas se ajusta */
+}
+
+@media (min-width: 480px) {
+  .admin-btn-submit {
+    width: auto; /* Em telas médias/grandes ele fica do tamanho do texto */
+  }
+}
+
+.admin-btn-submit:hover {
+  background-color: #2b3f30;
+}
+
+/* Responsividade para celulares */
+@media (max-width: 550px) {
+  .admin-form-row {
+    grid-template-columns: 1fr; /* Quebra o Cargo e Acesso para vertical em telas pequenas */
+  }
+}

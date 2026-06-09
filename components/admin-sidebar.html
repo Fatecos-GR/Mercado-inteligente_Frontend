@@ -4,9 +4,52 @@
   </div>
 
   <div class="admin-sidebar-links">
-    <a href="/admin/dashboard">Dashboard</a>
-    <a href="/estoque.html">Gestao de Estoque</a>
-    <a href="/pedidos.html">Pedidos</a>
-    <a href="/usuarios.html">Usuarios</a>
+    <!-- DASHBOARD -->
+    <a href="/dashboard.html">
+      <i class="fa-solid fa-chart-line"></i>
+      <span>Dashboard</span>
+    </a>
+
+    <!-- GESTÃO -->
+    <div class="admin-sidebar-group">
+      <div class="admin-sidebar-group-title">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Gestão</span>
+      </div>
+
+      <div class="admin-sidebar-submenu">
+        <a href="gestao.html?tipo=produtos" class="admin-sidebar-subitem">
+          <i class="fa-solid fa-box"></i>
+          <span>Produtos</span>
+        </a>
+
+        <a href="gestao.html?tipo=marcas" class="admin-sidebar-subitem">
+          <i class="fa-solid fa-tags"></i>
+          <span>Marcas</span>
+        </a>
+
+        <a href="gestao.html?tipo=categorias" class="admin-sidebar-subitem">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>Categorias</span>
+        </a>
+
+        <a href="gestao.html?tipo=fornecedores" class="admin-sidebar-subitem">
+          <i class="fa-solid fa-truck-field"></i>
+          <span>Fornecedores</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- PEDIDOS -->
+    <a href="/pedidos-admin.html">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Pedidos</span>
+    </a>
+
+    <!-- USUÁRIOS -->
+    <a href="/usuarios.html">
+      <i class="fa-solid fa-users"></i>
+      <span>Usuários</span>
+    </a>
   </div>
 </div>

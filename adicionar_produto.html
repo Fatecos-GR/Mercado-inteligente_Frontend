@@ -27,23 +27,37 @@
 
         <!-- Conteúdo Principal -->
         <main id="main-container">
-          <h2>Formulario de Cadastro</h2>
-          <a href="estoque.html" class="admin-btn-back">Voltar</a>
+          <div class="admin-page-header">
+            <a href="estoque.html" class="admin-btn-back">
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+
+            <h2>Formulário de Cadastro</h2>
+          </div>
 
           <div class="admin-form-wrapper">
-            <form
-              action="/admin/produtos/salvar"
-              method="POST"
-              class="admin-main-form"
-            >
+            <form class="admin-main-form">
+              <!-- NOME -->
               <div class="admin-form-group">
                 <label for="nome">Nome do Produto</label>
                 <input type="text" id="nome" name="nome" required />
               </div>
 
+              <!-- DESCRIÇÃO -->
+              <div class="admin-form-group">
+                <label for="descricao">Descrição</label>
+                <textarea
+                  id="descricao"
+                  name="descricao"
+                  rows="4"
+                  required
+                ></textarea>
+              </div>
+
+              <!-- PREÇO + ESTOQUE -->
               <div class="admin-form-row">
                 <div class="admin-form-group">
-                  <label for="preco">Preco de Venda</label>
+                  <label for="preco">Preço de Venda</label>
                   <input
                     type="number"
                     id="preco"
@@ -52,31 +66,58 @@
                     required
                   />
                 </div>
+
                 <div class="admin-form-group">
-                  <label for="quantidade">Quantidade Inicial</label>
+                  <label for="estoqueDisponivel">Estoque Disponível</label>
                   <input
                     type="number"
-                    id="quantidade"
-                    name="quantidade"
+                    id="estoqueDisponivel"
+                    name="estoqueDisponivel"
                     required
                   />
                 </div>
               </div>
 
+              <!-- VALIDADE -->
               <div class="admin-form-group">
-                <label for="categoria">Categoria</label>
-                <select id="categoria" name="categoria" required>
-                  <option value="">Selecione...</option>
-                  <option value="alimentos">Alimentos</option>
-                  <option value="bebidas">Bebidas</option>
-                  <option value="limpeza">Limpeza</option>
-                  <option value="higiene">Higiene</option>
-                </select>
+                <label for="validade">Validade</label>
+                <input type="date" id="validade" name="validade" />
               </div>
 
+              <!-- MARCA / CATEGORIA / FORNECEDOR -->
+              <div class="admin-form-row">
+                <div class="admin-form-group">
+                  <label for="marcaId">Marca</label>
+                  <select id="marcaId" name="marcaId" required>
+                    <option value="">Carregando marcas...</option>
+                  </select>
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="categoriaId">Categoria</label>
+                  <select id="categoriaId" name="categoriaId" required>
+                    <option value="">Carregando categorias...</option>
+                  </select>
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="fornecedorId">Fornecedor</label>
+                  <select id="fornecedorId" name="fornecedorId" required>
+                    <option value="">Carregando Fornecedores...</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- IMAGEM -->
+              <div class="admin-form-group">
+                <label for="imagem">Imagem do Produto</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*" />
+              </div>
+
+              <!-- BOTÃO -->
               <div class="admin-form-actions">
                 <button type="submit" class="admin-btn-submit">
-                  Salvar Registro
+                  Salvar Produto
                 </button>
               </div>
             </form>
