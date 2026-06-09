@@ -4,7 +4,11 @@
 
 import { entidades } from "../config/entidades_admin.js";
 
-import { renderProdutoCard } from "../components/produtoCardAdmin.js";
+import {
+  renderProdutoCard,
+  renderMarcaCard,
+  renderCategoriaCard,
+} from "../render.js";
 
 // ======================================
 // PEGAR PARÂMETRO DA URL
@@ -91,6 +95,13 @@ function renderCards(entidade) {
       preco: "4,50",
       estoqueDisponivel: 8,
     },
+    {
+      nome: "Água Mineral 2L",
+      categoriaNome: "Bebidas",
+      marcaNome: "Crystal",
+      preco: "4,50",
+      estoqueDisponivel: 8,
+    },
   ];
 
   // ======================================
@@ -99,6 +110,22 @@ function renderCards(entidade) {
 
   if (entidade.tipo === "produtos") {
     grid.innerHTML = produtos.map(renderProdutoCard).join("");
+
+    return;
+  }
+
+  // ======================================
+  // MARCAS
+  // ======================================
+
+  if (entidade.tipo === "marcas") {
+    grid.innerHTML = produtos.map(renderMarcaCard).join("");
+
+    return;
+  }
+
+  if (entidade.tipo === "categorias") {
+    grid.innerHTML = produtos.map(renderCategoriaCard).join("");
 
     return;
   }

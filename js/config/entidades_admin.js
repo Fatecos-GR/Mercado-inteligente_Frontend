@@ -78,14 +78,14 @@ export const entidades = {
       {
         name: "preco",
         label: "Preço",
-        type: "number",
+        type: "money",
         required: true,
       },
 
       {
         name: "estoqueDisponivel",
         label: "Quantidade em Estoque",
-        type: "number",
+        type: "integer",
         required: true,
       },
 

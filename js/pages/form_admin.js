@@ -4,6 +4,11 @@
 
 import { entidades } from "../config/entidades_admin.js";
 
+import {
+  aplicarMascaraMoeda,
+  aplicarMascaraInteiro,
+} from "../utils/mascaras.js";
+
 // ======================================
 // PEGAR TIPO
 // ======================================
@@ -155,12 +160,34 @@ function renderFormulario(entidade) {
         class="admin-btn-submit"
       >
 
-        Salvar ${entidade.singular}
+        Salvar ${entidade.singular} 
 
       </button>
 
     </div>
   `;
+}
+
+// ======================================
+// APLICAR MÁSCARAS
+// ======================================
+
+function aplicarMascarasFormulario(entidade) {
+  entidade.camposFormulario.forEach((campo) => {
+    const input = document.getElementById(campo.name);
+
+    if (!input) return;
+
+    // MOEDA
+    if (campo.type === "money") {
+      aplicarMascaraMoeda(input);
+    }
+
+    // INTEIRO
+    if (campo.type === "integer") {
+      aplicarMascaraInteiro(input);
+    }
+  });
 }
 
 // ======================================
@@ -175,4 +202,6 @@ export function iniciarFormularioAdmin() {
   configurarPagina(entidade);
 
   renderFormulario(entidade);
+
+  aplicarMascarasFormulario(entidade);
 }
