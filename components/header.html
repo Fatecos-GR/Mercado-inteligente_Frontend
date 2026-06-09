@@ -11,7 +11,10 @@
     <!-- Barra de Pesquisa -->
     <div id="header-busca">
       <form autocomplete="off" id="header-search-form">
-        <input type="text" placeholder="O que você procura hoje?" />
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="O que você procura hoje?" />
+        </div>
         <button type="submit">Buscar</button>
       </form>
     </div>
@@ -45,17 +48,48 @@
 
   <!-- LINHA INFERIOR (Departamentos) -->
   <div id="header-bottom">
-    <button class="btn-departamentos">
-      <i class="fa-solid fa-bars"></i>
-      Comprar por departamento
-    </button>
+    <div class="menu-departamentos-container">
+      <button class="btn-departamentos">
+        <i class="fa-solid fa-bars"></i>
+        Comprar por departamento
+      </button>
+
+      <!-- Menu Suspenso -->
+      <div id="dropdown-departamentos" class="dropdown-menu">
+        <ul class="lista-departamentos">
+          <li>
+            <a href="#"><i class="fa-solid fa-apple-whole"></i> Hortifruti</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-cow"></i> Açougue e Peixaria</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-bread-slice"></i> Padaria</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-bottle-water"></i> Bebidas</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-soap"></i> Limpeza</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-pump-soap"></i> Higiene Pessoal</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-paw"></i> Pet Shop</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-snowflake"></i> Congelados</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-basket-shopping"></i> Mercearia</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <nav class="nav-categorias">
-      <a href="#">Ofertas Melior</a>
-      <a href="#">Categoria 1</a>
-      <a href="#">Categoria 2</a>
-      <a href="#">Categoria 3</a>
-      <a href="#">Categoria 4</a>
+      <a href="#ofertas-melior">Ofertas Melior</a>
     </nav>
   </div>
 </header>
