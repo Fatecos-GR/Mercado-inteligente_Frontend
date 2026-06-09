@@ -5,6 +5,12 @@
 import { entidades } from "../config/entidades_admin.js";
 
 import {
+  buscarMarcas,
+  buscarCategorias,
+  buscarFornecedores,
+} from "../services/api.js";
+
+import {
   aplicarMascaraMoeda,
   aplicarMascaraInteiro,
 } from "../utils/mascaras.js";
@@ -191,10 +197,61 @@ function aplicarMascarasFormulario(entidade) {
 }
 
 // ======================================
+// POPULAR SELECTS
+// ======================================
+async function buscarDadosRelacionados(tipo) {
+  switch (tipo) {
+    case "marcas":
+      return await buscarMarcas();
+
+    case "categorias":
+      return await buscarCategorias();
+
+    case "fornecedores":
+      return await buscarFornecedores();
+
+    default:
+      return [];
+  }
+}
+
+async function popularSelect(campo) {
+  const select = document.getElementById(campo.name);
+
+  if (!select) return;
+
+  const dados = await buscarDadosRelacionados(campo.entidadeRelacionada);
+
+  select.innerHTML = `
+    <option value="">
+      Selecione...
+    </option>
+  `;
+
+  dados.forEach((item) => {
+    select.innerHTML += `
+      <option value="${item.id}">
+        ${item.nome}
+      </option>
+    `;
+  });
+}
+
+async function popularSelectsFormulario(entidade) {
+  const camposRelacionados = entidade.camposFormulario.filter(
+    (campo) => campo.type === "select" && campo.entidadeRelacionada,
+  );
+
+  for (const campo of camposRelacionados) {
+    await popularSelect(campo);
+  }
+}
+
+// ======================================
 // START
 // ======================================
 
-export function iniciarFormularioAdmin() {
+export async function iniciarFormularioAdmin() {
   const entidade = getEntidadeAtual();
 
   if (!entidade) return;
@@ -202,6 +259,8 @@ export function iniciarFormularioAdmin() {
   configurarPagina(entidade);
 
   renderFormulario(entidade);
+
+  await popularSelectsFormulario(entidade);
 
   aplicarMascarasFormulario(entidade);
 }

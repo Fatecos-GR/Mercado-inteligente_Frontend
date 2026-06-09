@@ -175,6 +175,5 @@ export async function iniciarGestao() {
 
   configurarBusca(entidade);
 
-  // TEMPORÁRIO
   await renderCards(entidade);
 }

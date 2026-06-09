@@ -4,11 +4,20 @@
 
 const BASE_URL = "http://localhost:8080/api";
 
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtZXJjYWRvLWludGVsaWdlbnRlIiwic3ViIjoidXNlckBleGFtcGxlLmNvbSIsImV4cCI6MTc4MTA0NjI4N30.6I0f5e-EubpQQhVzwpUSesJTK7u255SjA1oHWGFp5cw";
+
 // Função Genérica
 async function request(endpoint, options = {}) {
+  const token = localStorage.getItem("token");
   const config = {
     headers: {
       "Content-Type": "application/json",
+
+      ...(token && {
+        Authorization: `Bearer ${token}`,
+      }),
+
       ...(options.headers || {}),
     },
     ...options,
@@ -66,4 +75,16 @@ export async function buscarCategoriasPorNome(nome) {
 
 export async function buscarCategorias() {
   return request(`/categorias`);
+}
+
+// ===============================
+// CRUD FORNECEDORES
+// ===============================
+
+export async function buscarFornecedoresPorNome(nome) {
+  return request(`/fornecedores/contem-nome/${nome}`);
+}
+
+export async function buscarFornecedores() {
+  return request(`/fornecedores`);
 }

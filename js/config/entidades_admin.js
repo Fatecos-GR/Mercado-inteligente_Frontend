@@ -108,7 +108,6 @@ export const entidades = {
         label: "Marca",
         type: "select",
         required: true,
-
         entidadeRelacionada: "marcas",
       },
 
