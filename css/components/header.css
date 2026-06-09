@@ -38,32 +38,58 @@
 #header-search-form {
   display: flex;
   background: var(--branco);
-  border-radius: 8px;
+  border-radius: 50px; /* Estilo pílula */
   overflow: hidden;
-  height: 45px;
+  height: 48px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+#header-search-form:focus-within {
+  border-color: var(--verde-primario);
+  box-shadow: 0 0 10px rgba(90, 125, 101, 0.2);
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding-left: 25px;
+}
+
+.search-input-wrapper i {
+  color: var(--verde-primario);
+  font-size: 1.1rem;
 }
 
 #header-search-form input {
   flex-grow: 1;
-  padding: 0 20px;
+  padding: 0 15px;
   border: none;
   outline: none;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: transparent;
+  color: var(--cinza-escuro);
 }
 
 #header-search-form button {
-  padding: 0 30px;
+  padding: 0 40px;
   background: var(--verde-primario);
   color: var(--branco);
   border: none;
-  font-weight: bold;
-  font-size: 1rem;
+  font-weight: 800;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.3s ease;
+  border-radius: 0 50px 50px 0;
 }
 
 #header-search-form button:hover {
   background: var(--verde-escuro);
+  padding-left: 45px;
+  padding-right: 45px;
 }
 
 /* Botões de Ação */
@@ -162,22 +188,92 @@
   height: 50px;
 }
 
+/* Botão de Departamentos */
+.menu-departamentos-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .btn-departamentos {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   color: var(--branco);
-  padding: 8px 15px;
-  border-radius: 4px;
-  font-size: 0.95rem;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 10px;
-  transition: 0.2s;
+  gap: 12px;
+  transition: all 0.3s ease;
 }
 
 .btn-departamentos:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--branco);
+}
+
+/* Menu Suspenso de Departamentos */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 260px;
+  background: var(--branco);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: none; /* Escondido por padrão */
+  z-index: 2000;
+  overflow: hidden;
+  border-top: 3px solid var(--verde-primario);
+  animation: fadeInDown 0.3s ease;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.lista-departamentos {
+  list-style: none;
+  padding: 10px 0;
+}
+
+.lista-departamentos li a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 25px;
+  text-decoration: none;
+  color: var(--cinza-escuro);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.lista-departamentos li a i {
+  color: var(--verde-primario);
+  width: 20px;
+  text-align: center;
+}
+
+.lista-departamentos li a:hover {
+  background: var(--bg-light);
+  color: var(--verde-escuro);
+  padding-left: 30px;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .nav-categorias {

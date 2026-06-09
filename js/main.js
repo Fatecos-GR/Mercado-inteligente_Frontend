@@ -5,30 +5,36 @@ import { iniciarHome } from "./pages/home.js";
 import { iniciarPerfil } from "./pages/perfil.js";
 
 const bancoDeProdutos = [
-  {
-    id: "1",
-    nome: "Categoria 1 - Produto Exemplo 1",
-    preco: "R$ 45,90",
-    imagem: "img/placeholder.png",
-  },
-  {
-    id: "2",
-    nome: "Categoria 2 - Produto Exemplo 2",
-    preco: "R$ 120,00",
-    imagem: "img/placeholder.png",
-  },
-  {
-    id: "3",
-    nome: "Categoria 3 - Produto Exemplo 3",
-    preco: "R$ 89,90",
-    imagem: "img/placeholder.png",
-  },
-  {
-    id: "4",
-    nome: "Categoria 4 - Produto Exemplo 4",
-    preco: "R$ 290,80",
-    imagem: "img/placeholder.png",
-  },
+  // Hortifruti
+  { id: "h1", nome: "Maçã Gala Nacional", preco: "R$ 8,90", imagem: "img/placeholder.png" },
+  { id: "h2", nome: "Banana Prata", preco: "R$ 5,50", imagem: "img/placeholder.png" },
+  { id: "h3", nome: "Laranja Pera Rio 1kg", preco: "R$ 4,20", imagem: "img/placeholder.png" },
+  { id: "h4", nome: "Tomate Italiano", preco: "R$ 7,90", imagem: "img/placeholder.png" },
+  
+  // Açougue
+  { id: "a1", nome: "Patinho Bovino Moído", preco: "R$ 38,90", imagem: "img/placeholder.png" },
+  { id: "a2", nome: "Filé de Frango Swift", preco: "R$ 22,90", imagem: "img/placeholder.png" },
+  { id: "a3", nome: "Contra Filé Grill", preco: "R$ 54,00", imagem: "img/placeholder.png" },
+  { id: "a4", nome: "Linguiça Toscana", preco: "R$ 19,90", imagem: "img/placeholder.png" },
+  
+  // Padaria
+  { id: "p1", nome: "Pão Francês Crocante", preco: "R$ 0,75", imagem: "img/placeholder.png" },
+  { id: "p2", nome: "Bolo de Cenoura", preco: "R$ 18,50", imagem: "img/placeholder.png" },
+  { id: "p3", nome: "Pão de Forma Integral", preco: "R$ 7,50", imagem: "img/placeholder.png" },
+  { id: "p4", nome: "Sonho de Creme", preco: "R$ 4,50", imagem: "img/placeholder.png" },
+  
+  // Limpeza
+  { id: "l1", nome: "Detergente Neutro", preco: "R$ 2,30", imagem: "img/placeholder.png" },
+  { id: "l2", nome: "Sabão em Pó Omo 1.6kg", preco: "R$ 24,90", imagem: "img/placeholder.png" },
+  { id: "l3", nome: "Amaciante Downy", preco: "R$ 15,90", imagem: "img/placeholder.png" },
+  { id: "l4", nome: "Desinfetante Pinho Sol", preco: "R$ 8,90", imagem: "img/placeholder.png" },
+  
+  // Mercearia
+  { id: "m1", nome: "Arroz Agulhinha T1 5kg", preco: "R$ 29,90", imagem: "img/placeholder.png" },
+  { id: "m2", nome: "Feijão Carioca 1kg", preco: "R$ 7,50", imagem: "img/placeholder.png" },
+  { id: "m3", nome: "Óleo de Soja 900ml", preco: "R$ 6,80", imagem: "img/placeholder.png" },
+  { id: "m4", nome: "Açúcar Refinado 1kg", preco: "R$ 4,50", imagem: "img/placeholder.png" },
+  { id: "m5", nome: "Café Torrado e Moído", preco: "R$ 14,90", imagem: "img/placeholder.png" },
 ];
 
 // ==========================================
@@ -264,37 +270,61 @@ function inicializarControlesQuantidade() {
 }
 
 function inicializarFiltros() {
-  const selectOrd = document.getElementById("ordenar-produtos");
-  const grid = document.querySelector(".products-grid");
+  const customSelect = document.getElementById("sort-select");
+  if (!customSelect) return;
 
-  if (selectOrd && grid) {
-    selectOrd.addEventListener("change", function () {
-      const cards = Array.from(grid.querySelectorAll(".product-card"));
+  const trigger = customSelect.querySelector(".select-trigger");
+  const options = customSelect.querySelectorAll(".option");
+  const triggerText = trigger.querySelector("span");
 
-      cards.sort((a, b) => {
-        const precoA = Utils.parsePreco(
-          a.querySelector(".price-current").innerText,
-        );
-        const precoB = Utils.parsePreco(
-          b.querySelector(".price-current").innerText,
-        );
-        const tituloA = a
-          .querySelector(".product-title")
-          .innerText.toLowerCase();
-        const tituloB = b
-          .querySelector(".product-title")
-          .innerText.toLowerCase();
+  // Toggle do menu
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    customSelect.classList.toggle("open");
+  });
 
-        if (this.value === "menor-preco") return precoA - precoB;
-        if (this.value === "maior-preco") return precoB - precoA;
-        if (this.value === "a-z") return tituloA.localeCompare(tituloB);
-        return 0;
+  // Fecha ao clicar fora
+  document.addEventListener("click", () => customSelect.classList.remove("open"));
+
+  // Lógica de seleção e ordenação
+  options.forEach((opt) => {
+    opt.addEventListener("click", () => {
+      const val = opt.dataset.value;
+      const label = opt.innerText;
+
+      // Atualiza visual
+      options.forEach((o) => o.classList.remove("active"));
+      opt.classList.add("active");
+      triggerText.innerText = label;
+      customSelect.classList.remove("open");
+
+      // Executa a ordenação
+      const grids = document.querySelectorAll(".products-grid");
+      grids.forEach((grid) => {
+        const cards = Array.from(grid.querySelectorAll(".product-card"));
+        if (cards.length === 0) return;
+
+        cards.sort((a, b) => {
+          const priceElA = a.querySelector(".price-current");
+          const priceElB = b.querySelector(".price-current");
+          if (!priceElA || !priceElB) return 0;
+
+          const precoA = Utils.parsePreco(priceElA.innerText);
+          const precoB = Utils.parsePreco(priceElB.innerText);
+          const tituloA = a.querySelector(".product-title").innerText.toLowerCase();
+          const tituloB = b.querySelector(".product-title").innerText.toLowerCase();
+
+          if (val === "menor-preco") return precoA - precoB;
+          if (val === "maior-preco") return precoB - precoA;
+          if (val === "a-z") return tituloA.localeCompare(tituloB);
+          return 0;
+        });
+
+        grid.innerHTML = "";
+        cards.forEach((card) => grid.appendChild(card));
       });
-
-      grid.innerHTML = "";
-      cards.forEach((card) => grid.appendChild(card));
     });
-  }
+  });
 }
 
 // ==========================================
@@ -303,6 +333,62 @@ function inicializarFiltros() {
 async function start() {
   await carregarLayout();
   carregarIcones();
+
+  // Configura o menu de departamentos
+  const btnDep = document.querySelector(".btn-departamentos");
+  const dropdownDep = document.getElementById("dropdown-departamentos");
+
+  if (btnDep && dropdownDep) {
+    btnDep.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdownDep.classList.toggle("show");
+    });
+
+    // Fecha o menu ao clicar fora dele
+    document.addEventListener("click", (e) => {
+      if (!dropdownDep.contains(e.target) && e.target !== btnDep) {
+        dropdownDep.classList.remove("show");
+      }
+    });
+  }
+
+  // Configura os links de categorias do sub-header
+  const linksCat = document.querySelectorAll(".nav-categorias a");
+  linksCat.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      
+      // Se for um link interno (ID), faz scroll suave
+      if (href && href.startsWith("#") && href.length > 1) {
+        e.preventDefault();
+        const targetId = href.substring(1);
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
+      }
+
+      // Se o link aponta para uma página real (.html), deixa seguir
+      if (href && href.endsWith(".html")) return;
+
+      e.preventDefault();
+      const titulo = link.innerText;
+      const secoes = document.querySelectorAll(".vitrine-title, #recommendations-header h2");
+
+      let encontrou = false;
+      secoes.forEach((secao) => {
+        if (!encontrou && secao.innerText.includes(titulo)) {
+          secao.scrollIntoView({ behavior: "smooth", block: "center" });
+          encontrou = true;
+        }
+      });
+
+      if (!encontrou) {
+        window.location.href = "index.html";
+      }
+    });
+  });
 
   // Garante que o header seja atualizado após o carregamento do layout
   window.atualizarHeaderCarrinho();
