@@ -2,6 +2,7 @@
    IMPORTS
 ========================================= */
 
+@import "/css/components/cardMarcaAdmin.css";
 @import "/css/components/cardProdutoAdmin.css";
 @import "/css/components/admin-header.css";
 @import "/css/main.css";
@@ -208,9 +209,7 @@
 ========================================= */
 
 #gestao-grid {
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
-  gap: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
