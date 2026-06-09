@@ -2,12 +2,18 @@
 // IMPORTS
 // ======================================
 
+import {
+  buscarProdutos,
+  buscarMarcas,
+  buscarCategorias,
+} from "../services/api.js";
+
 import { entidades } from "../config/entidades_admin.js";
 
 import {
-  renderProdutoCard,
-  renderMarcaCard,
-  renderCategoriaCard,
+  renderAdminProdutoCard,
+  renderAdminMarcaCard,
+  renderAdminCategoriaCard,
 } from "../render.js";
 
 // ======================================
@@ -71,45 +77,22 @@ function configurarPagina(entidade) {
   botaoAdicionar.href = entidade.rotaFormulario;
 }
 
-// ======================================
-// MOCK TEMPORÁRIO
-// ======================================
-
-function renderCards(entidade) {
+async function renderCards(entidade) {
   const grid = document.getElementById("gestao-grid");
 
-  // MOCK TEMPORÁRIO
-  const produtos = [
-    {
-      nome: "Arroz Integral 5kg",
-      categoriaNome: "Alimentos",
-      marcaNome: "Camil",
-      preco: "22,90",
-      estoqueDisponivel: 50,
-    },
+  // DADOS
+  const produtos = await buscarProdutos();
 
-    {
-      nome: "Água Mineral 1L",
-      categoriaNome: "Bebidas",
-      marcaNome: "Crystal",
-      preco: "4,50",
-      estoqueDisponivel: 8,
-    },
-    {
-      nome: "Água Mineral 2L",
-      categoriaNome: "Bebidas",
-      marcaNome: "Crystal",
-      preco: "4,50",
-      estoqueDisponivel: 8,
-    },
-  ];
+  const marcas = await buscarMarcas();
+
+  const categorias = await buscarCategorias();
 
   // ======================================
   // PRODUTOS
   // ======================================
 
   if (entidade.tipo === "produtos") {
-    grid.innerHTML = produtos.map(renderProdutoCard).join("");
+    grid.innerHTML = produtos.map(renderAdminProdutoCard).join("");
 
     return;
   }
@@ -119,13 +102,13 @@ function renderCards(entidade) {
   // ======================================
 
   if (entidade.tipo === "marcas") {
-    grid.innerHTML = produtos.map(renderMarcaCard).join("");
+    grid.innerHTML = marcas.map(renderAdminMarcaCard).join("");
 
     return;
   }
 
   if (entidade.tipo === "categorias") {
-    grid.innerHTML = produtos.map(renderCategoriaCard).join("");
+    grid.innerHTML = categorias.map(renderAdminCategoriaCard).join("");
 
     return;
   }
@@ -145,7 +128,7 @@ function renderCards(entidade) {
 // START
 // ======================================
 
-export function iniciarGestao() {
+export async function iniciarGestao() {
   const entidade = getEntidadeAtual();
 
   if (!entidade) return;

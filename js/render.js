@@ -2,7 +2,7 @@
 // CARD DE PRODUTO (ADMIN)
 // ======================================
 
-export function renderProdutoCard(produto) {
+export function renderAdminProdutoCard(produto) {
   const status =
     produto.estoqueDisponivel > 10 ? "Em estoque" : "Baixo estoque";
 
@@ -79,7 +79,7 @@ export function renderProdutoCard(produto) {
 // CARD DE MARCA (ADMIN)
 // ======================================
 
-export function renderMarcaCard(marca) {
+export function renderAdminMarcaCard(marca) {
   return `
     <article class="brand-card">
 
@@ -150,7 +150,7 @@ export function renderMarcaCard(marca) {
 // CARD DE CATEGORIA (ADMIN)
 // ======================================
 
-export function renderCategoriaCard(categoria) {
+export function renderAdminCategoriaCard(categoria) {
   return `
     <article class="brand-card">
 

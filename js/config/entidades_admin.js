@@ -170,6 +170,19 @@ export const entidades = {
         type: "text",
         required: true,
       },
+
+      {
+        name: "descricao",
+        label: "Descrição",
+        type: "textarea",
+        required: true,
+      },
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+        required: false,
+      },
     ],
   },
 
@@ -210,6 +223,19 @@ export const entidades = {
         label: "Nome da Categoria",
         type: "text",
         required: true,
+      },
+
+      {
+        name: "descricao",
+        label: "Descrição",
+        type: "textarea",
+        required: true,
+      },
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+        required: false,
       },
     ],
   },
