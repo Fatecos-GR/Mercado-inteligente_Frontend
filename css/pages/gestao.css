@@ -2,9 +2,10 @@
    IMPORTS
 ========================================= */
 
-@import "/css/components/admin-sidebar.css";
+@import "/css/components/cardProdutoAdmin.css";
 @import "/css/components/admin-header.css";
 @import "/css/main.css";
+@import "/css/components/admin-sidebar.css";
 
 /* =========================================
    LAYOUT

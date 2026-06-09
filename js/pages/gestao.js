@@ -4,6 +4,8 @@
 
 import { entidades } from "../config/entidades_admin.js";
 
+import { renderProdutoCard } from "../components/produtoCardAdmin.js";
+
 // ======================================
 // PEGAR PARÂMETRO DA URL
 // ======================================
@@ -69,39 +71,47 @@ function configurarPagina(entidade) {
 // MOCK TEMPORÁRIO
 // ======================================
 
-function renderMockCards(entidade) {
+function renderCards(entidade) {
   const grid = document.getElementById("gestao-grid");
 
-  // MOCKS TEMPORÁRIOS
-  const mocks = {
-    produtos: `
-      <article class="product-card">
-        <h3>Arroz Integral</h3>
-        <span>Categoria: Alimentos</span>
-      </article>
-    `,
+  // MOCK TEMPORÁRIO
+  const produtos = [
+    {
+      nome: "Arroz Integral 5kg",
+      categoriaNome: "Alimentos",
+      marcaNome: "Camil",
+      preco: "22,90",
+      estoqueDisponivel: 50,
+    },
 
-    marcas: `
-      <article class="product-card">
-        <h3>Nestlé</h3>
-      </article>
-    `,
+    {
+      nome: "Água Mineral 1L",
+      categoriaNome: "Bebidas",
+      marcaNome: "Crystal",
+      preco: "4,50",
+      estoqueDisponivel: 8,
+    },
+  ];
 
-    categorias: `
-      <article class="product-card">
-        <h3>Bebidas</h3>
-      </article>
-    `,
+  // ======================================
+  // PRODUTOS
+  // ======================================
 
-    fornecedores: `
-      <article class="product-card">
-        <h3>Fornecedor XPTO</h3>
-        <span>(11) 99999-9999</span>
-      </article>
-    `,
-  };
+  if (entidade.tipo === "produtos") {
+    grid.innerHTML = produtos.map(renderProdutoCard).join("");
 
-  grid.innerHTML = mocks[entidade.tipo];
+    return;
+  }
+
+  // ======================================
+  // PADRÃO TEMPORÁRIO
+  // ======================================
+
+  grid.innerHTML = `
+    <p>
+      Renderização ainda não criada.
+    </p>
+  `;
 }
 
 // ======================================
@@ -116,5 +126,5 @@ export function iniciarGestao() {
   configurarPagina(entidade);
 
   // TEMPORÁRIO
-  renderMockCards(entidade);
+  renderCards(entidade);
 }
