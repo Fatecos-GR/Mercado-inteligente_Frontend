@@ -22,7 +22,20 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-/* ELEMENTOS FLUTUANTES */
+/* Badge de Promoção */
+.badge-promocao {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--marrom-madeira);
+  color: var(--branco);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  z-index: 5;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 .badge-blue {
   position: absolute;
   top: 15px;

@@ -7,6 +7,10 @@ import { iniciarPerfil } from "./pages/perfil.js";
 
 import { iniciarGestao } from "./pages/gestao.js";
 
+import { iniciarHeaderCliente } from "./components/header_client.js";
+
+import { iniciarFormularioAdmin } from "./pages/form_admin.js";
+
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
 // ===============================
@@ -53,7 +57,11 @@ async function carregarLayout() {
     }
   }
 
-  await carregarSeExistir("main-header", "components/header.html");
+  await carregarSeExistir(
+    "main-header",
+    "components/header.html",
+    iniciarHeaderCliente,
+  );
   await carregarSeExistir("main-footer", "components/footer.html");
   await carregarSeExistir("admin-header", "components/admin-header.html");
   await carregarSeExistir("admin-sidebar", "components/admin-sidebar.html");
@@ -86,6 +94,12 @@ async function start() {
 
   if (isGestaoPage) {
     iniciarGestao();
+  }
+
+  const isFormAdminPage = window.location.pathname.includes("form_admin.html");
+
+  if (isFormAdminPage) {
+    iniciarFormularioAdmin();
   }
 }
 

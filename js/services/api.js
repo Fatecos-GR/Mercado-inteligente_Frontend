@@ -39,3 +39,19 @@ async function request(endpoint, options = {}) {
 export async function buscarProdutos() {
   return request(`/produtos`);
 }
+
+// ===============================
+// CRUD MARCAS
+// ===============================
+
+export async function buscarMarcas() {
+  return request(`/marcas`);
+}
+
+// ===============================
+// CRUD CATEGORIAS
+// ===============================
+
+export async function buscarCategorias() {
+  return request(`/categorias`);
+}

@@ -24,7 +24,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=produtos",
 
-    rotaFormulario: "/formulario.html?tipo=produtos",
+    rotaFormulario: "/form_admin.html?tipo=produtos",
 
     // ======================================
     // API
@@ -78,14 +78,14 @@ export const entidades = {
       {
         name: "preco",
         label: "Preço",
-        type: "number",
+        type: "money",
         required: true,
       },
 
       {
         name: "estoqueDisponivel",
         label: "Quantidade em Estoque",
-        type: "number",
+        type: "integer",
         required: true,
       },
 
@@ -149,7 +149,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=marcas",
 
-    rotaFormulario: "/formulario.html?tipo=marcas",
+    rotaFormulario: "/form_admin.html?tipo=marcas",
 
     endpoint: "/marcas",
 
@@ -169,6 +169,19 @@ export const entidades = {
         label: "Nome da Marca",
         type: "text",
         required: true,
+      },
+
+      {
+        name: "descricao",
+        label: "Descrição",
+        type: "textarea",
+        required: true,
+      },
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+        required: false,
       },
     ],
   },
@@ -190,7 +203,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=categorias",
 
-    rotaFormulario: "/formulario.html?tipo=categorias",
+    rotaFormulario: "/form_admin.html?tipo=categorias",
 
     endpoint: "/categorias",
 
@@ -210,6 +223,19 @@ export const entidades = {
         label: "Nome da Categoria",
         type: "text",
         required: true,
+      },
+
+      {
+        name: "descricao",
+        label: "Descrição",
+        type: "textarea",
+        required: true,
+      },
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+        required: false,
       },
     ],
   },
@@ -231,7 +257,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=fornecedores",
 
-    rotaFormulario: "/formulario.html?tipo=fornecedores",
+    rotaFormulario: "/form_admin.html?tipo=fornecedores",
 
     endpoint: "/fornecedores",
 
