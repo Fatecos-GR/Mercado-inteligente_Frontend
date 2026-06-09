@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Título -->
+    <title>Gestão | Admin Melior</title>
+
+    <!-- Ícone -->
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/pages/gestao.css" />
+
+    <!-- JS -->
+    <script type="module" src="js/main.js" defer></script>
+  </head>
+
+  <body>
+    <div id="gestao-layout">
+      <!-- SIDEBAR -->
+      <div id="admin-sidebar"></div>
+
+      <div id="right-layout">
+        <!-- HEADER -->
+        <div id="admin-header"></div>
+
+        <!-- CONTEÚDO -->
+        <main id="main-container">
+          <!-- TOPO -->
+          <section id="gestao-header">
+            <!-- TÍTULO -->
+            <div class="gestao-title-area">
+              <h2 id="gestao-titulo">Produtos</h2>
+
+              <span id="gestao-subtitulo">
+                Gerencie os registros cadastrados
+              </span>
+            </div>
+
+            <!-- AÇÕES -->
+            <div id="gestao-actions">
+              <!-- BUSCA -->
+              <div class="gestao-search-area">
+                <div id="search-container">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+
+                  <input
+                    type="text"
+                    id="search-input"
+                    placeholder="Buscar..."
+                  />
+                </div>
+              </div>
+
+              <!-- BOTÃO -->
+              <a href="#" id="btn-adicionar-item">
+                <i class="fa-solid fa-plus"></i>
+
+                <span id="btn-adicionar-texto"> Novo Registro </span>
+              </a>
+            </div>
+          </section>
+
+          <!-- GRID -->
+          <section id="gestao-grid">
+            <!-- CARDS DINÂMICOS VIA JS -->
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
