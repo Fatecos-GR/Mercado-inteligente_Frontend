@@ -25,3 +25,48 @@ body {
 ::-webkit-scrollbar-track {
   background: var(--bg-light);
 }
+
+/* Tratamento de erro dos campos */
+.field-error {
+  display: none;
+
+  margin-top: 6px;
+
+  font-size: 0.8rem;
+
+  color: #d32f2f;
+}
+
+.input-container.error .field-error {
+  display: block;
+}
+
+.input-container.error input {
+  border-color: #d32f2f;
+}
+
+.input-container.error input:focus {
+  border-color: #d32f2f;
+
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.15);
+}
+
+.input-container.error i {
+  color: #d32f2f;
+}
+
+/* Caso de Sucesso nos Inputs */
+.input-container.success input {
+  border-color: #2e7d32;
+}
+
+.input-container.success i {
+  color: #2e7d32;
+}
+
+/* Botão desabilitado */
+button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}

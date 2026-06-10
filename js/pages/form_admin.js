@@ -2,6 +2,8 @@
 // IMPORTS
 // ======================================
 
+import { protegerRotaAdmin } from "../utils/authGuard.js";
+
 import { entidades } from "../config/entidades_admin.js";
 
 import {
@@ -255,6 +257,8 @@ export async function iniciarFormularioAdmin() {
   const entidade = getEntidadeAtual();
 
   if (!entidade) return;
+
+  if (!protegerRotaAdmin()) return;
 
   configurarPagina(entidade);
 

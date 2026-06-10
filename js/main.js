@@ -7,9 +7,11 @@ import { iniciarPerfil } from "./pages/perfil.js";
 
 import { iniciarGestao } from "./pages/gestao.js";
 
-import { iniciarHeaderCliente } from "./components/header_client.js";
+import { iniciarHeaderCliente } from "./components/headerClient.js";
 
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
+
+import { iniciarLogin } from "./pages/login.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
@@ -100,6 +102,12 @@ async function start() {
 
   if (isFormAdminPage) {
     iniciarFormularioAdmin();
+  }
+
+  const isLoginPage = window.location.pathname.includes("login.html");
+
+  if (isLoginPage) {
+    iniciarLogin();
   }
 }
 

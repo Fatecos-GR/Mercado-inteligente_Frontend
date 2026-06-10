@@ -4,9 +4,6 @@
 
 const BASE_URL = "http://localhost:8080/api";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJtZXJjYWRvLWludGVsaWdlbnRlIiwic3ViIjoidXNlckBleGFtcGxlLmNvbSIsImV4cCI6MTc4MTA0NjI4N30.6I0f5e-EubpQQhVzwpUSesJTK7u255SjA1oHWGFp5cw";
-
 // Função Genérica
 async function request(endpoint, options = {}) {
   const token = localStorage.getItem("token");
@@ -29,16 +26,32 @@ async function request(endpoint, options = {}) {
   if (!response.ok) {
     const errorData = await response.json().catch(() => null);
 
-    throw {
-      status: response.status,
-      message: errorData?.message || "Erro na requisição",
-    };
+    throw (
+      errorData || {
+        status: response.status,
+        erro: "Erro inesperado",
+      }
+    );
   }
 
   // caso não tenha conteúdo (204)
   if (response.status === 204) return null;
 
   return response.json();
+}
+
+// ===============================
+// AUTENTICAÇÃO
+// ===============================
+export async function realizarLogin(email, senha) {
+  return request("/auth/login", {
+    method: "POST",
+
+    body: JSON.stringify({
+      email,
+      senha,
+    }),
+  });
 }
 
 // ===============================

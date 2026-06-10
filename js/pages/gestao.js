@@ -2,6 +2,8 @@
 // IMPORTS
 // ======================================
 
+import { protegerRotaAdmin } from "../utils/authGuard.js";
+
 import {
   buscarProdutos,
   buscarProdutosPorNome,
@@ -170,6 +172,8 @@ export async function iniciarGestao() {
   const entidade = getEntidadeAtual();
 
   if (!entidade) return;
+
+  if (!protegerRotaAdmin()) return;
 
   configurarPagina(entidade);
 
