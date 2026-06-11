@@ -210,23 +210,22 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: var(
-    --branco
-  ); /* Fundo sólido para evitar efeito de borda do gradiente */
+  background: var(--branco);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid var(--verde-primario); /* Borda fina para dar acabamento */
+  border: 2px solid var(--verde-primario);
 }
 
 .category-circle .category-img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Mostra a imagem inteira sem cortar os detalhes */
-  padding: 5px; /* Respiro mínimo para a imagem não tocar na borda */
+  object-fit: contain;
+  padding: 0px;
+  transform: scale(2);
 }
 
 .category-card .category-title {
@@ -718,7 +717,7 @@
     padding-top: 20px;
   }
 
-  /* 2. CARROSSEL DE CATEGORIAS PERFEITO */
+  /* 2. CARROSSEL DE CATEGORIAS */
   #categories-carousel {
     gap: 12px;
     padding: 0 15px;
@@ -738,5 +737,217 @@
 
   .category-card .category-title {
     font-size: 0.8rem;
+  }
+}
+
+/* ===============================
+   SELEÇÃO ESPECIAL (Cards Promocionais)
+=============================== */
+#selecao-especial {
+  margin: 60px 0;
+}
+
+/* Estrutura das 3 Colunas */
+.selecao-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Estrutura Base do Card */
+.selecao-card {
+  border-radius: 12px;
+  padding: 30px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.selecao-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-amarelo {
+  background-color: #f4ebd9;
+  border: 1px solid #ebe0c8;
+}
+
+.card-creme {
+  background-color: var(--branco);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card-verde {
+  background-color: #e6f2eb;
+  border: 1px solid #d5e8dd;
+}
+
+.selecao-content {
+  position: relative;
+  z-index: 2;
+  max-width: 55%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.selecao-tag {
+  font-size: 0.85rem;
+  color: var(--verde-primario);
+  font-weight: 800;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.selecao-highlight {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cinza-escuro);
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.selecao-desc {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.btn-selecao {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  padding: 10px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-block;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: auto; /* O SEGREDO: Empurra o botão pro rodapé para alinhas todos! */
+}
+
+.btn-selecao:hover {
+  background-color: var(--verde-primario);
+  transform: scale(1.05);
+  color: var(--branco);
+}
+
+/* 3. Aumentamos a imagem */
+.selecao-img {
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+  max-width: 175px;
+  max-height: 145px;
+  object-fit: contain;
+  z-index: 1;
+}
+
+/* ===============================
+   RESPONSIVIDADE - SELEÇÃO ESPECIAL
+=============================== */
+
+/* Para Tablets e Notebooks menores */
+@media (max-width: 992px) {
+  .selecao-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Muda de 3 para 2 cards por linha */
+  }
+}
+
+/* Para Celulares */
+@media (max-width: 768px) {
+  .selecao-grid {
+    grid-template-columns: 1fr; /* Coloca 1 card por linha (empilhados) */
+  }
+
+  .selecao-card {
+    min-height: 220px; /* Diminui um pouco a altura mínima no celular */
+    padding: 25px 20px;
+  }
+
+  .selecao-content {
+    max-width: 60%; /* Dá mais limite para o texto não encostar na imagem */
+  }
+
+  .selecao-highlight {
+    font-size: 1.25rem; /* Título levemente menor no celular */
+  }
+
+  .selecao-desc {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .selecao-img {
+    max-width: 135px; /* Encolhe a imagem no celular pra caber certinho */
+    max-height: 115px;
+    bottom: 10px;
+    right: 5px; /* Puxa a imagem bem pro cantinho */
+  }
+}
+
+/* Responsividade: Celulares e Tablets */
+@media (max-width: 900px) {
+  .selecao-grid {
+    grid-template-columns: 1fr; /* Volta a empilhar no celular */
+  }
+  .selecao-content {
+    max-width: 70%;
+  }
+}
+
+/* ===============================
+   RESPONSIVIDADE - SELEÇÃO ESPECIAL
+=============================== */
+
+/* Para Tablets e Notebooks menores */
+@media (max-width: 992px) {
+  .selecao-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Muda de 3 para 2 cards por linha */
+  }
+}
+
+/* Para Celulares */
+@media (max-width: 768px) {
+  .selecao-grid {
+    grid-template-columns: 1fr; /* Coloca 1 card por linha (empilhados) */
+  }
+
+  .selecao-card {
+    min-height: 220px; /* Diminui um pouco a altura mínima no celular */
+    padding: 25px 20px;
+  }
+
+  .selecao-content {
+    max-width: 60%; /* Dá mais limite para o texto não encostar na imagem */
+  }
+
+  .selecao-highlight {
+    font-size: 1.25rem; /* Título levemente menor no celular */
+  }
+
+  .selecao-desc {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .selecao-img {
+    max-width: 135px; /* Encolhe a imagem no celular pra caber certinho */
+    max-height: 115px;
+    bottom: 10px;
+    right: 5px; /* Puxa a imagem bem pro cantinho */
   }
 }
