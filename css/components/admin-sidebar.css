@@ -18,6 +18,34 @@
   left: 0;
 }
 
+/* ==========================================================================
+   ESTILIZAÇÃO DA LOGO NO TOPO DA SIDEBAR
+   ========================================================================== */
+
+.admin-sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px; /* Cria um respiro elegante acima e abaixo da logo */
+  box-sizing: border-box;
+}
+
+/* Se optar por usar o Texto H1 */
+.admin-sidebar-logo h1 {
+  color: var(--branco, #ffffff);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 3px; /* Espaçamento moderno entre as letras */
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Se optar por usar Imagem no futuro */
+.admin-brand-img {
+  max-width: 140px;
+  height: auto;
+  object-fit: contain;
+}
 /* ===============================
    LOGO
 =============================== */
@@ -175,4 +203,34 @@
 
 .admin-sidebar-subitem.active i {
   color: var(--marrom-madeira);
+}
+
+/* Garante que os links ocupem o espaço vertical dinamicamente */
+.admin-sidebar-links {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ocupa a altura total disponível abaixo do logo */
+}
+
+/* A mágica acontece aqui: empurra o container do rodapé para o fim da tela */
+.admin-sidebar-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Uma linha divisória bem sutil */
+}
+
+/* Garante que o link de configurações siga o mesmo estilo visual dos outros */
+.admin-sidebar-footer a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 12px 20px;
+  transition: 0.2s ease;
+}
+
+.admin-sidebar-footer a:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
 }

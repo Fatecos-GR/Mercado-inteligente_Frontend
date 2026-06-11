@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configurações do Sistema | Admin Melior</title>
+    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/pages/configuracoes.css" />
+    <script type="module" src="js/main.js" defer></script>
+  </head>
+  <body>
+    <div id="configuracoes-layout">
+      <div id="admin-sidebar"></div>
+
+      <div id="right-layout">
+        <div id="admin-header"></div>
+
+        <main id="main-container">
+          <div class="admin-form-wrapper">
+            <h2>Configurações Gerais</h2>
+            <p class="config-subtitle">
+              Gerencie as regras do mercado e os dados da sua conta de acesso.
+            </p>
+
+            <div class="config-tabs-nav">
+              <button class="tab-btn active" data-tab="mercado">
+                <i class="fa-solid fa-store"></i> Dados do Mercado
+              </button>
+              <button class="tab-btn" data-tab="delivery">
+                <i class="fa-solid fa-truck"></i> Delivery e Operação
+              </button>
+              <button class="tab-btn" data-tab="perfil">
+                <i class="fa-solid fa-user-gear"></i> Meu Perfil
+              </button>
+            </div>
+
+            <form
+              action="/admin/configuracoes/salvar"
+              method="POST"
+              class="admin-main-form"
+            >
+              <div class="tab-content active" id="tab-mercado">
+                <div class="admin-form-group">
+                  <label for="razao-social">Razão Social / Nome Fantasia</label>
+                  <input
+                    type="text"
+                    id="razao-social"
+                    name="razaoSocial"
+                    value="Supermercado Melior Ltda"
+                    required
+                  />
+                </div>
+
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label for="cnpj-mercado">CNPJ</label>
+                    <input
+                      type="text"
+                      id="cnpj-mercado"
+                      name="cnpjMercado"
+                      placeholder="00.000.000/0001-00"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="tel-mercado"
+                      >Telefone / WhatsApp Comercial</label
+                    >
+                    <input
+                      type="tel"
+                      id="tel-mercado"
+                      name="telefoneMercado"
+                      placeholder="(11) 99999-9999"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="endereco-mercado"
+                    >Endereço Completo da Loja</label
+                  >
+                  <input
+                    type="text"
+                    id="endereco-mercado"
+                    name="enderecoMercado"
+                    placeholder="Rua, número, bairro e cidade"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="tab-content" id="tab-delivery">
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label for="taxa-entrega"
+                      >Taxa de Entrega Padrão (R$)</label
+                    >
+                    <input
+                      type="number"
+                      step="0.01"
+                      id="taxa-entrega"
+                      name="taxaEntrega"
+                      placeholder="0.00"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="tempo-entrega">Tempo Estimado de Entrega</label>
+                    <input
+                      type="text"
+                      id="tempo-entrega"
+                      name="tempoEntrega"
+                      placeholder="Ex: 40 a 60 min"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label for="pedido-minimo"
+                      >Valor Mínimo do Pedido (R$)</label
+                    >
+                    <input
+                      type="number"
+                      step="0.01"
+                      id="pedido-minimo"
+                      name="pedidoMinimo"
+                      placeholder="0.00"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="status-mercado"
+                      >Status de Recebimento de Pedidos</label
+                    >
+                    <select id="status-mercado" name="statusMercado" required>
+                      <option value="ABERTO">
+                        Mercado Aberto (Recebendo Pedidos)
+                      </option>
+                      <option value="FECHADO">
+                        Mercado Fechado (Bloquear Novas Compras)
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-content" id="tab-perfil">
+                <div class="admin-form-group">
+                  <label for="perfil-nome">Seu Nome Completo</label>
+                  <input
+                    type="text"
+                    id="perfil-nome"
+                    name="perfilNome"
+                    value="Nome do Administrador Logado"
+                    required
+                  />
+                </div>
+
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label for="perfil-email">Seu E-mail de Acesso</label>
+                    <input
+                      type="email"
+                      id="perfil-email"
+                      name="perfilEmail"
+                      value="admin@melior.com"
+                      required
+                    />
+                  </div>
+                  <div class="admin-form-group">
+                    <label for="perfil-cargo">Cargo / Função</label>
+                    <input
+                      type="text"
+                      id="perfil-cargo"
+                      value="Administrador Geral"
+                      disabled
+                      style="
+                        background-color: rgba(0, 0, 0, 0.03);
+                        cursor: not-allowed;
+                      "
+                    />
+                  </div>
+                </div>
+
+                <div class="admin-form-group">
+                  <label for="perfil-senha">Alterar Senha de Acesso</label>
+                  <input
+                    type="password"
+                    id="perfil-senha"
+                    name="perfilSenha"
+                    placeholder="Digite uma nova senha se desejar alterar"
+                  />
+                </div>
+              </div>
+
+              <div class="admin-form-actions">
+                <button type="submit" class="admin-btn-submit">
+                  Salvar Alterações
+                </button>
+              </div>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

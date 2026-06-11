@@ -1,0 +1,135 @@
+/* ==========================================================================
+   ESTILO DOS CARDS DE LINHA (MARCA, CATEGORIA E FORNECEDOR)
+   PADRONIZADO COM O CARD DE PRODUTO
+   ========================================================================== */
+
+.brand-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--branco); /* Igual ao produto */
+  border: 1px solid rgba(61, 90, 68, 0.08); /* Igual ao produto */
+  border-radius: 18px; /* Igual ao produto */
+  padding: 22px; /* Igual ao produto */
+  margin-bottom: 15px;
+  transition: 0.2s ease; /* Igual ao produto */
+  gap: 20px;
+}
+
+.brand-card:hover {
+  transform: translateY(-3px); /* Igual ao produto */
+}
+
+/* Lado Esquerdo: Imagem/Ícone + Informações textuais */
+.brand-card-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Bloco da Imagem ou Ícone (Seguindo a lógica do .product-icon) */
+.brand-image {
+  width: 50px; /* Igual ao produto */
+  height: 50px; /* Igual ao produto */
+  border-radius: 14px; /* Igual ao produto */
+  background-color: rgba(90, 125, 101, 0.12); /* Igual ao produto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.brand-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.brand-image i {
+  color: var(--verde-escuro); /* Igual ao produto */
+  font-size: 1.1rem; /* Igual ao produto */
+}
+
+/* Informações de texto (Seguindo a lógica do .product-info) */
+.brand-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-info h3 {
+  color: var(--cinza-escuro); /* Igual ao produto */
+  font-size: 1.15rem; /* Igual ao produto */
+  font-weight: 700; /* Igual ao produto */
+  margin: 0 0 5px 0;
+}
+
+.brand-info p {
+  color: #777; /* Igual ao produto (.product-category) */
+  font-size: 0.9rem; /* Igual ao produto */
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Estilo para destacar os metadados do Fornecedor (CNPJ/Contato) */
+.supplier-doc,
+.supplier-contact {
+  font-size: 0.85rem !important;
+  color: #888 !important; /* Igual aos spans de detalhes do produto */
+}
+
+/* Lado Direito: Ações (Seguindo a lógica do .product-actions) */
+.brand-card-right {
+  display: flex;
+  gap: 12px; /* Igual ao produto */
+  flex-shrink: 0;
+}
+
+.brand-card-right a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* Igual ao produto */
+  text-decoration: none;
+  padding: 10px 16px; /* Ajustado para encaixar bem na horizontal */
+  border-radius: 10px; /* Igual ao produto */
+  font-size: 0.9rem; /* Igual ao produto */
+  font-weight: 600; /* Igual ao produto */
+  transition: 0.2s ease; /* Igual ao produto */
+}
+
+/* EDITAR (Cores idênticas ao seu .btn-edit) */
+.brand-btn-edit {
+  background-color: rgba(90, 125, 101, 0.12);
+  color: var(--verde-escuro);
+}
+
+.brand-btn-edit:hover {
+  background-color: rgba(90, 125, 101, 0.2);
+}
+
+/* EXCLUIR (Cores idênticas ao seu .btn-delete) */
+.brand-btn-delete {
+  background-color: rgba(139, 90, 43, 0.12);
+  color: var(--marrom-madeira);
+}
+
+.brand-btn-delete:hover {
+  background-color: rgba(139, 90, 43, 0.2);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 650px) {
+  .brand-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .brand-card-right {
+    width: 100%;
+    justify-content: flex-end;
+    border-top: 1px solid rgba(61, 90, 68, 0.08);
+    padding-top: 15px;
+  }
+}
