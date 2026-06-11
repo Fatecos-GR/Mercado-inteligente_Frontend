@@ -236,5 +236,63 @@ export function renderResultadoBuscaGestao(item) {
       </div>
 
     </div>
+
+     `;
+}
+
+// ======================================
+// CARD DE FORNECEDOR (ADMIN)
+// ======================================
+
+export function renderAdminFornecedorCard(fornecedor) {
+  return `
+    <article class="brand-card supplier-card">
+
+      <div class="brand-card-left">
+
+        <div class="brand-image">
+          ${
+            fornecedor.imagem
+              ? `
+                <img 
+                  src="${fornecedor.imagem}" 
+                  alt="${fornecedor.nome}"
+                />
+              `
+              : `
+                <i class="fa-solid fa-truck-ramp-box"></i>
+              `
+          }
+        </div>
+
+        <div class="brand-info">
+          <h3>
+            ${fornecedor.nome}
+          </h3>
+          <p class="supplier-doc">
+            <strong>CNPJ:</strong> ${fornecedor.cnpj || "Não informado"}
+          </p>
+          <p class="supplier-contact">
+            <strong>Contato:</strong> ${fornecedor.contato || "Sem telefone/e-mail"}
+          </p>
+        </div>
+
+      </div>
+
+      <div class="brand-card-right">
+
+        <a href="#" class="brand-btn-edit">
+          <i class="fa-solid fa-pen"></i>
+          Editar
+        </a>
+
+        <a href="#" class="brand-btn-delete">
+          <i class="fa-solid fa-trash"></i>
+          Excluir
+        </a>
+
+      </div>
+
+    </article>
   `;
 }

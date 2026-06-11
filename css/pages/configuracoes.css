@@ -1,0 +1,224 @@
+/* ==========================================================================
+   1. IMPORTS DOS COMPONENTES E ESTRUTURA BASE  
+   ========================================================================== */
+@import "/css/components/admin-sidebar.css";
+@import "/css/components/admin-header.css";
+@import "/css/main.css";
+
+/* ==========================================================================
+   TELA DE CONFIGURAÇÕES (GERAL) - MELIOR
+   ========================================================================== */
+
+/* Layout e Espaçamentos Base */
+#configuracoes-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f7f6f0; /* Seu fundo creme padrão */
+}
+
+#right-layout {
+  flex: 1; /* Faz a área da direita ocupar todo o resto da tela */
+  display: flex;
+  flex-direction: column;
+}
+
+#main-container {
+  padding: 40px; /* Cria o respiro saudável nas laterais e topo do card */
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.config-subtitle {
+  color: #777;
+  font-size: 0.95rem;
+  margin-top: -5px;
+  margin-bottom: 25px;
+}
+
+/* ==========================================================================
+   NAVEGAÇÃO POR ABAS (TABS NAV)
+   ========================================================================== */
+.config-tabs-nav {
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid rgba(61, 90, 68, 0.08);
+  margin-bottom: 30px;
+  padding-bottom: 2px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #777;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px 10px 0 0;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.tab-btn i {
+  font-size: 1.05rem;
+}
+
+/* Efeito Hover nos botões das abas */
+.tab-btn:hover {
+  color: var(--verde-escuro);
+  background-color: rgba(90, 125, 101, 0.05);
+}
+
+/* Aba Ativa (Destaque) */
+.tab-btn.active {
+  color: var(--verde-escuro);
+}
+
+/* Linha indicadora embaixo da aba ativa */
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--verde-escuro);
+  border-radius: 3px;
+}
+
+/* ==========================================================================
+   COMPORTAMENTO DOS CONTEÚDOS (A MÁGICA DE ESCONDER/MOSTRAR)
+   ========================================================================== */
+.tab-content {
+  display: none; /* Esconde por padrão */
+  animation: fadeIn 0.3s ease; /* Efeito suave de surgimento */
+}
+
+.tab-content.active {
+  display: block; /* Mostra apenas quando estiver ativa */
+}
+
+/* ==========================================================================
+   FORMULÁRIOS PADRONIZADOS (IGUAL AO DO CADASTRO DE FUNCIONÁRIOS)
+   ========================================================================== */
+.admin-form-wrapper {
+  background-color: var(--branco);
+  border: 1px solid rgba(61, 90, 68, 0.08);
+  border-radius: 18px;
+  padding: 35px;
+  max-width: 950px; /* Expandido de 850px para 950px para dar mais espaço */
+  width: 100%; /* Garante que o card ocupe o espaço correto */
+  margin: 0 auto; /* Centraliza o card na tela */
+  box-sizing: border-box;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.admin-form-group label {
+  font-weight: 600;
+  color: var(--cinza-escuro);
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.admin-form-group input,
+.admin-form-group select {
+  padding: 12px 16px;
+  border: 1px solid rgba(61, 90, 68, 0.15);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: var(--cinza-escuro);
+  background-color: var(--branco);
+  transition: all 0.2s ease;
+}
+
+/* Foco nos Inputs (Verde identidade do projeto) */
+.admin-form-group input:focus,
+.admin-form-group select:focus {
+  outline: none;
+  border-color: var(--verde-escuro);
+  box-shadow: 0 0 0 4px rgba(90, 125, 101, 0.1);
+}
+
+/* Grid de duas colunas lado a lado */
+.admin-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Botão Salvar (Padrão do sistema) */
+.admin-form-actions {
+  margin-top: 30px;
+  border-top: 1px solid rgba(61, 90, 68, 0.08);
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end; /* Empurra o botão para a extremidade direita */
+}
+
+.admin-btn-submit {
+  flex: none; /* Impede que o botão estique e quebre o layout */
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  border: none;
+  padding: 12px 35px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.admin-btn-submit:hover {
+  background-color: #3d5a44; /* Um tom ligeiramente mais escuro para o hover */
+}
+
+/* Animação suave para a troca de abas */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade para Telas Pequenas */
+@media (max-width: 768px) {
+  #main-container {
+    padding: 20px;
+  }
+
+  .admin-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .config-tabs-nav {
+    flex-direction: column;
+    gap: 5px;
+    border-bottom: none;
+  }
+
+  .tab-btn {
+    border-radius: 10px;
+    border: 1px solid rgba(61, 90, 68, 0.08);
+  }
+
+  .tab-btn.active::after {
+    display: none; /* Remove a linha de baixo no mobile */
+  }
+
+  .tab-btn.active {
+    background-color: rgba(90, 125, 101, 0.1);
+  }
+}

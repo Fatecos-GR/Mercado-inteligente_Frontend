@@ -2,21 +2,18 @@
 // IMPORTS
 // ===============================
 import { iniciarHome } from "./pages/home.js";
-
 import { iniciarPerfil } from "./pages/perfil.js";
-
 import { iniciarGestao } from "./pages/gestao.js";
-
 import { iniciarHeaderCliente } from "./components/headerClient.js";
-
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
-
 import { iniciarLogin } from "./pages/login.js";
+import { iniciarFormularioAdmin } from "./pages/form_admin.js";
+// Importação da nova página de configurações
+import { iniciarConfiguracoes } from "./pages/configuracoes.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
 // ===============================
-
 async function loadComponent(id, file) {
   const res = await fetch(file);
   const html = await res.text();
@@ -30,13 +27,11 @@ function carregarIcones() {
   if (document.querySelector("link[data-fontawesome]")) return;
 
   const link = document.createElement("link");
-
   link.rel = "stylesheet";
   link.href =
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css";
   link.crossOrigin = "anonymous";
   link.referrerPolicy = "no-referrer";
-
   link.setAttribute("data-fontawesome", "true");
 
   document.head.appendChild(link);
@@ -45,15 +40,11 @@ function carregarIcones() {
 // ===============================
 // CARREGAR HEADER E FOOTER
 // ===============================
-
 async function carregarLayout() {
-  // Função auxiliar
   async function carregarSeExistir(id, arquivo, callback) {
     const elemento = document.getElementById(id);
-
     elemento ? await loadComponent(id, arquivo) : null;
 
-    // CallBack opcional
     if (elemento && callback) {
       callback();
     }
@@ -72,34 +63,28 @@ async function carregarLayout() {
 // ===============================
 // START PRINCIPAL
 // ===============================
-
 async function start() {
-  //Componentes Modularizados
+  // Componentes Modularizados
   await carregarLayout();
   await carregarIcones();
 
-  // Se esta na home
+  // Verificações de rota por página
   const isIndexPage = window.location.pathname.includes("index.html");
-
   if (isIndexPage) {
     iniciarHome();
   }
 
-  // Se esta na tela de perfil
   const isPerfilPage = window.location.pathname.includes("perfil.html");
-
   if (isPerfilPage) {
     iniciarPerfil();
   }
 
   const isGestaoPage = window.location.pathname.includes("gestao.html");
-
   if (isGestaoPage) {
     iniciarGestao();
   }
 
   const isFormAdminPage = window.location.pathname.includes("form_admin.html");
-
   if (isFormAdminPage) {
     iniciarFormularioAdmin();
   }
@@ -108,8 +93,15 @@ async function start() {
 
   if (isLoginPage) {
     iniciarLogin();
+
+    // Verifica se o usuário está na tela de configurações e ativa as abas
+    const isConfiguracoesPage =
+      window.location.pathname.includes("configuracoes.html");
+    if (isConfiguracoesPage) {
+      iniciarConfiguracoes();
+    }
   }
 }
 
-// Inicialização
+// Inicialização do sistema
 start();
