@@ -6,21 +6,6 @@
 /* ===============================
    ESTRUTURA GLOBAL (O Segredo do Zoom)
 =============================== */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-/* ===============================
-   ESTRUTURA GLOBAL (O Segredo do Zoom)
-=============================== */
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-/* ===============================
-   ESTRUTURA GLOBAL (O Segredo do Zoom)
-=============================== */
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 #main-container {
   padding-top: 20px;
   padding-left: 20px;
@@ -28,124 +13,38 @@
   padding-bottom: 20px;
   max-width: 1400px;
   margin: 0 auto;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  max-width: 1400px;
-  margin: 0 auto;
-<<<<<<< HEAD
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 /* ===============================
    1. BANNER CARROSSEL (Estilo Arco)
 =============================== */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-/* ===============================
-   1. BANNER CARROSSEL (Estilo Arco)
-=============================== */
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-/* ===============================
-   1. BANNER CARROSSEL (Estilo Arco)
-=============================== */
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 #banner {
   width: 100%;
 }
 
 #carousel-container {
   position: relative;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  position: relative;
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-  position: relative;
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 0 0 50% 50% / 0 0 50px 50px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   overflow: hidden;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-=======
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-  border-radius: 0 0 50% 50% / 0 0 50px 50px;
-  overflow: hidden;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-<<<<<<< HEAD
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
-  overflow: hidden;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 #carousel-wrapper {
   display: flex;
   width: 100%;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  width: 100%;
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-  width: 100%;
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   transition: transform 1s ease;
 }
 
 .banner-slide {
   min-width: 100%;
-<<<<<<< HEAD
   height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
   display: block;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
-  display: block;
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-  height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
-  display: block;
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
-  height: 450px; /* Altura fixa para manter estabilidade visual */
-  display: block;
-  background-color: var(--verde-escuro); /* Fundo para preencher espaços em imagens desproporcionais */
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
+  background-color: var(
+    --verde-escuro
+  ); /* Fundo para preencher espaços em imagens desproporcionais */
 }
 
 .banner-slide img {
@@ -213,21 +112,6 @@
   position: absolute;
   bottom: 25px;
   z-index: 10;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  position: absolute;
-  bottom: 25px;
-  z-index: 10;
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-  position: absolute;
-  bottom: 25px;
-  z-index: 10;
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 .dot {
@@ -326,7 +210,9 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: var(--branco); /* Fundo sólido para evitar efeito de borda do gradiente */
+  background: var(
+    --branco
+  ); /* Fundo sólido para evitar efeito de borda do gradiente */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -442,8 +328,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===============================
@@ -456,67 +348,18 @@
 
 #recommendations-header,
 .vitrine-title-container {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  /* Margens gigantes esquerdas removidas! */
-=======
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-#recommendations-header,
-.vitrine-title-container {
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  /* Margens gigantes esquerdas removidas! */
-<<<<<<< HEAD
-  margin-bottom: 20px;
-  /* Margens gigantes esquerdas removidas! */
-<<<<<<< HEAD
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 #recommendations-header h2,
 .vitrine-title {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-#recommendations-header h2,
-.vitrine-title {
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-#recommendations-header h2,
-.vitrine-title {
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   color: var(--cinza-escuro);
   font-size: 1.8rem;
   font-weight: 900;
   margin-bottom: 20px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  margin-bottom: 20px;
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-  margin-bottom: 20px;
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 /* TABS */
@@ -524,17 +367,6 @@
   display: flex;
   gap: 10px;
   background: var(--bg-light);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  background: var(--bg-light);
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-  background: var(--bg-light);
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   padding: 6px;
   border-radius: 12px;
 }
@@ -552,17 +384,6 @@
 .tab.active {
   background: var(--verde-escuro);
   color: var(--branco);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  color: var(--branco);
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-  color: var(--branco);
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 .tab-content {
@@ -578,21 +399,6 @@
 /* ===============================
    4. GRID DE PRODUTOS
 =============================== */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-/* ===============================
-   4. GRID DE PRODUTOS
-=============================== */
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
-/* ===============================
-   4. GRID DE PRODUTOS
-=============================== */
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 .products-grid {
   display: grid;
   /* Ajustado para os cards ficarem mais finos e caberem mais na tela */
@@ -633,7 +439,6 @@
   font-weight: 900;
   line-height: 1.2;
   margin: 0;
-  /* margin-left: 18rem removida para parar de esmagar o texto */
 }
 
 .clube-titulo-esq .destaque {
@@ -678,101 +483,6 @@
   max-width: 30%;
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-  /* Ajustado para os cards ficarem mais finos e caberem mais na tela */
-  grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
-  gap: 20px;
-  justify-content: flex-start;
-  align-items: stretch;
-  padding: 10px 0;
-}
-
-/* ===============================
-   5. CLUBE MELIOR (3 COLUNAS)
-=============================== */
-#clube-melior {
-  margin: 80px 0;
-  background-color: var(--bg-light);
-  border-radius: 20px;
-  padding: 40px 50px;
-  overflow: hidden;
-}
-
-.clube-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-/* --- LADO ESQUERDO: TÍTULO --- */
-.clube-titulo-esq {
-  flex: 1.2;
-  max-width: 35%;
-}
-
-.clube-titulo-esq h2 {
-  font-size: 2.6rem;
-  color: var(--cinza-escuro);
-  font-weight: 900;
-  line-height: 1.2;
-  margin: 0;
-  /* margin-left: 18rem removida para parar de esmagar o texto */
-}
-
-.clube-titulo-esq .destaque {
-  color: var(--verde-primario);
-}
-
-/* --- CENTRO: IMAGEM E BOLHA --- */
-.clube-imagem-centro {
-  flex: 1;
-  display: flex;
-  justify-content: center; /* Centraliza a bolha perfeitamente */
-  align-items: center;
-  position: relative;
-  min-height: 380px;
-}
-
-.bolha-fundo {
-  position: absolute;
-  width: 25rem;
-  height: 25rem;
-  background: linear-gradient(
-    135deg,
-    var(--verde-primario),
-    var(--verde-escuro)
-  );
-  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  z-index: 0;
-  animation: morph 15s ease-in-out infinite;
-}
-
-.celular-mockup {
-  position: relative;
-  z-index: 1;
-  max-width: 220px;
-  height: auto;
-  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
-}
-
-/* --- LADO DIREITO: BENEFÍCIOS --- */
-.clube-beneficios-dir {
-  flex: 1;
-  max-width: 30%;
-  display: flex;
-  flex-direction: column;
-<<<<<<< HEAD
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   justify-content: center;
 }
 
@@ -1003,205 +713,30 @@
     font-size: 1rem;
   }
 
-  /* --- CELULARES (até 768px) --- */
-  @media (max-width: 768px) {
-    /* 1. COMPENSAÇÃO DO CABEÇALHO GIGANTE NO MOBILE */
-
-    #main-container {
-      padding-top: 20px;
-    }
-
-    /* 2. CARROSSEL DE CATEGORIAS PERFEITO */
-    #categories-carousel {
-      gap: 12px;
-      padding: 0 15px;
-      flex-wrap: nowrap;
-    }
-
-    .category-card {
-      min-width: 80px;
-      flex: 0 0 auto;
-    }
-
-    .category-circle {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 8px;
-    }
-
-    .category-card .category-title {
-      font-size: 0.8rem;
-    }
-  }
-}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-
-@keyframes morph {
-  0% {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  }
-  50% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
-  100% {
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-  }
-}
-
-/* ===============================
-   7. RESPONSIVIDADE GLOBAL
-=============================== */
-
-/* --- TABLETS E NOTEBOOKS MENORES (até 1024px) --- */
-@media (max-width: 1024px) {
+  /* 1. COMPENSAÇÃO DO CABEÇALHO GIGANTE NO MOBILE */
   #main-container {
     padding-top: 20px;
   }
 
-  .banner-slide {
-    height: 350px;
-  }
-
-  .clube-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .clube-titulo-esq,
-  .clube-beneficios-dir {
-    max-width: 100%;
-  }
-
-  .clube-titulo-esq h2 {
-    font-size: 2.2rem;
-  }
-
-  .clube-imagem-centro {
-    min-height: 350px;
-  }
-
-  .clube-beneficios li {
-    justify-content: center;
-  }
-}
-
-/* --- CELULARES (até 768px) --- */
-@media (max-width: 768px) {
-  #carousel-container {
-    border-radius: 0 0 20% 20% / 0 0 25px 25px;
-  }
-
-  .banner-slide {
-    height: 200px;
-  }
-
-  .category-circle {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 8px;
+  /* 2. CARROSSEL DE CATEGORIAS PERFEITO */
+  #categories-carousel {
+    gap: 12px;
+    padding: 0 15px;
+    flex-wrap: nowrap;
   }
 
   .category-card {
-    min-width: 90px;
+    min-width: 80px;
+    flex: 0 0 auto;
+  }
+
+  .category-circle {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 8px;
   }
 
   .category-card .category-title {
-    font-size: 0.85rem;
-  }
-
-  #recommendations-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  #recommendations-header h2,
-  .vitrine-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-
-  #recommendation-tabs {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
-    justify-content: center;
-  }
-
-  #clube-melior {
-    padding: 30px 20px;
-    margin: 60px 0;
-  }
-
-  .clube-titulo-esq h2 {
-    font-size: 1.8rem;
-  }
-
-  .clube-imagem-centro {
-    min-height: 280px;
-    margin: 20px 0;
-  }
-
-  .bolha-fundo {
-    width: 250px;
-    height: 250px;
-  }
-
-  .celular-mockup {
-    max-width: 140px;
-  }
-
-  .clube-beneficios-dir h3 {
-    font-size: 1.2rem;
-  }
-
-  .clube-beneficios li {
-    font-size: 1rem;
-  }
-
-  /* --- CELULARES (até 768px) --- */
-  @media (max-width: 768px) {
-    /* 1. COMPENSAÇÃO DO CABEÇALHO GIGANTE NO MOBILE */
-
-    #main-container {
-      padding-top: 20px;
-    }
-
-    /* 2. CARROSSEL DE CATEGORIAS PERFEITO */
-    #categories-carousel {
-      gap: 12px;
-      padding: 0 15px;
-      flex-wrap: nowrap;
-    }
-
-    .category-card {
-      min-width: 80px;
-      flex: 0 0 auto;
-    }
-
-    .category-circle {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 8px;
-    }
-
-    .category-card .category-title {
-      font-size: 0.8rem;
-    }
+    font-size: 0.8rem;
   }
 }
-<<<<<<< HEAD
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321

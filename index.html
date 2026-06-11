@@ -4,50 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Título da página -->
     <title>Melior | Seu Mercado Online</title>
 
-    <!-- Ícone da página -->
     <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
 
-    <!-- CSS -->
     <link rel="stylesheet" href="css/pages/home.css" />
 
-    <!-- JAVASCRIPT PRINCIPAL -->
     <script type="module" src="js/main.js" defer></script>
   </head>
   <body>
-    <!-- Link do Header -->
     <header id="main-header"></header>
 
-    <!-- Conteúdo Principal -->
     <main id="main-container">
-      <!-- Banner Carrossel -->
       <section id="banner">
         <div id="carousel-container">
           <div id="carousel-wrapper">
             <div class="banner-slide">
               <img src="img/banner_melior.png" alt="Banner Melior" />
             </div>
-
             <div class="banner-slide">
               <img src="img/banner_acougue.png" alt="Banner Açougue" />
             </div>
-
             <div class="banner-slide">
               <img src="img/banner_higiene.png" alt="Banner Higiene" />
             </div>
-
             <div class="banner-slide">
               <img src="img/banner_hortifruti.png" alt="Banner Hortifruti" />
             </div>
-
             <div class="banner-slide">
               <img src="img/banner_pet.png" alt="Banner PET" />
             </div>
           </div>
 
-          <!-- indicadores -->
           <div class="carousel-dots">
             <span class="dot active"></span>
             <span class="dot"></span>
@@ -56,7 +44,6 @@
             <span class="dot"></span>
           </div>
 
-          <!-- Botões de Navegação -->
           <button class="carousel-btn prev">
             <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -68,77 +55,116 @@
 
       <section class="home-section" id="categorias-section">
         <div id="categories-container">
-          <!-- Setas de navegação das categorias -->
-          <button class="cat-nav-btn prev" id="cat-prev"><i class="fa-solid fa-chevron-left"></i></button>
-          
+          <button class="cat-nav-btn prev" id="cat-prev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
           <div id="categories-wrapper">
             <div id="categories-carousel">
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/hortifruti.png" alt="Hortifruti" class="category-img" />
+                  <img
+                    src="img/hortifruti.png"
+                    alt="Hortifruti"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Hortifruti</h3>
               </button>
 
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/acouguepeixe.png" alt="Açougue" class="category-img" />
+                  <img
+                    src="img/acouguepeixe.png"
+                    alt="Açougue"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Açougue</h3>
               </button>
 
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/padaria.png" alt="Padaria" class="category-img" />
+                  <img
+                    src="img/padaria.png"
+                    alt="Padaria"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Padaria</h3>
               </button>
 
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/bebidas.png" alt="Bebidas" class="category-img" />
+                  <img
+                    src="img/bebidas.png"
+                    alt="Bebidas"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Bebidas</h3>
               </button>
 
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/limpeza.png" alt="Limpeza" class="category-img" />
+                  <img
+                    src="img/limpeza.png"
+                    alt="Limpeza"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Limpeza</h3>
               </button>
 
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/higiene.png" alt="Higiene" class="category-img" />
+                  <img
+                    src="img/higiene.png"
+                    alt="Higiene"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Higiene</h3>
               </button>
 
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/petshop.png" alt="Pet Shop" class="category-img" />
+                  <img
+                    src="img/petshop.png"
+                    alt="Pet Shop"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Pet Shop</h3>
               </button>
 
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/congelados.png" alt="Congelados" class="category-img" />
+                  <img
+                    src="img/congelados.png"
+                    alt="Congelados"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Congelados</h3>
               </button>
 
               <button class="category-card">
                 <div class="category-circle">
-                  <img src="img/mercearia.png" alt="Mercearia" class="category-img" />
+                  <img
+                    src="img/mercearia.png"
+                    alt="Mercearia"
+                    class="category-img"
+                  />
                 </div>
                 <h3 class="category-title">Mercearia</h3>
               </button>
             </div>
           </div>
 
-          <button class="cat-nav-btn next" id="cat-next"><i class="fa-solid fa-chevron-right"></i></button>
+          <button class="cat-nav-btn next" id="cat-next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
       </section>
 
@@ -158,15 +184,29 @@
         </div>
       </div>
 
-      <!-- Seção de Ofertas Melior -->
       <section id="ofertas-melior" class="home-vitrine">
         <h2 class="vitrine-title">Ofertas Melior</h2>
-        <div style="padding: 40px; text-align: center; background: var(--branco); border-radius: 14px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);">
-          <p style="color: var(--cinza-escuro); font-weight: 600; font-size: 1.1rem;">Não há ofertas no momento.</p>
+        <div
+          style="
+            padding: 40px;
+            text-align: center;
+            background: var(--branco);
+            border-radius: 14px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+          "
+        >
+          <p
+            style="
+              color: var(--cinza-escuro);
+              font-weight: 600;
+              font-size: 1.1rem;
+            "
+          >
+            Não há ofertas no momento.
+          </p>
         </div>
       </section>
 
-      <!-- Vitrine Hortifruti -->
       <section id="recommendations">
         <div id="recommendations-header">
           <h2>Hortifruti</h2>
@@ -193,6 +233,7 @@
                 Adicionar <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
+
             <div class="product-card">
               <a href="detalhes_prod.html?id=h2" class="product-link">
                 <div class="card-image-wrapper">
@@ -208,6 +249,7 @@
                 Adicionar <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
+
             <div class="product-card">
               <a href="detalhes_prod.html?id=h3" class="product-link">
                 <div class="card-image-wrapper">
@@ -223,6 +265,7 @@
                 Adicionar <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
+
             <div class="product-card">
               <a href="detalhes_prod.html?id=h4" class="product-link">
                 <div class="card-image-wrapper">
@@ -242,7 +285,6 @@
         </div>
       </section>
 
-      <!-- Vitrine Açougue -->
       <section class="home-vitrine">
         <h2 class="vitrine-title">Açougue</h2>
         <div class="products-grid">
@@ -257,18 +299,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 38,90</span>
             </div>
-<<<<<<< HEAD
-
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('2')">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
             <button class="btn-add-cart" onclick="adicionarAoCarrinho('a1')">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=a2" class="product-link">
               <div class="card-image-wrapper">
@@ -284,6 +319,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=a3" class="product-link">
               <div class="card-image-wrapper">
@@ -299,6 +335,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=a4" class="product-link">
               <div class="card-image-wrapper">
@@ -311,14 +348,12 @@
               <span class="price-current">R$ 19,90</span>
             </div>
             <button class="btn-add-cart" onclick="adicionarAoCarrinho('a4')">
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
         </div>
       </section>
 
-      <!-- Banner Clube Melior -->
       <section id="clube-melior">
         <div class="clube-container">
           <div class="clube-titulo-esq">
@@ -329,69 +364,12 @@
           </div>
           <div class="clube-imagem-centro">
             <div class="bolha-fundo"></div>
-            <img src="img/celular-mockup.png" alt="Aplicativo Clube Melior" class="celular-mockup" />
-          </div>
-          <div class="clube-beneficios-dir">
-            <h3>Ofertas imperdíveis na palma da mão</h3>
-            <ul class="clube-beneficios">
-              <li><i class="fa-solid fa-circle-check"></i> No conforto da sua casa</li>
-              <li><i class="fa-solid fa-circle-check"></i> Fácil e prático</li>
-              <li><i class="fa-solid fa-circle-check"></i> Muito mais economia</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Vitrine Padaria -->
-      <section class="home-vitrine">
-        <h2 class="vitrine-title">Padaria</h2>
-        <div class="products-grid">
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=p1" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Pão" />
-              </div>
-              <h3 class="product-title">Pão Francês Crocante</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 0,75</span>
-            </div>
-<<<<<<< HEAD
-
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('3')">
-<<<<<<< HEAD
-=======
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-              Adicionar <i class="fa-solid fa-cart-shopping"></i>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Banner Clube Melior (Layout 3 Colunas) -->
-      <section id="clube-melior">
-        <div class="clube-container">
-          <!-- Lado Esquerdo: Título Principal -->
-          <div class="clube-titulo-esq">
-            <h2>
-              Compre no <span class="destaque">Melior</span> com toda <br />
-              a facilidade que você merece!
-            </h2>
-          </div>
-
-          <!-- Centro: Imagem e Bolha (Mais à direita) -->
-          <div class="clube-imagem-centro">
-            <div class="bolha-fundo"></div>
-            <!-- Substitua esse placeholder pela imagem de um celular sem fundo (PNG) -->
             <img
               src="img/celular-mockup.png"
               alt="Aplicativo Clube Melior"
               class="celular-mockup"
             />
           </div>
-
-          <!-- Lado Direito: Benefícios e Botão -->
           <div class="clube-beneficios-dir">
             <h3>Ofertas imperdíveis na palma da mão</h3>
             <ul class="clube-beneficios">
@@ -408,40 +386,24 @@
       </section>
 
       <section class="home-vitrine">
-<<<<<<< HEAD
-        <h2 class="vitrine-title">Categoria 4</h2>
+        <h2 class="vitrine-title">Padaria</h2>
         <div class="products-grid">
           <div class="product-card">
-            <a href="detalhes_prod.html?id=4" class="product-link">
-=======
-        <h2 class="vitrine-title">Categoria 3</h2>
-        <div class="products-grid">
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=3" class="product-link">
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
+            <a href="detalhes_prod.html?id=p1" class="product-link">
               <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Produto" />
+                <img src="img/placeholder.png" alt="Pão" />
               </div>
-
-              <h3 class="product-title">Nome do Produto Exemplo</h3>
+              <h3 class="product-title">Pão Francês Crocante</h3>
             </a>
-            <span class="product-unit">000g</span>
-<<<<<<< HEAD
-
-=======
-
+            <span class="product-unit">unid</span>
             <div class="product-pricing">
-              <span class="price-current">R$ 0,00</span>
+              <span class="price-current">R$ 0,75</span>
             </div>
-
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('3')">
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
             <button class="btn-add-cart" onclick="adicionarAoCarrinho('p1')">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=p2" class="product-link">
               <div class="card-image-wrapper">
@@ -457,6 +419,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=p3" class="product-link">
               <div class="card-image-wrapper">
@@ -472,6 +435,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=p4" class="product-link">
               <div class="card-image-wrapper">
@@ -484,14 +448,12 @@
               <span class="price-current">R$ 4,50</span>
             </div>
             <button class="btn-add-cart" onclick="adicionarAoCarrinho('p4')">
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
         </div>
       </section>
 
-      <!-- Vitrine Limpeza -->
       <section class="home-vitrine">
         <h2 class="vitrine-title">Limpeza</h2>
         <div class="products-grid">
@@ -510,6 +472,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=l2" class="product-link">
               <div class="card-image-wrapper">
@@ -525,6 +488,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=l3" class="product-link">
               <div class="card-image-wrapper">
@@ -540,6 +504,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=l4" class="product-link">
               <div class="card-image-wrapper">
@@ -558,7 +523,6 @@
         </div>
       </section>
 
-      <!-- Vitrine Mercearia -->
       <section class="home-vitrine">
         <h2 class="vitrine-title">Mercearia</h2>
         <div class="products-grid">
@@ -569,16 +533,7 @@
               </div>
               <h3 class="product-title">Arroz Agulhinha T1 5kg</h3>
             </a>
-<<<<<<< HEAD
-            <span class="product-unit">000g</span>
-
-<<<<<<< HEAD
->>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
-=======
->>>>>>> 930be767889da99764473fc63ae2506e47858b8a
-=======
             <span class="product-unit">unid</span>
->>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
             <div class="product-pricing">
               <span class="price-current">R$ 29,90</span>
             </div>
@@ -586,6 +541,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=m2" class="product-link">
               <div class="card-image-wrapper">
@@ -601,6 +557,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=m3" class="product-link">
               <div class="card-image-wrapper">
@@ -616,6 +573,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=m4" class="product-link">
               <div class="card-image-wrapper">
@@ -631,6 +589,7 @@
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=m5" class="product-link">
               <div class="card-image-wrapper">
@@ -650,7 +609,6 @@
       </section>
     </main>
 
-    <!-- Rodapé -->
     <footer id="main-footer"></footer>
   </body>
 </html>
