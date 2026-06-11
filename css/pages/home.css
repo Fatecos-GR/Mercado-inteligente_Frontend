@@ -237,6 +237,38 @@
 }
 
 /* ===============================
+   BANNER PROMOCIONAL
+=============================== */
+.banner-promocional-secao {
+  margin: 40px auto; /* Dá um respiro em cima e embaixo */
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden; /* Garante que a imagem respeite as bordas arredondadas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.banner-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+.banner-img-promocional {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Ajuste sutil para telas menores */
+@media (max-width: 768px) {
+  .banner-promocional-secao {
+    margin: 25px auto;
+    border-radius: 8px;
+  }
+}
+
+/* ===============================
    FILTRO DE ORDENAÇÃO (Custom Select)
 =============================== */
 .filtro-ordenacao {
