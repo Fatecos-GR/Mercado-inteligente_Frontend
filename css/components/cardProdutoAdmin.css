@@ -51,6 +51,11 @@
 }
 
 /* INFO */
+.product-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .product-info h3 {
   color: var(--cinza-escuro);
   font-size: 1.15rem;
@@ -59,6 +64,10 @@
 }
 
 .product-category {
+  color: #777;
+  font-size: 0.9rem;
+}
+.product-brand {
   color: #777;
   font-size: 0.9rem;
 }

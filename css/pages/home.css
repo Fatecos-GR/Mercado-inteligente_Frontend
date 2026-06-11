@@ -8,6 +8,7 @@
 =============================== */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* ===============================
    ESTRUTURA GLOBAL (O Segredo do Zoom)
@@ -18,6 +19,8 @@
    ESTRUTURA GLOBAL (O Segredo do Zoom)
 =============================== */
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 #main-container {
   padding-top: 20px;
   padding-left: 20px;
@@ -27,6 +30,7 @@
   margin: 0 auto;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
@@ -40,11 +44,14 @@
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 /* ===============================
    1. BANNER CARROSSEL (Estilo Arco)
 =============================== */
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -57,6 +64,8 @@
    1. BANNER CARROSSEL (Estilo Arco)
 =============================== */
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 #banner {
   width: 100%;
 }
@@ -65,18 +74,22 @@
   position: relative;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   position: relative;
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
   position: relative;
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 0 0 50% 50% / 0 0 50px 50px;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   overflow: hidden;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
 =======
@@ -90,6 +103,10 @@
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+  overflow: hidden;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 #carousel-wrapper {
@@ -97,17 +114,21 @@
   width: 100%;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   width: 100%;
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
   width: 100%;
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   transition: transform 1s ease;
 }
 
 .banner-slide {
   min-width: 100%;
+<<<<<<< HEAD
   height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
   display: block;
 <<<<<<< HEAD
@@ -120,14 +141,54 @@
   height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
   display: block;
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+  height: 450px; /* Altura fixa para manter estabilidade visual */
+  display: block;
+  background-color: var(--verde-escuro); /* Fundo para preencher espaços em imagens desproporcionais */
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 .banner-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* Garante que a imagem inteira apareça sem cortes */
   object-position: center;
   border-radius: 0;
+}
+
+/* --- NAVEGAÇÃO DO CARROSSEL --- */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--verde-escuro);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.carousel-btn:hover {
+  background: var(--verde-primario);
+  color: var(--branco);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+  left: 30px;
+}
+
+.carousel-btn.next {
+  right: 30px;
 }
 
 /* ===============================
@@ -154,6 +215,7 @@
   z-index: 10;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   position: absolute;
   bottom: 25px;
@@ -164,6 +226,8 @@
   bottom: 25px;
   z-index: 10;
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 .dot {
@@ -194,25 +258,49 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 #categories-wrapper {
-  width: 80%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 10px 0;
-  scrollbar-width: none;
+  width: 100%;
+  overflow-x: hidden; /* Mudado para hidden para as setas controlarem */
+  padding: 15px 0;
+  scroll-behavior: smooth;
 }
 
-#categories-wrapper::-webkit-scrollbar {
-  display: none;
+/* Setas de Navegação das Categorias */
+.cat-nav-btn {
+  background: var(--branco);
+  border: 1px solid var(--verde-primario);
+  color: var(--verde-escuro);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.cat-nav-btn:hover {
+  background: var(--verde-primario);
+  color: var(--branco);
+  transform: scale(1.1);
 }
 
 #categories-carousel {
   display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  min-width: max-content;
+  gap: 25px;
+  padding: 0 10px;
 }
 
 /* CARD DE CATEGORIA */
@@ -235,26 +323,24 @@
 
 /* BOLA COM FUNDO */
 .category-circle {
-  width: 120px; /* Tamanho elegante para 100% de zoom */
+  width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    var(--verde-escuro) 50%,
-    var(--verde-primario) 50%
-  );
+  background: var(--branco); /* Fundo sólido para evitar efeito de borda do gradiente */
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--verde-primario); /* Borda fina para dar acabamento */
 }
 
 .category-circle .category-img {
-  width: 85%;
-  height: 85%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Mostra a imagem inteira sem cortar os detalhes */
+  padding: 5px; /* Respiro mínimo para a imagem não tocar na borda */
 }
 
 .category-card .category-title {
@@ -266,16 +352,14 @@
 }
 
 /* ===============================
-   FILTRO DE ORDENAÇÃO (Estilo Melior)
+   FILTRO DE ORDENAÇÃO (Custom Select)
 =============================== */
 .filtro-ordenacao {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 12px;
-  margin-top: 40px;
-  margin-bottom: 25px;
-  margin-left: 40px;
+  gap: 15px;
+  margin: 40px 0 25px 40px;
 }
 
 .filtro-ordenacao label {
@@ -284,45 +368,82 @@
   font-size: 1.05rem;
 }
 
-.filtro-ordenacao select {
-  /* Espaçamento interno confortável */
-  padding: 10px 40px 10px 18px;
+.custom-select {
+  position: relative;
+  width: 240px;
+  user-select: none;
+  z-index: 100;
+}
 
-  /* Arredondamento em formato de pílula, combinando com os botões e carrinho */
-  border-radius: 30px;
-
-  /* Borda com a cor da marca */
+.select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 25px;
+  background: var(--branco);
   border: 2px solid var(--verde-primario);
-
-  outline: none;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--cinza-escuro);
-  background-color: var(--branco);
+  border-radius: 50px;
   cursor: pointer;
+  font-weight: 800;
+  color: var(--cinza-escuro);
+  font-size: 0.9rem;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-
-  /* Remove a setinha feia padrão do navegador */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
-  /* Adiciona uma setinha personalizada e elegante usando uma imagem SVG em código */
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232c3e50%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-  background-repeat: no-repeat;
-  background-position: right 15px top 50%;
-  background-size: 12px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.filtro-ordenacao select:hover {
-  border-color: var(--verde-escuro);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px); /* Dá um leve "pulo" ao passar o mouse */
+.select-trigger i {
+  color: var(--verde-primario);
+  transition: transform 0.3s ease;
 }
 
-.filtro-ordenacao select:focus {
+.custom-select.open .select-trigger {
   border-color: var(--verde-escuro);
+}
+
+.custom-select.open .select-trigger i {
+  transform: rotate(180deg);
+}
+
+.select-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: var(--branco);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.custom-select.open .select-options {
+  display: block;
+}
+
+.option {
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--cinza-escuro);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  background: var(--bg-light);
+  color: var(--verde-escuro);
+  padding-left: 25px;
+}
+
+.option.active {
+  background: var(--verde-primario);
+  color: var(--branco);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===============================
@@ -337,6 +458,7 @@
 .vitrine-title-container {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -347,24 +469,29 @@
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
 #recommendations-header,
 .vitrine-title-container {
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   display: flex;
-  justify-content: space-between;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
   /* Margens gigantes esquerdas removidas! */
+<<<<<<< HEAD
   margin-bottom: 20px;
   /* Margens gigantes esquerdas removidas! */
 <<<<<<< HEAD
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 #recommendations-header h2,
 .vitrine-title {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 #recommendations-header h2,
 .vitrine-title {
@@ -373,18 +500,23 @@
 #recommendations-header h2,
 .vitrine-title {
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   color: var(--cinza-escuro);
   font-size: 1.8rem;
   font-weight: 900;
   margin-bottom: 20px;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   margin-bottom: 20px;
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
   margin-bottom: 20px;
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 /* TABS */
@@ -394,12 +526,15 @@
   background: var(--bg-light);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   background: var(--bg-light);
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
   background: var(--bg-light);
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   padding: 6px;
   border-radius: 12px;
 }
@@ -419,12 +554,15 @@
   color: var(--branco);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   color: var(--branco);
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
   color: var(--branco);
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 }
 
 .tab-content {
@@ -442,6 +580,7 @@
 =============================== */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /* ===============================
    4. GRID DE PRODUTOS
@@ -452,6 +591,8 @@
    4. GRID DE PRODUTOS
 =============================== */
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
 .products-grid {
   display: grid;
   /* Ajustado para os cards ficarem mais finos e caberem mais na tela */
@@ -539,6 +680,7 @@
   flex-direction: column;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
@@ -629,6 +771,8 @@
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321
   justify-content: center;
 }
 
@@ -892,6 +1036,7 @@
 }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
@@ -1058,3 +1203,5 @@
 >>>>>>> d2c013af7f71bf2f798587e45efcf8ab7b28c36f
 =======
 >>>>>>> 930be767889da99764473fc63ae2506e47858b8a
+=======
+>>>>>>> fd40efdde4b21079c5007467a1bb9e65280fa321

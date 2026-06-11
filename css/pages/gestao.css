@@ -1,0 +1,215 @@
+/* =========================================
+   IMPORTS
+========================================= */
+
+@import "/css/components/cardMarcaAdmin.css";
+@import "/css/components/cardProdutoAdmin.css";
+@import "/css/components/admin-header.css";
+@import "/css/main.css";
+@import "/css/components/admin-sidebar.css";
+
+/* =========================================
+   LAYOUT
+========================================= */
+
+#gestao-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* =========================================
+   ÁREA DIREITA
+========================================= */
+
+#right-layout {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--bg-light);
+}
+
+/* =========================================
+   MAIN
+========================================= */
+
+#main-container {
+  padding: 35px;
+
+  min-height: 100vh;
+}
+
+/* =========================================
+   HEADER DA GESTÃO
+========================================= */
+
+#gestao-header {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+
+  margin-bottom: 35px;
+}
+
+/* =========================================
+   TÍTULOS
+========================================= */
+
+.gestao-title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#gestao-titulo {
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: var(--cinza-escuro);
+}
+
+#gestao-subtitulo {
+  color: #777;
+
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   AÇÕES
+========================================= */
+
+#gestao-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* =========================================
+   ÁREA DE BUSCA
+========================================= */
+
+.gestao-search-area {
+  flex: 1;
+}
+
+/* =========================================
+   CONTAINER BUSCA
+========================================= */
+
+#search-container {
+  width: 100%;
+  max-width: 750px;
+
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 18px;
+
+  background-color: var(--branco);
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(61, 90, 68, 0.12);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* FOCUS */
+
+#search-container:focus-within {
+  border-color: var(--verde-primario);
+
+  box-shadow: 0 0 0 4px rgba(90, 125, 101, 0.1);
+}
+
+/* ÍCONE */
+
+#search-container i {
+  color: var(--verde-primario);
+
+  font-size: 0.95rem;
+
+  margin-right: 12px;
+}
+
+/* INPUT */
+
+#search-input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--cinza-escuro);
+
+  font-size: 0.95rem;
+}
+
+/* PLACEHOLDER */
+
+#search-input::placeholder {
+  color: #999;
+}
+
+/* =========================================
+   BOTÃO ADICIONAR
+========================================= */
+
+#btn-adicionar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 13px 18px;
+
+  border-radius: 12px;
+
+  background-color: var(--verde-primario);
+
+  color: var(--branco);
+
+  text-decoration: none;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* HOVER */
+
+#btn-adicionar-item:hover {
+  background-color: var(--verde-escuro);
+
+  transform: translateY(-2px);
+}
+
+/* ÍCONE */
+
+#btn-adicionar-item i {
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+#gestao-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
