@@ -134,12 +134,6 @@ export async function buscarProdutos() {
 // CRUD MARCAS
 // ===============================
 
-export async function excluirMarca(id) {
-  return request(`/marcas/${id}`, {
-    method: "DELETE",
-  });
-}
-
 export async function salvarMarca(dados) {
   return request("/marcas", {
     method: "POST",
@@ -159,15 +153,22 @@ export async function buscarMarcaPorId(id) {
   return request(`/marcas/${id}`);
 }
 
-// ===============================
-// CRUD CATEGORIAS
-// ===============================
+export async function atualizarMarca(id, dados) {
+  return request(`/marcas/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "marca"),
+  });
+}
 
-export async function excluirCategoria(id) {
-  return request(`/categorias/${id}`, {
+export async function excluirMarca(id) {
+  return request(`/marcas/${id}`, {
     method: "DELETE",
   });
 }
+
+// ===============================
+// CRUD CATEGORIAS
+// ===============================
 
 export async function salvarCategoria(dados) {
   return request("/categorias", {
@@ -176,12 +177,29 @@ export async function salvarCategoria(dados) {
   });
 }
 
+export async function buscarCategorias() {
+  return request(`/categorias`);
+}
+
 export async function buscarCategoriasPorNome(nome) {
   return request(`/categorias/search?nome=${nome}`);
 }
 
-export async function buscarCategorias() {
-  return request(`/categorias`);
+export async function buscarCategoriaPorId(id) {
+  return request(`/categorias/${id}`);
+}
+
+export async function atualizarCategoria(id, dados) {
+  return request(`/categorias/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "categoria"),
+  });
+}
+
+export async function excluirCategoria(id) {
+  return request(`/categorias/${id}`, {
+    method: "DELETE",
+  });
 }
 
 // ===============================

@@ -337,7 +337,54 @@
 ========================================= */
 
 .admin-form-actions {
+  display: flex;
   margin-top: 10px;
+
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* =========================================
+   BOTÃO DE EXCLUIR
+========================================= */
+
+.admin-btn-delete {
+  padding: 0 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 30px;
+  width: 60%;
+
+  gap: 8px;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  background-color: rgba(139, 90, 43, 0.12);
+
+  color: var(--marrom-madeira);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-btn-delete:hover {
+  background-color: rgba(139, 90, 43, 0.2);
+
+  transform: translateY(-1px);
+}
+
+.admin-btn-delete:active {
+  transform: translateY(0);
 }
 
 /* =========================================

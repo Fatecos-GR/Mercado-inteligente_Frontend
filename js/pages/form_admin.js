@@ -6,12 +6,11 @@ import { protegerRotaAdmin } from "../utils/authGuard.js";
 
 import { entidades } from "../config/entidades_admin.js";
 
+import { getEntityService } from "../services/adminEntityService.js";
+
 import {
   buscarMarcas,
-  buscarMarcaPorId,
-  salvarMarca,
   buscarCategorias,
-  salvarCategoria,
   buscarFornecedores,
 } from "../services/api.js";
 
@@ -26,6 +25,11 @@ import {
   mostrarMensagemFormulario,
   limparMensagemFormulario,
 } from "../utils/formUtils.js";
+
+import {
+  configurarPreviewImagem,
+  preencherPreviewImagem,
+} from "../utils/imagePreview.js";
 
 import { renderFormularioEntidadeAdmin } from "../render.js";
 
@@ -160,68 +164,6 @@ async function popularSelectsFormulario(entidade) {
 }
 
 // ======================================
-// CONFIGURAÇÃO DA PREVIEW DE IMAGEM
-// ======================================
-function configurarPreviewImagem(entidade) {
-  const camposImagem = entidade.camposFormulario.filter(
-    (campo) => campo.type === "file",
-  );
-
-  camposImagem.forEach((campo) => {
-    const input = document.getElementById(campo.name);
-
-    const preview = document.getElementById(`${campo.name}-preview`);
-
-    const texto = document.getElementById(`${campo.name}-text`);
-
-    const btnRemover = document.getElementById(`${campo.name}-remove`);
-
-    if (!input || !preview) return;
-
-    input.addEventListener("change", () => {
-      const arquivo = input.files?.[0];
-
-      if (!arquivo) {
-        preview.src = "";
-        preview.style.display = "none";
-
-        btnRemover.style.display = "none";
-
-        texto.textContent = "Selecionar imagem";
-
-        return;
-      }
-
-      texto.textContent = arquivo.name;
-
-      const reader = new FileReader();
-
-      reader.onload = (event) => {
-        preview.src = event.target.result;
-
-        preview.style.display = "block";
-
-        btnRemover.style.display = "inline-flex";
-      };
-
-      reader.readAsDataURL(arquivo);
-    });
-
-    btnRemover.addEventListener("click", () => {
-      input.value = "";
-
-      preview.src = "";
-
-      preview.style.display = "none";
-
-      btnRemover.style.display = "none";
-
-      texto.textContent = "Selecionar imagem";
-    });
-  });
-}
-
-// ======================================
 // OBTER DADOS DO FORMULÁRIO
 // ======================================
 function obterDadosFormulario(entidade) {
@@ -242,6 +184,10 @@ function obterDadosFormulario(entidade) {
 
   return dados;
 }
+
+// ======================================
+// VALIDAÇÃO DO FORMULÁRIO
+// ======================================
 
 function validarFormulario(entidade) {
   limparErros();
@@ -269,6 +215,10 @@ function validarFormulario(entidade) {
   return valido;
 }
 
+// ======================================
+// TRATAMENTO DE ERROS
+// ======================================
+
 function tratarErroFormulario(erro) {
   console.error(erro);
 
@@ -288,19 +238,20 @@ function tratarErroFormulario(erro) {
   mostrarMensagemFormulario(erro.erro || "Erro ao salvar registro.");
 }
 
+// ======================================
+// SALVAR
+// ======================================
 async function salvarEntidade(entidade, dados) {
-  switch (entidade.tipo) {
-    case "marcas":
-      return await salvarMarca(dados);
+  const id = getIdRegistro();
 
-    case "categorias":
-      return await salvarCategoria(dados);
+  const service = getEntityService(entidade.tipo);
 
-    default:
-      throw new Error(`Cadastro não implementado para ${entidade.tipo}`);
-  }
+  return id ? await service.atualizar(id, dados) : await service.salvar(dados);
 }
 
+// ======================================
+// CONFIGURAÇÃO DO ENVIO
+// ======================================
 function configurarSubmit(entidade) {
   const form = document.getElementById("admin-form");
 
@@ -322,10 +273,11 @@ function configurarSubmit(entidade) {
 
       await salvarEntidade(entidade, dados);
 
-      mostrarMensagemFormulario(
-        `${entidade.singular} cadastrada com sucesso.`,
-        "success",
-      );
+      const mensagem = estaEditando()
+        ? `${entidade.singular} atualizada com sucesso.`
+        : `${entidade.singular} cadastrada com sucesso.`;
+
+      mostrarMensagemFormulario(mensagem, "success");
 
       setTimeout(() => {
         window.location.href = entidade.rotaGestao;
@@ -336,22 +288,44 @@ function configurarSubmit(entidade) {
   });
 }
 
-function preencherPreviewImagem(entidade, dados) {
-  const campoImagem = entidade.camposFormulario.find(
-    (campo) => campo.type === "file",
-  );
+// ======================================
+// EXCLUIR
+// ======================================
+async function excluirEntidadeFormulario(entidade, id) {
+  const service = getEntityService(entidade.tipo);
 
-  if (!campoImagem) return;
+  return await service.excluir(id);
+}
 
-  const preview = document.getElementById(`${campoImagem.name}-preview`);
+function configurarExclusaoFormulario(entidade) {
+  const btn = document.getElementById("btn-excluir");
 
-  if (!preview) return;
+  if (!btn) return;
 
-  if (!dados.imagem) return;
+  btn.addEventListener("click", async () => {
+    const confirmou = confirm("Deseja realmente excluir este registro?");
 
-  preview.src = dados.imagem;
+    if (!confirmou) return;
 
-  preview.style.display = "block";
+    try {
+      await excluirEntidadeFormulario(entidade, getIdRegistro());
+
+      window.location.href = entidade.rotaGestao;
+    } catch (erro) {
+      console.error(erro);
+
+      mostrarMensagemFormulario("Erro ao excluir registro.");
+    }
+  });
+}
+
+// ======================================
+// BUSCA DE REGISTRO E CARREGAMENTO DE DADOS PARA MODO DE EDIÇÃO
+// ======================================
+async function buscarRegistro(entidade, id) {
+  const service = getEntityService(entidade.tipo);
+
+  return await service.buscar(id);
 }
 
 async function carregarDadosEdicao(entidade) {
@@ -366,6 +340,9 @@ async function carregarDadosEdicao(entidade) {
   preencherPreviewImagem(entidade, registro);
 }
 
+// ======================================
+// PREENCHIMENTO DO FORMULÁRIO (QUANDO ESTÁ EDITANDO)
+// ======================================
 function preencherFormulario(entidade, dados) {
   entidade.camposFormulario.forEach((campo) => {
     const elemento = document.getElementById(campo.name);
@@ -378,16 +355,6 @@ function preencherFormulario(entidade, dados) {
 
     elemento.value = dados[campo.name] ?? "";
   });
-}
-
-async function buscarRegistro(entidade, id) {
-  switch (entidade.tipo) {
-    case "marcas":
-      return await buscarMarcaPorId(id);
-
-    default:
-      throw new Error(`Busca não implementada para ${entidade.tipo}`);
-  }
 }
 
 // ======================================
@@ -416,4 +383,6 @@ export async function iniciarFormularioAdmin() {
   await carregarDadosEdicao(entidade);
 
   configurarSubmit(entidade);
+
+  configurarExclusaoFormulario(entidade);
 }

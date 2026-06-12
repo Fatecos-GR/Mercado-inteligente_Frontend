@@ -81,19 +81,20 @@ export function renderAdminProdutoCard(produto) {
 
 export function renderAdminMarcaCard(marca) {
   return `
-    <article class="brand-card">
+    <a
+      href="form_admin.html?tipo=marcas&id=${marca.id}"
+      class="brand-card"
+    >
 
-      <!-- ESQUERDA -->
       <div class="brand-card-left">
 
-        <!-- IMAGEM -->
         <div class="brand-image">
 
           ${
             marca.imagem
               ? `
-                <img 
-                  src="${marca.imagem}" 
+                <img
+                  src="${marca.imagem}"
                   alt="${marca.nome}"
                 />
               `
@@ -104,7 +105,6 @@ export function renderAdminMarcaCard(marca) {
 
         </div>
 
-        <!-- INFORMAÇÕES -->
         <div class="brand-info">
 
           <h3>
@@ -119,30 +119,11 @@ export function renderAdminMarcaCard(marca) {
 
       </div>
 
-      <!-- AÇÕES -->
       <div class="brand-card-right">
-
-        <!-- EDITAR -->
-        <a
-          href="form_admin.html?tipo=marcas&id=${marca.id}"
-          class="brand-btn-edit"
-        >
-          <i class="fa-solid fa-pen"></i>
-          Editar
-        </a>
-
-        <!-- EXCLUIR -->
-        <a href="#"  class="brand-btn-delete"  data-id="${marca.id}">
-
-          <i class="fa-solid fa-trash"></i>
-
-          Excluir
-
-        </a>
-
+        <i class="fa-solid fa-pen brand-btn-edit" ></i>
       </div>
 
-    </article>
+    </a>
   `;
 }
 
@@ -152,19 +133,20 @@ export function renderAdminMarcaCard(marca) {
 
 export function renderAdminCategoriaCard(categoria) {
   return `
-    <article class="brand-card">
+    <a
+      href="form_admin.html?tipo=categorias&id=${categoria.id}"
+      class="brand-card"
+    >
 
-      <!-- ESQUERDA -->
       <div class="brand-card-left">
 
-        <!-- IMAGEM -->
         <div class="brand-image">
 
           ${
             categoria.imagem
               ? `
-                <img 
-                  src="${categoria.imagem}" 
+                <img
+                  src="${categoria.imagem}"
                   alt="${categoria.nome}"
                 />
               `
@@ -175,7 +157,6 @@ export function renderAdminCategoriaCard(categoria) {
 
         </div>
 
-        <!-- INFORMAÇÕES -->
         <div class="brand-info">
 
           <h3>
@@ -190,30 +171,11 @@ export function renderAdminCategoriaCard(categoria) {
 
       </div>
 
-      <!-- AÇÕES -->
       <div class="brand-card-right">
-
-        <!-- EDITAR -->
-        <a href="#" class="brand-btn-edit">
-
-          <i class="fa-solid fa-pen"></i>
-
-          Editar
-
-        </a>
-
-        <!-- EXCLUIR -->
-        <a href="#" class="brand-btn-delete">
-
-          <i class="fa-solid fa-trash"></i>
-
-          Excluir
-
-        </a>
-
+        <i class="fa-solid fa-pen brand-btn-edit" ></i>
       </div>
 
-    </article>
+    </a>
   `;
 }
 
@@ -466,6 +428,9 @@ export function renderFormularioEntidadeAdmin(entidade, modoEdicao = false) {
 
     <div class="admin-form-actions">
 
+   
+
+
       <button
         type="submit"
         class="admin-btn-submit"
@@ -478,6 +443,21 @@ export function renderFormularioEntidadeAdmin(entidade, modoEdicao = false) {
        }
 
       </button>
+
+       ${
+         modoEdicao
+           ? `
+        <button
+          type="button"
+          id="btn-excluir"
+          class="admin-btn-delete"
+        >
+          <i class="fa-solid fa-trash"></i>
+          Excluir ${entidade.singular}
+        </button>
+      `
+           : ""
+       }
 
     </div>
   `;
