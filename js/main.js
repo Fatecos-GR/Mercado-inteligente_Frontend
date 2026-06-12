@@ -40,6 +40,23 @@ function carregarIcones() {
 }
 
 // ===============================
+// CONFIGURAR FAVICON
+// ===============================
+function configurarFavicon() {
+  let favicon = document.querySelector("link[rel='icon']");
+
+  if (!favicon) {
+    favicon = document.createElement("link");
+
+    favicon.rel = "icon";
+
+    document.head.appendChild(favicon);
+  }
+
+  favicon.href = "../img/logo_melior.jpeg";
+}
+
+// ===============================
 // CARREGAR HEADER E FOOTER
 // ===============================
 async function carregarLayout() {
@@ -71,6 +88,7 @@ async function carregarLayout() {
 // ===============================
 async function start() {
   // Componentes Modularizados
+  await configurarFavicon();
   await carregarLayout();
   await carregarIcones();
 
