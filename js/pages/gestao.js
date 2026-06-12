@@ -9,8 +9,11 @@ import {
   buscarProdutosPorNome,
   buscarMarcas,
   buscarMarcasPorNome,
+  excluirMarca,
   buscarCategorias,
   buscarCategoriasPorNome,
+  buscarFornecedores,
+  buscarFornecedoresPorNome,
 } from "../services/api.js";
 
 import { entidades } from "../config/entidades_admin.js";
@@ -20,6 +23,7 @@ import {
   renderAdminMarcaCard,
   renderAdminCategoriaCard,
   renderResultadoBuscaGestao,
+  renderAdminFornecedorCard,
 } from "../render.js";
 
 // ======================================
@@ -140,6 +144,55 @@ async function renderCards(entidade) {
     grid.innerHTML = dados.map(renderAdminCategoriaCard).join("");
     return;
   }
+
+  // FORNECEDORES
+  if (entidade.tipo === "fornecedores") {
+    dados = termoBusca
+      ? await buscarFornecedoresPorNome(termoBusca)
+      : await buscarFornecedores();
+
+    grid.innerHTML = dados.map(renderAdminFornecedorCard).join("");
+    return;
+  }
+}
+
+// ======================================
+// EXCLUIR ENTIDADES
+// ======================================
+async function excluirEntidade(entidade, id) {
+  switch (entidade.tipo) {
+    case "marcas":
+      return await excluirMarca(id);
+
+    default:
+      throw new Error(`Exclusão não implementada para ${entidade.tipo}`);
+  }
+}
+
+function configurarExclusao(entidade) {
+  const grid = document.getElementById("gestao-grid");
+
+  if (!grid) return;
+
+  grid.addEventListener("click", async (event) => {
+    const botao = event.target.closest(".brand-btn-delete");
+
+    if (!botao) return;
+
+    event.preventDefault();
+
+    const id = botao.dataset.id;
+
+    try {
+      await excluirEntidade(entidade, id);
+
+      botao.closest(".brand-card")?.remove();
+    } catch (erro) {
+      console.error(erro);
+
+      alert("Erro ao excluir registro.");
+    }
+  });
 }
 
 // ======================================
@@ -180,4 +233,6 @@ export async function iniciarGestao() {
   configurarBusca(entidade);
 
   await renderCards(entidade);
+
+  configurarExclusao(entidade);
 }

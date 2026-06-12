@@ -24,26 +24,39 @@ export function configurarToggleSenha() {
 // LIMPAR CAMPOS COM ERRO
 // ======================================
 export function limparErros() {
-  document.querySelectorAll(".input-container").forEach((container) => {
-    container.classList.remove("error");
+  document
+    .querySelectorAll(".input-container, .admin-form-group")
+    .forEach((container) => {
+      container.classList.remove("error");
 
-    const mensagem = container.querySelector(".field-error");
+      const mensagem = container.querySelector(".field-error");
 
-    if (mensagem) {
-      mensagem.textContent = "";
-    }
-  });
+      if (mensagem) {
+        mensagem.textContent = "";
+      }
+    });
 }
 
 // ======================================
 // MOSTRAM CAMPOS DE ERRO
 // ======================================
 export function mostrarErro(input, mensagem) {
-  const container = input.closest(".input-container");
+  const container =
+    input.closest(".input-container") || input.closest(".admin-form-group");
+
+  if (!container) return;
 
   container.classList.add("error");
 
-  const erro = container.querySelector(".field-error");
+  let erro = container.querySelector(".field-error");
+
+  if (!erro) {
+    erro = document.createElement("span");
+
+    erro.className = "field-error";
+
+    container.appendChild(erro);
+  }
 
   erro.textContent = mensagem;
 }

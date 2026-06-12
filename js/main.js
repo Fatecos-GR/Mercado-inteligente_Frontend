@@ -7,9 +7,9 @@ import { iniciarGestao } from "./pages/gestao.js";
 import { iniciarHeaderCliente } from "./components/headerClient.js";
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
 import { iniciarLogin } from "./pages/login.js";
-import { iniciarFormularioAdmin } from "./pages/form_admin.js";
 // Importação da nova página de configurações
 import { iniciarConfiguracoes } from "./pages/configuracoes.js";
+import { iniciarHeaderAdmin } from "./components/headerAdmin.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
@@ -56,7 +56,11 @@ async function carregarLayout() {
     iniciarHeaderCliente,
   );
   await carregarSeExistir("main-footer", "components/footer.html");
-  await carregarSeExistir("admin-header", "components/admin-header.html");
+  await carregarSeExistir(
+    "admin-header",
+    "components/admin-header.html",
+    iniciarHeaderAdmin,
+  );
   await carregarSeExistir("admin-sidebar", "components/admin-sidebar.html");
 }
 
@@ -93,13 +97,13 @@ async function start() {
 
   if (isLoginPage) {
     iniciarLogin();
+  }
 
-    // Verifica se o usuário está na tela de configurações e ativa as abas
-    const isConfiguracoesPage =
-      window.location.pathname.includes("configuracoes.html");
-    if (isConfiguracoesPage) {
-      iniciarConfiguracoes();
-    }
+  // Verifica se o usuário está na tela de configurações e ativa as abas
+  const isConfiguracoesPage =
+    window.location.pathname.includes("configuracoes.html");
+  if (isConfiguracoesPage) {
+    iniciarConfiguracoes();
   }
 }
 
