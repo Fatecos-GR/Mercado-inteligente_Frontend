@@ -3,20 +3,26 @@
 // ======================================
 
 export function configurarToggleSenha() {
-  const botao = document.querySelector(".btn-toggle-password");
+  const botoes = document.querySelectorAll(".btn-toggle-password");
 
-  const input = document.getElementById("password");
+  const inputs = document.querySelectorAll('input[type="password"]');
 
-  if (!botao || !input) return;
+  if (!botoes.length || !inputs.length) return;
 
-  botao.addEventListener("click", () => {
-    const visivel = input.type === "text";
+  botoes.forEach((botao, index) => {
+    const input = inputs[index];
 
-    input.type = visivel ? "password" : "text";
+    if (!input) return;
 
-    botao.innerHTML = visivel
-      ? '<i class="fas fa-eye"></i>'
-      : '<i class="fas fa-eye-slash"></i>';
+    botao.addEventListener("click", () => {
+      const visivel = input.type === "text";
+
+      input.type = visivel ? "password" : "text";
+
+      botao.innerHTML = visivel
+        ? '<i class="fas fa-eye"></i>'
+        : '<i class="fas fa-eye-slash"></i>';
+    });
   });
 }
 

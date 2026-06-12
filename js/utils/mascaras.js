@@ -38,3 +38,31 @@ export function aplicarMascaraInteiro(input) {
     e.target.value = e.target.value.replace(/\D/g, "");
   });
 }
+
+// ======================================
+// MÁSCARA TELEFONE
+// ======================================
+
+export function aplicarMascaraTelefone(input) {
+  input.addEventListener("input", (e) => {
+    let valor = e.target.value.replace(/\D/g, "");
+
+    valor = valor.slice(0, 11);
+
+    // Se não houver números, limpa completamente
+    if (!valor) {
+      e.target.value = "";
+      return;
+    }
+
+    if (valor.length <= 2) {
+      valor = valor.replace(/^(\d{0,2})/, "($1");
+    } else if (valor.length <= 7) {
+      valor = valor.replace(/^(\d{2})(\d+)/, "($1) $2");
+    } else {
+      valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+    }
+
+    e.target.value = valor;
+  });
+}

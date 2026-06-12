@@ -85,9 +85,42 @@ export async function realizarLogin(email, senha) {
   });
 }
 
+export async function realizarCadastro(
+  nome,
+  sobrenome,
+  email,
+  telefone,
+  senha,
+) {
+  return request("/auth/register", {
+    method: "POST",
+
+    body: JSON.stringify({
+      nome,
+      sobrenome,
+      email,
+      telefone,
+      senha,
+    }),
+  });
+}
+
 // ===============================
 // CRUD PRODUTOS
 // ===============================
+
+export async function excluirProduto(id) {
+  return request(`/produtos/${id}`, {
+    method: "DELETE",
+  });
+}
+
+export async function salvarProduto(dados) {
+  return request("/produtos", {
+    method: "POST",
+    body: criarMultipart(dados, "produto"),
+  });
+}
 
 export async function buscarProdutosPorNome(nome) {
   return request(`/produtos/search?nome=${nome}`);
@@ -130,10 +163,16 @@ export async function buscarMarcaPorId(id) {
 // CRUD CATEGORIAS
 // ===============================
 
+export async function excluirCategoria(id) {
+  return request(`/categorias/${id}`, {
+    method: "DELETE",
+  });
+}
+
 export async function salvarCategoria(dados) {
   return request("/categorias", {
     method: "POST",
-    body: criarMultipart(dados, "marca"),
+    body: criarMultipart(dados, "categoria"),
   });
 }
 
