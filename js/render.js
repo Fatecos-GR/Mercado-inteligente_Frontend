@@ -81,19 +81,20 @@ export function renderAdminProdutoCard(produto) {
 
 export function renderAdminMarcaCard(marca) {
   return `
-    <article class="brand-card">
+    <a
+      href="form_admin.html?tipo=marcas&id=${marca.id}"
+      class="brand-card"
+    >
 
-      <!-- ESQUERDA -->
       <div class="brand-card-left">
 
-        <!-- IMAGEM -->
         <div class="brand-image">
 
           ${
             marca.imagem
               ? `
-                <img 
-                  src="${marca.imagem}" 
+                <img
+                  src="${marca.imagem}"
                   alt="${marca.nome}"
                 />
               `
@@ -104,7 +105,6 @@ export function renderAdminMarcaCard(marca) {
 
         </div>
 
-        <!-- INFORMAÇÕES -->
         <div class="brand-info">
 
           <h3>
@@ -119,30 +119,11 @@ export function renderAdminMarcaCard(marca) {
 
       </div>
 
-      <!-- AÇÕES -->
       <div class="brand-card-right">
-
-        <!-- EDITAR -->
-        <a href="#" class="brand-btn-edit">
-
-          <i class="fa-solid fa-pen"></i>
-
-          Editar
-
-        </a>
-
-        <!-- EXCLUIR -->
-        <a href="#" class="brand-btn-delete">
-
-          <i class="fa-solid fa-trash"></i>
-
-          Excluir
-
-        </a>
-
+        <i class="fa-solid fa-pen brand-btn-edit" ></i>
       </div>
 
-    </article>
+    </a>
   `;
 }
 
@@ -152,19 +133,20 @@ export function renderAdminMarcaCard(marca) {
 
 export function renderAdminCategoriaCard(categoria) {
   return `
-    <article class="brand-card">
+    <a
+      href="form_admin.html?tipo=categorias&id=${categoria.id}"
+      class="brand-card"
+    >
 
-      <!-- ESQUERDA -->
       <div class="brand-card-left">
 
-        <!-- IMAGEM -->
         <div class="brand-image">
 
           ${
             categoria.imagem
               ? `
-                <img 
-                  src="${categoria.imagem}" 
+                <img
+                  src="${categoria.imagem}"
                   alt="${categoria.nome}"
                 />
               `
@@ -175,7 +157,6 @@ export function renderAdminCategoriaCard(categoria) {
 
         </div>
 
-        <!-- INFORMAÇÕES -->
         <div class="brand-info">
 
           <h3>
@@ -190,31 +171,35 @@ export function renderAdminCategoriaCard(categoria) {
 
       </div>
 
-      <!-- AÇÕES -->
       <div class="brand-card-right">
-
-        <!-- EDITAR -->
-        <a href="#" class="brand-btn-edit">
-
-          <i class="fa-solid fa-pen"></i>
-
-          Editar
-
-        </a>
-
-        <!-- EXCLUIR -->
-        <a href="#" class="brand-btn-delete">
-
-          <i class="fa-solid fa-trash"></i>
-
-          Excluir
-
-        </a>
-
+        <i class="fa-solid fa-pen brand-btn-edit" ></i>
       </div>
 
-    </article>
+    </a>
   `;
+}
+
+// ======================================
+// RESULTADOS DE BUSCA (TELA DE GESTÃO)
+// ======================================
+export function renderResultadoBuscaGestao(item) {
+  return `
+    <div
+      class="search-result-item"
+      data-id="${item.id}"
+    >
+
+      <div class="search-result-title">
+        ${item.nome}
+      </div>
+
+      <div class="search-result-description">
+        ${item.descricao || ""}
+      </div>
+
+    </div>
+
+     `;
 }
 
 // ======================================
@@ -223,16 +208,20 @@ export function renderAdminCategoriaCard(categoria) {
 
 export function renderAdminFornecedorCard(fornecedor) {
   return `
-    <article class="brand-card supplier-card">
+    <a
+      href="form_admin.html?tipo=fornecedores&id=${fornecedor.id}"
+      class="brand-card supplier-card"
+    >
 
       <div class="brand-card-left">
 
         <div class="brand-image">
+
           ${
             fornecedor.imagem
               ? `
-                <img 
-                  src="${fornecedor.imagem}" 
+                <img
+                  src="${fornecedor.imagem}"
                   alt="${fornecedor.nome}"
                 />
               `
@@ -240,36 +229,281 @@ export function renderAdminFornecedorCard(fornecedor) {
                 <i class="fa-solid fa-truck-ramp-box"></i>
               `
           }
+
         </div>
 
         <div class="brand-info">
+
           <h3>
             ${fornecedor.nome}
           </h3>
-          <p class="supplier-doc">
-            <strong>CNPJ:</strong> ${fornecedor.cnpj || "Não informado"}
+
+          <p>
+            ${
+              fornecedor.endereco?.cidade
+                ? `${fornecedor.endereco.cidade} - ${fornecedor.endereco.estado}`
+                : "Endereço não informado"
+            }
           </p>
-          <p class="supplier-contact">
-            <strong>Contato:</strong> ${fornecedor.contato || "Sem telefone/e-mail"}
-          </p>
+
         </div>
 
       </div>
 
       <div class="brand-card-right">
+        <i class="fa-solid fa-pen brand-btn-edit"></i>
+      </div>
 
-        <a href="#" class="brand-btn-edit">
-          <i class="fa-solid fa-pen"></i>
-          Editar
-        </a>
+    </a>
+  `;
+}
 
-        <a href="#" class="brand-btn-delete">
-          <i class="fa-solid fa-trash"></i>
-          Excluir
-        </a>
+// ======================================
+// RENDER INPUT DE FORMULÁRIO (ADMIN)
+// ======================================
+
+function renderInputFormularioAdmin(campo) {
+  return `
+    <div class="admin-form-group">
+
+      <label for="${campo.name}">
+        ${campo.label}
+      </label>
+
+      <input
+        type="${campo.type}"
+        id="${campo.name}"
+        name="${campo.name}"
+        ${campo.required ? "required" : ""}
+      />
+
+    </div>
+  `;
+}
+
+// ======================================
+// RENDER TEXTAREA DE FORMULÁRIO (ADMIN)
+// ======================================
+
+function renderTextareaFormularioAdmin(campo) {
+  return `
+    <div class="admin-form-group">
+
+      <label for="${campo.name}">
+        ${campo.label}
+      </label>
+
+      <textarea
+        id="${campo.name}"
+        name="${campo.name}"
+        rows="4"
+        ${campo.required ? "required" : ""}
+      ></textarea>
+
+    </div>
+  `;
+}
+
+// ======================================
+// RENDER SELECT DE FORMULÁRIO (ADMIN)
+// ======================================
+
+function renderSelectFormularioAdmin(campo) {
+  return `
+    <div class="admin-form-group">
+
+      <label for="${campo.name}">
+        ${campo.label}
+      </label>
+
+      <select
+        id="${campo.name}"
+        name="${campo.name}"
+        ${campo.required ? "required" : ""}
+      >
+
+        <option value="">
+          Selecione...
+        </option>
+
+      </select>
+
+    </div>
+  `;
+}
+
+// ======================================
+// RENDER FILE DE FORMULÁRIO (ADMIN)
+// ======================================
+function renderFileFormularioAdmin(campo) {
+  return `
+    <div class="admin-form-group">
+
+      <label>
+        ${campo.label}
+      </label>
+
+      <label
+        for="${campo.name}"
+        class="custom-file-upload"
+      >
+        <i class="fa-solid fa-image"></i>
+
+        <span id="${campo.name}-text">
+          Selecionar imagem
+        </span>
+      </label>
+
+      <input
+        type="file"
+        id="${campo.name}"
+        name="${campo.name}"
+        accept="image/*"
+        hidden
+      />
+
+      <div
+        class="image-preview-container"
+        id="${campo.name}-preview-container"
+      >
+
+        <img
+          id="${campo.name}-preview"
+          class="image-preview"
+          style="display:none;"
+        />
+
+        <button
+          type="button"
+          class="btn-remove-image"
+          id="${campo.name}-remove"
+          style="display:none;"
+        >
+          Remover imagem
+        </button>
 
       </div>
 
-    </article>
+    </div>
   `;
+}
+
+// ======================================
+// RENDER CAMPO FORMULÁRIO DE ENTIDADE (ADMIN)
+// ======================================
+
+export function renderCampoFormularioAdmin(campo) {
+  // TEXTAREA
+  if (campo.type === "textarea") {
+    return renderTextareaFormularioAdmin(campo);
+  }
+
+  // SELECT
+  if (campo.type === "select") {
+    return renderSelectFormularioAdmin(campo);
+  }
+
+  // ARQUIVO
+  if (campo.type === "file") {
+    return renderFileFormularioAdmin(campo);
+  }
+
+  //SEÇÃO (ENDEREÇO)
+  if (campo.type === "section") {
+    return `
+    <div class="admin-form-section">
+      <h3>${campo.title}</h3>
+    </div>
+  `;
+  }
+
+  // INPUT PADRÃO
+  return renderInputFormularioAdmin(campo);
+}
+
+// ======================================
+// RENDER FORMULÁRIO DE ENTIDADE (ADMIN)
+// ======================================
+
+export function renderFormularioEntidadeAdmin(entidade, modoEdicao = false) {
+  const form = document.getElementById("admin-form");
+
+  const camposHTML = entidade.camposFormulario
+    .map(renderCampoFormularioAdmin)
+    .join("");
+
+  form.innerHTML = `
+    ${camposHTML}
+
+    <div class="admin-form-actions">
+
+   
+
+
+      <button
+        type="submit"
+        class="admin-btn-submit"
+      >
+
+       ${
+         modoEdicao
+           ? `Atualizar ${entidade.singular}`
+           : `Salvar ${entidade.singular}`
+       }
+
+      </button>
+
+       ${
+         modoEdicao
+           ? `
+        <button
+          type="button"
+          id="btn-excluir"
+          class="admin-btn-delete"
+        >
+          <i class="fa-solid fa-trash"></i>
+          Excluir ${entidade.singular}
+        </button>
+      `
+           : ""
+       }
+
+    </div>
+  `;
+}
+
+// ======================================
+// CARD SKELETON (GESTÃO)
+// ======================================
+
+export function renderSkeletonGestao(quantidade = 6) {
+  return Array(quantidade)
+    .fill(
+      `
+      <div class="brand-card">
+
+        <div class="brand-card-left">
+
+          <div class="brand-image skeleton skeleton-image"></div>
+
+          <div class="brand-info">
+
+            <div class="skeleton skeleton-title"></div>
+
+            <br>
+
+            <div class="skeleton skeleton-text"></div>
+
+            <br>
+
+            <div class="skeleton skeleton-text"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+      `,
+    )
+    .join("");
 }

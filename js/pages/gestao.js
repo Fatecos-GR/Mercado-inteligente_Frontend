@@ -2,10 +2,18 @@
 // IMPORTS
 // ======================================
 
+import { protegerRotaAdmin } from "../utils/authGuard.js";
+
 import {
   buscarProdutos,
+  buscarProdutosPorNome,
   buscarMarcas,
+  buscarMarcasPorNome,
+  excluirMarca,
   buscarCategorias,
+  buscarCategoriasPorNome,
+  buscarFornecedores,
+  buscarFornecedoresPorNome,
 } from "../services/api.js";
 
 import { entidades } from "../config/entidades_admin.js";
@@ -14,16 +22,37 @@ import {
   renderAdminProdutoCard,
   renderAdminMarcaCard,
   renderAdminCategoriaCard,
+  renderResultadoBuscaGestao,
+  renderAdminFornecedorCard,
+  renderSkeletonGestao,
 } from "../render.js";
 
 // ======================================
-// PEGAR PARÂMETRO DA URL
+// PEGAR PARÂMETRO DA URL E FUNCIONALIDADES DE URL
 // ======================================
 
 function getTipoEntidade() {
   const params = new URLSearchParams(window.location.search);
 
   return params.get("tipo");
+}
+
+function getSearchTerm() {
+  const params = new URLSearchParams(window.location.search);
+
+  return params.get("search") || "";
+}
+
+function atualizarURLBusca(valor) {
+  const url = new URL(window.location);
+
+  if (valor) {
+    url.searchParams.set("search", valor);
+  } else {
+    url.searchParams.delete("search");
+  }
+
+  history.replaceState({}, "", url);
 }
 
 // ======================================
@@ -77,51 +106,79 @@ function configurarPagina(entidade) {
   botaoAdicionar.href = entidade.rotaFormulario;
 }
 
+// ======================================
+// RENDERIZAÇÃO DOS CARDS
+// ======================================
 async function renderCards(entidade) {
   const grid = document.getElementById("gestao-grid");
 
-  // DADOS
-  const produtos = await buscarProdutos();
+  grid.innerHTML = renderSkeletonGestao(8);
 
-  const marcas = await buscarMarcas();
+  const termoBusca = getSearchTerm();
 
-  const categorias = await buscarCategorias();
+  let dados = [];
 
-  // ======================================
   // PRODUTOS
-  // ======================================
-
   if (entidade.tipo === "produtos") {
-    grid.innerHTML = produtos.map(renderAdminProdutoCard).join("");
+    dados = termoBusca
+      ? await buscarProdutosPorNome(termoBusca)
+      : await buscarProdutos();
 
+    grid.innerHTML = dados.map(renderAdminProdutoCard).join("");
     return;
   }
 
-  // ======================================
   // MARCAS
-  // ======================================
-
   if (entidade.tipo === "marcas") {
-    grid.innerHTML = marcas.map(renderAdminMarcaCard).join("");
+    dados = termoBusca
+      ? await buscarMarcasPorNome(termoBusca)
+      : await buscarMarcas();
 
+    grid.innerHTML = dados.map(renderAdminMarcaCard).join("");
     return;
   }
 
+  // CATEGORIAS
   if (entidade.tipo === "categorias") {
-    grid.innerHTML = categorias.map(renderAdminCategoriaCard).join("");
+    dados = termoBusca
+      ? await buscarCategoriasPorNome(termoBusca)
+      : await buscarCategorias();
 
+    grid.innerHTML = dados.map(renderAdminCategoriaCard).join("");
     return;
   }
 
-  // ======================================
-  // PADRÃO TEMPORÁRIO
-  // ======================================
+  // FORNECEDORES
+  if (entidade.tipo === "fornecedores") {
+    dados = termoBusca
+      ? await buscarFornecedoresPorNome(termoBusca)
+      : await buscarFornecedores();
 
-  grid.innerHTML = `
-    <p>
-      Renderização ainda não criada.
-    </p>
-  `;
+    grid.innerHTML = dados.map(renderAdminFornecedorCard).join("");
+    return;
+  }
+}
+
+// ======================================
+// CONFIGURAÇÃO DA BUSCA
+// ======================================
+let timeoutBusca;
+function configurarBusca(entidade) {
+  const input = document.getElementById("search-input");
+
+  input.value = getSearchTerm();
+
+  input.addEventListener("input", async (e) => {
+    const valor = e.target.value.trim();
+
+    atualizarURLBusca(valor);
+
+    clearTimeout(timeoutBusca);
+
+    timeoutBusca = setTimeout(() => {
+      renderCards(entidade);
+    }, 100);
+  });
 }
 
 // ======================================
@@ -133,8 +190,11 @@ export async function iniciarGestao() {
 
   if (!entidade) return;
 
+  if (!protegerRotaAdmin()) return;
+
   configurarPagina(entidade);
 
-  // TEMPORÁRIO
-  renderCards(entidade);
+  configurarBusca(entidade);
+
+  await renderCards(entidade);
 }
