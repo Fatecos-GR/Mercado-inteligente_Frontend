@@ -1,4 +1,10 @@
 // ======================================
+// IMPORTS
+// ======================================
+
+import { camposEndereco } from "./camposEndereco.js";
+
+// ======================================
 // CONFIGURAÇÃO DAS ENTIDADES DO SISTEMA
 // ======================================
 
@@ -273,24 +279,23 @@ export const entidades = {
     camposFormulario: [
       {
         name: "nome",
-        label: "Nome do Fornecedor",
+        label: "Nome",
         type: "text",
         required: true,
       },
 
       {
-        name: "telefone",
-        label: "Telefone",
-        type: "text",
-        required: true,
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
       },
 
       {
-        name: "email",
-        label: "E-mail",
-        type: "email",
-        required: true,
+        type: "section",
+        title: "Endereço",
       },
+
+      ...camposEndereco,
     ],
   },
 };

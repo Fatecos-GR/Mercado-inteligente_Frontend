@@ -208,16 +208,20 @@ export function renderResultadoBuscaGestao(item) {
 
 export function renderAdminFornecedorCard(fornecedor) {
   return `
-    <article class="brand-card supplier-card">
+    <a
+      href="form_admin.html?tipo=fornecedores&id=${fornecedor.id}"
+      class="brand-card supplier-card"
+    >
 
       <div class="brand-card-left">
 
         <div class="brand-image">
+
           ${
             fornecedor.imagem
               ? `
-                <img 
-                  src="${fornecedor.imagem}" 
+                <img
+                  src="${fornecedor.imagem}"
                   alt="${fornecedor.nome}"
                 />
               `
@@ -225,37 +229,32 @@ export function renderAdminFornecedorCard(fornecedor) {
                 <i class="fa-solid fa-truck-ramp-box"></i>
               `
           }
+
         </div>
 
         <div class="brand-info">
+
           <h3>
             ${fornecedor.nome}
           </h3>
-          <p class="supplier-doc">
-            <strong>CNPJ:</strong> ${fornecedor.cnpj || "Não informado"}
+
+          <p>
+            ${
+              fornecedor.endereco?.cidade
+                ? `${fornecedor.endereco.cidade} - ${fornecedor.endereco.estado}`
+                : "Endereço não informado"
+            }
           </p>
-          <p class="supplier-contact">
-            <strong>Contato:</strong> ${fornecedor.contato || "Sem telefone/e-mail"}
-          </p>
+
         </div>
 
       </div>
 
       <div class="brand-card-right">
-
-        <a href="#" class="brand-btn-edit">
-          <i class="fa-solid fa-pen"></i>
-          Editar
-        </a>
-
-        <a href="#" class="brand-btn-delete">
-          <i class="fa-solid fa-trash"></i>
-          Excluir
-        </a>
-
+        <i class="fa-solid fa-pen brand-btn-edit"></i>
       </div>
 
-    </article>
+    </a>
   `;
 }
 
@@ -404,8 +403,18 @@ export function renderCampoFormularioAdmin(campo) {
     return renderSelectFormularioAdmin(campo);
   }
 
+  // ARQUIVO
   if (campo.type === "file") {
     return renderFileFormularioAdmin(campo);
+  }
+
+  //SEÇÃO (ENDEREÇO)
+  if (campo.type === "section") {
+    return `
+    <div class="admin-form-section">
+      <h3>${campo.title}</h3>
+    </div>
+  `;
   }
 
   // INPUT PADRÃO

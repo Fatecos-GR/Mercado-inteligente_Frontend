@@ -206,10 +206,42 @@ export async function excluirCategoria(id) {
 // CRUD FORNECEDORES
 // ===============================
 
-export async function buscarFornecedoresPorNome(nome) {
-  return request(`/fornecedores/search?nome=${nome}`);
+export async function salvarFornecedor(dados) {
+  return request("/fornecedores", {
+    method: "POST",
+    body: criarMultipart(dados, "fornecedor"),
+  });
 }
 
 export async function buscarFornecedores() {
   return request(`/fornecedores`);
+}
+
+export async function buscarFornecedoresPorNome(nome) {
+  return request(`/fornecedores/search?nome=${nome}`);
+}
+
+export async function buscarFornecedorPorId(id) {
+  return request(`/fornecedores/${id}`);
+}
+
+export async function atualizarFornecedor(id, dados) {
+  return request(`/fornecedores/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "fornecedor"),
+  });
+}
+
+export async function excluirFornecedor(id) {
+  return request(`/fornecedores/${id}`, {
+    method: "DELETE",
+  });
+}
+
+// ===============================
+// BUSCAR CEP
+// ===============================
+
+export async function buscarCep(cep) {
+  return request(`/enderecos/cep/${cep}`);
 }

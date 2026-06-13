@@ -11,6 +11,10 @@ import {
   salvarCategoria,
   atualizarCategoria,
   excluirCategoria,
+  buscarFornecedorPorId,
+  salvarFornecedor,
+  atualizarFornecedor,
+  excluirFornecedor,
 } from "./api.js";
 
 // ======================================
@@ -30,6 +34,13 @@ const entityServices = {
     salvar: salvarCategoria,
     atualizar: atualizarCategoria,
     excluir: excluirCategoria,
+  },
+
+  fornecedores: {
+    buscar: buscarFornecedorPorId,
+    salvar: salvarFornecedor,
+    atualizar: atualizarFornecedor,
+    excluir: excluirFornecedor,
   },
 };
 

@@ -40,7 +40,7 @@ function carregarIcones() {
 }
 
 // ===============================
-// CONFIGURAR FAVICON
+// CONFIGURAR FAVICON (ICONE DO NAVEGADOR)
 // ===============================
 function configurarFavicon() {
   let favicon = document.querySelector("link[rel='icon']");
@@ -74,12 +74,15 @@ async function carregarLayout() {
     "components/header.html",
     iniciarHeaderCliente,
   );
+
   await carregarSeExistir("main-footer", "components/footer.html");
+
   await carregarSeExistir(
     "admin-header",
     "components/admin-header.html",
     iniciarHeaderAdmin,
   );
+
   await carregarSeExistir("admin-sidebar", "components/admin-sidebar.html");
 }
 

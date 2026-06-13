@@ -9,6 +9,11 @@ import { entidades } from "../config/entidades_admin.js";
 import { getEntityService } from "../services/adminEntityService.js";
 
 import {
+  configurarBuscaCEP,
+  preencherEndereco,
+} from "../utils/enderecoUtils.js";
+
+import {
   buscarMarcas,
   buscarCategorias,
   buscarFornecedores,
@@ -353,6 +358,14 @@ function preencherFormulario(entidade, dados) {
       return;
     }
 
+    if (entidade.tipo === "fornecedores") {
+      document.getElementById("nome").value = dados.nome ?? "";
+
+      preencherEndereco(dados.endereco);
+
+      return;
+    }
+
     elemento.value = dados[campo.name] ?? "";
   });
 }
@@ -385,4 +398,6 @@ export async function iniciarFormularioAdmin() {
   configurarSubmit(entidade);
 
   configurarExclusaoFormulario(entidade);
+
+  configurarBuscaCEP(modoEdicao);
 }

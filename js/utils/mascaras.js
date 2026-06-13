@@ -66,3 +66,20 @@ export function aplicarMascaraTelefone(input) {
     e.target.value = valor;
   });
 }
+
+// ======================================
+// MÁSCARA CEP
+// ======================================
+export function aplicarMascaraCEP(input) {
+  input.addEventListener("input", () => {
+    let valor = input.value.replace(/\D/g, "");
+
+    valor = valor.slice(0, 8);
+
+    if (valor.length > 5) {
+      valor = valor.replace(/^(\d{5})(\d)/, "$1-$2");
+    }
+
+    input.value = valor;
+  });
+}
