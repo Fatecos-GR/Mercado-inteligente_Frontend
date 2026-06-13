@@ -24,6 +24,7 @@ import {
   renderAdminCategoriaCard,
   renderResultadoBuscaGestao,
   renderAdminFornecedorCard,
+  renderSkeletonGestao,
 } from "../render.js";
 
 // ======================================
@@ -110,6 +111,8 @@ function configurarPagina(entidade) {
 // ======================================
 async function renderCards(entidade) {
   const grid = document.getElementById("gestao-grid");
+
+  grid.innerHTML = renderSkeletonGestao(8);
 
   const termoBusca = getSearchTerm();
 

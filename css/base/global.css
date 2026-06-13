@@ -70,3 +70,75 @@ button:disabled {
 
   cursor: not-allowed;
 }
+
+/* ======================================
+   SKELETON GLOBAL
+====================================== */
+
+.skeleton {
+  position: relative;
+
+  overflow: hidden;
+
+  background: #e5e7eb;
+
+  border-radius: 8px;
+
+  pointer-events: none;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+
+  animation: skeleton-loading 1.3s infinite;
+}
+
+.skeleton-text {
+  height: 12px;
+  width: 100%;
+}
+
+.skeleton-title {
+  height: 18px;
+  width: 60%;
+}
+
+.skeleton-avatar {
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+}
+
+.skeleton-image {
+  width: 64px;
+  height: 64px;
+
+  border-radius: 12px;
+}
+
+.skeleton-button {
+  width: 120px;
+  height: 40px;
+}

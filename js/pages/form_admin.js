@@ -209,6 +209,16 @@ function validarFormulario(entidade) {
       return;
     }
 
+    if (campo.name === "cep") {
+      const cep = elemento.value.replace(/\D/g, "");
+
+      if (cep.length !== 8) {
+        mostrarErro(elemento, "CEP inválido.");
+
+        valido = false;
+      }
+    }
+
     // REQUIRED
     if (campo.required && !elemento.value.trim()) {
       mostrarErro(elemento, `${campo.label} é obrigatório.`);

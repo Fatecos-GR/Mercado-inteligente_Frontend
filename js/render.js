@@ -471,3 +471,39 @@ export function renderFormularioEntidadeAdmin(entidade, modoEdicao = false) {
     </div>
   `;
 }
+
+// ======================================
+// CARD SKELETON (GESTÃO)
+// ======================================
+
+export function renderSkeletonGestao(quantidade = 6) {
+  return Array(quantidade)
+    .fill(
+      `
+      <div class="brand-card">
+
+        <div class="brand-card-left">
+
+          <div class="brand-image skeleton skeleton-image"></div>
+
+          <div class="brand-info">
+
+            <div class="skeleton skeleton-title"></div>
+
+            <br>
+
+            <div class="skeleton skeleton-text"></div>
+
+            <br>
+
+            <div class="skeleton skeleton-text"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+      `,
+    )
+    .join("");
+}
