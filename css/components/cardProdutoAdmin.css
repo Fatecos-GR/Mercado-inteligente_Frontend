@@ -1,5 +1,6 @@
 /* CARD DOS PRODUTOS NA TELA DE ESTOQUE*/
 .product-card {
+  min-width: 370px;
   background-color: var(--branco);
   border: 1px solid rgba(61, 90, 68, 0.08);
   border-radius: 18px;

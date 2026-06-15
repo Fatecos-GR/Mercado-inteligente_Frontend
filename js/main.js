@@ -4,11 +4,15 @@
 import { iniciarHome } from "./pages/home.js";
 import { iniciarPerfil } from "./pages/perfil.js";
 import { iniciarGestao } from "./pages/gestao.js";
-import { iniciarHeaderCliente } from "./components/header_client.js";
+import { iniciarHeaderCliente } from "./components/headerClient.js";
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
+import { iniciarLogin } from "./pages/login.js";
+import { iniciarCadastro } from "./pages/cadastro.js";
 
 // Importação da nova página de configurações
 import { iniciarConfiguracoes } from "./pages/configuracoes.js";
+import { iniciarHeaderAdmin } from "./components/headerAdmin.js";
+import { iniciarSidebarAdmin } from "./components/sidebarAdmin.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
@@ -37,6 +41,23 @@ function carregarIcones() {
 }
 
 // ===============================
+// CONFIGURAR FAVICON (ICONE DO NAVEGADOR)
+// ===============================
+function configurarFavicon() {
+  let favicon = document.querySelector("link[rel='icon']");
+
+  if (!favicon) {
+    favicon = document.createElement("link");
+
+    favicon.rel = "icon";
+
+    document.head.appendChild(favicon);
+  }
+
+  favicon.href = "../img/logo_melior.jpeg";
+}
+
+// ===============================
 // CARREGAR HEADER E FOOTER
 // ===============================
 async function carregarLayout() {
@@ -54,9 +75,20 @@ async function carregarLayout() {
     "components/header.html",
     iniciarHeaderCliente,
   );
+
   await carregarSeExistir("main-footer", "components/footer.html");
-  await carregarSeExistir("admin-header", "components/admin-header.html");
-  await carregarSeExistir("admin-sidebar", "components/admin-sidebar.html");
+
+  await carregarSeExistir(
+    "admin-header",
+    "components/admin-header.html",
+    iniciarHeaderAdmin,
+  );
+
+  await carregarSeExistir(
+    "admin-sidebar",
+    "components/admin-sidebar.html",
+    iniciarSidebarAdmin,
+  );
 }
 
 // ===============================
@@ -64,6 +96,7 @@ async function carregarLayout() {
 // ===============================
 async function start() {
   // Componentes Modularizados
+  await configurarFavicon();
   await carregarLayout();
   await carregarIcones();
 
@@ -88,7 +121,18 @@ async function start() {
     iniciarFormularioAdmin();
   }
 
-  // Verifica se o usuário está na tela de configurações e ativa as abas
+  const isLoginPage = window.location.pathname.includes("login.html");
+
+  if (isLoginPage) {
+    iniciarLogin();
+  }
+
+  const isCadastroPage = window.location.pathname.includes("cadastro.html");
+
+  if (isCadastroPage) {
+    iniciarCadastro();
+  }
+
   const isConfiguracoesPage =
     window.location.pathname.includes("configuracoes.html");
   if (isConfiguracoesPage) {
