@@ -87,6 +87,22 @@
   color: #a89f91; /* Placeholder em tom de areia */
 }
 
+.btn-toggle-password {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 40px;
+  background: none;
+  border: none;
+  color: #a89f91;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.btn-toggle-password:hover {
+  color: var(--marrom-madeira);
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

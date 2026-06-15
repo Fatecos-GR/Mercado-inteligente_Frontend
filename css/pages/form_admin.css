@@ -337,7 +337,54 @@
 ========================================= */
 
 .admin-form-actions {
+  display: flex;
   margin-top: 10px;
+
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* =========================================
+   BOTÃO DE EXCLUIR
+========================================= */
+
+.admin-btn-delete {
+  padding: 0 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 30px;
+  width: 60%;
+
+  gap: 8px;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  background-color: rgba(139, 90, 43, 0.12);
+
+  color: var(--marrom-madeira);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-btn-delete:hover {
+  background-color: rgba(139, 90, 43, 0.2);
+
+  transform: translateY(-1px);
+}
+
+.admin-btn-delete:active {
+  transform: translateY(0);
 }
 
 /* =========================================
@@ -373,4 +420,150 @@
   opacity: 1;
 
   transform: translateY(-1px);
+}
+
+/* Erros */
+
+.admin-form-group.error input,
+.admin-form-group.error textarea,
+.admin-form-group.error select {
+  border-color: #dc2626;
+}
+
+.admin-form-group.error input:focus,
+.admin-form-group.error textarea:focus,
+.admin-form-group.error select:focus {
+  border-color: #dc2626;
+
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
+}
+
+.field-error {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 0.85rem;
+
+  color: #dc2626;
+}
+
+.admin-form-group.error label {
+  color: #dc2626;
+}
+
+/* =========================================
+   UPLOAD CUSTOMIZADO
+========================================= */
+
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 14px;
+
+  border: 2px dashed var(--verde-primario);
+
+  border-radius: 12px;
+
+  background: rgba(90, 125, 101, 0.05);
+
+  color: var(--verde-escuro);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.custom-file-upload:hover {
+  background: rgba(90, 125, 101, 0.12);
+
+  transform: translateY(-1px);
+}
+
+.custom-file-upload i {
+  font-size: 18px;
+}
+
+/* =========================================
+   PREVIEW
+========================================= */
+
+.image-preview-container {
+  margin-top: 15px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.image-preview {
+  width: 320px;
+  height: 320px;
+
+  object-fit: cover;
+
+  border-radius: 16px;
+
+  border: 2px solid rgba(90, 125, 101, 0.15);
+
+  background: white;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================
+   REMOVER IMAGEM
+========================================= */
+
+.btn-remove-image {
+  border: none;
+
+  padding: 10px 16px;
+
+  border-radius: 10px;
+
+  background: #dc2626;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn-remove-image:hover {
+  transform: translateY(-1px);
+
+  opacity: 0.9;
+}
+
+.admin-form-section {
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.admin-form-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--verde-escuro);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+  opacity: 1;
 }

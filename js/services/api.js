@@ -4,13 +4,29 @@
 
 const BASE_URL = "http://localhost:8080/api";
 
-// Função Genérica
+// ===============================
+// FUNÇÃO DE REQUISIÇÃO
+// ===============================
 async function request(endpoint, options = {}) {
+  const token = localStorage.getItem("token");
+
+  const isFormData = options.body instanceof FormData;
+
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      ...(isFormData
+        ? {}
+        : {
+            "Content-Type": "application/json",
+          }),
+
+      ...(token && {
+        Authorization: `Bearer ${token}`,
+      }),
+
       ...(options.headers || {}),
     },
+
     ...options,
   };
 
@@ -20,10 +36,12 @@ async function request(endpoint, options = {}) {
   if (!response.ok) {
     const errorData = await response.json().catch(() => null);
 
-    throw {
-      status: response.status,
-      message: errorData?.message || "Erro na requisição",
-    };
+    throw (
+      errorData || {
+        status: response.status,
+        erro: "Erro inesperado",
+      }
+    );
   }
 
   // caso não tenha conteúdo (204)
@@ -33,8 +51,80 @@ async function request(endpoint, options = {}) {
 }
 
 // ===============================
+// FUNÇÃO AUXILIAR DE MULTIPART(FORMDATA)
+// ===============================
+function criarMultipart(dados, nomeParte) {
+  const formData = new FormData();
+
+  const payload = { ...dados };
+
+  const imagem = payload.imagem;
+
+  delete payload.imagem;
+
+  formData.append(nomeParte, JSON.stringify(payload));
+
+  if (imagem) {
+    formData.append("imagem", imagem);
+  }
+
+  return formData;
+}
+
+// ===============================
+// AUTENTICAÇÃO
+// ===============================
+export async function realizarLogin(email, senha) {
+  return request("/auth/login", {
+    method: "POST",
+
+    body: JSON.stringify({
+      email,
+      senha,
+    }),
+  });
+}
+
+export async function realizarCadastro(
+  nome,
+  sobrenome,
+  email,
+  telefone,
+  senha,
+) {
+  return request("/auth/register", {
+    method: "POST",
+
+    body: JSON.stringify({
+      nome,
+      sobrenome,
+      email,
+      telefone,
+      senha,
+    }),
+  });
+}
+
+// ===============================
 // CRUD PRODUTOS
 // ===============================
+
+export async function excluirProduto(id) {
+  return request(`/produtos/${id}`, {
+    method: "DELETE",
+  });
+}
+
+export async function salvarProduto(dados) {
+  return request("/produtos", {
+    method: "POST",
+    body: criarMultipart(dados, "produto"),
+  });
+}
+
+export async function buscarProdutosPorNome(nome) {
+  return request(`/produtos/search?nome=${nome}`);
+}
 
 export async function buscarProdutos() {
   return request(`/produtos`);
@@ -44,14 +134,114 @@ export async function buscarProdutos() {
 // CRUD MARCAS
 // ===============================
 
+export async function salvarMarca(dados) {
+  return request("/marcas", {
+    method: "POST",
+    body: criarMultipart(dados, "marca"),
+  });
+}
+
 export async function buscarMarcas() {
   return request(`/marcas`);
+}
+
+export async function buscarMarcasPorNome(nome) {
+  return request(`/marcas/search?nome=${nome}`);
+}
+
+export async function buscarMarcaPorId(id) {
+  return request(`/marcas/${id}`);
+}
+
+export async function atualizarMarca(id, dados) {
+  return request(`/marcas/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "marca"),
+  });
+}
+
+export async function excluirMarca(id) {
+  return request(`/marcas/${id}`, {
+    method: "DELETE",
+  });
 }
 
 // ===============================
 // CRUD CATEGORIAS
 // ===============================
 
+export async function salvarCategoria(dados) {
+  return request("/categorias", {
+    method: "POST",
+    body: criarMultipart(dados, "categoria"),
+  });
+}
+
 export async function buscarCategorias() {
   return request(`/categorias`);
+}
+
+export async function buscarCategoriasPorNome(nome) {
+  return request(`/categorias/search?nome=${nome}`);
+}
+
+export async function buscarCategoriaPorId(id) {
+  return request(`/categorias/${id}`);
+}
+
+export async function atualizarCategoria(id, dados) {
+  return request(`/categorias/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "categoria"),
+  });
+}
+
+export async function excluirCategoria(id) {
+  return request(`/categorias/${id}`, {
+    method: "DELETE",
+  });
+}
+
+// ===============================
+// CRUD FORNECEDORES
+// ===============================
+
+export async function salvarFornecedor(dados) {
+  return request("/fornecedores", {
+    method: "POST",
+    body: criarMultipart(dados, "fornecedor"),
+  });
+}
+
+export async function buscarFornecedores() {
+  return request(`/fornecedores`);
+}
+
+export async function buscarFornecedoresPorNome(nome) {
+  return request(`/fornecedores/search?nome=${nome}`);
+}
+
+export async function buscarFornecedorPorId(id) {
+  return request(`/fornecedores/${id}`);
+}
+
+export async function atualizarFornecedor(id, dados) {
+  return request(`/fornecedores/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "fornecedor"),
+  });
+}
+
+export async function excluirFornecedor(id) {
+  return request(`/fornecedores/${id}`, {
+    method: "DELETE",
+  });
+}
+
+// ===============================
+// BUSCAR CEP
+// ===============================
+
+export async function buscarCep(cep) {
+  return request(`/enderecos/cep/${cep}`);
 }

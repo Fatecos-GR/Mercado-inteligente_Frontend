@@ -1,9 +1,19 @@
 // ==========================================
-// 1. IMPORTS & BANCO DE DADOS SIMULADO
+// 1. IMPORTS (Devem ficar sempre no topo!)
 // ==========================================
 import { iniciarHome } from "./pages/home.js";
 import { iniciarPerfil } from "./pages/perfil.js";
+import { iniciarGestao } from "./pages/gestao.js";
+import { iniciarHeaderCliente } from "./components/headerClient.js";
+import { iniciarFormularioAdmin } from "./pages/form_admin.js";
+import { iniciarLogin } from "./pages/login.js";
+import { iniciarCadastro } from "./pages/cadastro.js";
+import { iniciarConfiguracoes } from "./pages/configuracoes.js";
+import { iniciarHeaderAdmin } from "./components/headerAdmin.js";
 
+// ==========================================
+// 2. BANCO DE DADOS SIMULADO
+// ==========================================
 const bancoDeProdutos = [
   // HORTIFRUTI
   {
@@ -143,7 +153,7 @@ const bancoDeProdutos = [
 ];
 
 // ==========================================
-// 2. FUNÇÕES AUXILIARES (Utilitários)
+// 3. FUNÇÕES AUXILIARES (Utilitários)
 // ==========================================
 const Utils = {
   parsePreco: (precoStr) =>
@@ -154,14 +164,8 @@ const Utils = {
 };
 
 // ==========================================
-// 3. COMPONENTES BASE (Header, Footer, Icons)
+// 4. COMPONENTES BASE E LAYOUT
 // ==========================================
-async function loadComponent(id, file) {
-  const res = await fetch(file);
-  const html = await res.text();
-  document.getElementById(id).innerHTML = html;
-}
-
 function carregarIcones() {
   if (document.querySelector("link[data-fontawesome]")) return;
   const link = document.createElement("link");
@@ -169,28 +173,36 @@ function carregarIcones() {
   link.href =
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css";
   link.crossOrigin = "anonymous";
-  link.referrerPolicy = "no-referrer";
-  link.setAttribute("data-fontawesome", "true");
   document.head.appendChild(link);
 }
 
-async function carregarLayout() {
-  const componentes = [
-    { id: "main-header", arquivo: "components/header.html" },
-    { id: "main-footer", arquivo: "components/footer.html" },
-    { id: "admin-header", arquivo: "components/admin-header.html" },
-    { id: "admin-sidebar", arquivo: "components/admin-sidebar.html" },
-  ];
+function configurarFavicon() {
+  let favicon = document.querySelector("link[rel='icon']");
+  if (!favicon) {
+    favicon = document.createElement("link");
+    favicon.rel = "icon";
+    document.head.appendChild(favicon);
+  }
+  favicon.href = "../img/logo_melior.jpeg";
+}
 
-  for (const comp of componentes) {
-    if (document.getElementById(comp.id)) {
-      await loadComponent(comp.id, comp.arquivo);
+// Função criada para carregar componentes dinâmicos de forma segura
+async function carregarSeExistir(id, arquivo, callback = null) {
+  const elemento = document.getElementById(id);
+  if (elemento) {
+    try {
+      const res = await fetch(arquivo);
+      const html = await res.text();
+      elemento.innerHTML = html;
+      if (callback) callback(); // Se houver uma função para rodar depois do load, ele roda
+    } catch (e) {
+      console.error(`Erro ao carregar o componente ${arquivo}:`, e);
     }
   }
 }
 
 // ==========================================
-// 4. SISTEMA DE CARRINHO (Global)
+// 5. SISTEMA DE CARRINHO (Global)
 // ==========================================
 let carrinhoDeCompras = [];
 try {
@@ -201,13 +213,8 @@ try {
 
 window.adicionarAoCarrinho = function (idProduto, quantidade = 1) {
   const produto = bancoDeProdutos.find((p) => p.id === String(idProduto));
-  if (!produto) {
-    console.error(
-      "❌ Produto não encontrado no banco de dados! ID:",
-      idProduto,
-    );
-    return;
-  }
+  if (!produto)
+    return console.error("❌ Produto não encontrado! ID:", idProduto);
 
   const itemJaExiste = carrinhoDeCompras.find(
     (item) => item.id === String(idProduto),
@@ -227,7 +234,6 @@ window.adicionarAoCarrinho = function (idProduto, quantidade = 1) {
 
   localStorage.setItem("melior_carrinho", JSON.stringify(carrinhoDeCompras));
   window.mostrarAviso(`${produto.nome} adicionado ao carrinho!`);
-
   renderizarTelaCarrinho();
   window.atualizarHeaderCarrinho();
 };
@@ -323,21 +329,18 @@ function renderizarTelaCarrinho() {
 }
 
 // ==========================================
-// 5. INICIALIZAÇÃO ESPECÍFICA DE PÁGINAS
+// 6. INICIALIZAÇÃO ESPECÍFICA DE PÁGINAS
 // ==========================================
 function inicializarDetalhesProduto() {
   const params = new URLSearchParams(window.location.search);
   const idClicado = params.get("id");
-
   if (!idClicado) return;
 
   const produto = bancoDeProdutos.find((p) => p.id === idClicado);
-
   if (produto) {
     document.getElementById("detalhe-titulo").innerText = produto.nome;
     document.getElementById("detalhe-preco").innerText = produto.preco;
     document.getElementById("detalhe-imagem").src = produto.imagem;
-    document.getElementById("detalhe-imagem").alt = produto.nome;
 
     const precoNum = Utils.parsePreco(produto.preco);
     document.getElementById("detalhe-parcelamento").innerHTML =
@@ -345,7 +348,6 @@ function inicializarDetalhesProduto() {
 
     const btnComprar = document.querySelector(".btn-buy-now");
     if (btnComprar) {
-      // Como o botão "Comprar" da tela de detalhes é único e não se perde, podemos ligar direto:
       btnComprar.addEventListener("click", () => {
         const qtd =
           parseInt(document.querySelector(".quantity-control input").value) ||
@@ -353,10 +355,6 @@ function inicializarDetalhesProduto() {
         window.adicionarAoCarrinho(idClicado, qtd);
       });
     }
-  } else {
-    document.getElementById("detalhe-titulo").innerText =
-      "Produto não encontrado";
-    document.getElementById("detalhe-preco").innerText = "---";
   }
 }
 
@@ -415,28 +413,13 @@ function inicializarFiltros() {
   }
 }
 
-/* ==========================================
-   A MÁGICA: OUVINTE GLOBAL (Event Delegation)
-========================================== */
 function inicializarBotoesHome() {
-  // Adicionamos um escutador na página inteira!
   document.body.addEventListener("click", function (evento) {
-    // Procura se o clique aconteceu DENTRO de um elemento com a classe .btn-add-cart
-    // O closest() é perfeito porque funciona mesmo se o usuário clicar no ícone do carrinho
     const botao = evento.target.closest(".btn-add-cart");
-
     if (botao) {
-      evento.preventDefault(); // Impede a tela de piscar
-
+      evento.preventDefault();
       const idProduto = botao.getAttribute("data-id");
-
       if (idProduto) {
-        // Dispara um log no console (F12) para você ter certeza de que o clique foi registrado!
-        console.log(
-          "🛒 Clicou no botão! Enviando para o carrinho o ID:",
-          idProduto,
-        );
-
         window.adicionarAoCarrinho(idProduto, 1);
       }
     }
@@ -444,42 +427,69 @@ function inicializarBotoesHome() {
 }
 
 // ==========================================
-// 6. START DA APLICAÇÃO
+// 7. ORQUESTRADOR PRINCIPAL (Inicia tudo)
 // ==========================================
 async function start() {
-  await carregarLayout();
+  // Configurações Globais Iniciais
+  configurarFavicon();
   carregarIcones();
 
-  window.atualizarHeaderCarrinho();
+  // Carrega Layouts Dinâmicos de forma segura
+  await carregarSeExistir(
+    "main-header",
+    "components/header.html",
+    iniciarHeaderCliente,
+  );
+  await carregarSeExistir("main-footer", "components/footer.html");
+  await carregarSeExistir(
+    "admin-header",
+    "components/admin-header.html",
+    iniciarHeaderAdmin,
+  );
+  await carregarSeExistir("admin-sidebar", "components/admin-sidebar.html");
 
-  const path = window.location.pathname;
-  if (path.includes("index.html") || path === "/") {
-    try {
-      iniciarHome();
-    } catch (e) {
-      console.log("Aviso: iniciarHome() não encontrada.");
-    }
-  }
-  if (path.includes("perfil.html")) {
-    try {
-      iniciarPerfil();
-    } catch (e) {
-      console.log("Aviso: iniciarPerfil() não encontrada.");
-    }
-  }
-
-  console.log("✅ Sistema Melior Iniciado com Sucesso!");
-}
-
-// Inicia tudo
-document.addEventListener("DOMContentLoaded", () => {
+  // Inicia Funcionalidades
   inicializarDetalhesProduto();
   inicializarControlesQuantidade();
   inicializarFiltros();
   renderizarTelaCarrinho();
-
-  // Liga o nosso ouvinte universal de cliques
   inicializarBotoesHome();
+  window.atualizarHeaderCarrinho();
 
-  start();
-});
+  // Sistema de Roteamento Simples (Detecta qual página o usuário está)
+  const path = window.location.pathname;
+
+  if (path.includes("index.html") || path === "/")
+    try {
+      iniciarHome();
+    } catch (e) {}
+  if (path.includes("perfil.html"))
+    try {
+      iniciarPerfil();
+    } catch (e) {}
+  if (path.includes("gestao.html"))
+    try {
+      iniciarGestao();
+    } catch (e) {}
+  if (path.includes("form_admin.html"))
+    try {
+      iniciarFormularioAdmin();
+    } catch (e) {}
+  if (path.includes("login.html"))
+    try {
+      iniciarLogin();
+    } catch (e) {}
+  if (path.includes("cadastro.html"))
+    try {
+      iniciarCadastro();
+    } catch (e) {}
+  if (path.includes("configuracoes.html"))
+    try {
+      iniciarConfiguracoes();
+    } catch (e) {}
+
+  console.log("✅ Sistema Melior Iniciado com Sucesso!");
+}
+
+// Garante que o start() só vai rodar depois que o HTML da tela estiver 100% pronto
+document.addEventListener("DOMContentLoaded", start);

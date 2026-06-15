@@ -7,9 +7,6 @@
     <!-- Título da página -->
     <title>Melior | Login</title>
 
-    <!-- Ícone da página -->
-    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
-
     <!-- CSS -->
     <link rel="stylesheet" href="css/pages/login.css" />
 
@@ -30,48 +27,59 @@
               Ainda não tem uma conta? Junte-se a nós para uma experiência de
               compra única e acolhedora.
             </p>
-            <a href="cadastro.html" class="btn-secondary">Criar Conta</a>
+            <a
+              href="cadastro.html?tipo=cliente"
+              id="btn-cadastro"
+              class="btn-secondary"
+              >Criar Conta</a
+            >
           </div>
         </div>
 
         <!-- Lado do Formulário -->
         <div class="login-form-section">
-          <form class="login-form">
+          <form class="login-form" novalidate>
             <h1 class="form-title">Faça Login</h1>
 
+            <!-- Email -->
             <div class="input-container">
-              <label for="username" class="sr-only">Usuário ou E-mail</label>
+              <label for="username" class="sr-only"> E-mail </label>
+
               <div class="input-wrapper">
                 <i class="fas fa-user"></i>
+
                 <input
-                  type="text"
-                  id="username"
-                  placeholder="Usuário ou E-mail"
-                  required
+                  type="email"
+                  id="email"
+                  placeholder="Digite seu e-mail"
+                  autocomplete="off"
                 />
               </div>
+
+              <span class="field-error"> Informe um e-mail válido. </span>
             </div>
 
+            <!-- Senha -->
             <div class="input-container">
-              <label for="password" class="sr-only">Senha</label>
+              <label for="password" class="sr-only"> Senha </label>
+
               <div class="input-wrapper">
                 <i class="fas fa-lock"></i>
+
                 <input
                   type="password"
                   id="password"
-                  placeholder="Senha"
-                  required
+                  placeholder="Digite sua senha"
+                  autocomplete="off"
                 />
-                <button
-                  type="button"
-                  class="btn-toggle-password"
-                  aria-label="Mostrar senha"
-                >
-                  <i class="fas fa-eye"></i>
-                </button>
-              </div>
-            </div>
 
+                <div class="btn-toggle-password">
+                  <i class="fas fa-eye"></i>
+                </div>
+              </div>
+
+              <span class="field-error"> Informe sua senha. </span>
+            </div>
             <div class="form-options">
               <label class="remember-me">
                 <input type="checkbox" />
@@ -81,6 +89,8 @@
                 >Esqueceu a senha?</a
               >
             </div>
+
+            <div class="form-message">Usuário ou senha inválidos.</div>
 
             <button type="submit" class="btn-primary">Entrar</button>
 
