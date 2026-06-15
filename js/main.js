@@ -4,7 +4,7 @@
 import { iniciarHome } from "./pages/home.js";
 import { iniciarPerfil } from "./pages/perfil.js";
 import { iniciarGestao } from "./pages/gestao.js";
-import { iniciarHeaderCliente } from "./components/headerClient.js";
+import { iniciarHeaderCliente } from "./components/header_client.js";
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
 import { iniciarLogin } from "./pages/login.js";
 import { iniciarCadastro } from "./pages/cadastro.js";
@@ -13,6 +13,9 @@ import { iniciarCadastro } from "./pages/cadastro.js";
 import { iniciarConfiguracoes } from "./pages/configuracoes.js";
 import { iniciarHeaderAdmin } from "./components/headerAdmin.js";
 import { iniciarSidebarAdmin } from "./components/sidebarAdmin.js";
+
+// Importação da nova página de configurações
+import { iniciarConfiguracoes } from "./pages/configuracoes.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
@@ -96,7 +99,6 @@ async function carregarLayout() {
 // ===============================
 async function start() {
   // Componentes Modularizados
-  await configurarFavicon();
   await carregarLayout();
   await carregarIcones();
 
@@ -121,18 +123,7 @@ async function start() {
     iniciarFormularioAdmin();
   }
 
-  const isLoginPage = window.location.pathname.includes("login.html");
-
-  if (isLoginPage) {
-    iniciarLogin();
-  }
-
-  const isCadastroPage = window.location.pathname.includes("cadastro.html");
-
-  if (isCadastroPage) {
-    iniciarCadastro();
-  }
-
+  // Verifica se o usuário está na tela de configurações e ativa as abas
   const isConfiguracoesPage =
     window.location.pathname.includes("configuracoes.html");
   if (isConfiguracoesPage) {
