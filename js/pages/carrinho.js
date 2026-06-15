@@ -1,3 +1,5 @@
+import { atualizarCarrinhoHeader } from "../components/headerClient.js";
+
 // ======================================
 // START CARRINHO
 // ======================================
@@ -24,12 +26,12 @@ function renderizarCarrinho() {
   if (carrinho.length === 0) {
     lista.innerHTML = `
       <p class="cart-empty">
-        Seu carrinho estÃ¡ vazio.
+        Seu carrinho está vazio.
       </p>
     `;
 
     total.textContent = "R$ 0,00";
-
+    atualizarCarrinhoHeader();
     return;
   }
 
@@ -82,7 +84,7 @@ function renderizarCarrinho() {
           <div class="value-info">
 
             <strong>
-              R$ ${subtotal.toFixed(2)}
+              R$ ${subtotal.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </strong>
 
           </div>
@@ -92,7 +94,7 @@ function renderizarCarrinho() {
     })
     .join("");
 
-  total.textContent = `R$ ${valorTotal.toFixed(2)}`;
+  total.textContent = `R$ ${valorTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   configurarEventosCarrinho();
 }
@@ -135,4 +137,5 @@ function alterarQuantidade(index, delta) {
   localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
 
   renderizarCarrinho();
+  atualizarCarrinhoHeader();
 }

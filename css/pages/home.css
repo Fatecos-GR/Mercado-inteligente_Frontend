@@ -548,62 +548,6 @@
 }
 
 /* ===============================
-   TOAST NOTIFICATION (Pop-up de Aviso)
-=============================== */
-#toast-container {
-  position: fixed;
-  top: 140px;
-  right: 25px;
-  z-index: 9999; /* Garante que fique por cima de tudo (header, imagens, etc) */
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.toast-msg {
-  background-color: var(--verde-escuro);
-  color: var(--branco);
-  padding: 15px 25px;
-  border-radius: 8px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  font-weight: 600;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  /* Animação de entrada suave */
-  animation: slideInRight 0.3s ease forwards;
-  opacity: 1;
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
-}
-
-/* Classe aplicada pelo JS na hora de sumir com o aviso */
-.toast-msg.esconder {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-.toast-msg i {
-  font-size: 1.2rem;
-  color: #a8e6cf;
-}
-
-/* Animação que faz ele deslizar da direita para a esquerda */
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* ===============================
    6. ANIMAÇÕES GERAIS
 =============================== */
 @keyframes fade {
