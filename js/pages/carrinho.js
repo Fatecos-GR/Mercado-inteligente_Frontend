@@ -79,6 +79,10 @@ function renderizarCarrinho() {
               +
             </button>
 
+            <button class="btn-remover" data-index="${index}" title="Remover item">
+              <i class="fas fa-trash"></i>
+            </button>
+
           </div>
 
           <div class="value-info">
@@ -115,6 +119,27 @@ function configurarEventosCarrinho() {
       alterarQuantidade(btn.dataset.index, -1);
     });
   });
+
+  document.querySelectorAll(".btn-remover").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      removerItem(btn.dataset.index);
+    });
+  });
+}
+
+// ======================================
+// REMOVER ITEM
+// ======================================
+
+function removerItem(index) {
+  const carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
+  
+  carrinho.splice(index, 1);
+  
+  localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
+  
+  renderizarCarrinho();
+  atualizarCarrinhoHeader();
 }
 
 // ======================================

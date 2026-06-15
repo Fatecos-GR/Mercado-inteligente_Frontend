@@ -11,6 +11,127 @@ export function iniciarHome() {
   iniciarScrollCategorias();
   iniciarNavegacaoCategorias();
   iniciarBotoesCarrinho();
+  iniciarOrdenacao();
+  iniciarControlesQuantidade();
+}
+
+function iniciarControlesQuantidade() {
+  const containers = document.querySelectorAll('.card-quantity-control');
+  containers.forEach(container => {
+    const btnMinus = container.querySelector('.btn-qty-minus');
+    const btnPlus = container.querySelector('.btn-qty-plus');
+    const input = container.querySelector('.input-qty');
+
+    if (!btnMinus || !btnPlus || !input) return;
+
+    btnMinus.addEventListener('click', () => {
+      let val = parseInt(input.value) || 1;
+      if (val > 1) {
+        input.value = val - 1;
+      }
+    });
+
+    btnPlus.addEventListener('click', () => {
+      let val = parseInt(input.value) || 1;
+      input.value = val + 1;
+    });
+
+    input.addEventListener('change', () => {
+      let val = parseInt(input.value);
+      if (isNaN(val) || val < 1) {
+        input.value = 1;
+      }
+    });
+  });
+}
+
+// ==========================
+// ORDENAÇÃO DE PRODUTOS
+// ==========================
+function iniciarOrdenacao() {
+  const customSelect = document.getElementById("sort-select");
+  if (!customSelect) return;
+
+  const trigger = customSelect.querySelector(".select-trigger");
+  const options = customSelect.querySelectorAll(".option");
+  const triggerText = trigger.querySelector("span");
+
+  // Toggle the dropdown
+  trigger.addEventListener("click", () => {
+    customSelect.classList.toggle("open");
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!customSelect.contains(e.target)) {
+      customSelect.classList.remove("open");
+    }
+  });
+
+  // Handle option selection
+  options.forEach((option) => {
+    option.addEventListener("click", () => {
+      // Remove active class from all options
+      options.forEach((opt) => opt.classList.remove("active"));
+      // Add active class to clicked option
+      option.classList.add("active");
+      
+      const sortValue = option.getAttribute("data-value");
+      triggerText.textContent = option.textContent;
+      
+      customSelect.classList.remove("open");
+      
+      ordenarProdutos(sortValue);
+    });
+  });
+
+  // Store the initial order of all product cards in all grids
+  const grids = document.querySelectorAll(".products-grid");
+  grids.forEach(grid => {
+    const cards = Array.from(grid.querySelectorAll(".product-card"));
+    cards.forEach((card, index) => {
+      card.setAttribute('data-original-index', index);
+    });
+  });
+}
+
+function parsePreco(text) {
+  return parseFloat(text.replace("R$", "").replace(/\./g, "").replace(",", ".").trim());
+}
+
+function ordenarProdutos(sortValue) {
+  const grids = document.querySelectorAll(".products-grid");
+  
+  grids.forEach((grid) => {
+    const cards = Array.from(grid.querySelectorAll(".product-card"));
+    
+    cards.sort((a, b) => {
+      if (sortValue === "menor-preco") {
+        const precoA = parsePreco(a.querySelector(".price-current").textContent);
+        const precoB = parsePreco(b.querySelector(".price-current").textContent);
+        return precoA - precoB;
+      } 
+      else if (sortValue === "maior-preco") {
+        const precoA = parsePreco(a.querySelector(".price-current").textContent);
+        const precoB = parsePreco(b.querySelector(".price-current").textContent);
+        return precoB - precoA;
+      } 
+      else if (sortValue === "a-z") {
+        const tituloA = a.querySelector(".product-title").textContent.trim();
+        const tituloB = b.querySelector(".product-title").textContent.trim();
+        return tituloA.localeCompare(tituloB);
+      } 
+      else {
+        // Padrão
+        const indexA = parseInt(a.getAttribute("data-original-index"));
+        const indexB = parseInt(b.getAttribute("data-original-index"));
+        return indexA - indexB;
+      }
+    });
+
+    // Re-append cards to grid in the new order
+    cards.forEach(card => grid.appendChild(card));
+  });
 }
 
 // ==========================
@@ -28,19 +149,26 @@ function iniciarBotoesCarrinho() {
       const produtoEncontrado = produtosMock.find(p => p.id === produtoId);
       if (!produtoEncontrado) return;
 
+      const qtyInput = document.getElementById(`qty-${produtoId}`);
+      const quantidadeAdicionar = qtyInput ? parseInt(qtyInput.value) : 1;
+
       let carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
       const indexExistente = carrinho.findIndex(item => item.id === produtoId);
 
       if (indexExistente >= 0) {
-        carrinho[indexExistente].quantidade += 1;
+        carrinho[indexExistente].quantidade += quantidadeAdicionar;
       } else {
         carrinho.push({
           id: produtoEncontrado.id,
           nome: produtoEncontrado.nome,
           preco: produtoEncontrado.preco,
           imagem: produtoEncontrado.imagem,
-          quantidade: 1
+          quantidade: quantidadeAdicionar
         });
+      }
+
+      if (qtyInput) {
+        qtyInput.value = 1;
       }
 
       localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
