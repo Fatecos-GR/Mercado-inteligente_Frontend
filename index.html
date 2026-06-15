@@ -4,47 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Título da página -->
     <title>Melior | Seu Mercado Online</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/pages/home.css" />
 
-    <!-- JAVASCRIPT PRINCIPAL -->
     <script type="module" src="js/main.js" defer></script>
   </head>
   <body>
-    <!-- Link do Header -->
     <header id="main-header"></header>
 
-    <!-- Conteúdo Principal -->
     <main id="main-container">
-      <!-- Banner Carrossel -->
       <section id="banner">
         <div id="carousel-container">
           <div id="carousel-wrapper">
             <div class="banner-slide">
               <img src="img/banner_melior.png" alt="Banner Melior" />
             </div>
-
             <div class="banner-slide">
               <img src="img/banner_acougue.png" alt="Banner Açougue" />
             </div>
-
             <div class="banner-slide">
               <img src="img/banner_higiene.png" alt="Banner Higiene" />
             </div>
-
             <div class="banner-slide">
               <img src="img/banner_hortifruti.png" alt="Banner Hortifruti" />
             </div>
-
             <div class="banner-slide">
               <img src="img/banner_pet.png" alt="Banner PET" />
             </div>
           </div>
 
-          <!-- indicadores -->
           <div class="carousel-dots">
             <span class="dot active"></span>
             <span class="dot"></span>
@@ -53,7 +43,6 @@
             <span class="dot"></span>
           </div>
 
-          <!-- Botões de Navegação -->
           <button class="carousel-btn prev">
             <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -65,7 +54,6 @@
 
       <section class="home-section" id="categorias-section">
         <div id="categories-container">
-          <!-- Setas de navegação das categorias -->
           <button class="cat-nav-btn prev" id="cat-prev">
             <i class="fa-solid fa-chevron-left"></i>
           </button>
@@ -195,7 +183,6 @@
         </div>
       </div>
 
-      <!-- Seção de Ofertas Melior -->
       <section id="ofertas-melior" class="home-vitrine">
         <h2 class="vitrine-title">Ofertas Melior</h2>
         <div
@@ -219,7 +206,16 @@
         </div>
       </section>
 
-      <!-- Vitrine Hortifruti -->
+      <section class="banner-promocional-secao">
+        <a href="#" class="banner-link">
+          <img
+            src="img/bannerSonho.png"
+            alt="Declare-se com Sonho de Valsa"
+            class="banner-img-promocional"
+          />
+        </a>
+      </section>
+
       <section id="recommendations">
         <div id="recommendations-header">
           <h2>Hortifruti</h2>
@@ -242,10 +238,11 @@
               <div class="product-pricing">
                 <span class="price-current">R$ 8,90</span>
               </div>
-              <button class="btn-add-cart" onclick="adicionarAoCarrinho('h1')">
+              <button class="btn-add-cart" data-id="h1">
                 Adicionar <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
+
             <div class="product-card">
               <a href="detalhes_prod.html?id=h2" class="product-link">
                 <div class="card-image-wrapper">
@@ -257,10 +254,11 @@
               <div class="product-pricing">
                 <span class="price-current">R$ 5,50</span>
               </div>
-              <button class="btn-add-cart" onclick="adicionarAoCarrinho('h2')">
+              <button class="btn-add-cart" data-id="h2">
                 Adicionar <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
+
             <div class="product-card">
               <a href="detalhes_prod.html?id=h3" class="product-link">
                 <div class="card-image-wrapper">
@@ -272,10 +270,11 @@
               <div class="product-pricing">
                 <span class="price-current">R$ 4,20</span>
               </div>
-              <button class="btn-add-cart" onclick="adicionarAoCarrinho('h3')">
+              <button class="btn-add-cart" data-id="h3">
                 Adicionar <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
+
             <div class="product-card">
               <a href="detalhes_prod.html?id=h4" class="product-link">
                 <div class="card-image-wrapper">
@@ -287,7 +286,7 @@
               <div class="product-pricing">
                 <span class="price-current">R$ 7,90</span>
               </div>
-              <button class="btn-add-cart" onclick="adicionarAoCarrinho('h4')">
+              <button class="btn-add-cart" data-id="h4">
                 Adicionar <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </div>
@@ -295,7 +294,6 @@
         </div>
       </section>
 
-      <!-- Vitrine Açougue -->
       <section class="home-vitrine">
         <h2 class="vitrine-title">Açougue</h2>
         <div class="products-grid">
@@ -310,10 +308,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 38,90</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('a1')">
+            <button class="btn-add-cart" data-id="a1">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=a2" class="product-link">
               <div class="card-image-wrapper">
@@ -325,10 +324,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 22,90</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('a2')">
+            <button class="btn-add-cart" data-id="a2">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=a3" class="product-link">
               <div class="card-image-wrapper">
@@ -340,10 +340,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 54,00</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('a3')">
+            <button class="btn-add-cart" data-id="a3">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=a4" class="product-link">
               <div class="card-image-wrapper">
@@ -355,14 +356,13 @@
             <div class="product-pricing">
               <span class="price-current">R$ 19,90</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('a4')">
+            <button class="btn-add-cart" data-id="a4">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
         </div>
       </section>
 
-      <!-- Banner Clube Melior -->
       <section id="clube-melior">
         <div class="clube-container">
           <div class="clube-titulo-esq">
@@ -394,7 +394,6 @@
         </div>
       </section>
 
-      <!-- Vitrine Padaria -->
       <section class="home-vitrine">
         <h2 class="vitrine-title">Padaria</h2>
         <div class="products-grid">
@@ -409,10 +408,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 0,75</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('p1')">
+            <button class="btn-add-cart" data-id="p1">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=p2" class="product-link">
               <div class="card-image-wrapper">
@@ -424,10 +424,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 18,50</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('p2')">
+            <button class="btn-add-cart" data-id="p2">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=p3" class="product-link">
               <div class="card-image-wrapper">
@@ -439,10 +440,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 7,50</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('p3')">
+            <button class="btn-add-cart" data-id="p3">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=p4" class="product-link">
               <div class="card-image-wrapper">
@@ -454,14 +456,13 @@
             <div class="product-pricing">
               <span class="price-current">R$ 4,50</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('p4')">
+            <button class="btn-add-cart" data-id="p4">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
         </div>
       </section>
 
-      <!-- Vitrine Limpeza -->
       <section class="home-vitrine">
         <h2 class="vitrine-title">Limpeza</h2>
         <div class="products-grid">
@@ -476,10 +477,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 2,30</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('l1')">
+            <button class="btn-add-cart" data-id="l1">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=l2" class="product-link">
               <div class="card-image-wrapper">
@@ -491,10 +493,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 24,90</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('l2')">
+            <button class="btn-add-cart" data-id="l2">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=l3" class="product-link">
               <div class="card-image-wrapper">
@@ -506,10 +509,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 15,90</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('l3')">
+            <button class="btn-add-cart" data-id="l3">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=l4" class="product-link">
               <div class="card-image-wrapper">
@@ -521,14 +525,67 @@
             <div class="product-pricing">
               <span class="price-current">R$ 8,90</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('l4')">
+            <button class="btn-add-cart" data-id="l4">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
         </div>
       </section>
 
-      <!-- Vitrine Mercearia -->
+      <section id="selecao-especial">
+        <div class="selecao-grid">
+          <div class="selecao-card card-amarelo">
+            <div class="selecao-content">
+              <span class="selecao-tag">— Para o fim de semana</span>
+              <h3 class="selecao-highlight">A melhor seleção de carnes</h3>
+              <p class="selecao-desc">
+                Qualidade, maciez e muito sabor garantidos para o seu churrasco.
+              </p>
+              <button class="btn-selecao btn-add-cart" data-id="a3">
+                Eu quero
+              </button>
+            </div>
+            <img
+              src="img/janelaCarnes.png"
+              alt="Promoção Praticidade"
+              class="selecao-img"
+            />
+          </div>
+
+          <div class="selecao-card card-creme">
+            <div class="selecao-content">
+              <span class="selecao-tag">— Seleção de congelados</span>
+              <h3 class="selecao-highlight">Com até 10% off</h3>
+              <p class="selecao-desc">essencial para seu dia a dia!</p>
+              <button class="btn-selecao btn-add-cart" data-id="h2">
+                Eu quero
+              </button>
+            </div>
+            <img
+              src="img/janelaCongelados.png"
+              alt="Promoção Congelados"
+              class="selecao-img"
+            />
+          </div>
+
+          <div class="selecao-card card-verde">
+            <div class="selecao-content">
+              <span class="selecao-tag">— Super Ofertas</span>
+              <h3 class="selecao-highlight">Bebidas para você torcer!</h3>
+              <p class="selecao-desc">garanta já seu estoque.</p>
+              <button class="btn-selecao btn-add-cart" data-id="m3">
+                Eu quero
+              </button>
+            </div>
+            <img
+              src="img/janelaBebidas.png"
+              alt="Promoção Bebidas"
+              class="selecao-img"
+            />
+          </div>
+        </div>
+      </section>
+
       <section class="home-vitrine">
         <h2 class="vitrine-title">Mercearia</h2>
         <div class="products-grid">
@@ -543,10 +600,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 29,90</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('m1')">
+            <button class="btn-add-cart" data-id="m1">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=m2" class="product-link">
               <div class="card-image-wrapper">
@@ -558,10 +616,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 7,50</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('m2')">
+            <button class="btn-add-cart" data-id="m2">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=m3" class="product-link">
               <div class="card-image-wrapper">
@@ -573,10 +632,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 6,80</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('m3')">
+            <button class="btn-add-cart" data-id="m3">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=m4" class="product-link">
               <div class="card-image-wrapper">
@@ -588,10 +648,11 @@
             <div class="product-pricing">
               <span class="price-current">R$ 4,50</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('m4')">
+            <button class="btn-add-cart" data-id="m4">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
+
           <div class="product-card">
             <a href="detalhes_prod.html?id=m5" class="product-link">
               <div class="card-image-wrapper">
@@ -603,15 +664,24 @@
             <div class="product-pricing">
               <span class="price-current">R$ 14,90</span>
             </div>
-            <button class="btn-add-cart" onclick="adicionarAoCarrinho('m5')">
+            <button class="btn-add-cart" data-id="m5">
               Adicionar <i class="fa-solid fa-cart-shopping"></i>
             </button>
           </div>
         </div>
       </section>
+
+      <section class="banner-promocional-secao">
+        <a href="#" class="banner-link">
+          <img
+            src="img/bannerFanta.png"
+            alt="Promoção Fanta"
+            class="banner-img-promocional"
+          />
+        </a>
+      </section>
     </main>
 
-    <!-- Rodapé -->
     <footer id="main-footer"></footer>
   </body>
 </html>
