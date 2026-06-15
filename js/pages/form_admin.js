@@ -187,6 +187,10 @@ function obterDadosFormulario(entidade) {
     dados[campo.name] = elemento.value;
   });
 
+  if (entidade.tipo === "produtos" && !estaEditando()) {
+    dados.estoqueDisponivel = 0;
+  }
+
   return dados;
 }
 
@@ -209,11 +213,27 @@ function validarFormulario(entidade) {
       return;
     }
 
+    // CEP
     if (campo.name === "cep") {
       const cep = elemento.value.replace(/\D/g, "");
 
       if (cep.length !== 8) {
         mostrarErro(elemento, "CEP inválido.");
+
+        valido = false;
+      }
+    }
+
+    // Validade
+    if (campo.name === "validade" && elemento.value) {
+      const hoje = new Date();
+
+      hoje.setHours(0, 0, 0, 0);
+
+      const validade = new Date(elemento.value);
+
+      if (validade < hoje) {
+        mostrarErro(elemento, "A validade não pode ser uma data passada.");
 
         valido = false;
       }
@@ -396,6 +416,12 @@ export async function iniciarFormularioAdmin() {
   const modoEdicao = estaEditando();
 
   renderFormularioEntidadeAdmin(entidade, modoEdicao);
+
+  const validadeInput = document.getElementById("validade");
+
+  if (validadeInput) {
+    validadeInput.min = new Date().toISOString().split("T")[0];
+  }
 
   await popularSelectsFormulario(entidade);
 

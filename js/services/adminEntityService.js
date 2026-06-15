@@ -3,6 +3,12 @@
 // ======================================
 
 import {
+  buscarEstoques,
+  buscarEstoquePorIdProduto,
+  buscarProdutoPorId,
+  salvarProduto,
+  atualizarProduto,
+  excluirProduto,
   buscarMarcaPorId,
   salvarMarca,
   atualizarMarca,
@@ -22,6 +28,20 @@ import {
 // ======================================
 
 const entityServices = {
+  estoque: {
+    buscar: buscarEstoquePorIdProduto,
+    salvar: salvarProduto,
+    atualizar: atualizarProduto,
+    excluir: excluirProduto,
+  },
+
+  produtos: {
+    buscar: buscarProdutoPorId,
+    salvar: salvarProduto,
+    atualizar: atualizarProduto,
+    excluir: excluirProduto,
+  },
+
   marcas: {
     buscar: buscarMarcaPorId,
     salvar: salvarMarca,

@@ -9,64 +9,57 @@ export function renderAdminProdutoCard(produto) {
   const warningClass = produto.estoqueDisponivel <= 10 ? "warning" : "";
 
   return `
-    <article class="product-card"> 
+    <article class="brand-card product-card">
 
-      <div class="product-card-top">
+      <div class="brand-card-left">
 
-        <div class="product-icon">
+        <div class="brand-image">
           <i class="fa-solid fa-box"></i>
         </div>
 
-        <div class="product-status ${warningClass}">
-          ${status}
-        </div>
+        <div class="brand-info">
 
-      </div>
+          <h3>${produto.nome}</h3>
 
-      <div class="product-info">
+          <p>
+            Categoria: ${produto.categoriaNome}
+          </p>
 
-        <h3>${produto.nome}</h3>
+          <p>
+            Marca: ${produto.marcaNome}
+          </p>
 
-        <span class="product-category">
-          Categoria: ${produto.categoriaNome}
-        </span>
+          <p>
+            Preço: R$ ${produto.preco}
+          </p>
 
-        <span class="product-brand">
-          Marca: ${produto.marcaNome}
-        </span>
+          <p>
+            Estoque Atual:
+            ${produto.estoqueDisponivel}
+          </p>
 
-      </div>
+          <span class="product-status ${warningClass}">
+            ${status}
+          </span>
 
-      <div class="product-details">
-
-        <div class="detail-item">
-          <span>Preço</span>
-
-          <strong>
-            R$ ${produto.preco}
-          </strong>
-        </div>
-
-        <div class="detail-item">
-          <span>Quantidade</span>
-
-          <strong>
-            ${produto.estoqueDisponivel} un.
-          </strong>
         </div>
 
       </div>
 
       <div class="product-actions">
 
-        <a href="#" class="btn-edit">
+        <a
+          href="form_admin.html?tipo=produtos&id=${produto.id}"
+          class="btn-card-edit"
+        >
           <i class="fa-solid fa-pen"></i>
-          Editar
         </a>
 
-        <a href="#" class="btn-delete">
-          <i class="fa-solid fa-trash"></i>
-          Excluir
+        <a
+          href="form_admin.html?tipo=estoque&id=${produto.id}"
+          class="btn-card-stock"
+        >
+          <i class="fa-solid fa-boxes-stacked"></i>
         </a>
 
       </div>

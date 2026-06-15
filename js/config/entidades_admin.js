@@ -9,6 +9,49 @@ import { camposEndereco } from "./camposEndereco.js";
 // ======================================
 
 export const entidades = {
+  estoque: {
+    tipo: "estoque",
+
+    singular: "Estoque",
+
+    titulo: "Movimentação de Estoque",
+
+    rotaGestao: "gestao.html?tipo=produtos",
+
+    rotaFormulario: "/form_admin.html?tipo=estoque",
+
+    camposFormulario: [
+      {
+        name: "nome",
+        label: "Nome do Produto",
+        type: "text",
+        required: true,
+        readonly: true,
+      },
+      {
+        name: "quantidade_atual",
+        label: "Quantidade Atual",
+        type: "integer",
+        required: true,
+        readOnly: true,
+      },
+
+      {
+        name: "quantidade",
+        label: "Quantidade",
+        type: "integer",
+        required: true,
+      },
+
+      {
+        name: "tipoMovimentacao",
+        label: "Tipo da Movimentação",
+        type: "select",
+        required: true,
+      },
+    ],
+  },
+
   produtos: {
     // ======================================
     // INFORMAÇÕES GERAIS
@@ -83,15 +126,8 @@ export const entidades = {
 
       {
         name: "preco",
-        label: "Preço",
+        label: "Preço em R$",
         type: "money",
-        required: true,
-      },
-
-      {
-        name: "estoqueDisponivel",
-        label: "Quantidade em Estoque",
-        type: "integer",
         required: true,
       },
 

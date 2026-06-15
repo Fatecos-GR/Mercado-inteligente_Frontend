@@ -106,14 +106,31 @@ export async function realizarCadastro(
 }
 
 // ===============================
-// CRUD PRODUTOS
+// CRUD ESTOQUE
 // ===============================
 
-export async function excluirProduto(id) {
-  return request(`/produtos/${id}`, {
-    method: "DELETE",
+export async function buscarEstoques() {
+  return request(`/estoques`);
+}
+
+export async function buscarEstoquePorIdProduto(id) {
+  return request(`/estoques/produto/${id}`);
+}
+
+export async function ajustarEstoque(dados) {
+  return request("/estoques/ajustes", {
+    method: "POST",
+    body: JSON.stringify({
+      produtoId,
+      quantidade,
+      tipo,
+    }),
   });
 }
+
+// ===============================
+// CRUD PRODUTOS
+// ===============================
 
 export async function salvarProduto(dados) {
   return request("/produtos", {
@@ -122,12 +139,29 @@ export async function salvarProduto(dados) {
   });
 }
 
+export async function buscarProdutos() {
+  return request(`/produtos`);
+}
+
 export async function buscarProdutosPorNome(nome) {
   return request(`/produtos/search?nome=${nome}`);
 }
 
-export async function buscarProdutos() {
-  return request(`/produtos`);
+export async function buscarProdutoPorId(id) {
+  return request(`/produtos/${id}`);
+}
+
+export async function atualizarProduto(id, dados) {
+  return request(`/produtos/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "produto"),
+  });
+}
+
+export async function excluirProduto(id) {
+  return request(`/produtos/${id}`, {
+    method: "DELETE",
+  });
 }
 
 // ===============================
