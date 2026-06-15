@@ -27,13 +27,15 @@ export const entidades = {
         type: "text",
         required: true,
         readonly: true,
+        disabled: true,
       },
       {
         name: "quantidade_atual",
         label: "Quantidade Atual",
         type: "integer",
         required: true,
-        readOnly: true,
+        readonly: true,
+        disabled: true,
       },
 
       {
@@ -332,6 +334,92 @@ export const entidades = {
       },
 
       ...camposEndereco,
+    ],
+  },
+
+  // ======================================
+  // FUNCIONÁRIOS
+  // ======================================
+
+  funcionarios: {
+    tipo: "funcionarios",
+
+    titulo: "Funcionários",
+
+    subtitulo: "Gerencie os colaboradores cadastrados.",
+
+    singular: "Funcionário",
+
+    plural: "Funcionários",
+
+    rotaGestao: "/gestao.html?tipo=funcionarios",
+
+    rotaFormulario: "/form_admin.html?tipo=funcionarios",
+
+    endpoint: "/funcionarios",
+
+    placeholderBusca: "Buscar funcionário...",
+
+    textoBotaoAdicionar: "Novo Funcionário",
+
+    icone: "fa-solid fa-users",
+
+    cardLayout: "funcionario",
+
+    camposListagem: ["nome", "sobrenome", "email", "tipoFuncionario"],
+
+    camposFormulario: [
+      {
+        name: "nome",
+        label: "Nome",
+        type: "text",
+        required: true,
+      },
+
+      {
+        name: "sobrenome",
+        label: "Sobrenome",
+        type: "text",
+        required: true,
+      },
+
+      {
+        name: "telefone",
+        label: "Telefone",
+        type: "text",
+        required: true,
+      },
+
+      {
+        name: "email",
+        label: "E-mail",
+        type: "email",
+        required: true,
+      },
+
+      {
+        name: "tipoFuncionario",
+        label: "Cargo",
+        type: "select",
+        required: true,
+        opcoes: [
+          {
+            value: "ADMIN",
+            label: "Administrador",
+          },
+          {
+            value: "ESTOQUISTA",
+            label: "Estoquista",
+          },
+        ],
+      },
+
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+        required: false,
+      },
     ],
   },
 };

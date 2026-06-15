@@ -4,7 +4,7 @@
 
 import { realizarLogin } from "../services/api.js";
 
-import { salvarToken } from "../utils/localStorageUtils.js";
+import { salvarToken, salvarPerfil } from "../utils/localStorageUtils.js";
 
 import { tiposLogin } from "../config/authConfig.js";
 
@@ -102,6 +102,11 @@ async function fazerLogin(email, senha) {
   const resposta = await realizarLogin(email, senha);
 
   salvarToken(resposta.token);
+
+  // TEMPORÁRIO
+  const perfil = email.includes("admin") ? "ADMIN" : "ESTOQUISTA";
+
+  salvarPerfil(perfil);
 
   return resposta;
 }

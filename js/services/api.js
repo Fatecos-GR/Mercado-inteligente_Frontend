@@ -273,6 +273,42 @@ export async function excluirFornecedor(id) {
 }
 
 // ===============================
+// CRUD FUNCIONARIOS
+// ===============================
+
+export async function salvarFuncionario(dados) {
+  return request("/funcionarios", {
+    method: "POST",
+    body: criarMultipart(dados, "funcionario"),
+  });
+}
+
+export async function buscarFuncionarios() {
+  return request(`/funcionarios`);
+}
+
+export async function buscarFuncionariosPorNome(nome) {
+  return request(`/funcionarios/search?nome=${nome}`);
+}
+
+export async function buscarFuncionarioPorId(id) {
+  return request(`/funcionarios/${id}`);
+}
+
+export async function atualizarFuncionario(id, dados) {
+  return request(`/funcionarios/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "funcionario"),
+  });
+}
+
+export async function excluirFuncionario(id) {
+  return request(`/funcionarios/${id}`, {
+    method: "DELETE",
+  });
+}
+
+// ===============================
 // BUSCAR CEP
 // ===============================
 

@@ -2,11 +2,16 @@
 // IMPORTS
 // ======================================
 
-import { protegerRotaAdmin } from "../utils/authGuard.js";
+import { protegerRotaPerfil } from "../utils/authGuard.js";
 
 import { entidades } from "../config/entidades_admin.js";
 
 import { getEntityService } from "../services/adminEntityService.js";
+
+import {
+  abrirModalConfirmacao,
+  abrirModalResultado,
+} from "../utils/modalUtils.js";
 
 import {
   configurarBuscaCEP,
@@ -179,6 +184,8 @@ function obterDadosFormulario(entidade) {
 
     if (!elemento) return;
 
+    if (campo.readonly) return;
+
     if (campo.type === "file") {
       dados[campo.name] = elemento.files?.[0] || null;
       return;
@@ -207,6 +214,8 @@ function validarFormulario(entidade) {
     const elemento = document.getElementById(campo.name);
 
     if (!elemento) return;
+
+    if (campo.readonly) return;
 
     // FILE
     if (campo.type === "file") {
@@ -314,6 +323,8 @@ function configurarSubmit(entidade) {
 
       mostrarMensagemFormulario(mensagem, "success");
 
+      await abrirModalResultado(mensagem);
+
       setTimeout(() => {
         window.location.href = entidade.rotaGestao;
       }, 300);
@@ -338,18 +349,22 @@ function configurarExclusaoFormulario(entidade) {
   if (!btn) return;
 
   btn.addEventListener("click", async () => {
-    const confirmou = confirm("Deseja realmente excluir este registro?");
+    const confirmou = await abrirModalConfirmacao(
+      "Deseja realmente excluir este registro?",
+    );
 
     if (!confirmou) return;
 
     try {
       await excluirEntidadeFormulario(entidade, getIdRegistro());
 
+      await abrirModalResultado(`${entidade.singular} excluída com sucesso.`);
+
       window.location.href = entidade.rotaGestao;
     } catch (erro) {
       console.error(erro);
 
-      mostrarMensagemFormulario("Erro ao excluir registro.");
+      await abrirModalResultado("Erro ao excluir registro.");
     }
   });
 }
@@ -409,7 +424,7 @@ export async function iniciarFormularioAdmin() {
 
   if (!entidade) return;
 
-  if (!protegerRotaAdmin()) return;
+  if (!protegerRotaPerfil(["ADMIN", "ESTOQUISTA"])) return;
 
   configurarPagina(entidade);
 

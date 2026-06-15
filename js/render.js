@@ -252,6 +252,73 @@ export function renderAdminFornecedorCard(fornecedor) {
 }
 
 // ======================================
+// CARD DE FUNCIONÁRIO (ADMIN)
+// ======================================
+
+export function renderAdminFuncionarioCard(funcionario) {
+  const tipoFormatado =
+    funcionario.tipoFuncionario === "ADMIN" ? "Administrador" : "Estoquista";
+
+  const badgeClass =
+    funcionario.tipoFuncionario === "ADMIN" ? "admin" : "estoquista";
+
+  return `
+    <a
+      href="form_admin.html?tipo=funcionarios&id=${funcionario.id}"
+      class="employee-card"
+    >
+
+      <div class="employee-card-left">
+
+        <div class="employee-image">
+
+          ${
+            funcionario.imagem
+              ? `
+                <img
+                  src="${funcionario.imagem}"
+                  alt="${funcionario.nome}"
+                />
+              `
+              : `
+                <i class="fa-solid fa-user"></i>
+              `
+          }
+
+        </div>
+
+        <div class="employee-info">
+
+          <h3>
+            ${funcionario.nome}
+            ${funcionario.sobrenome ?? ""}
+          </h3>
+
+          <p>
+            ${funcionario.email}
+          </p>
+
+          <p>
+            ${funcionario.telefone || "Telefone não informado"}
+          </p>
+
+          <span class="employee-badge ${badgeClass}">
+            ${tipoFormatado}
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="employee-card-right">
+        <i class="fa-solid fa-pen"></i>
+      </div>
+
+    </a>
+  `;
+}
+
+// ======================================
 // RENDER INPUT DE FORMULÁRIO (ADMIN)
 // ======================================
 
@@ -268,6 +335,8 @@ function renderInputFormularioAdmin(campo) {
         id="${campo.name}"
         name="${campo.name}"
         ${campo.required ? "required" : ""}
+        ${campo.readonly ? "readonly" : ""}
+         ${campo.disabled ? "disabled" : ""}
       />
 
     </div>
@@ -460,6 +529,59 @@ export function renderFormularioEntidadeAdmin(entidade, modoEdicao = false) {
       `
            : ""
        }
+
+    </div>
+  `;
+}
+
+// ======================================
+// MODAL
+// ======================================
+export function renderModal(config, mensagem) {
+  return `
+    <div class="modal-overlay">
+
+      <div class="modal ${config.classe}">
+
+        <div class="modal-header">
+
+          <i class="${config.icone}"></i>
+
+          <h3>${config.titulo}</h3>
+
+        </div>
+
+        <div class="modal-body">
+
+          <p>${mensagem}</p>
+
+        </div>
+
+        <div class="modal-footer">
+
+          ${
+            config.possuiCancelamento
+              ? `
+              <button
+                id="modal-btn-cancelar"
+                class="btn-modal btn-modal-secondary"
+              >
+                ${config.textoBotaoCancelar}
+              </button>
+            `
+              : ""
+          }
+
+          <button
+            id="modal-btn-confirmar"
+            class="btn-modal btn-modal-primary"
+          >
+            ${config.textoBotaoConfirmar}
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
   `;

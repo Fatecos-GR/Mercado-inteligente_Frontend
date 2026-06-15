@@ -2,30 +2,13 @@
 // IMPORTS
 // ======================================
 
-import { protegerRotaAdmin } from "../utils/authGuard.js";
-
-import {
-  buscarProdutos,
-  buscarProdutosPorNome,
-  buscarMarcas,
-  buscarMarcasPorNome,
-  excluirMarca,
-  buscarCategorias,
-  buscarCategoriasPorNome,
-  buscarFornecedores,
-  buscarFornecedoresPorNome,
-} from "../services/api.js";
+import { protegerRotaPerfil } from "../utils/authGuard.js";
 
 import { entidades } from "../config/entidades_admin.js";
 
-import {
-  renderAdminProdutoCard,
-  renderAdminMarcaCard,
-  renderAdminCategoriaCard,
-  renderResultadoBuscaGestao,
-  renderAdminFornecedorCard,
-  renderSkeletonGestao,
-} from "../render.js";
+import { renderSkeletonGestao } from "../render.js";
+
+import { getEntityService } from "../services/adminEntityService.js";
 
 // ======================================
 // PEGAR PARÂMETRO DA URL E FUNCIONALIDADES DE URL
@@ -109,6 +92,7 @@ function configurarPagina(entidade) {
 // ======================================
 // RENDERIZAÇÃO DOS CARDS
 // ======================================
+
 async function renderCards(entidade) {
   const grid = document.getElementById("gestao-grid");
 
@@ -116,47 +100,17 @@ async function renderCards(entidade) {
 
   const termoBusca = getSearchTerm();
 
+  const service = getEntityService(entidade.tipo);
+
   let dados = [];
 
-  // PRODUTOS
-  if (entidade.tipo === "produtos") {
-    dados = termoBusca
-      ? await buscarProdutosPorNome(termoBusca)
-      : await buscarProdutos();
-
-    grid.innerHTML = dados.map(renderAdminProdutoCard).join("");
-    return;
+  if (termoBusca && service.buscarPorNome) {
+    dados = await service.buscarPorNome(termoBusca);
+  } else {
+    dados = await service.buscarTodos();
   }
 
-  // MARCAS
-  if (entidade.tipo === "marcas") {
-    dados = termoBusca
-      ? await buscarMarcasPorNome(termoBusca)
-      : await buscarMarcas();
-
-    grid.innerHTML = dados.map(renderAdminMarcaCard).join("");
-    return;
-  }
-
-  // CATEGORIAS
-  if (entidade.tipo === "categorias") {
-    dados = termoBusca
-      ? await buscarCategoriasPorNome(termoBusca)
-      : await buscarCategorias();
-
-    grid.innerHTML = dados.map(renderAdminCategoriaCard).join("");
-    return;
-  }
-
-  // FORNECEDORES
-  if (entidade.tipo === "fornecedores") {
-    dados = termoBusca
-      ? await buscarFornecedoresPorNome(termoBusca)
-      : await buscarFornecedores();
-
-    grid.innerHTML = dados.map(renderAdminFornecedorCard).join("");
-    return;
-  }
+  grid.innerHTML = dados.map(service.renderCard).join("");
 }
 
 // ======================================
@@ -190,7 +144,7 @@ export async function iniciarGestao() {
 
   if (!entidade) return;
 
-  if (!protegerRotaAdmin()) return;
+  if (!protegerRotaPerfil(["ADMIN", "ESTOQUISTA"])) return;
 
   configurarPagina(entidade);
 

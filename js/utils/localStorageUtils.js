@@ -15,3 +15,15 @@ export function logout() {
 
   window.location.href = "/login.html?tipo=admin";
 }
+
+export function salvarPerfil(perfil) {
+  localStorage.setItem("perfil", perfil);
+}
+
+export function obterPerfil() {
+  return localStorage.getItem("perfil");
+}
+
+export function removerPerfil() {
+  localStorage.removeItem("perfil");
+}
