@@ -29,6 +29,12 @@ export function aplicarMascaraMoeda(input) {
   });
 }
 
+export function formatarMoneyParaView(valor) {
+  if (valor === null || valor === undefined) return "";
+
+  return Number(valor).toFixed(2).replace(".", ",");
+}
+
 // ======================================
 // MÁSCARA INTEIRO
 // ======================================

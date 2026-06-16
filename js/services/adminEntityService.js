@@ -6,6 +6,7 @@ import {
   // ESTOQUE
   buscarEstoques,
   buscarEstoquePorIdProduto,
+  ajustarEstoque,
 
   // PRODUTOS
   buscarProdutos,
@@ -65,6 +66,10 @@ const entityServices = {
     buscarTodos: buscarEstoques,
 
     buscar: buscarEstoquePorIdProduto,
+
+    salvar: ajustarEstoque,
+
+    atualizar: ajustarEstoque,
   },
 
   produtos: {

@@ -29,6 +29,7 @@ import {
 import {
   aplicarMascaraMoeda,
   aplicarMascaraInteiro,
+  formatarMoneyParaView,
 } from "../utils/mascaras.js";
 
 import {
@@ -207,6 +208,14 @@ function obterDadosFormulario(entidade) {
     dados.endereco = montarEndereco(dados);
 
     removerCamposEndereco(dados);
+  }
+
+  if (entidade.tipo === "estoque") {
+    return {
+      produtoId: dados.produtoId,
+      quantidade: Number(dados.quantidade),
+      tipo: dados.tipoMovimentacao,
+    };
   }
 
   return dados;
@@ -419,6 +428,12 @@ function preencherFormulario(entidade, dados) {
     if (!elemento) return;
 
     if (campo.type === "file") {
+      return;
+    }
+
+    // MONEY (IMPORTANTE)
+    if (campo.type === "money") {
+      elemento.value = formatarMoneyParaView(dados[campo.name]);
       return;
     }
 

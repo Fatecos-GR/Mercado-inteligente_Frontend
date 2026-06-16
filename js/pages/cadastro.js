@@ -16,6 +16,8 @@ import {
   limparMensagemFormulario,
 } from "../utils/formUtils.js";
 
+import { abrirModalResultado } from "../utils/modalUtils.js";
+
 // ======================================
 // LOGIN
 // ======================================
@@ -156,6 +158,11 @@ function tratarErroCadastro(erro) {
     return;
   }
 
+  if (erro.status === 409) {
+    mostrarErro(email, "Este e-mail já está em uso.");
+    return;
+  }
+
   mostrarMensagemFormulario(erro.erro || "Erro ao realizar cadastro.");
 }
 
@@ -175,13 +182,9 @@ function configurarSubmit() {
     }
 
     const nome = document.getElementById("first-name").value.trim();
-
     const sobrenome = document.getElementById("second-name").value.trim();
-
     const email = document.getElementById("email").value.trim();
-
     const telefone = document.getElementById("phone").value.replace(/\D/g, "");
-
     const senha = document.getElementById("password").value.trim();
 
     try {
@@ -193,9 +196,11 @@ function configurarSubmit() {
         senha,
       );
 
-      console.log("TOKEN:", resposta.token);
+      await abrirModalResultado("Cadastro realizado com sucesso!");
 
-      setTimeout(() => {}, 1500);
+      window.location.href = "/index.html";
+
+      window.location.href = "/index.html";
     } catch (erro) {
       console.log(erro);
       tratarErroCadastro(erro);

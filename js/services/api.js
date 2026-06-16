@@ -117,14 +117,11 @@ export async function buscarEstoquePorIdProduto(id) {
   return request(`/estoques/produto/${id}`);
 }
 
+// api.js (adicionar correto)
 export async function ajustarEstoque(dados) {
   return request("/estoques/ajustes", {
     method: "POST",
-    body: JSON.stringify({
-      produtoId,
-      quantidade,
-      tipo,
-    }),
+    body: JSON.stringify(dados),
   });
 }
 
