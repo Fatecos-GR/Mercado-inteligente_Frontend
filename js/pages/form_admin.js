@@ -16,6 +16,8 @@ import {
 import {
   configurarBuscaCEP,
   preencherEndereco,
+  montarEndereco,
+  removerCamposEndereco,
 } from "../utils/enderecoUtils.js";
 
 import {
@@ -34,6 +36,7 @@ import {
   mostrarErro,
   mostrarMensagemFormulario,
   limparMensagemFormulario,
+  preencherSelects,
 } from "../utils/formUtils.js";
 
 import {
@@ -191,11 +194,19 @@ function obterDadosFormulario(entidade) {
       return;
     }
 
+    // MONEY
+    if (campo.type === "money") {
+      dados[campo.name] = elemento.value.replace(",", ".");
+      return;
+    }
+
     dados[campo.name] = elemento.value;
   });
 
-  if (entidade.tipo === "produtos" && !estaEditando()) {
-    dados.estoqueDisponivel = 0;
+  if (entidade.tipo === "fornecedores") {
+    dados.endereco = montarEndereco(dados);
+
+    removerCamposEndereco(dados);
   }
 
   return dados;
@@ -385,8 +396,16 @@ async function carregarDadosEdicao(entidade) {
 
   const registro = await buscarRegistro(entidade, id);
 
+  // 1. primeiro selects precisam existir
+  await popularSelectsFormulario(entidade);
+
+  // 2. depois preenche inputs normais
   preencherFormulario(entidade, registro);
 
+  // 3. depois corrige selects com valor
+  preencherSelects(entidade, registro);
+
+  // 4. imagem
   preencherPreviewImagem(entidade, registro);
 }
 

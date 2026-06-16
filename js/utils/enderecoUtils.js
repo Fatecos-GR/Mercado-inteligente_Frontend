@@ -149,3 +149,33 @@ function bloquearCamposEnderecoModoEdicao() {
     }
   });
 }
+
+// ======================================
+// MONTAR OBJETO ENDEREÇO
+// ======================================
+
+export function montarEndereco(dados) {
+  return {
+    cep: dados.cep,
+    logradouro: dados.logradouro,
+    numero: dados.numero,
+    complemento: dados.complemento,
+    bairro: dados.bairro,
+    cidade: dados.cidade,
+    estado: dados.estado,
+  };
+}
+
+// ======================================
+// REMOVER CAMPOS SOLTOS DO OBJETO
+// ======================================
+
+export function removerCamposEndereco(dados) {
+  delete dados.cep;
+  delete dados.logradouro;
+  delete dados.numero;
+  delete dados.complemento;
+  delete dados.bairro;
+  delete dados.cidade;
+  delete dados.estado;
+}

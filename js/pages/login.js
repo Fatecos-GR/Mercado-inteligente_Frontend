@@ -103,10 +103,7 @@ async function fazerLogin(email, senha) {
 
   salvarToken(resposta.token);
 
-  // TEMPORÁRIO
-  const perfil = email.includes("admin") ? "ADMIN" : "ESTOQUISTA";
-
-  salvarPerfil(perfil);
+  salvarPerfil(resposta.usuario.perfil?.toUpperCase());
 
   return resposta;
 }

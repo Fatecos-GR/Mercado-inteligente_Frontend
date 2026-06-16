@@ -13,6 +13,8 @@ export function obterToken() {
 export function logout() {
   localStorage.removeItem("token");
 
+  removerPerfil();
+
   window.location.href = "/login.html?tipo=admin";
 }
 

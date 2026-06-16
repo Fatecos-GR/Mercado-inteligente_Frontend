@@ -99,13 +99,7 @@ export const entidades = {
 
     cardLayout: "produto",
 
-    camposListagem: [
-      "nome",
-      "categoriaNome",
-      "marcaNome",
-      "preco",
-      "estoqueDisponivel",
-    ],
+    camposListagem: ["nome", "categoriaNome", "marcaNome", "preco"],
 
     // ======================================
     // FORMULÁRIO
