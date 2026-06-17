@@ -4,7 +4,11 @@
 
 import { realizarLogin } from "../services/api.js";
 
-import { salvarToken } from "../utils/localStorageUtils.js";
+import {
+  salvarToken,
+  salvarPerfil,
+  salvarNome,
+} from "../utils/localStorageUtils.js";
 
 import { tiposLogin } from "../config/authConfig.js";
 
@@ -102,6 +106,10 @@ async function fazerLogin(email, senha) {
   const resposta = await realizarLogin(email, senha);
 
   salvarToken(resposta.token);
+
+  salvarPerfil(resposta.usuario.perfil?.toUpperCase());
+
+  salvarNome(resposta.usuario.nome);
 
   return resposta;
 }

@@ -567,3 +567,21 @@ select:disabled {
   cursor: not-allowed;
   opacity: 1;
 }
+
+.admin-form-group .input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-form-group .input-wrapper input {
+  width: 100%;
+}
+
+.admin-form-group .btn-toggle-password {
+  position: absolute;
+  right: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}

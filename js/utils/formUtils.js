@@ -94,3 +94,23 @@ export function limparMensagemFormulario() {
 
   elemento.classList.remove("show", "error", "success");
 }
+
+export function preencherSelects(entidade, dados) {
+  const selects = entidade.camposFormulario.filter(
+    (campo) => campo.type === "select",
+  );
+
+  selects.forEach((campo) => {
+    const select = document.getElementById(campo.name);
+
+    if (!select) return;
+
+    const valor = dados[campo.name];
+
+    if (!valor) return;
+
+    select.value = String(valor);
+
+    select.dispatchEvent(new Event("change"));
+  });
+}

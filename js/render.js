@@ -1,3 +1,5 @@
+import { possuiPerfil } from "./utils/authGuard.js";
+
 // ======================================
 // CARD DE PRODUTO (ADMIN)
 // ======================================
@@ -8,65 +10,66 @@ export function renderAdminProdutoCard(produto) {
 
   const warningClass = produto.estoqueDisponivel <= 10 ? "warning" : "";
 
+  const podeEditar = possuiPerfil(["ADMIN"]);
+
   return `
-    <article class="product-card"> 
+    <article class="brand-card product-card">
 
-      <div class="product-card-top">
+      <div class="brand-card-left">
 
-        <div class="product-icon">
+        <div class="brand-image">
           <i class="fa-solid fa-box"></i>
         </div>
 
-        <div class="product-status ${warningClass}">
-          ${status}
-        </div>
+        <div class="brand-info">
 
-      </div>
+          <h3>${produto.nome}</h3>
 
-      <div class="product-info">
+          <p>
+            Categoria: ${produto.categoriaNome}
+          </p>
 
-        <h3>${produto.nome}</h3>
+          <p>
+            Marca: ${produto.marcaNome}
+          </p>
 
-        <span class="product-category">
-          Categoria: ${produto.categoriaNome}
-        </span>
+          <p>
+            Preço: R$ ${produto.preco}
+          </p>
 
-        <span class="product-brand">
-          Marca: ${produto.marcaNome}
-        </span>
+          <p>
+            Estoque Atual:
+            ${produto.estoqueDisponivel}
+          </p>
 
-      </div>
+          <span class="product-status ${warningClass}">
+            ${status}
+          </span>
 
-      <div class="product-details">
-
-        <div class="detail-item">
-          <span>Preço</span>
-
-          <strong>
-            R$ ${produto.preco}
-          </strong>
-        </div>
-
-        <div class="detail-item">
-          <span>Quantidade</span>
-
-          <strong>
-            ${produto.estoqueDisponivel} un.
-          </strong>
         </div>
 
       </div>
 
       <div class="product-actions">
 
-        <a href="#" class="btn-edit">
-          <i class="fa-solid fa-pen"></i>
-          Editar
-        </a>
+        ${
+          podeEditar
+            ? `
+          <a
+            href="form_admin.html?tipo=produtos&id=${produto.id}"
+            class="btn-card-edit"
+          >
+            <i class="fa-solid fa-pen"></i>
+          </a>
+        `
+            : ""
+        }
 
-        <a href="#" class="btn-delete">
-          <i class="fa-solid fa-trash"></i>
-          Excluir
+        <a
+          href="form_admin.html?tipo=estoque&id=${produto.id}"
+          class="btn-card-stock"
+        >
+          <i class="fa-solid fa-boxes-stacked"></i>
         </a>
 
       </div>
@@ -259,6 +262,122 @@ export function renderAdminFornecedorCard(fornecedor) {
 }
 
 // ======================================
+// CARD DE FUNCIONÁRIO (ADMIN)
+// ======================================
+
+export function renderAdminFuncionarioCard(funcionario) {
+  const tipoFormatado =
+    funcionario.tipoFuncionario === "ADMIN" ? "Administrador" : "Estoquista";
+
+  const badgeClass =
+    funcionario.tipoFuncionario === "ADMIN" ? "admin" : "estoquista";
+
+  return `
+    <a
+      href="form_admin.html?tipo=funcionarios&id=${funcionario.id}"
+      class="employee-card"
+    >
+
+      <div class="employee-card-left">
+
+        <div class="employee-image">
+
+          ${
+            funcionario.imagem
+              ? `
+                <img
+                  src="${funcionario.imagem}"
+                  alt="${funcionario.nome}"
+                />
+              `
+              : `
+                <i class="fa-solid fa-user"></i>
+              `
+          }
+
+        </div>
+
+        <div class="employee-info">
+
+          <h3>
+            ${funcionario.nome}
+            ${funcionario.sobrenome ?? ""}
+          </h3>
+
+          <p>
+            ${funcionario.email}
+          </p>
+
+          <p>
+            ${funcionario.telefone || "Telefone não informado"}
+          </p>
+
+          <span class="employee-badge ${badgeClass}">
+            ${tipoFormatado}
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="employee-card-right">
+        <i class="fa-solid fa-pen"></i>
+      </div>
+
+    </a>
+  `;
+}
+
+// ======================================
+// CARD DE USUÁRIO (ADMIN)
+// ======================================
+export function renderAdminUsuarioCard(usuario) {
+  return `
+    <div class="employee-card">
+
+      <div class="employee-card-left">
+
+        <div class="employee-image">
+
+          ${
+            usuario.imagem
+              ? `
+                <img
+                  src="${usuario.imagem}"
+                  alt="${usuario.nome}"
+                />
+              `
+              : `
+                <i class="fa-solid fa-user"></i>
+              `
+          }
+
+        </div>
+
+        <div class="employee-info">
+
+          <h3>
+            ${usuario.nome}
+            ${usuario.sobrenome ?? ""}
+          </h3>
+
+          <p>
+            ${usuario.email}
+          </p>
+
+          <p>
+            ${usuario.telefone || "Telefone não informado"}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
+
+// ======================================
 // RENDER INPUT DE FORMULÁRIO (ADMIN)
 // ======================================
 
@@ -275,7 +394,42 @@ function renderInputFormularioAdmin(campo) {
         id="${campo.name}"
         name="${campo.name}"
         ${campo.required ? "required" : ""}
+        ${campo.readonly ? "readonly" : ""}
+         ${campo.disabled ? "disabled" : ""}
       />
+
+    </div>
+  `;
+}
+
+// ======================================
+// RENDER PASSWORD DE FORMULÁRIO (ADMIN)
+// ======================================
+function renderPasswordFormularioAdmin(campo) {
+  return `
+    <div class="admin-form-group">
+
+      <label for="${campo.name}">
+        ${campo.label}
+      </label>
+
+      <div class="input-wrapper">
+
+        <input
+          type="password"
+          id="${campo.name}"
+          name="${campo.name}"
+          ${campo.required ? "required" : ""}
+        />
+
+        <button
+          type="button"
+          class="btn-toggle-password"
+        >
+          <i class="fas fa-eye"></i>
+        </button>
+
+      </div>
 
     </div>
   `;
@@ -398,6 +552,11 @@ export function renderCampoFormularioAdmin(campo) {
     return renderTextareaFormularioAdmin(campo);
   }
 
+  // PASSWORD
+  if (campo.type === "password") {
+    return renderPasswordFormularioAdmin(campo);
+  }
+
   // SELECT
   if (campo.type === "select") {
     return renderSelectFormularioAdmin(campo);
@@ -467,6 +626,59 @@ export function renderFormularioEntidadeAdmin(entidade, modoEdicao = false) {
       `
            : ""
        }
+
+    </div>
+  `;
+}
+
+// ======================================
+// MODAL
+// ======================================
+export function renderModal(config, mensagem) {
+  return `
+    <div class="modal-overlay">
+
+      <div class="modal ${config.classe}">
+
+        <div class="modal-header">
+
+          <i class="${config.icone}"></i>
+
+          <h3>${config.titulo}</h3>
+
+        </div>
+
+        <div class="modal-body">
+
+          <p>${mensagem}</p>
+
+        </div>
+
+        <div class="modal-footer">
+
+          ${
+            config.possuiCancelamento
+              ? `
+              <button
+                id="modal-btn-cancelar"
+                class="btn-modal btn-modal-secondary"
+              >
+                ${config.textoBotaoCancelar}
+              </button>
+            `
+              : ""
+          }
+
+          <button
+            id="modal-btn-confirmar"
+            class="btn-modal btn-modal-primary"
+          >
+            ${config.textoBotaoConfirmar}
+          </button>
+
+        </div>
+
+      </div>
 
     </div>
   `;
