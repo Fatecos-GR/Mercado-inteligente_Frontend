@@ -22,9 +22,14 @@
     <!-- Botões de Ação -->
     <div id="header-actions">
       <!-- Admin -->
-      <a href="admin_dashboard.html" class="action-btn-vertical">
+      <a href="login.html?tipo=admin" class="action-btn-vertical">
         <i class="fa-solid fa-lock"></i>
         <span>Admin</span>
+      </a>
+
+      <a href="login.html?tipo=cliente" class="action-btn-vertical">
+        <i class="fa-solid fa-lock"></i>
+        <span>Cliente(Teste)</span>
       </a>
 
       <!-- Perfil -->
@@ -48,45 +53,10 @@
 
   <!-- LINHA INFERIOR (Departamentos) -->
   <div id="header-bottom">
-    <div class="menu-departamentos-container">
-      <button class="btn-departamentos">
-        <i class="fa-solid fa-bars"></i>
-        Comprar por departamento
-      </button>
-
-      <!-- Menu Suspenso -->
-      <div id="dropdown-departamentos" class="dropdown-menu">
-        <ul class="lista-departamentos">
-          <li>
-            <a href="#"><i class="fa-solid fa-apple-whole"></i> Hortifruti</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-cow"></i> Açougue e Peixaria</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-bread-slice"></i> Padaria</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-bottle-water"></i> Bebidas</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-soap"></i> Limpeza</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-pump-soap"></i> Higiene Pessoal</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-paw"></i> Pet Shop</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-snowflake"></i> Congelados</a>
-          </li>
-          <li>
-            <a href="#"><i class="fa-solid fa-basket-shopping"></i> Mercearia</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <button class="btn-departamentos">
+      <i class="fa-solid fa-bars"></i>
+      Comprar por departamento
+    </button>
 
     <nav class="nav-categorias">
       <a href="#ofertas-melior">Ofertas Melior</a>

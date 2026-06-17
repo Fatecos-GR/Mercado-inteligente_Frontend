@@ -1,16 +1,14 @@
 <div id="admin-sidebar">
   <div class="admin-sidebar-logo">
-    <h1>MELIOR</h1>
+    <img src="img/logo_melior.jpeg" alt="Melior Logo" class="admin-brand-img" />
   </div>
 
   <div class="admin-sidebar-links">
-    <!-- DASHBOARD -->
     <a href="/dashboard.html">
       <i class="fa-solid fa-chart-line"></i>
       <span>Dashboard</span>
     </a>
 
-    <!-- GESTÃO -->
     <div class="admin-sidebar-group">
       <div class="admin-sidebar-group-title">
         <i class="fa-solid fa-boxes-stacked"></i>
@@ -18,38 +16,81 @@
       </div>
 
       <div class="admin-sidebar-submenu">
-        <a href="gestao.html?tipo=produtos" class="admin-sidebar-subitem">
+        <a
+          href="gestao.html?tipo=produtos"
+          class="admin-sidebar-subitem"
+          id="menu-produtos"
+        >
           <i class="fa-solid fa-box"></i>
           <span>Produtos</span>
         </a>
 
-        <a href="gestao.html?tipo=marcas" class="admin-sidebar-subitem">
+        <a
+          href="gestao.html?tipo=marcas"
+          class="admin-sidebar-subitem"
+          id="menu-marcas"
+        >
           <i class="fa-solid fa-tags"></i>
           <span>Marcas</span>
         </a>
 
-        <a href="gestao.html?tipo=categorias" class="admin-sidebar-subitem">
+        <a
+          href="gestao.html?tipo=categorias"
+          class="admin-sidebar-subitem"
+          id="menu-categorias"
+        >
           <i class="fa-solid fa-layer-group"></i>
           <span>Categorias</span>
         </a>
 
-        <a href="gestao.html?tipo=fornecedores" class="admin-sidebar-subitem">
+        <a
+          href="gestao.html?tipo=fornecedores"
+          class="admin-sidebar-subitem"
+          id="menu-fornecedores"
+        >
           <i class="fa-solid fa-truck-field"></i>
           <span>Fornecedores</span>
+        </a>
+
+        <a
+          href="gestao.html?tipo=funcionarios"
+          class="admin-sidebar-subitem"
+          id="menu-funcionarios"
+        >
+          <i class="fas fa-briefcase"></i>
+          <span>Funcionários</span>
+        </a>
+
+        <a
+          href="gestao.html?tipo=usuarios"
+          class="admin-sidebar-subitem"
+          id="menu-clientes"
+        >
+          <i class="fas fa-users"></i>
+          <span>Clientes</span>
         </a>
       </div>
     </div>
 
-    <!-- PEDIDOS -->
-    <a href="/pedidos-admin.html">
+    <a href="/pedidos-admin.html" id="menu-pedidos">
       <i class="fa-solid fa-cart-shopping"></i>
       <span>Pedidos</span>
     </a>
 
-    <!-- USUÁRIOS -->
-    <a href="/usuarios.html">
+    <!-- <a
+      href="funcionarios.html"
+      class="sidebar-link-funcionarios"
+      id="menu-usuarios"
+    >
       <i class="fa-solid fa-users"></i>
       <span>Usuários</span>
-    </a>
+    </a> -->
+
+    <div class="admin-sidebar-footer">
+      <a href="/configuracoes.html" id="menu-configuracoes">
+        <i class="fa-solid fa-gear"></i>
+        <span>Configurações</span>
+      </a>
+    </div>
   </div>
 </div>

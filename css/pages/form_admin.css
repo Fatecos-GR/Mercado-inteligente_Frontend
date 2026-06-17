@@ -10,13 +10,16 @@
    LAYOUT PRINCIPAL
 ========================================= */
 
-#adicionar-produto-layout {
+#formulario-layout {
   display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
-/* Área da direita */
+/* =========================================
+   ÁREA DIREITA
+========================================= */
+
 #right-layout {
   flex-grow: 1;
 
@@ -53,6 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+
   gap: 40px;
 
   margin-bottom: 25px;
@@ -64,7 +68,9 @@
 
 .admin-page-header h2 {
   margin: 0;
+
   font-size: 1.6rem;
+
   color: #1a2421;
 }
 
@@ -83,6 +89,7 @@
   border-radius: 10px;
 
   background-color: #f1f1eb;
+
   color: var(--verde-escuro);
 
   text-decoration: none;
@@ -92,15 +99,20 @@
     transform 0.2s ease;
 }
 
+/* HOVER */
+
 .admin-btn-back:hover {
   background-color: #e4e6de;
 
   transform: translateX(-2px);
 }
 
+/* ÍCONE */
+
 .admin-btn-back i {
   font-size: 14px;
 }
+
 /* =========================================
    CARD DO FORMULÁRIO
 ========================================= */
@@ -125,6 +137,7 @@
 .admin-main-form {
   display: flex;
   flex-direction: column;
+
   gap: 20px;
 }
 
@@ -135,10 +148,13 @@
 .admin-form-group {
   display: flex;
   flex-direction: column;
+
   gap: 8px;
 }
 
-/* Labels */
+/* =========================================
+   LABELS
+========================================= */
 
 .admin-form-group label {
   font-size: 0.9rem;
@@ -166,11 +182,17 @@
 
   outline: none;
 
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
+/* FOCUS */
+
 .admin-form-group input:focus {
-  border-color: #2d4a3e;
+  border-color: var(--verde-primario);
+
+  box-shadow: 0 0 0 4px rgba(90, 125, 101, 0.15);
 }
 
 /* =========================================
@@ -184,6 +206,7 @@
   padding-right: 42px;
 
   border-radius: 10px;
+
   border: 1px solid rgba(0, 0, 0, 0.08);
 
   background-color: var(--branco);
@@ -193,6 +216,7 @@
   font-family: inherit;
 
   outline: none;
+
   cursor: pointer;
 
   transition:
@@ -204,7 +228,6 @@
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  /* seta customizada */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%233d5a44' viewBox='0 0 256 256'%3E%3Cpath d='M208.49 88.49a12 12 0 0 0-17 0L128 151l-63.51-62.51a12 12 0 0 0-17 17l72 72a12 12 0 0 0 17 0l72-72a12 12 0 0 0 0-17Z'%3E%3C/path%3E%3C/svg%3E");
 
   background-repeat: no-repeat;
@@ -212,13 +235,13 @@
   background-size: 16px;
 }
 
-/* Hover */
+/* HOVER */
 
 .admin-form-group select:hover {
   border-color: var(--verde-primario);
 }
 
-/* Focus */
+/* FOCUS */
 
 .admin-form-group select:focus {
   border-color: var(--verde-primario);
@@ -226,14 +249,15 @@
   box-shadow: 0 0 0 4px rgba(90, 125, 101, 0.15);
 }
 
-/* Options */
+/* OPTION */
 
 .admin-form-group select option {
   background-color: var(--branco);
+
   color: var(--cinza-escuro);
 }
 
-/* Placeholder */
+/* PLACEHOLDER */
 
 .admin-form-group select option[value=""] {
   color: #777;
@@ -249,9 +273,10 @@
 
   padding: 14px;
 
-  resize: vertical;
+  resize: none;
 
   border-radius: 10px;
+
   border: 1px solid rgba(0, 0, 0, 0.08);
 
   background-color: var(--branco);
@@ -269,13 +294,13 @@
     background-color 0.2s ease;
 }
 
-/* Hover */
+/* HOVER */
 
 .admin-form-group textarea:hover {
   border-color: var(--verde-primario);
 }
 
-/* Focus */
+/* FOCUS */
 
 .admin-form-group textarea:focus {
   border-color: var(--verde-primario);
@@ -283,7 +308,7 @@
   box-shadow: 0 0 0 4px rgba(90, 125, 101, 0.15);
 }
 
-/* Placeholder */
+/* PLACEHOLDER */
 
 .admin-form-group textarea::placeholder {
   color: #8a8a8a;
@@ -295,10 +320,13 @@
 
 .admin-form-row {
   display: flex;
+
   gap: 20px;
 
   width: 100%;
 }
+
+/* CAMPOS DA LINHA */
 
 .admin-form-row .admin-form-group {
   flex: 1;
@@ -309,7 +337,54 @@
 ========================================= */
 
 .admin-form-actions {
+  display: flex;
   margin-top: 10px;
+
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* =========================================
+   BOTÃO DE EXCLUIR
+========================================= */
+
+.admin-btn-delete {
+  padding: 0 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 30px;
+  width: 60%;
+
+  gap: 8px;
+
+  border: none;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  background-color: rgba(139, 90, 43, 0.12);
+
+  color: var(--marrom-madeira);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.admin-btn-delete:hover {
+  background-color: rgba(139, 90, 43, 0.2);
+
+  transform: translateY(-1px);
+}
+
+.admin-btn-delete:active {
+  transform: translateY(0);
 }
 
 /* =========================================
@@ -334,9 +409,179 @@
 
   opacity: 0.9;
 
-  transition: opacity 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
+
+/* HOVER */
 
 .admin-btn-submit:hover {
   opacity: 1;
+
+  transform: translateY(-1px);
+}
+
+/* Erros */
+
+.admin-form-group.error input,
+.admin-form-group.error textarea,
+.admin-form-group.error select {
+  border-color: #dc2626;
+}
+
+.admin-form-group.error input:focus,
+.admin-form-group.error textarea:focus,
+.admin-form-group.error select:focus {
+  border-color: #dc2626;
+
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.15);
+}
+
+.field-error {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 0.85rem;
+
+  color: #dc2626;
+}
+
+.admin-form-group.error label {
+  color: #dc2626;
+}
+
+/* =========================================
+   UPLOAD CUSTOMIZADO
+========================================= */
+
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 14px;
+
+  border: 2px dashed var(--verde-primario);
+
+  border-radius: 12px;
+
+  background: rgba(90, 125, 101, 0.05);
+
+  color: var(--verde-escuro);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.custom-file-upload:hover {
+  background: rgba(90, 125, 101, 0.12);
+
+  transform: translateY(-1px);
+}
+
+.custom-file-upload i {
+  font-size: 18px;
+}
+
+/* =========================================
+   PREVIEW
+========================================= */
+
+.image-preview-container {
+  margin-top: 15px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.image-preview {
+  width: 320px;
+  height: 320px;
+
+  object-fit: cover;
+
+  border-radius: 16px;
+
+  border: 2px solid rgba(90, 125, 101, 0.15);
+
+  background: white;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================
+   REMOVER IMAGEM
+========================================= */
+
+.btn-remove-image {
+  border: none;
+
+  padding: 10px 16px;
+
+  border-radius: 10px;
+
+  background: #dc2626;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn-remove-image:hover {
+  transform: translateY(-1px);
+
+  opacity: 0.9;
+}
+
+.admin-form-section {
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.admin-form-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--verde-escuro);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.admin-form-group .input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.admin-form-group .input-wrapper input {
+  width: 100%;
+}
+
+.admin-form-group .btn-toggle-password {
+  position: absolute;
+  right: 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
 }

@@ -6,8 +6,6 @@
 
     <title>Gestão de Funcionários | Admin Melior</title>
 
-    <link rel="shortcut icon" href="img/placeholder.png" type="image/x-icon" />
-
     <link rel="stylesheet" href="css/pages/funcionarios.css" />
 
     <script type="module" src="js/main.js" defer></script>
@@ -23,7 +21,9 @@
           <div class="admin-layout-content">
             <div class="admin-content-heading">
               <h2>Funcionários Cadastrados</h2>
-              <a href="#" class="admin-btn-add">➕ Novo Funcionário</a>
+              <a href="add_funcionario.html" class="admin-btn-add">
+                <i class="fa-solid fa-user-plus"></i> Novo Funcionário
+              </a>
             </div>
 
             <div class="admin-table-wrapper">
@@ -35,13 +35,13 @@
                     <th>E-mail</th>
                     <th>Cargo / Função</th>
                     <th>Acesso</th>
-                    <th>Ações</th>
+                    <th style="text-align: center">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>01</td>
-                    <td>Marcos Oliveira</td>
+                    <td><strong>Marcos Oliveira</strong></td>
                     <td>marcos.gerencia@melior.com</td>
                     <td>Gerente Geral</td>
                     <td>
@@ -49,27 +49,43 @@
                         >Administrador</span
                       >
                     </td>
-                    <td>
-                      <a href="#" class="admin-btn-action btn-edit">Editar</a>
-                      <a href="#" class="admin-btn-action btn-delete"
-                        >Remover</a
-                      >
+                    <td style="text-align: center">
+                      <a
+                        href="#"
+                        class="admin-btn-action btn-edit"
+                        title="Editar"
+                        ><i class="fa-solid fa-pen"></i
+                      ></a>
+                      <a
+                        href="#"
+                        class="admin-btn-action btn-delete"
+                        title="Remover"
+                        ><i class="fa-solid fa-trash"></i
+                      ></a>
                     </td>
                   </tr>
 
                   <tr>
                     <td>02</td>
-                    <td>Bruna Lima</td>
+                    <td><strong>Bruna Lima</strong></td>
                     <td>bruna.caixa@melior.com</td>
                     <td>Operadora de Caixa</td>
                     <td>
                       <span class="access-badge access-operator">Operador</span>
                     </td>
-                    <td>
-                      <a href="#" class="admin-btn-action btn-edit">Editar</a>
-                      <a href="#" class="admin-btn-action btn-delete"
-                        >Remover</a
-                      >
+                    <td style="text-align: center">
+                      <a
+                        href="#"
+                        class="admin-btn-action btn-edit"
+                        title="Editar"
+                        ><i class="fa-solid fa-pen"></i
+                      ></a>
+                      <a
+                        href="#"
+                        class="admin-btn-action btn-delete"
+                        title="Remover"
+                        ><i class="fa-solid fa-trash"></i
+                      ></a>
                     </td>
                   </tr>
                 </tbody>

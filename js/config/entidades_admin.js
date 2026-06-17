@@ -1,14 +1,76 @@
 // ======================================
+// IMPORTS
+// ======================================
+
+import { estaEditando } from "../utils/formContext.js";
+import { camposEndereco } from "./camposEndereco.js";
+
+// ======================================
 // CONFIGURAÇÃO DAS ENTIDADES DO SISTEMA
 // ======================================
 
 export const entidades = {
+  // ======================================
+  // ESTOQUE
+  // ======================================
+  estoque: {
+    tipo: "estoque",
+
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
+
+    singular: "Estoque",
+
+    titulo: "Movimentação de Estoque",
+
+    rotaGestao: "gestao.html?tipo=produtos",
+
+    rotaFormulario: "/form_admin.html?tipo=estoque",
+
+    camposFormulario: [
+      {
+        name: "nome",
+        label: "Nome do Produto",
+        type: "text",
+        required: true,
+        readonly: true,
+        disabled: true,
+      },
+      {
+        name: "quantidade_atual",
+        label: "Quantidade Atual",
+        type: "integer",
+        required: true,
+        readonly: true,
+        disabled: true,
+      },
+
+      {
+        name: "quantidade",
+        label: "Quantidade",
+        type: "integer",
+        required: true,
+      },
+
+      {
+        name: "tipoMovimentacao",
+        label: "Tipo da Movimentação",
+        type: "select",
+        required: true,
+      },
+    ],
+  },
+
+  // ======================================
+  // PRODUTOS
+  // ======================================
   produtos: {
     // ======================================
     // INFORMAÇÕES GERAIS
     // ======================================
 
     tipo: "produtos",
+
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
 
     titulo: "Produtos",
 
@@ -24,7 +86,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=produtos",
 
-    rotaFormulario: "/formulario.html?tipo=produtos",
+    rotaFormulario: "/form_admin.html?tipo=produtos",
 
     // ======================================
     // API
@@ -48,13 +110,7 @@ export const entidades = {
 
     cardLayout: "produto",
 
-    camposListagem: [
-      "nome",
-      "categoriaNome",
-      "marcaNome",
-      "preco",
-      "estoqueDisponivel",
-    ],
+    camposListagem: ["nome", "categoriaNome", "marcaNome", "preco"],
 
     // ======================================
     // FORMULÁRIO
@@ -77,15 +133,8 @@ export const entidades = {
 
       {
         name: "preco",
-        label: "Preço",
-        type: "number",
-        required: true,
-      },
-
-      {
-        name: "estoqueDisponivel",
-        label: "Quantidade em Estoque",
-        type: "number",
+        label: "Preço em R$",
+        type: "money",
         required: true,
       },
 
@@ -108,7 +157,6 @@ export const entidades = {
         label: "Marca",
         type: "select",
         required: true,
-
         entidadeRelacionada: "marcas",
       },
 
@@ -139,6 +187,8 @@ export const entidades = {
   marcas: {
     tipo: "marcas",
 
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
+
     titulo: "Marcas",
 
     subtitulo: "Gerencie as marcas cadastradas.",
@@ -149,7 +199,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=marcas",
 
-    rotaFormulario: "/formulario.html?tipo=marcas",
+    rotaFormulario: "/form_admin.html?tipo=marcas",
 
     endpoint: "/marcas",
 
@@ -170,6 +220,19 @@ export const entidades = {
         type: "text",
         required: true,
       },
+
+      {
+        name: "descricao",
+        label: "Descrição",
+        type: "textarea",
+        required: true,
+      },
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+        required: false,
+      },
     ],
   },
 
@@ -179,6 +242,8 @@ export const entidades = {
 
   categorias: {
     tipo: "categorias",
+
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
 
     titulo: "Categorias",
 
@@ -190,7 +255,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=categorias",
 
-    rotaFormulario: "/formulario.html?tipo=categorias",
+    rotaFormulario: "/form_admin.html?tipo=categorias",
 
     endpoint: "/categorias",
 
@@ -211,6 +276,19 @@ export const entidades = {
         type: "text",
         required: true,
       },
+
+      {
+        name: "descricao",
+        label: "Descrição",
+        type: "textarea",
+        required: true,
+      },
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+        required: false,
+      },
     ],
   },
 
@@ -220,6 +298,8 @@ export const entidades = {
 
   fornecedores: {
     tipo: "fornecedores",
+
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
 
     titulo: "Fornecedores",
 
@@ -231,7 +311,7 @@ export const entidades = {
 
     rotaGestao: "/gestao.html?tipo=fornecedores",
 
-    rotaFormulario: "/formulario.html?tipo=fornecedores",
+    rotaFormulario: "/form_admin.html?tipo=fornecedores",
 
     endpoint: "/fornecedores",
 
@@ -248,24 +328,153 @@ export const entidades = {
     camposFormulario: [
       {
         name: "nome",
-        label: "Nome do Fornecedor",
+        label: "Nome",
         type: "text",
         required: true,
       },
 
       {
-        name: "telefone",
-        label: "Telefone",
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+      },
+
+      {
+        type: "section",
+        title: "Endereço",
+      },
+
+      ...camposEndereco,
+    ],
+  },
+
+  // ======================================
+  // FUNCIONÁRIOS
+  // ======================================
+
+  funcionarios: {
+    tipo: "funcionarios",
+
+    perfisPermitidos: ["ADMIN"],
+
+    titulo: "Funcionários",
+
+    subtitulo: "Gerencie os colaboradores cadastrados.",
+
+    singular: "Funcionário",
+
+    plural: "Funcionários",
+
+    rotaGestao: "/gestao.html?tipo=funcionarios",
+
+    rotaFormulario: "/form_admin.html?tipo=funcionarios",
+
+    endpoint: "/funcionarios",
+
+    placeholderBusca: "Buscar funcionário...",
+
+    textoBotaoAdicionar: "Novo Funcionário",
+
+    icone: "fa-solid fa-users",
+
+    cardLayout: "funcionario",
+
+    camposListagem: ["nome", "sobrenome", "email", "tipoFuncionario"],
+
+    camposFormulario: [
+      {
+        name: "nome",
+        label: "Nome",
         type: "text",
         required: true,
       },
 
       {
-        name: "email",
-        label: "E-mail",
-        type: "email",
+        name: "sobrenome",
+        label: "Sobrenome",
+        type: "text",
         required: true,
+      },
+
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+      },
+
+      {
+        type: "section",
+        title: "Endereço",
+      },
+
+      {
+        name: "senha",
+        label: "Senha",
+        type: "password",
+        required: !estaEditando(),
+      },
+
+      {
+        name: "confirmarSenha",
+        label: "Confirmar Senha",
+        type: "password",
+        required: !estaEditando(),
+      },
+
+      {
+        name: "tipoFuncionario",
+        label: "Cargo",
+        type: "select",
+        required: true,
+        opcoes: [
+          {
+            value: "ADMIN",
+            label: "Administrador",
+          },
+          {
+            value: "ESTOQUISTA",
+            label: "Estoquista",
+          },
+        ],
+      },
+
+      {
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
+        required: false,
       },
     ],
+  },
+
+  // ======================================
+  // USUÁRIOS
+  // ======================================
+  usuarios: {
+    tipo: "usuarios",
+
+    perfisPermitidos: ["ADMIN"],
+
+    titulo: "Clientes",
+
+    subtitulo: "Gerencie os clientes cadastrados no sistema.",
+
+    singular: "Cliente",
+
+    plural: "Clientes",
+
+    rotaGestao: "/gestao.html?tipo=usuarios",
+
+    endpoint: "/usuarios",
+
+    placeholderBusca: "Buscar cliente...",
+
+    permiteCadastro: false,
+
+    icone: "fa-solid fa-user-group",
+
+    cardLayout: "usuario",
+
+    camposListagem: ["nome", "sobrenome", "email", "telefone"],
   },
 };

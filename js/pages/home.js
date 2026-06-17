@@ -1,3 +1,6 @@
+import { produtosMock } from "../data/produtosMock.js";
+import { atualizarCarrinhoHeader, mostrarToastProduto } from "../components/headerClient.js";
+
 // ==========================
 // INICIALIZAÇÃO DE PÁGINA
 // ==========================
@@ -5,49 +8,6 @@
 export function iniciarHome() {
   iniciarCarouselBanner();
   iniciarTabsRecomendacoes();
-  iniciarScrollCategorias();
-  iniciarNavegacaoCategorias();
-}
-
-// ==========================
-// NAVEGAÇÃO DE CATEGORIAS (Setas)
-// ==========================
-function iniciarNavegacaoCategorias() {
-  const wrapper = document.getElementById("categories-wrapper");
-  const btnPrev = document.getElementById("cat-prev");
-  const btnNext = document.getElementById("cat-next");
-
-  if (!wrapper || !btnPrev || !btnNext) return;
-
-  const scrollAmount = 300;
-
-  btnNext.addEventListener("click", () => {
-    wrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  });
-
-  btnPrev.addEventListener("click", () => {
-    wrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-  });
-}
-
-// ==========================
-// SCROLL PARA CATEGORIAS
-// ==========================
-function iniciarScrollCategorias() {
-  const cards = document.querySelectorAll(".category-card");
-
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const titulo = card.querySelector(".category-title").innerText;
-      const secoes = document.querySelectorAll(".vitrine-title, #recommendations-header h2");
-
-      secoes.forEach((secao) => {
-        if (secao.innerText.includes(titulo)) {
-          secao.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      });
-    });
-  });
 }
 
 // ==========================

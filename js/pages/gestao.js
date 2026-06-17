@@ -2,18 +2,40 @@
 // IMPORTS
 // ======================================
 
+import { protegerRotaPerfil } from "../utils/authGuard.js";
+
 import { entidades } from "../config/entidades_admin.js";
 
-import { renderProdutoCard } from "../components/produtoCardAdmin.js";
+import { renderSkeletonGestao } from "../render.js";
+
+import { getEntityService } from "../services/adminEntityService.js";
 
 // ======================================
-// PEGAR PARÂMETRO DA URL
+// PEGAR PARÂMETRO DA URL E FUNCIONALIDADES DE URL
 // ======================================
 
 function getTipoEntidade() {
   const params = new URLSearchParams(window.location.search);
 
   return params.get("tipo");
+}
+
+function getSearchTerm() {
+  const params = new URLSearchParams(window.location.search);
+
+  return params.get("search") || "";
+}
+
+function atualizarURLBusca(valor) {
+  const url = new URL(window.location);
+
+  if (valor) {
+    url.searchParams.set("search", valor);
+  } else {
+    url.searchParams.delete("search");
+  }
+
+  history.replaceState({}, "", url);
 }
 
 // ======================================
@@ -64,67 +86,77 @@ function configurarPagina(entidade) {
   // LINK BOTÃO
   const botaoAdicionar = document.getElementById("btn-adicionar-item");
 
-  botaoAdicionar.href = entidade.rotaFormulario;
+  if (entidade.permiteCadastro === false) {
+    botaoAdicionar.style.display = "none";
+  } else {
+    const botaoTexto = document.getElementById("btn-adicionar-texto");
+
+    botaoTexto.textContent = entidade.textoBotaoAdicionar;
+    botaoAdicionar.href = entidade.rotaFormulario;
+  }
 }
 
 // ======================================
-// MOCK TEMPORÁRIO
+// RENDERIZAÇÃO DOS CARDS
 // ======================================
-
-function renderCards(entidade) {
+async function renderCards(entidade) {
   const grid = document.getElementById("gestao-grid");
 
-  // MOCK TEMPORÁRIO
-  const produtos = [
-    {
-      nome: "Arroz Integral 5kg",
-      categoriaNome: "Alimentos",
-      marcaNome: "Camil",
-      preco: "22,90",
-      estoqueDisponivel: 50,
-    },
+  grid.innerHTML = renderSkeletonGestao(8);
 
-    {
-      nome: "Água Mineral 1L",
-      categoriaNome: "Bebidas",
-      marcaNome: "Crystal",
-      preco: "4,50",
-      estoqueDisponivel: 8,
-    },
-  ];
+  const termoBusca = getSearchTerm();
 
-  // ======================================
-  // PRODUTOS
-  // ======================================
+  const service = getEntityService(entidade.tipo);
 
-  if (entidade.tipo === "produtos") {
-    grid.innerHTML = produtos.map(renderProdutoCard).join("");
+  let dados = [];
 
-    return;
+  if (termoBusca && service.buscarPorNome) {
+    dados = await service.buscarPorNome(termoBusca);
+  } else {
+    dados = await service.buscarTodos();
   }
 
-  // ======================================
-  // PADRÃO TEMPORÁRIO
-  // ======================================
+  grid.innerHTML = dados.map(service.renderCard).join("");
+}
 
-  grid.innerHTML = `
-    <p>
-      Renderização ainda não criada.
-    </p>
-  `;
+// ======================================
+// CONFIGURAÇÃO DA BUSCA
+// ======================================
+let timeoutBusca;
+function configurarBusca(entidade) {
+  const input = document.getElementById("search-input");
+
+  input.value = getSearchTerm();
+
+  input.addEventListener("input", async (e) => {
+    const valor = e.target.value.trim();
+
+    atualizarURLBusca(valor);
+
+    clearTimeout(timeoutBusca);
+
+    timeoutBusca = setTimeout(() => {
+      renderCards(entidade);
+    }, 100);
+  });
 }
 
 // ======================================
 // START
 // ======================================
 
-export function iniciarGestao() {
+export async function iniciarGestao() {
   const entidade = getEntidadeAtual();
 
   if (!entidade) return;
 
+  if (!protegerRotaPerfil(entidade.perfisPermitidos)) {
+    return;
+  }
+
   configurarPagina(entidade);
 
-  // TEMPORÁRIO
-  renderCards(entidade);
+  configurarBusca(entidade);
+
+  await renderCards(entidade);
 }
