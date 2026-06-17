@@ -532,7 +532,7 @@ export const entidades = {
 
     titulo: "Clientes",
 
-    subtitulo: "Gerencie os clientes cadastrados no sistema.",
+    subtitulo: "Visualize os clientes cadastrados no sistema.",
 
     singular: "Cliente",
 

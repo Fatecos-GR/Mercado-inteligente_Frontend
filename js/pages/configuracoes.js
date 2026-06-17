@@ -268,11 +268,19 @@ function configurarSubmit() {
         .getElementById("perfil-sobrenome")
         .value.trim();
 
-      salvarNome(`${nome} ${sobrenome}`.trim());
+      salvarNome(`${nome}`.trim());
 
       await abrirModalResultado("Perfil atualizado com sucesso.");
 
+      const senhaInput = document.getElementById("perfil-senha");
+      if (senhaInput) {
+        senhaInput.value = "";
+        senhaInput.type = "password"; // garante reset do toggle também
+      }
+
       await carregarPerfil();
+
+      window.location.reload();
     } catch (erro) {
       tratarErroFormulario(erro);
     }

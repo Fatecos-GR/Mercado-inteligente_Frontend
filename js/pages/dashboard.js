@@ -1,3 +1,5 @@
+import { protegerRotaPerfil } from "../utils/authGuard.js";
+
 import {
   buscarEstatisticas,
   buscarMarcasEQuantidade,
@@ -9,6 +11,7 @@ import {
 } from "../services/api.js";
 
 export async function iniciarDashboard() {
+  !protegerRotaPerfil(["ADMIN"]);
   try {
     const [
       estatisticas,
