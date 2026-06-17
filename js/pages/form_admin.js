@@ -308,15 +308,25 @@ function tratarErroFormulario(erro) {
 
   // Validações do backend
   if (erro.status === 400) {
-    erro.erros?.forEach((item) => {
-      const campo = document.getElementById(item.campo);
+    if (erro.erros?.length) {
+      erro.erros.forEach((item) => {
+        const campo = document.getElementById(item.campo);
 
-      if (campo) {
-        mostrarErro(campo, item.mensagem);
-      }
-    });
+        if (campo) {
+          mostrarErro(campo, item.mensagem);
+        }
+      });
 
-    return;
+      return;
+    }
+
+    if (erro.erro === "Este endereço já está cadastrado no sistema.") {
+      const numero = document.getElementById("numero");
+
+      mostrarErro(numero, erro.erro);
+
+      return;
+    }
   }
 
   // E-mail já cadastrado
@@ -369,8 +379,8 @@ function configurarSubmit(entidade) {
       await salvarEntidade(entidade, dados);
 
       const mensagem = estaEditando()
-        ? `${entidade.singular} atualizada com sucesso.`
-        : `${entidade.singular} cadastrada com sucesso.`;
+        ? `${entidade.singular} atualizado(a) com sucesso.`
+        : `${entidade.singular} cadastrado(a) com sucesso.`;
 
       mostrarMensagemFormulario(mensagem, "success");
 
@@ -409,7 +419,9 @@ function configurarExclusaoFormulario(entidade) {
     try {
       await excluirEntidadeFormulario(entidade, getIdRegistro());
 
-      await abrirModalResultado(`${entidade.singular} excluída com sucesso.`);
+      await abrirModalResultado(
+        `${entidade.singular} excluído(a) com sucesso.`,
+      );
 
       window.location.href = entidade.rotaGestao;
     } catch (erro) {
@@ -471,269 +483,6 @@ function preencherFormulario(entidade, dados) {
     // MONEY (IMPORTANTE)
     if (campo.type === "money") {
       elemento.value = formatarMoneyParaView(dados[campo.name]);
-      return;
-    }
-
-    if (entidade.tipo === "fornecedores") {
-      document.getElementById("nome").value = dados.nome ?? "";
-
-      preencherEndereco(dados.endereco);
-
-      return;
-    }
-
-    elemento.value = dados[campo.name] ?? "";
-  });
-}
-
-// ======================================
-// POPULAR SELECTS
-// ======================================
-async function buscarDadosRelacionados(tipo) {
-  switch (tipo) {
-    case "marcas":
-      return await buscarMarcas();
-
-    case "categorias":
-      return await buscarCategorias();
-
-    case "fornecedores":
-      return await buscarFornecedores();
-
-    default:
-      return [];
-  }
-}
-
-async function popularSelect(campo) {
-  const select = document.getElementById(campo.name);
-
-  if (!select) return;
-
-  const dados = await buscarDadosRelacionados(campo.entidadeRelacionada);
-
-  select.innerHTML = `
-    <option value="">
-      Selecione...
-    </option>
-  `;
-
-  dados.forEach((item) => {
-    select.innerHTML += `
-      <option value="${item.id}">
-        ${item.nome}
-      </option>
-    `;
-  });
-}
-
-async function popularSelectsFormulario(entidade) {
-  const camposRelacionados = entidade.camposFormulario.filter(
-    (campo) => campo.type === "select" && campo.entidadeRelacionada,
-  );
-
-  for (const campo of camposRelacionados) {
-    await popularSelect(campo);
-  }
-}
-
-// ======================================
-// OBTER DADOS DO FORMULÁRIO
-// ======================================
-function obterDadosFormulario(entidade) {
-  const dados = {};
-
-  entidade.camposFormulario.forEach((campo) => {
-    const elemento = document.getElementById(campo.name);
-
-    if (!elemento) return;
-
-    if (campo.type === "file") {
-      dados[campo.name] = elemento.files?.[0] || null;
-      return;
-    }
-
-    dados[campo.name] = elemento.value;
-  });
-
-  return dados;
-}
-
-// ======================================
-// VALIDAÇÃO DO FORMULÁRIO
-// ======================================
-
-function validarFormulario(entidade) {
-  limparErros();
-
-  let valido = true;
-
-  entidade.camposFormulario.forEach((campo) => {
-    const elemento = document.getElementById(campo.name);
-
-    if (!elemento) return;
-
-    // FILE
-    if (campo.type === "file") {
-      return;
-    }
-
-    if (campo.name === "cep") {
-      const cep = elemento.value.replace(/\D/g, "");
-
-      if (cep.length !== 8) {
-        mostrarErro(elemento, "CEP inválido.");
-
-        valido = false;
-      }
-    }
-
-    // REQUIRED
-    if (campo.required && !elemento.value.trim()) {
-      mostrarErro(elemento, `${campo.label} é obrigatório.`);
-
-      valido = false;
-    }
-  });
-
-  return valido;
-}
-
-// ======================================
-// TRATAMENTO DE ERROS
-// ======================================
-
-function tratarErroFormulario(erro) {
-  console.error(erro);
-
-  // Validação backend
-  if (erro.status === 400) {
-    erro.erros?.forEach((item) => {
-      const campo = document.getElementById(item.campo);
-
-      if (campo) {
-        mostrarErro(campo, item.mensagem);
-      }
-    });
-
-    return;
-  }
-
-  mostrarMensagemFormulario(erro.erro || "Erro ao salvar registro.");
-}
-
-// ======================================
-// SALVAR
-// ======================================
-async function salvarEntidade(entidade, dados) {
-  const id = getIdRegistro();
-
-  const service = getEntityService(entidade.tipo);
-
-  return id ? await service.atualizar(id, dados) : await service.salvar(dados);
-}
-
-// ======================================
-// CONFIGURAÇÃO DO ENVIO
-// ======================================
-function configurarSubmit(entidade) {
-  const form = document.getElementById("admin-form");
-
-  if (!form) return;
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    limparMensagemFormulario();
-
-    const formularioValido = validarFormulario(entidade);
-
-    if (!formularioValido) {
-      return;
-    }
-
-    try {
-      const dados = obterDadosFormulario(entidade);
-
-      await salvarEntidade(entidade, dados);
-
-      const mensagem = estaEditando()
-        ? `${entidade.singular} atualizada com sucesso.`
-        : `${entidade.singular} cadastrada com sucesso.`;
-
-      mostrarMensagemFormulario(mensagem, "success");
-
-      setTimeout(() => {
-        window.location.href = entidade.rotaGestao;
-      }, 300);
-    } catch (erro) {
-      tratarErroFormulario(erro);
-    }
-  });
-}
-
-// ======================================
-// EXCLUIR
-// ======================================
-async function excluirEntidadeFormulario(entidade, id) {
-  const service = getEntityService(entidade.tipo);
-
-  return await service.excluir(id);
-}
-
-function configurarExclusaoFormulario(entidade) {
-  const btn = document.getElementById("btn-excluir");
-
-  if (!btn) return;
-
-  btn.addEventListener("click", async () => {
-    const confirmou = confirm("Deseja realmente excluir este registro?");
-
-    if (!confirmou) return;
-
-    try {
-      await excluirEntidadeFormulario(entidade, getIdRegistro());
-
-      window.location.href = entidade.rotaGestao;
-    } catch (erro) {
-      console.error(erro);
-
-      mostrarMensagemFormulario("Erro ao excluir registro.");
-    }
-  });
-}
-
-// ======================================
-// BUSCA DE REGISTRO E CARREGAMENTO DE DADOS PARA MODO DE EDIÇÃO
-// ======================================
-async function buscarRegistro(entidade, id) {
-  const service = getEntityService(entidade.tipo);
-
-  return await service.buscar(id);
-}
-
-async function carregarDadosEdicao(entidade) {
-  const id = getIdRegistro();
-
-  if (!id) return;
-
-  const registro = await buscarRegistro(entidade, id);
-
-  preencherFormulario(entidade, registro);
-
-  preencherPreviewImagem(entidade, registro);
-}
-
-// ======================================
-// PREENCHIMENTO DO FORMULÁRIO (QUANDO ESTÁ EDITANDO)
-// ======================================
-function preencherFormulario(entidade, dados) {
-  entidade.camposFormulario.forEach((campo) => {
-    const elemento = document.getElementById(campo.name);
-
-    if (!elemento) return;
-
-    if (campo.type === "file") {
       return;
     }
 
