@@ -6,9 +6,19 @@ import { protegerRotaPerfil } from "../utils/authGuard.js";
 
 import { entidades } from "../config/entidades_admin.js";
 
-import { renderSkeletonGestao } from "../render.js";
+import { renderSkeletonGestao, renderFiltrosGestao } from "../render.js";
 
 import { getEntityService } from "../services/adminEntityService.js";
+
+import { obterPerfil } from "../utils/localStorageUtils.js";
+
+import {
+  atualizarFiltro,
+  getFiltro,
+  obterFiltros,
+} from "../utils/filterUtils.js";
+
+import { popularSelectGenerico } from "../utils/selectUtils.js";
 
 // ======================================
 // PEGAR PARÂMETRO DA URL E FUNCIONALIDADES DE URL
@@ -60,6 +70,15 @@ function getEntidadeAtual() {
 // ======================================
 
 function configurarPagina(entidade) {
+  const filtrosContainer = document.getElementById("gestao-filtros");
+
+  if (entidade.filtros?.length) {
+    filtrosContainer.innerHTML = renderFiltrosGestao(entidade);
+    filtrosContainer.style.display = "block";
+  } else {
+    filtrosContainer.style.display = "none";
+  }
+
   // TÍTULO DA ABA
   document.title = `${entidade.titulo} | Admin Melior`;
 
@@ -86,14 +105,22 @@ function configurarPagina(entidade) {
   // LINK BOTÃO
   const botaoAdicionar = document.getElementById("btn-adicionar-item");
 
-  if (entidade.permiteCadastro === false) {
-    botaoAdicionar.style.display = "none";
-  } else {
-    const botaoTexto = document.getElementById("btn-adicionar-texto");
+  console.log("obterPerfil()", obterPerfil());
 
-    botaoTexto.textContent = entidade.textoBotaoAdicionar;
-    botaoAdicionar.href = entidade.rotaFormulario;
+  const perfilUsuario = obterPerfil();
+
+  const podeCadastrar =
+    entidade.permiteCadastro !== false &&
+    (!entidade.permiteCadastroPerfis ||
+      entidade.permiteCadastroPerfis.includes(perfilUsuario));
+
+  if (!podeCadastrar) {
+    botaoAdicionar.style.display = "none";
+    return;
   }
+
+  botaoTexto.textContent = entidade.textoBotaoAdicionar;
+  botaoAdicionar.href = entidade.rotaFormulario;
 }
 
 // ======================================
@@ -110,10 +137,30 @@ async function renderCards(entidade) {
 
   let dados = [];
 
-  if (termoBusca && service.buscarPorNome) {
-    dados = await service.buscarPorNome(termoBusca);
-  } else {
-    dados = await service.buscarTodos();
+  const filtros = obterFiltros();
+
+  dados = await service.buscarTodos();
+
+  if (filtros.search) {
+    dados = dados.filter((item) =>
+      item.nome.toLowerCase().includes(filtros.search.toLowerCase()),
+    );
+  }
+
+  if (filtros.marcaId) {
+    dados = dados.filter((item) => String(item.marcaId) === filtros.marcaId);
+  }
+
+  if (filtros.categoriaId) {
+    dados = dados.filter(
+      (item) => String(item.categoriaId) === filtros.categoriaId,
+    );
+  }
+
+  if (filtros.fornecedorId) {
+    dados = dados.filter(
+      (item) => String(item.fornecedorId) === filtros.fornecedorId,
+    );
   }
 
   grid.innerHTML = dados.map(service.renderCard).join("");
@@ -141,6 +188,58 @@ function configurarBusca(entidade) {
   });
 }
 
+async function configurarFiltros(entidade) {
+  if (!entidade.filtros?.length) {
+    return;
+  }
+
+  for (const filtro of entidade.filtros) {
+    const select = document.getElementById(
+      `filtro-${filtro.parametro.replace("Id", "")}`,
+    );
+
+    if (!select) continue;
+
+    await popularSelectGenerico(
+      select,
+      filtro.entidadeRelacionada,
+      filtro.placeholder,
+    );
+
+    select.value = getFiltro(filtro.parametro);
+
+    select.addEventListener("change", async () => {
+      atualizarFiltro(filtro.parametro, select.value);
+
+      await renderCards(entidade);
+    });
+  }
+}
+
+function limparFiltros(entidade) {
+  atualizarFiltro("search", "");
+
+  atualizarFiltro("marcaId", "");
+  atualizarFiltro("categoriaId", "");
+  atualizarFiltro("fornecedorId", "");
+
+  document.getElementById("search-input").value = "";
+
+  document
+    .querySelectorAll(".gestao-filtro-select")
+    .forEach((select) => (select.value = ""));
+
+  renderCards(entidade);
+}
+
+function configurarBotaoLimparFiltros(entidade) {
+  const btn = document.getElementById("btn-limpar-filtros");
+
+  if (!btn) return;
+
+  btn.addEventListener("click", () => limparFiltros(entidade));
+}
+
 // ======================================
 // START
 // ======================================
@@ -156,7 +255,11 @@ export async function iniciarGestao() {
 
   configurarPagina(entidade);
 
+  await configurarFiltros(entidade);
+
   configurarBusca(entidade);
+
+  configurarBotaoLimparFiltros(entidade);
 
   await renderCards(entidade);
 }

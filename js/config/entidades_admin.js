@@ -102,6 +102,8 @@ export const entidades = {
 
     perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
 
+    permiteCadastroPerfis: ["ADMIN"],
+
     titulo: "Produtos",
 
     subtitulo: "Gerencie os produtos cadastrados no sistema.",
@@ -133,6 +135,30 @@ export const entidades = {
     textoBotaoAdicionar: "Novo Produto",
 
     icone: "fa-solid fa-box",
+
+    // ======================================
+    // FILTRAGEM
+    // ======================================
+
+    filtros: [
+      {
+        parametro: "marcaId",
+        entidadeRelacionada: "marcas",
+        placeholder: "Todas as marcas",
+      },
+
+      {
+        parametro: "categoriaId",
+        entidadeRelacionada: "categorias",
+        placeholder: "Todas as categorias",
+      },
+
+      {
+        parametro: "fornecedorId",
+        entidadeRelacionada: "fornecedores",
+        placeholder: "Todos os fornecedores",
+      },
+    ],
 
     // ======================================
     // LISTAGEM

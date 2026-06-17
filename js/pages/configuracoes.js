@@ -1,6 +1,24 @@
-import { obterPerfil, obterId } from "../utils/localStorageUtils.js";
+// ======================================
+// IMPORTS
+// ======================================
+
+import {
+  obterPerfil,
+  obterId,
+  salvarNome,
+} from "../utils/localStorageUtils.js";
+
+import { aplicarMascaraTelefone, formatarTelefone } from "../utils/mascaras.js";
 
 import { buscarFuncionarioPorId } from "../services/api.js";
+
+import { validarEmail, validarTelefone } from "../utils/validators.js";
+
+import { atualizarUsuario } from "../services/api.js";
+
+// ======================================
+// PERFIS
+// ======================================
 
 export function isAdmin() {
   return obterPerfil() === "ADMIN";
@@ -11,12 +29,12 @@ export function isEstoquista() {
 }
 
 // ======================================
-// CONTROLE DE PERMISSÕES DAS TABS
+// TABS
 // ======================================
 
 function configurarTabsPorPerfil(perfil) {
   const tabsPermitidas = {
-    ADMIN: ["mercado", "delivery", "perfil"],
+    ADMIN: ["perfil"],
     ESTOQUISTA: ["perfil"],
   };
 
@@ -41,45 +59,29 @@ function configurarTabsPorPerfil(perfil) {
   if (permitidas.length) {
     const primeira = permitidas[0];
 
-    const firstTab = document.querySelector(`.tab-btn[data-tab="${primeira}"]`);
-
-    const firstContent = document.getElementById(`tab-${primeira}`);
-
     document
-      .querySelectorAll(".tab-btn")
-      .forEach((t) => t.classList.remove("active"));
+      .querySelector(`.tab-btn[data-tab="${primeira}"]`)
+      ?.classList.add("active");
 
-    document
-      .querySelectorAll(".tab-content")
-      .forEach((c) => c.classList.remove("active"));
-
-    firstTab?.classList.add("active");
-    firstContent?.classList.add("active");
+    document.getElementById(`tab-${primeira}`)?.classList.add("active");
   }
 }
-
-// ======================================
-// TABS
-// ======================================
 
 function iniciarTabsConfiguracoes() {
   const tabs = document.querySelectorAll(".tab-btn");
   const contents = document.querySelectorAll(".tab-content");
 
-  if (!tabs.length) return;
-
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       tabs.forEach((t) => t.classList.remove("active"));
+
       contents.forEach((c) => c.classList.remove("active"));
 
       tab.classList.add("active");
 
-      const targetTab = tab.dataset.tab;
-
-      const targetContent = document.getElementById(`tab-${targetTab}`);
-
-      targetContent?.classList.add("active");
+      document
+        .getElementById(`tab-${tab.dataset.tab}`)
+        ?.classList.add("active");
     });
   });
 }
@@ -88,39 +90,199 @@ function iniciarTabsConfiguracoes() {
 // PERFIL
 // ======================================
 
-async function carregarPerfilUsuario() {
+async function carregarPerfil() {
   try {
     const id = obterId();
 
-    if (!id) {
-      console.warn("ID do usuário não encontrado.");
-      return;
-    }
+    if (!id) return;
 
     const funcionario = await buscarFuncionarioPorId(id);
 
-    const nomeInput = document.getElementById("perfil-nome");
-    const emailInput = document.getElementById("perfil-email");
-    const cargoInput = document.getElementById("perfil-cargo");
-
-    if (nomeInput) {
-      nomeInput.value =
-        `${funcionario.nome ?? ""} ${funcionario.sobrenome ?? ""}`.trim();
-    }
-
-    if (emailInput) {
-      emailInput.value = funcionario.email ?? "";
-    }
-
-    if (cargoInput) {
-      cargoInput.value =
-        funcionario.tipoFuncionario === "ADMIN"
-          ? "Administrador"
-          : "Estoquista";
-    }
+    preencherPerfil(funcionario);
   } catch (erro) {
     console.error("Erro ao carregar perfil:", erro);
   }
+}
+
+function preencherPerfil(funcionario) {
+  const nomeInput = document.getElementById("perfil-nome");
+  const emailInput = document.getElementById("perfil-email");
+  const telefoneInput = document.getElementById("perfil-telefone");
+  const cargoInput = document.getElementById("perfil-cargo");
+
+  if (nomeInput) {
+    nomeInput.value =
+      `${funcionario.nome} ${funcionario.sobrenome ?? ""}`.trim();
+  }
+
+  if (emailInput) {
+    emailInput.value = funcionario.email ?? "";
+  }
+
+  if (telefoneInput) {
+    telefoneInput.value = formatarTelefone(funcionario.telefone ?? "");
+  }
+
+  if (cargoInput) {
+    cargoInput.value =
+      funcionario.tipoFuncionario === "ADMIN" ? "Administrador" : "Estoquista";
+  }
+}
+
+// ======================================
+// MÁSCARAS
+// ======================================
+
+function configurarMascaras() {
+  const telefoneInput = document.getElementById("perfil-telefone");
+
+  if (telefoneInput) {
+    aplicarMascaraTelefone(telefoneInput);
+  }
+}
+
+// ======================================
+// SUBMIT (PREPARAÇÃO)
+// ======================================
+
+function configurarSubmitPerfil() {
+  const form = document.querySelector(".admin-main-form");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const dados = {
+      nome: document.getElementById("perfil-nome")?.value.trim(),
+
+      email: document.getElementById("perfil-email")?.value.trim(),
+
+      telefone: document
+        .getElementById("perfil-telefone")
+        ?.value.replace(/\D/g, ""),
+
+      senha: document.getElementById("perfil-senha")?.value.trim(),
+    };
+
+    if (!dados.senha) {
+      delete dados.senha;
+    }
+
+    console.log("DADOS PERFIL:", dados);
+
+    // Próximo passo:
+    // await atualizarFuncionario(obterId(), dados);
+  });
+}
+
+function obterDadosFormulario() {
+  return {
+    nome: document.getElementById("perfil-nome").value.trim(),
+    email: document.getElementById("perfil-email").value.trim(),
+    telefone: document
+      .getElementById("perfil-telefone")
+      .value.replace(/\D/g, ""),
+    senha: document.getElementById("perfil-senha").value.trim(),
+  };
+}
+
+function validarFormulario() {
+  limparErros();
+  limparMensagemFormulario();
+
+  const nome = document.getElementById("perfil-nome");
+  const email = document.getElementById("perfil-email");
+  const telefone = document.getElementById("perfil-telefone");
+
+  let valido = true;
+
+  if (!nome.value.trim()) {
+    mostrarErro(nome, "Informe seu nome.");
+    valido = false;
+  }
+
+  valido = validarEmail(email) && valido;
+  valido = validarTelefone(telefone) && valido;
+
+  return valido;
+}
+
+async function salvarPerfil() {
+  const id = obterId();
+
+  const dados = obterDadosFormulario();
+
+  if (!dados.senha) {
+    delete dados.senha;
+  }
+
+  return await atualizarUsuario(id, dados);
+}
+
+function tratarErroFormulario(erro) {
+  console.error(erro);
+
+  const email = document.getElementById("perfil-email");
+  const telefone = document.getElementById("perfil-telefone");
+  const senha = document.getElementById("perfil-senha");
+
+  if (erro.status === 400) {
+    if (erro.erros?.length) {
+      erro.erros.forEach((item) => {
+        switch (item.campo) {
+          case "email":
+            mostrarErro(email, item.mensagem);
+            break;
+
+          case "telefone":
+            mostrarErro(telefone, item.mensagem);
+            break;
+
+          case "senha":
+            mostrarErro(senha, item.mensagem);
+            break;
+        }
+      });
+
+      return;
+    }
+  }
+
+  if (erro.status === 409) {
+    mostrarErro(email, "Este e-mail já está em uso.");
+    return;
+  }
+
+  mostrarMensagemFormulario(erro.erro || "Erro ao atualizar perfil.");
+}
+
+function configurarSubmit() {
+  const form = document.querySelector(".admin-main-form");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formularioValido = validarFormulario();
+
+    if (!formularioValido) {
+      return;
+    }
+
+    try {
+      await salvarPerfil();
+
+      salvarNome(document.getElementById("perfil-nome").value.trim());
+
+      await abrirModalResultado("Perfil atualizado com sucesso.");
+
+      await carregarPerfil();
+    } catch (erro) {
+      tratarErroFormulario(erro);
+    }
+  });
 }
 
 // ======================================
@@ -134,5 +296,9 @@ export async function iniciarConfiguracoes() {
 
   iniciarTabsConfiguracoes();
 
-  await carregarPerfilUsuario();
+  configurarMascaras();
+
+  await carregarPerfil();
+
+  configurarSubmitPerfil();
 }

@@ -34,7 +34,7 @@
               </button>
             </div>
 
-            <form class="admin-main-form">
+            <form class="admin-main-form" novalidate>
               <!-- <div class="tab-content active" id="tab-mercado">
                 <div class="admin-form-group">
                   <label for="razao-social">Razão Social / Nome Fantasia</label>
@@ -151,7 +151,6 @@
                     id="perfil-nome"
                     name="perfilNome"
                     value="Nome do Administrador Logado"
-                    required
                   />
                 </div>
 
@@ -163,9 +162,19 @@
                       id="perfil-email"
                       name="perfilEmail"
                       value="admin@melior.com"
-                      required
                     />
                   </div>
+
+                  <div class="admin-form-group">
+                    <label for="perfil-telefone">Seu Telefone</label>
+                    <input
+                      type="tel"
+                      id="perfil-telefone"
+                      name="perfilTelefone"
+                      placeholder="(11) 99999-9999"
+                    />
+                  </div>
+
                   <div class="admin-form-group">
                     <label for="perfil-cargo">Cargo / Função</label>
                     <input
