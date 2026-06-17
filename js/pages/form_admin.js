@@ -32,6 +32,7 @@ import {
   formatarMoneyParaView,
   aplicarMascaraTelefone,
   formatarTelefone,
+  formatarDataHoraParaInput,
 } from "../utils/mascaras.js";
 
 import {
@@ -244,8 +245,8 @@ function obterDadosFormulario(entidade) {
 
   if (entidade.tipo === "estoque") {
     return {
-      produtoId: dados.produtoId,
-      quantidade: Number(dados.quantidade),
+      produtoId: parseInt(getIdRegistro(), 10),
+      quantidade: parseInt(dados.quantidade, 10),
       tipo: dados.tipoMovimentacao,
     };
   }
@@ -349,6 +350,10 @@ async function salvarEntidade(entidade, dados) {
 
   const service = getEntityService(entidade.tipo);
 
+  if (entidade.tipo === "estoque") {
+    return await service.salvar(dados);
+  }
+
   return id ? await service.atualizar(id, dados) : await service.salvar(dados);
 }
 
@@ -373,8 +378,6 @@ function configurarSubmit(entidade) {
 
     try {
       const dados = obterDadosFormulario(entidade);
-
-      console.log("DADOS ENVIADOS:", dados);
 
       await salvarEntidade(entidade, dados);
 
@@ -490,6 +493,13 @@ function preencherFormulario(entidade, dados) {
       document.getElementById("nome").value = dados.nome ?? "";
 
       preencherEndereco(dados.endereco);
+
+      return;
+    }
+
+    // DATE DO ESTOQUE
+    if (entidade.tipo === "estoque" && campo.type === "datetime-local") {
+      elemento.value = formatarDataHoraParaInput(dados[campo.name]);
 
       return;
     }

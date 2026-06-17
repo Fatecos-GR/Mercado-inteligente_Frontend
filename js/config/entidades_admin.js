@@ -28,17 +28,36 @@ export const entidades = {
 
     camposFormulario: [
       {
-        name: "nome",
+        name: "produtoNome",
         label: "Nome do Produto",
         type: "text",
         required: true,
         readonly: true,
         disabled: true,
       },
+
       {
-        name: "quantidade_atual",
-        label: "Quantidade Atual",
+        name: "quantidadeDisponivel",
+        label: "Quantidade Disponível",
         type: "integer",
+        required: true,
+        readonly: true,
+        disabled: true,
+      },
+
+      {
+        name: "quantidadeReservada",
+        label: "Quantidade Reservada",
+        type: "integer",
+        required: true,
+        readonly: true,
+        disabled: true,
+      },
+
+      {
+        name: "atualizadoEm",
+        label: "Ultima atualização",
+        type: "datetime-local",
         required: true,
         readonly: true,
         disabled: true,
@@ -56,6 +75,17 @@ export const entidades = {
         label: "Tipo da Movimentação",
         type: "select",
         required: true,
+
+        opcoes: [
+          {
+            value: "ENTRADA",
+            label: "Entrada",
+          },
+          {
+            value: "SAIDA",
+            label: "Saída",
+          },
+        ],
       },
     ],
   },
