@@ -119,3 +119,57 @@
   background: var(--verde-escuro);
   color: var(--branco);
 }
+
+/* CONTROLES DE QUANTIDADE DO CARD */
+.product-actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-quantity-control {
+  display: flex;
+  border: 1px solid #dcd3c1;
+  border-radius: 30px;
+  overflow: hidden;
+  height: 40px;
+}
+
+.btn-qty-minus,
+.btn-qty-plus {
+  background: transparent;
+  border: none;
+  width: 40px;
+  cursor: pointer;
+  color: var(--verde-escuro);
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-qty-minus:hover,
+.btn-qty-plus:hover {
+  background: #f2ede4;
+}
+
+.input-qty {
+  flex: 1;
+  border: none;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--cinza-escuro);
+  background: var(--branco);
+  outline: none;
+  width: 100%;
+}
+
+/* Remover setas do input number */
+.input-qty::-webkit-outer-spin-button,
+.input-qty::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input-qty[type="number"] {
+  -moz-appearance: textfield;
+}
