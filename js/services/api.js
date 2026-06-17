@@ -117,9 +117,8 @@ export async function buscarEstoquePorIdProduto(id) {
   return request(`/estoques/produto/${id}`);
 }
 
-// api.js (adicionar correto)
 export async function ajustarEstoque(dados) {
-  return request("/estoques/ajustes", {
+  return request("/estoques/ajuste", {
     method: "POST",
     body: JSON.stringify(dados),
   });
@@ -353,6 +352,30 @@ export async function excluirUsuario(id) {
 // ===============================
 export async function buscarEstatisticas() {
   return request(`/dashboard/estatisticas`);
+}
+
+export async function buscarMarcasEQuantidade() {
+  return request(`/dashboard/produtos/por-marca`);
+}
+
+export async function buscarFornecedorEQuantidade() {
+  return request(`/dashboard/produtos/por-fornecedor`);
+}
+
+export async function buscarCategoriasEQuantidade() {
+  return request(`/dashboard/produtos/por-categoria`);
+}
+
+export async function buscarQuantidadeProdutosBaixoEstoque() {
+  return request(`/dashboard/produtos/baixo-estoque`);
+}
+
+export async function buscarQuantidadeTotalProdutosEstoque() {
+  return request(`/dashboard/produtos/estoque-total`);
+}
+
+export async function buscarQuantidadeDeCadaProduto() {
+  return request(`/dashboard/produtos/quantidade-geral`);
 }
 
 // ===============================

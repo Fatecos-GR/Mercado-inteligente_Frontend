@@ -13,6 +13,7 @@ import { iniciarSidebarAdmin } from "./components/sidebarAdmin.js";
 import { iniciarCarrinho } from "./pages/carrinho.js";
 import { iniciarProdutoDetalhes } from "./pages/produto_detalhes.js";
 import { iniciarConfiguracoes } from "./pages/configuracoes.js";
+import { iniciarDashboard } from "./pages/dashboard.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
@@ -151,6 +152,12 @@ async function start() {
 
   if (isProdutoDetalhesPage) {
     iniciarProdutoDetalhes();
+  }
+
+  const isDashboardPage = window.location.pathname.includes("dashboard.html");
+
+  if (isDashboardPage) {
+    iniciarDashboard();
   }
 }
 
