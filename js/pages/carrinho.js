@@ -133,11 +133,11 @@ function configurarEventosCarrinho() {
 
 function removerItem(index) {
   const carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
-  
+
   carrinho.splice(index, 1);
-  
+
   localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
-  
+
   renderizarCarrinho();
   atualizarCarrinhoHeader();
 }

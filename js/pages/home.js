@@ -1,8 +1,8 @@
 import { produtosMock } from "../data/produtosMock.js";
-import { atualizarCarrinhoHeader, mostrarToastProduto } from "../components/headerClient.js";
-
-import { produtosMock } from "../data/produtosMock.js";
-import { atualizarCarrinhoHeader, mostrarToastProduto } from "../components/headerClient.js";
+import {
+  atualizarCarrinhoHeader,
+  mostrarToastProduto,
+} from "../components/headerClient.js";
 
 // ==========================
 // INICIALIZAÇÃO DE PÁGINA
@@ -19,27 +19,27 @@ export function iniciarHome() {
 }
 
 function iniciarControlesQuantidade() {
-  const containers = document.querySelectorAll('.card-quantity-control');
-  containers.forEach(container => {
-    const btnMinus = container.querySelector('.btn-qty-minus');
-    const btnPlus = container.querySelector('.btn-qty-plus');
-    const input = container.querySelector('.input-qty');
+  const containers = document.querySelectorAll(".card-quantity-control");
+  containers.forEach((container) => {
+    const btnMinus = container.querySelector(".btn-qty-minus");
+    const btnPlus = container.querySelector(".btn-qty-plus");
+    const input = container.querySelector(".input-qty");
 
     if (!btnMinus || !btnPlus || !input) return;
 
-    btnMinus.addEventListener('click', () => {
+    btnMinus.addEventListener("click", () => {
       let val = parseInt(input.value) || 1;
       if (val > 1) {
         input.value = val - 1;
       }
     });
 
-    btnPlus.addEventListener('click', () => {
+    btnPlus.addEventListener("click", () => {
       let val = parseInt(input.value) || 1;
       input.value = val + 1;
     });
 
-    input.addEventListener('change', () => {
+    input.addEventListener("change", () => {
       let val = parseInt(input.value);
       if (isNaN(val) || val < 1) {
         input.value = 1;
@@ -78,53 +78,60 @@ function iniciarOrdenacao() {
       options.forEach((opt) => opt.classList.remove("active"));
       // Add active class to clicked option
       option.classList.add("active");
-      
+
       const sortValue = option.getAttribute("data-value");
       triggerText.textContent = option.textContent;
-      
+
       customSelect.classList.remove("open");
-      
+
       ordenarProdutos(sortValue);
     });
   });
 
   // Store the initial order of all product cards in all grids
   const grids = document.querySelectorAll(".products-grid");
-  grids.forEach(grid => {
+  grids.forEach((grid) => {
     const cards = Array.from(grid.querySelectorAll(".product-card"));
     cards.forEach((card, index) => {
-      card.setAttribute('data-original-index', index);
+      card.setAttribute("data-original-index", index);
     });
   });
 }
 
 function parsePreco(text) {
-  return parseFloat(text.replace("R$", "").replace(/\./g, "").replace(",", ".").trim());
+  return parseFloat(
+    text.replace("R$", "").replace(/\./g, "").replace(",", ".").trim(),
+  );
 }
 
 function ordenarProdutos(sortValue) {
   const grids = document.querySelectorAll(".products-grid");
-  
+
   grids.forEach((grid) => {
     const cards = Array.from(grid.querySelectorAll(".product-card"));
-    
+
     cards.sort((a, b) => {
       if (sortValue === "menor-preco") {
-        const precoA = parsePreco(a.querySelector(".price-current").textContent);
-        const precoB = parsePreco(b.querySelector(".price-current").textContent);
+        const precoA = parsePreco(
+          a.querySelector(".price-current").textContent,
+        );
+        const precoB = parsePreco(
+          b.querySelector(".price-current").textContent,
+        );
         return precoA - precoB;
-      } 
-      else if (sortValue === "maior-preco") {
-        const precoA = parsePreco(a.querySelector(".price-current").textContent);
-        const precoB = parsePreco(b.querySelector(".price-current").textContent);
+      } else if (sortValue === "maior-preco") {
+        const precoA = parsePreco(
+          a.querySelector(".price-current").textContent,
+        );
+        const precoB = parsePreco(
+          b.querySelector(".price-current").textContent,
+        );
         return precoB - precoA;
-      } 
-      else if (sortValue === "a-z") {
+      } else if (sortValue === "a-z") {
         const tituloA = a.querySelector(".product-title").textContent.trim();
         const tituloB = b.querySelector(".product-title").textContent.trim();
         return tituloA.localeCompare(tituloB);
-      } 
-      else {
+      } else {
         // Padrão
         const indexA = parseInt(a.getAttribute("data-original-index"));
         const indexB = parseInt(b.getAttribute("data-original-index"));
@@ -133,7 +140,7 @@ function ordenarProdutos(sortValue) {
     });
 
     // Re-append cards to grid in the new order
-    cards.forEach(card => grid.appendChild(card));
+    cards.forEach((card) => grid.appendChild(card));
   });
 }
 
@@ -142,21 +149,23 @@ function ordenarProdutos(sortValue) {
 // ==========================
 function iniciarBotoesCarrinho() {
   const botoesAdd = document.querySelectorAll(".btn-add-cart");
-  
-  botoesAdd.forEach(botao => {
+
+  botoesAdd.forEach((botao) => {
     botao.addEventListener("click", (e) => {
       e.preventDefault();
       const produtoId = botao.getAttribute("data-id");
       if (!produtoId) return;
 
-      const produtoEncontrado = produtosMock.find(p => p.id === produtoId);
+      const produtoEncontrado = produtosMock.find((p) => p.id === produtoId);
       if (!produtoEncontrado) return;
 
       const qtyInput = document.getElementById(`qty-${produtoId}`);
       const quantidadeAdicionar = qtyInput ? parseInt(qtyInput.value) : 1;
 
       let carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
-      const indexExistente = carrinho.findIndex(item => item.id === produtoId);
+      const indexExistente = carrinho.findIndex(
+        (item) => item.id === produtoId,
+      );
 
       if (indexExistente >= 0) {
         carrinho[indexExistente].quantidade += quantidadeAdicionar;
@@ -166,7 +175,7 @@ function iniciarBotoesCarrinho() {
           nome: produtoEncontrado.nome,
           preco: produtoEncontrado.preco,
           imagem: produtoEncontrado.imagem,
-          quantidade: quantidadeAdicionar
+          quantidade: quantidadeAdicionar,
         });
       }
 
@@ -175,13 +184,14 @@ function iniciarBotoesCarrinho() {
       }
 
       localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
-      
+
       // Feedback visual simples
       const icon = botao.querySelector("i");
       if (icon) {
         botao.innerHTML = 'Adicionado <i class="fa-solid fa-check"></i>';
         setTimeout(() => {
-          botao.innerHTML = 'Adicionar <i class="fa-solid fa-cart-shopping"></i>';
+          botao.innerHTML =
+            'Adicionar <i class="fa-solid fa-cart-shopping"></i>';
         }, 1500);
       }
 
@@ -221,7 +231,9 @@ function iniciarScrollCategorias() {
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       const titulo = card.querySelector(".category-title").innerText;
-      const secoes = document.querySelectorAll(".vitrine-title, #recommendations-header h2");
+      const secoes = document.querySelectorAll(
+        ".vitrine-title, #recommendations-header h2",
+      );
 
       secoes.forEach((secao) => {
         if (secao.innerText.includes(titulo)) {
