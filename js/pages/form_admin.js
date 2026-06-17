@@ -30,6 +30,8 @@ import {
   aplicarMascaraMoeda,
   aplicarMascaraInteiro,
   formatarMoneyParaView,
+  aplicarMascaraTelefone,
+  formatarTelefone,
 } from "../utils/mascaras.js";
 
 import {
@@ -38,6 +40,7 @@ import {
   mostrarMensagemFormulario,
   limparMensagemFormulario,
   preencherSelects,
+  configurarToggleSenha,
 } from "../utils/formUtils.js";
 
 import {
@@ -45,41 +48,23 @@ import {
   preencherPreviewImagem,
 } from "../utils/imagePreview.js";
 
+import {
+  getTipoEntidade,
+  getIdRegistro,
+  estaEditando,
+  getEntidadeAtual,
+} from "../utils/formContext.js";
+
 import { renderFormularioEntidadeAdmin } from "../render.js";
 
-// ======================================
-// PEGAR TIPO
-// ======================================
-
-function getTipoEntidade() {
-  const params = new URLSearchParams(window.location.search);
-
-  return params.get("tipo");
-}
-
-// ======================================
-// PEGAR ID E VER SE ESTÁ EM EDIÇÃO
-// ======================================
-
-function getIdRegistro() {
-  const params = new URLSearchParams(window.location.search);
-
-  return params.get("id");
-}
-
-function estaEditando() {
-  return !!getIdRegistro();
-}
-
-// ======================================
-// ENTIDADE ATUAL
-// ======================================
-
-function getEntidadeAtual() {
-  const tipo = getTipoEntidade();
-
-  return entidades[tipo];
-}
+import {
+  validarCep,
+  validarEmail,
+  validarTelefone,
+  validarValidade,
+  validarRequired,
+  validarSenhaFuncionario,
+} from "../utils/validators.js";
 
 // ======================================
 // CONFIGURAR PÁGINA
@@ -122,6 +107,11 @@ function aplicarMascarasFormulario(entidade) {
     // INTEIRO
     if (campo.type === "integer") {
       aplicarMascaraInteiro(input);
+    }
+
+    // TELEFONE
+    if (campo.name === "telefone") {
+      aplicarMascaraTelefone(input);
     }
   });
 }
@@ -168,12 +158,35 @@ async function popularSelect(campo) {
 }
 
 async function popularSelectsFormulario(entidade) {
-  const camposRelacionados = entidade.camposFormulario.filter(
-    (campo) => campo.type === "select" && campo.entidadeRelacionada,
+  const camposSelect = entidade.camposFormulario.filter(
+    (campo) => campo.type === "select",
   );
 
-  for (const campo of camposRelacionados) {
-    await popularSelect(campo);
+  for (const campo of camposSelect) {
+    if (campo.entidadeRelacionada) {
+      await popularSelect(campo);
+      continue;
+    }
+
+    if (campo.opcoes) {
+      const select = document.getElementById(campo.name);
+
+      if (!select) continue;
+
+      select.innerHTML = `
+      <option value="">
+        Selecione...
+      </option>
+    `;
+
+      campo.opcoes.forEach((opcao) => {
+        select.innerHTML += `
+        <option value="${opcao.value}">
+          ${opcao.label}
+        </option>
+      `;
+      });
+    }
   }
 }
 
@@ -190,6 +203,10 @@ function obterDadosFormulario(entidade) {
 
     if (campo.readonly) return;
 
+    if (campo.name === "confirmarSenha") {
+      return;
+    }
+
     if (campo.type === "file") {
       dados[campo.name] = elemento.files?.[0] || null;
       return;
@@ -198,6 +215,21 @@ function obterDadosFormulario(entidade) {
     // MONEY
     if (campo.type === "money") {
       dados[campo.name] = elemento.value.replace(",", ".");
+      return;
+    }
+
+    // TELEFONE
+    if (campo.name === "telefone") {
+      dados[campo.name] = elemento.value.replace(/\D/g, "");
+      return;
+    }
+
+    if (
+      entidade.tipo === "funcionarios" &&
+      estaEditando() &&
+      campo.name === "senha" &&
+      !elemento.value.trim()
+    ) {
       return;
     }
 
@@ -237,44 +269,30 @@ function validarFormulario(entidade) {
 
     if (campo.readonly) return;
 
-    // FILE
-    if (campo.type === "file") {
-      return;
-    }
+    if (campo.type === "file") return;
 
-    // CEP
     if (campo.name === "cep") {
-      const cep = elemento.value.replace(/\D/g, "");
-
-      if (cep.length !== 8) {
-        mostrarErro(elemento, "CEP inválido.");
-
-        valido = false;
-      }
+      valido = validarCep(elemento) && valido;
     }
 
-    // Validade
-    if (campo.name === "validade" && elemento.value) {
-      const hoje = new Date();
-
-      hoje.setHours(0, 0, 0, 0);
-
-      const validade = new Date(elemento.value);
-
-      if (validade < hoje) {
-        mostrarErro(elemento, "A validade não pode ser uma data passada.");
-
-        valido = false;
-      }
+    if (campo.name === "email") {
+      valido = validarEmail(elemento) && valido;
     }
 
-    // REQUIRED
-    if (campo.required && !elemento.value.trim()) {
-      mostrarErro(elemento, `${campo.label} é obrigatório.`);
-
-      valido = false;
+    if (campo.name === "telefone") {
+      valido = validarTelefone(elemento) && valido;
     }
+
+    if (campo.name === "validade") {
+      valido = validarValidade(elemento) && valido;
+    }
+
+    valido = validarRequired(campo, elemento) && valido;
   });
+
+  if (entidade.tipo === "funcionarios") {
+    valido = validarSenhaFuncionario() && valido;
+  }
 
   return valido;
 }
@@ -286,7 +304,9 @@ function validarFormulario(entidade) {
 function tratarErroFormulario(erro) {
   console.error(erro);
 
-  // Validação backend
+  const email = document.getElementById("email");
+
+  // Validações do backend
   if (erro.status === 400) {
     erro.erros?.forEach((item) => {
       const campo = document.getElementById(item.campo);
@@ -295,6 +315,15 @@ function tratarErroFormulario(erro) {
         mostrarErro(campo, item.mensagem);
       }
     });
+
+    return;
+  }
+
+  // E-mail já cadastrado
+  if (erro.status === 409) {
+    if (email) {
+      mostrarErro(email, "Este e-mail já está em uso.");
+    }
 
     return;
   }
@@ -334,6 +363,8 @@ function configurarSubmit(entidade) {
 
     try {
       const dados = obterDadosFormulario(entidade);
+
+      console.log("DADOS ENVIADOS:", dados);
 
       await salvarEntidade(entidade, dados);
 
@@ -431,6 +462,12 @@ function preencherFormulario(entidade, dados) {
       return;
     }
 
+    if (campo.name === "telefone") {
+      elemento.value = formatarTelefone(dados[campo.name]);
+
+      return;
+    }
+
     // MONEY (IMPORTANTE)
     if (campo.type === "money") {
       elemento.value = formatarMoneyParaView(dados[campo.name]);
@@ -460,11 +497,17 @@ export async function iniciarFormularioAdmin() {
 
   if (!protegerRotaPerfil(["ADMIN", "ESTOQUISTA"])) return;
 
+  if (entidade.tipo === "produtos" && !protegerRotaPerfil(["ADMIN"])) {
+    return;
+  }
+
   configurarPagina(entidade);
 
   const modoEdicao = estaEditando();
 
   renderFormularioEntidadeAdmin(entidade, modoEdicao);
+
+  configurarToggleSenha();
 
   const validadeInput = document.getElementById("validade");
 

@@ -55,22 +55,31 @@ export function aplicarMascaraTelefone(input) {
 
     valor = valor.slice(0, 11);
 
-    // Se não houver números, limpa completamente
-    if (!valor) {
-      e.target.value = "";
-      return;
-    }
-
-    if (valor.length <= 2) {
-      valor = valor.replace(/^(\d{0,2})/, "($1");
-    } else if (valor.length <= 7) {
-      valor = valor.replace(/^(\d{2})(\d+)/, "($1) $2");
-    } else {
-      valor = valor.replace(/^(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
-    }
-
-    e.target.value = valor;
+    e.target.value = formatarTelefone(valor);
   });
+}
+
+export function formatarTelefone(valor) {
+  valor = String(valor || "").replace(/\D/g, "");
+
+  // garante no máximo 11 números
+  valor = valor.slice(0, 11);
+
+  if (!valor) return "";
+
+  if (valor.length <= 2) {
+    return valor.replace(/^(\d{0,2})/, "($1");
+  }
+
+  if (valor.length <= 6) {
+    return valor.replace(/^(\d{2})(\d+)/, "($1) $2");
+  }
+
+  if (valor.length <= 10) {
+    return valor.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+  }
+
+  return valor.replace(/^(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
 }
 
 // ======================================

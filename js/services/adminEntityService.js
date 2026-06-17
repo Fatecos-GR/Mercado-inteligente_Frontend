@@ -47,6 +47,11 @@ import {
   salvarFuncionario,
   atualizarFuncionario,
   excluirFuncionario,
+
+  // USUÁRIOS
+  buscarUsuarios,
+  buscarUsuariosPorNome,
+  buscarUsuarioPorId,
 } from "./api.js";
 
 import {
@@ -55,6 +60,7 @@ import {
   renderAdminCategoriaCard,
   renderAdminFornecedorCard,
   renderAdminFuncionarioCard,
+  renderAdminUsuarioCard,
 } from "../render.js";
 
 // ======================================
@@ -150,6 +156,16 @@ const entityServices = {
     excluir: excluirFuncionario,
 
     renderCard: renderAdminFuncionarioCard,
+  },
+
+  usuarios: {
+    buscarTodos: buscarUsuarios,
+
+    buscarPorNome: buscarUsuariosPorNome,
+
+    buscar: buscarUsuarioPorId,
+
+    renderCard: renderAdminUsuarioCard,
   },
 };
 

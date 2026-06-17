@@ -1,3 +1,5 @@
+import { possuiPerfil } from "./utils/authGuard.js";
+
 // ======================================
 // CARD DE PRODUTO (ADMIN)
 // ======================================
@@ -7,6 +9,8 @@ export function renderAdminProdutoCard(produto) {
     produto.estoqueDisponivel > 10 ? "Em estoque" : "Baixo estoque";
 
   const warningClass = produto.estoqueDisponivel <= 10 ? "warning" : "";
+
+  const podeEditar = possuiPerfil(["ADMIN"]);
 
   return `
     <article class="brand-card product-card">
@@ -48,12 +52,18 @@ export function renderAdminProdutoCard(produto) {
 
       <div class="product-actions">
 
-        <a
-          href="form_admin.html?tipo=produtos&id=${produto.id}"
-          class="btn-card-edit"
-        >
-          <i class="fa-solid fa-pen"></i>
-        </a>
+        ${
+          podeEditar
+            ? `
+          <a
+            href="form_admin.html?tipo=produtos&id=${produto.id}"
+            class="btn-card-edit"
+          >
+            <i class="fa-solid fa-pen"></i>
+          </a>
+        `
+            : ""
+        }
 
         <a
           href="form_admin.html?tipo=estoque&id=${produto.id}"
@@ -319,6 +329,55 @@ export function renderAdminFuncionarioCard(funcionario) {
 }
 
 // ======================================
+// CARD DE USUÁRIO (ADMIN)
+// ======================================
+export function renderAdminUsuarioCard(usuario) {
+  return `
+    <div class="employee-card">
+
+      <div class="employee-card-left">
+
+        <div class="employee-image">
+
+          ${
+            usuario.imagem
+              ? `
+                <img
+                  src="${usuario.imagem}"
+                  alt="${usuario.nome}"
+                />
+              `
+              : `
+                <i class="fa-solid fa-user"></i>
+              `
+          }
+
+        </div>
+
+        <div class="employee-info">
+
+          <h3>
+            ${usuario.nome}
+            ${usuario.sobrenome ?? ""}
+          </h3>
+
+          <p>
+            ${usuario.email}
+          </p>
+
+          <p>
+            ${usuario.telefone || "Telefone não informado"}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
+
+// ======================================
 // RENDER INPUT DE FORMULÁRIO (ADMIN)
 // ======================================
 
@@ -338,6 +397,39 @@ function renderInputFormularioAdmin(campo) {
         ${campo.readonly ? "readonly" : ""}
          ${campo.disabled ? "disabled" : ""}
       />
+
+    </div>
+  `;
+}
+
+// ======================================
+// RENDER PASSWORD DE FORMULÁRIO (ADMIN)
+// ======================================
+function renderPasswordFormularioAdmin(campo) {
+  return `
+    <div class="admin-form-group">
+
+      <label for="${campo.name}">
+        ${campo.label}
+      </label>
+
+      <div class="input-wrapper">
+
+        <input
+          type="password"
+          id="${campo.name}"
+          name="${campo.name}"
+          ${campo.required ? "required" : ""}
+        />
+
+        <button
+          type="button"
+          class="btn-toggle-password"
+        >
+          <i class="fas fa-eye"></i>
+        </button>
+
+      </div>
 
     </div>
   `;
@@ -458,6 +550,11 @@ export function renderCampoFormularioAdmin(campo) {
   // TEXTAREA
   if (campo.type === "textarea") {
     return renderTextareaFormularioAdmin(campo);
+  }
+
+  // PASSWORD
+  if (campo.type === "password") {
+    return renderPasswordFormularioAdmin(campo);
   }
 
   // SELECT

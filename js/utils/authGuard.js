@@ -28,6 +28,14 @@ export function protegerRotaPerfil(perfisPermitidos) {
   return true;
 }
 
+export function podeAcessarEntidade(entidade) {
+  if (!entidade.perfisPermitidos) {
+    return true;
+  }
+
+  return entidade.perfisPermitidos.includes(obterPerfilAtual()?.toUpperCase());
+}
+
 // ======================================
 // PERFIL
 // ======================================

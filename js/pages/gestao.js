@@ -144,7 +144,9 @@ export async function iniciarGestao() {
 
   if (!entidade) return;
 
-  if (!protegerRotaPerfil(["ADMIN", "ESTOQUISTA"])) return;
+  if (!protegerRotaPerfil(entidade.perfisPermitidos)) {
+    return;
+  }
 
   configurarPagina(entidade);
 

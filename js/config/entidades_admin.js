@@ -2,6 +2,7 @@
 // IMPORTS
 // ======================================
 
+import { estaEditando } from "../utils/formContext.js";
 import { camposEndereco } from "./camposEndereco.js";
 
 // ======================================
@@ -9,8 +10,13 @@ import { camposEndereco } from "./camposEndereco.js";
 // ======================================
 
 export const entidades = {
+  // ======================================
+  // ESTOQUE
+  // ======================================
   estoque: {
     tipo: "estoque",
+
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
 
     singular: "Estoque",
 
@@ -54,12 +60,17 @@ export const entidades = {
     ],
   },
 
+  // ======================================
+  // PRODUTOS
+  // ======================================
   produtos: {
     // ======================================
     // INFORMAÇÕES GERAIS
     // ======================================
 
     tipo: "produtos",
+
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
 
     titulo: "Produtos",
 
@@ -176,6 +187,8 @@ export const entidades = {
   marcas: {
     tipo: "marcas",
 
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
+
     titulo: "Marcas",
 
     subtitulo: "Gerencie as marcas cadastradas.",
@@ -229,6 +242,8 @@ export const entidades = {
 
   categorias: {
     tipo: "categorias",
+
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
 
     titulo: "Categorias",
 
@@ -284,6 +299,8 @@ export const entidades = {
   fornecedores: {
     tipo: "fornecedores",
 
+    perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
+
     titulo: "Fornecedores",
 
     subtitulo: "Gerencie os fornecedores cadastrados.",
@@ -337,6 +354,8 @@ export const entidades = {
 
   funcionarios: {
     tipo: "funcionarios",
+
+    perfisPermitidos: ["ADMIN"],
 
     titulo: "Funcionários",
 
@@ -392,6 +411,20 @@ export const entidades = {
       },
 
       {
+        name: "senha",
+        label: "Senha",
+        type: "password",
+        required: !estaEditando(),
+      },
+
+      {
+        name: "confirmarSenha",
+        label: "Confirmar Senha",
+        type: "password",
+        required: !estaEditando(),
+      },
+
+      {
         name: "tipoFuncionario",
         label: "Cargo",
         type: "select",
@@ -415,5 +448,36 @@ export const entidades = {
         required: false,
       },
     ],
+  },
+
+  // ======================================
+  // USUÁRIOS
+  // ======================================
+  usuarios: {
+    tipo: "usuarios",
+
+    perfisPermitidos: ["ADMIN"],
+
+    titulo: "Clientes",
+
+    subtitulo: "Gerencie os clientes cadastrados no sistema.",
+
+    singular: "Cliente",
+
+    plural: "Clientes",
+
+    rotaGestao: "/gestao.html?tipo=usuarios",
+
+    endpoint: "/usuarios",
+
+    placeholderBusca: "Buscar cliente...",
+
+    textoBotaoAdicionar: null,
+
+    icone: "fa-solid fa-user-group",
+
+    cardLayout: "usuario",
+
+    camposListagem: ["nome", "sobrenome", "email", "telefone"],
   },
 };

@@ -285,7 +285,7 @@ export async function buscarFuncionarios() {
 }
 
 export async function buscarFuncionariosPorNome(nome) {
-  return request(`/funcionarios/search?nome=${nome}`);
+  return request(`/funcionarios/buscar?nome=${nome}`);
 }
 
 export async function buscarFuncionarioPorId(id) {
@@ -301,6 +301,49 @@ export async function atualizarFuncionario(id, dados) {
 
 export async function excluirFuncionario(id) {
   return request(`/funcionarios/${id}`, {
+    method: "DELETE",
+  });
+}
+
+// ===============================
+// CRUD USUARIOS
+// ===============================
+
+export async function salvarUsuario(dados) {
+  return request("/usuarios", {
+    method: "POST",
+    body: criarMultipart(dados, "usuario"),
+  });
+}
+
+export async function buscarUsuarios() {
+  return request(`/usuarios/clientes`);
+}
+
+export async function buscarUsuariosPorNome(nome) {
+  return request(`/usuarios/search?nome=${nome}`);
+}
+
+export async function buscarUsuarioPorId(id) {
+  return request(`/usuarios/${id}`);
+}
+
+export async function atualizarUsuario(id, dados) {
+  return request(`/usuarios/${id}`, {
+    method: "PUT",
+    body: criarMultipart(dados, "usuario"),
+  });
+}
+
+export async function atualizarSenhaUsuario(id, dados) {
+  return request(`/usuarios/${id}/senha`, {
+    method: "PATCH",
+    body: criarMultipart(dados, "usuario"),
+  });
+}
+
+export async function excluirUsuario(id) {
+  return request(`/usuarios/${id}`, {
     method: "DELETE",
   });
 }
