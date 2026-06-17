@@ -5,6 +5,7 @@ function configurarPermissoesSidebar() {
     return;
   }
 
+  document.getElementById("menu-dashboard")?.remove();
   document.getElementById("menu-funcionarios")?.remove();
   document.getElementById("menu-clientes")?.remove();
   document.getElementById("menu-marcas")?.remove();

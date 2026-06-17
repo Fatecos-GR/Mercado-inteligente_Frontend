@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Configurações do Sistema | Admin Melior</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
     <link rel="stylesheet" href="css/pages/configuracoes.css" />
     <script type="module" src="js/main.js" defer></script>
   </head>
@@ -27,23 +23,19 @@
             </p>
 
             <div class="config-tabs-nav">
-              <button class="tab-btn active" data-tab="mercado">
+              <!-- <button class="tab-btn active" data-tab="mercado">
                 <i class="fa-solid fa-store"></i> Dados do Mercado
               </button>
               <button class="tab-btn" data-tab="delivery">
                 <i class="fa-solid fa-truck"></i> Delivery e Operação
-              </button>
-              <button class="tab-btn" data-tab="perfil">
+              </button> -->
+              <button class="tab-btn active" data-tab="perfil">
                 <i class="fa-solid fa-user-gear"></i> Meu Perfil
               </button>
             </div>
 
-            <form
-              action="/admin/configuracoes/salvar"
-              method="POST"
-              class="admin-main-form"
-            >
-              <div class="tab-content active" id="tab-mercado">
+            <form class="admin-main-form" novalidate>
+              <!-- <div class="tab-content active" id="tab-mercado">
                 <div class="admin-form-group">
                   <label for="razao-social">Razão Social / Nome Fantasia</label>
                   <input
@@ -149,18 +141,21 @@
                     </select>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="tab-content" id="tab-perfil">
-                <div class="admin-form-group">
-                  <label for="perfil-nome">Seu Nome Completo</label>
-                  <input
-                    type="text"
-                    id="perfil-nome"
-                    name="perfilNome"
-                    value="Nome do Administrador Logado"
-                    required
-                  />
+              <div class="tab-content active" id="tab-perfil">
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label for="perfil-nome">Nome</label>
+
+                    <input type="text" id="perfil-nome" required />
+                  </div>
+
+                  <div class="admin-form-group">
+                    <label for="perfil-sobrenome">Sobrenome</label>
+
+                    <input type="text" id="perfil-sobrenome" required />
+                  </div>
                 </div>
 
                 <div class="admin-form-row">
@@ -171,9 +166,19 @@
                       id="perfil-email"
                       name="perfilEmail"
                       value="admin@melior.com"
-                      required
                     />
                   </div>
+
+                  <div class="admin-form-group">
+                    <label for="perfil-telefone">Seu Telefone</label>
+                    <input
+                      type="tel"
+                      id="perfil-telefone"
+                      name="perfilTelefone"
+                      placeholder="(11) 99999-9999"
+                    />
+                  </div>
+
                   <div class="admin-form-group">
                     <label for="perfil-cargo">Cargo / Função</label>
                     <input
@@ -191,12 +196,23 @@
 
                 <div class="admin-form-group">
                   <label for="perfil-senha">Alterar Senha de Acesso</label>
-                  <input
-                    type="password"
-                    id="perfil-senha"
-                    name="perfilSenha"
-                    placeholder="Digite uma nova senha se desejar alterar"
-                  />
+
+                  <div class="input-container">
+                    <input
+                      type="password"
+                      id="perfil-senha"
+                      name="perfilSenha"
+                      placeholder="Digite uma nova senha se desejar alterar"
+                    />
+
+                    <button
+                      type="button"
+                      class="btn-toggle-password"
+                      tabindex="-1"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
 
