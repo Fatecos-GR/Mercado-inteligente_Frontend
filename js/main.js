@@ -8,10 +8,11 @@ import { iniciarHeaderCliente } from "./components/headerClient.js";
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
 import { iniciarLogin } from "./pages/login.js";
 import { iniciarCadastro } from "./pages/cadastro.js";
+import { iniciarHeaderAdmin } from "./components/headerAdmin.js";
+import { iniciarSidebarAdmin } from "./components/sidebarAdmin.js";
 import { iniciarCarrinho } from "./pages/carrinho.js";
 import { iniciarProdutoDetalhes } from "./pages/produto_detalhes.js";
 import { iniciarConfiguracoes } from "./pages/configuracoes.js";
-import { iniciarHeaderAdmin } from "./components/headerAdmin.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
@@ -83,7 +84,11 @@ async function carregarLayout() {
     iniciarHeaderAdmin,
   );
 
-  await carregarSeExistir("admin-sidebar", "components/admin-sidebar.html");
+  await carregarSeExistir(
+    "admin-sidebar",
+    "components/admin-sidebar.html",
+    iniciarSidebarAdmin,
+  );
 }
 
 // ===============================

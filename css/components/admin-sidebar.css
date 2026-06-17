@@ -4,12 +4,11 @@
 
 #admin-sidebar {
   width: 260px;
-  height: 100vh;
+  max-height: 100%;
   background: linear-gradient(180deg, var(--verde-escuro), #2f4636);
   color: var(--bg-light);
   display: flex;
   flex-direction: column;
-
   box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   /* Descer junto a página */
@@ -205,21 +204,21 @@
   color: var(--marrom-madeira);
 }
 
-/* Garante que os links ocupem o espaço vertical dinamicamente */
 .admin-sidebar-links {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Ocupa a altura total disponível abaixo do logo */
+  flex: 1;
+  padding: 12px;
+  gap: 6px;
 }
 
-/* A mágica acontece aqui: empurra o container do rodapé para o fim da tela */
 .admin-sidebar-footer {
   margin-top: auto;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Uma linha divisória bem sutil */
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0px;
 }
 
-/* Garante que o link de configurações siga o mesmo estilo visual dos outros */
 .admin-sidebar-footer a {
   display: flex;
   align-items: center;
