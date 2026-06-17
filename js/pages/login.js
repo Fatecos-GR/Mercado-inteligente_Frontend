@@ -8,6 +8,7 @@ import {
   salvarToken,
   salvarPerfil,
   salvarNome,
+  salvarId,
 } from "../utils/localStorageUtils.js";
 
 import { tiposLogin } from "../config/authConfig.js";
@@ -111,6 +112,8 @@ async function fazerLogin(email, senha) {
 
   salvarNome(resposta.usuario.nome);
 
+  salvarId(resposta.usuario.id);
+
   return resposta;
 }
 
@@ -172,13 +175,25 @@ function configurarSubmit(config) {
 
       console.log("TOKEN:", resposta.token);
 
-      window.location.href = config.rotaSucesso;
+      const perfil = resposta.usuario.perfil?.toUpperCase();
+
+      window.location.href = obterRotaSucessoPorPerfil(perfil);
 
       setTimeout(() => {}, 1500);
     } catch (erro) {
       tratarErroLogin(erro);
     }
   });
+}
+
+function obterRotaSucessoPorPerfil(perfil) {
+  const rotas = {
+    ADMIN: "/dashboard.html",
+    ESTOQUISTA: "/gestao.html?tipo=produtos",
+    CLIENTE: "/index.html",
+  };
+
+  return rotas[perfil] || "/index.html";
 }
 
 // ======================================

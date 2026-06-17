@@ -28,17 +28,36 @@ export const entidades = {
 
     camposFormulario: [
       {
-        name: "nome",
+        name: "produtoNome",
         label: "Nome do Produto",
         type: "text",
         required: true,
         readonly: true,
         disabled: true,
       },
+
       {
-        name: "quantidade_atual",
-        label: "Quantidade Atual",
+        name: "quantidadeDisponivel",
+        label: "Quantidade Disponível",
         type: "integer",
+        required: true,
+        readonly: true,
+        disabled: true,
+      },
+
+      {
+        name: "quantidadeReservada",
+        label: "Quantidade Reservada",
+        type: "integer",
+        required: true,
+        readonly: true,
+        disabled: true,
+      },
+
+      {
+        name: "atualizadoEm",
+        label: "Ultima atualização",
+        type: "datetime-local",
         required: true,
         readonly: true,
         disabled: true,
@@ -56,6 +75,17 @@ export const entidades = {
         label: "Tipo da Movimentação",
         type: "select",
         required: true,
+
+        opcoes: [
+          {
+            value: "ENTRADA",
+            label: "Entrada",
+          },
+          {
+            value: "SAIDA",
+            label: "Saída",
+          },
+        ],
       },
     ],
   },
@@ -71,6 +101,8 @@ export const entidades = {
     tipo: "produtos",
 
     perfisPermitidos: ["ADMIN", "ESTOQUISTA"],
+
+    permiteCadastroPerfis: ["ADMIN"],
 
     titulo: "Produtos",
 
@@ -103,6 +135,46 @@ export const entidades = {
     textoBotaoAdicionar: "Novo Produto",
 
     icone: "fa-solid fa-box",
+
+    // ======================================
+    // FILTRAGEM
+    // ======================================
+
+    filtros: [
+      {
+        parametro: "marcaId",
+        entidadeRelacionada: "marcas",
+        placeholder: "Todas as marcas",
+      },
+
+      {
+        parametro: "categoriaId",
+        entidadeRelacionada: "categorias",
+        placeholder: "Todas as categorias",
+      },
+
+      {
+        parametro: "fornecedorId",
+        entidadeRelacionada: "fornecedores",
+        placeholder: "Todos os fornecedores",
+      },
+
+      {
+        parametro: "baixoEstoque",
+        placeholder: "Todos os estoques",
+
+        opcoes: [
+          {
+            value: "true",
+            label: "Baixo estoque",
+          },
+          {
+            value: "false",
+            label: "Estoque normal",
+          },
+        ],
+      },
+    ],
 
     // ======================================
     // LISTAGEM
@@ -397,14 +469,17 @@ export const entidades = {
       },
 
       {
-        name: "imagem",
-        label: "Imagem",
-        type: "file",
+        name: "telefone",
+        label: "Telefone",
+        type: "text",
+        required: true,
       },
 
       {
-        type: "section",
-        title: "Endereço",
+        name: "email",
+        label: "E-mail",
+        type: "email",
+        required: true,
       },
 
       {
@@ -457,7 +532,7 @@ export const entidades = {
 
     titulo: "Clientes",
 
-    subtitulo: "Gerencie os clientes cadastrados no sistema.",
+    subtitulo: "Visualize os clientes cadastrados no sistema.",
 
     singular: "Cliente",
 

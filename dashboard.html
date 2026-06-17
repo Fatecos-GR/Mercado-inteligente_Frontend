@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/pages/dashboard.css" />
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="js/main.js" defer></script>
   </head>
   <body>
@@ -18,88 +19,58 @@
         <div id="admin-header"></div>
 
         <main id="main-container">
-          <h2>Resumo das Operações</h2>
+          <div class="dashboard-header">
+            <h2>Dashboard</h2>
 
-          <div id="dashboard-cards-grid">
-            <div class="dashboard-card box-blue">
-              <h3>Vendas do Dia</h3>
-              <p>R$ 1.250,00</p>
-            </div>
-
-            <div class="dashboard-card box-green">
-              <h3>Novos Pedidos</h3>
-              <p>12</p>
-            </div>
-
-            <div class="dashboard-card box-red">
-              <h3>Itens Esgotados</h3>
-              <p>4</p>
-            </div>
+            <span> Visão geral do estoque e catálogo </span>
           </div>
 
-          <div class="dashboard-split-container">
-            <section class="dash-column-main">
-              <div class="dash-block-header">
-                <h3>Últimos Pedidos Recebidos</h3>
-                <a href="pedidos.html" class="dash-link-view">Ver todos</a>
-              </div>
+          <!-- KPIs -->
+          <section id="dashboard-cards-grid">
+            <div class="dashboard-card">
+              <span class="card-label">Produtos Cadastrados</span>
+              <strong id="total-produtos">--</strong>
+            </div>
 
-              <table class="admin-mini-table">
-                <thead>
-                  <tr>
-                    <th>Código</th>
-                    <th>Cliente</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1002</td>
-                    <td>Ana Souza</td>
-                    <td>R$ 62,30</td>
-                    <td>
-                      <span class="mini-status badge-pendente">Pendente</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>Carlos Silva</td>
-                    <td>R$ 145,90</td>
-                    <td>
-                      <span class="mini-status badge-separacao"
-                        >Em Separação</span
-                      >
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
+            <div class="dashboard-card">
+              <span class="card-label">Itens em Estoque</span>
+              <strong id="estoque-total">--</strong>
+            </div>
 
-            <section class="dash-column-side">
-              <div class="dash-block-header">
-                <h3>Alertas do Estoque</h3>
-              </div>
+            <div class="dashboard-card alerta">
+              <span class="card-label">Baixo Estoque (Abaixo de 10)</span>
+              <strong id="baixo-estoque">--</strong>
+            </div>
+          </section>
 
-              <div class="dash-alert-list">
-                <div class="dash-alert-item urgency-high">
-                  <div class="alert-info">
-                    <strong>Arroz Integral 5kg</strong>
-                    <small>Estoque crítico: 2 un.</small>
-                  </div>
-                  <span class="alert-tag">Repor</span>
-                </div>
+          <!-- Gráficos -->
+          <section class="dashboard-grid">
+            <div class="dashboard-panel">
+              <h3>Produtos por Categoria</h3>
 
-                <div class="dash-alert-item urgency-medium">
-                  <div class="alert-info">
-                    <strong>Feijão Carioca 1kg</strong>
-                    <small>Esgotado no sistema</small>
-                  </div>
-                  <span class="alert-tag">Zerar</span>
-                </div>
-              </div>
-            </section>
-          </div>
+              <canvas id="chart-categorias"></canvas>
+            </div>
+
+            <div class="dashboard-panel">
+              <h3>Produtos por Marca</h3>
+
+              <canvas id="chart-marcas"></canvas>
+            </div>
+          </section>
+
+          <section class="dashboard-grid">
+            <div class="dashboard-panel">
+              <h3>Produtos por Fornecedor</h3>
+
+              <canvas id="chart-fornecedores"></canvas>
+            </div>
+
+            <div class="dashboard-panel">
+              <h3>Quantidade por Produto</h3>
+
+              <div id="dashboard-produtos-lista"></div>
+            </div>
+          </section>
         </main>
       </div>
     </div>
