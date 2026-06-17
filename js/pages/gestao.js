@@ -139,6 +139,8 @@ async function renderCards(entidade) {
 
   const filtros = obterFiltros();
 
+  console.log("Filtros:", filtros);
+
   dados = await service.buscarTodos();
 
   if (filtros.search) {
@@ -161,6 +163,16 @@ async function renderCards(entidade) {
     dados = dados.filter(
       (item) => String(item.fornecedorId) === filtros.fornecedorId,
     );
+  }
+
+  if (filtros.baixoEstoque) {
+    dados = dados.filter((item) => {
+      const quantidade = item.estoqueDisponivel ?? 0;
+
+      return filtros.baixoEstoque === "true"
+        ? quantidade <= 10
+        : quantidade > 10;
+    });
   }
 
   grid.innerHTML = dados.map(service.renderCard).join("");
@@ -195,20 +207,25 @@ async function configurarFiltros(entidade) {
 
   for (const filtro of entidade.filtros) {
     const select = document.getElementById(
-      `filtro-${filtro.parametro.replace("Id", "")}`,
+      filtro.opcoes
+        ? `filtro-${filtro.parametro}`
+        : `filtro-${filtro.parametro.replace("Id", "")}`,
     );
 
     if (!select) continue;
 
-    await popularSelectGenerico(
-      select,
-      filtro.entidadeRelacionada,
-      filtro.placeholder,
-    );
+    if (filtro.entidadeRelacionada) {
+      await popularSelectGenerico(
+        select,
+        filtro.entidadeRelacionada,
+        filtro.placeholder,
+      );
+    }
 
     select.value = getFiltro(filtro.parametro);
 
     select.addEventListener("change", async () => {
+      console.log("Filtro alterado:", filtro.parametro, select.value);
       atualizarFiltro(filtro.parametro, select.value);
 
       await renderCards(entidade);
@@ -222,11 +239,12 @@ function limparFiltros(entidade) {
   atualizarFiltro("marcaId", "");
   atualizarFiltro("categoriaId", "");
   atualizarFiltro("fornecedorId", "");
+  atualizarFiltro("baixoEstoque", "");
 
   document.getElementById("search-input").value = "";
 
   document
-    .querySelectorAll(".gestao-filtro-select")
+    .querySelectorAll(".gestao-filtro")
     .forEach((select) => (select.value = ""));
 
   renderCards(entidade);

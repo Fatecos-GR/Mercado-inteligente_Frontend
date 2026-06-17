@@ -706,18 +706,43 @@ export function renderFiltrosGestao(entidade) {
   return `
     <div class="gestao-filtros-wrapper">
       ${entidade.filtros
-        .map(
-          (filtro) => `
+        .map((filtro) => {
+          const id = filtro.parametro.replace("Id", "");
+
+          if (filtro.opcoes?.length) {
+            return `
+              <select
+                id="filtro-${id}"
+                class="gestao-filtro"
+              >
+                <option value="">
+                  ${filtro.placeholder}
+                </option>
+
+                ${filtro.opcoes
+                  .map(
+                    (opcao) => `
+                      <option value="${opcao.value}">
+                        ${opcao.label}
+                      </option>
+                    `,
+                  )
+                  .join("")}
+              </select>
+            `;
+          }
+
+          return `
             <select
-              id="filtro-${filtro.parametro.replace("Id", "")}"
+              id="filtro-${id}"
               class="gestao-filtro"
             >
               <option value="">
                 ${filtro.placeholder}
               </option>
             </select>
-          `,
-        )
+          `;
+        })
         .join("")}
 
       <button

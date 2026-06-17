@@ -366,6 +366,18 @@ export async function buscarCategoriasEQuantidade() {
   return request(`/dashboard/produtos/por-categoria`);
 }
 
+export async function buscarQuantidadeProdutosBaixoEstoque() {
+  return request(`/dashboard/produtos/baixo-estoque`);
+}
+
+export async function buscarQuantidadeTotalProdutosEstoque() {
+  return request(`/dashboard/produtos/estoque-total`);
+}
+
+export async function buscarQuantidadeDeCadaProduto() {
+  return request(`/dashboard/produtos/quantidade-geral`);
+}
+
 // ===============================
 // BUSCAR CEP
 // ===============================

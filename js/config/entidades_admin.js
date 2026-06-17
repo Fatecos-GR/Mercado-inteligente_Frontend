@@ -158,6 +158,22 @@ export const entidades = {
         entidadeRelacionada: "fornecedores",
         placeholder: "Todos os fornecedores",
       },
+
+      {
+        parametro: "baixoEstoque",
+        placeholder: "Todos os estoques",
+
+        opcoes: [
+          {
+            value: "true",
+            label: "Baixo estoque",
+          },
+          {
+            value: "false",
+            label: "Estoque normal",
+          },
+        ],
+      },
     ],
 
     // ======================================
