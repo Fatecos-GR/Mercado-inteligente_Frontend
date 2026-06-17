@@ -86,7 +86,14 @@ function configurarPagina(entidade) {
   // LINK BOTÃO
   const botaoAdicionar = document.getElementById("btn-adicionar-item");
 
-  botaoAdicionar.href = entidade.rotaFormulario;
+  if (entidade.permiteCadastro === false) {
+    botaoAdicionar.style.display = "none";
+  } else {
+    const botaoTexto = document.getElementById("btn-adicionar-texto");
+
+    botaoTexto.textContent = entidade.textoBotaoAdicionar;
+    botaoAdicionar.href = entidade.rotaFormulario;
+  }
 }
 
 // ======================================

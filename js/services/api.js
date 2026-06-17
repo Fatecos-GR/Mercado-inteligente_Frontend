@@ -349,6 +349,13 @@ export async function excluirUsuario(id) {
 }
 
 // ===============================
+// DASHBOARD
+// ===============================
+export async function buscarEstatisticas() {
+  return request(`/dashboard/estatisticas`);
+}
+
+// ===============================
 // BUSCAR CEP
 // ===============================
 

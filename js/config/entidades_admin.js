@@ -472,7 +472,7 @@ export const entidades = {
 
     placeholderBusca: "Buscar cliente...",
 
-    textoBotaoAdicionar: null,
+    permiteCadastro: false,
 
     icone: "fa-solid fa-user-group",
 
