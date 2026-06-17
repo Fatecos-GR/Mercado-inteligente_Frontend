@@ -1,3 +1,6 @@
+import { produtosMock } from "../data/produtosMock.js";
+import { atualizarCarrinhoHeader, mostrarToastProduto } from "../components/headerClient.js";
+
 // ==========================
 // INICIALIZAÇÃO DE PÁGINA
 // ==========================
@@ -7,6 +10,54 @@ export function iniciarHome() {
   iniciarTabsRecomendacoes();
   iniciarScrollCategorias();
   iniciarNavegacaoCategorias();
+  iniciarBotoesCarrinho();
+}
+
+// ==========================
+// ADICIONAR AO CARRINHO
+// ==========================
+function iniciarBotoesCarrinho() {
+  const botoesAdd = document.querySelectorAll(".btn-add-cart");
+  
+  botoesAdd.forEach(botao => {
+    botao.addEventListener("click", (e) => {
+      e.preventDefault();
+      const produtoId = botao.getAttribute("data-id");
+      if (!produtoId) return;
+
+      const produtoEncontrado = produtosMock.find(p => p.id === produtoId);
+      if (!produtoEncontrado) return;
+
+      let carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
+      const indexExistente = carrinho.findIndex(item => item.id === produtoId);
+
+      if (indexExistente >= 0) {
+        carrinho[indexExistente].quantidade += 1;
+      } else {
+        carrinho.push({
+          id: produtoEncontrado.id,
+          nome: produtoEncontrado.nome,
+          preco: produtoEncontrado.preco,
+          imagem: produtoEncontrado.imagem,
+          quantidade: 1
+        });
+      }
+
+      localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
+      
+      // Feedback visual simples
+      const icon = botao.querySelector("i");
+      if (icon) {
+        botao.innerHTML = 'Adicionado <i class="fa-solid fa-check"></i>';
+        setTimeout(() => {
+          botao.innerHTML = 'Adicionar <i class="fa-solid fa-cart-shopping"></i>';
+        }, 1500);
+      }
+
+      atualizarCarrinhoHeader();
+      mostrarToastProduto(produtoEncontrado.nome);
+    });
+  });
 }
 
 // ==========================

@@ -397,17 +397,14 @@ export const entidades = {
       },
 
       {
-        name: "telefone",
-        label: "Telefone",
-        type: "text",
-        required: true,
+        name: "imagem",
+        label: "Imagem",
+        type: "file",
       },
 
       {
-        name: "email",
-        label: "E-mail",
-        type: "email",
-        required: true,
+        type: "section",
+        title: "Endereço",
       },
 
       {

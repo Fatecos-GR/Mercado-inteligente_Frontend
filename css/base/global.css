@@ -64,6 +64,11 @@ body {
   color: #2e7d32;
 }
 
+/* Botões */
+button {
+  cursor: pointer;
+}
+
 /* Botão desabilitado */
 button:disabled {
   opacity: 0.6;
@@ -141,4 +146,66 @@ button:disabled {
 .skeleton-button {
   width: 120px;
   height: 40px;
+}
+
+/* ===============================
+   TOAST NOTIFICATION (Pop-up de Aviso)
+=============================== */
+#toast-container {
+  position: fixed;
+  top: 140px;
+  right: 25px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast-msg {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideInRight 0.3s ease forwards;
+  opacity: 1;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.toast-msg.esconder {
+  animation: slideOutRight 0.4s ease forwards;
+}
+
+.toast-msg i {
+  font-size: 1.2rem;
+  color: #a8e6cf;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }

@@ -99,7 +99,6 @@ function configurarPagina(entidade) {
 // ======================================
 // RENDERIZAÇÃO DOS CARDS
 // ======================================
-
 async function renderCards(entidade) {
   const grid = document.getElementById("gestao-grid");
 

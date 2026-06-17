@@ -8,11 +8,11 @@ import { iniciarHeaderCliente } from "./components/headerClient.js";
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
 import { iniciarLogin } from "./pages/login.js";
 import { iniciarCadastro } from "./pages/cadastro.js";
-
-// Importação da nova página de configurações
-import { iniciarConfiguracoes } from "./pages/configuracoes.js";
 import { iniciarHeaderAdmin } from "./components/headerAdmin.js";
 import { iniciarSidebarAdmin } from "./components/sidebarAdmin.js";
+import { iniciarCarrinho } from "./pages/carrinho.js";
+import { iniciarProdutoDetalhes } from "./pages/produto_detalhes.js";
+import { iniciarConfiguracoes } from "./pages/configuracoes.js";
 
 // ===============================
 // FUNÇÃO AUXILIAR PARA CARREGAR OS COMPONENTES HTML
@@ -137,6 +137,20 @@ async function start() {
     window.location.pathname.includes("configuracoes.html");
   if (isConfiguracoesPage) {
     iniciarConfiguracoes();
+  }
+
+  const isCarrinhoPage = window.location.pathname.includes("carrinho.html");
+
+  if (isCarrinhoPage) {
+    iniciarCarrinho();
+  }
+
+  const isProdutoDetalhesPage = window.location.pathname.includes(
+    "produto_detalhes.html",
+  );
+
+  if (isProdutoDetalhesPage) {
+    iniciarProdutoDetalhes();
   }
 }
 
