@@ -40,8 +40,11 @@
 
 .banner-slide {
   min-width: 100%;
-  height: 450px; /* Altura fixa para manter estabilidade visual */
+  height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
   display: block;
+  background-color: var(
+    --verde-escuro
+  ); /* Fundo para preencher espaços em imagens desproporcionais */
 }
 
 .banner-slide img {
@@ -207,23 +210,22 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    var(--verde-escuro) 50%,
-    var(--verde-primario) 50%
-  );
+  background: var(--branco);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--verde-primario);
 }
 
 .category-circle .category-img {
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
+  padding: 0px;
+  transform: scale(2);
 }
 
 .category-card .category-title {
@@ -235,7 +237,39 @@
 }
 
 /* ===============================
-   FILTRO DE ORDENAÇÃO (Estilo Melior)
+   BANNER PROMOCIONAL
+=============================== */
+.banner-promocional-secao {
+  margin: 40px auto; /* Dá um respiro em cima e embaixo */
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden; /* Garante que a imagem respeite as bordas arredondadas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.banner-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+.banner-img-promocional {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Ajuste sutil para telas menores */
+@media (max-width: 768px) {
+  .banner-promocional-secao {
+    margin: 25px auto;
+    border-radius: 8px;
+  }
+}
+
+/* ===============================
+   FILTRO DE ORDENAÇÃO (Custom Select)
 =============================== */
 .filtro-ordenacao {
   display: flex;
@@ -281,6 +315,58 @@
 
 .custom-select.open .select-trigger {
   border-color: var(--verde-escuro);
+}
+
+.custom-select.open .select-trigger i {
+  transform: rotate(180deg);
+}
+
+.select-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: var(--branco);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.custom-select.open .select-options {
+  display: block;
+}
+
+.option {
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--cinza-escuro);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  background: var(--bg-light);
+  color: var(--verde-escuro);
+  padding-left: 25px;
+}
+
+.option.active {
+  background: var(--verde-primario);
+  color: var(--branco);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ===============================
