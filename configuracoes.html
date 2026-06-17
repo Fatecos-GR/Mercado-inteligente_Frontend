@@ -144,14 +144,18 @@
               </div> -->
 
               <div class="tab-content active" id="tab-perfil">
-                <div class="admin-form-group">
-                  <label for="perfil-nome">Seu Nome Completo</label>
-                  <input
-                    type="text"
-                    id="perfil-nome"
-                    name="perfilNome"
-                    value="Nome do Administrador Logado"
-                  />
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label for="perfil-nome">Nome</label>
+
+                    <input type="text" id="perfil-nome" required />
+                  </div>
+
+                  <div class="admin-form-group">
+                    <label for="perfil-sobrenome">Sobrenome</label>
+
+                    <input type="text" id="perfil-sobrenome" required />
+                  </div>
                 </div>
 
                 <div class="admin-form-row">
@@ -192,12 +196,23 @@
 
                 <div class="admin-form-group">
                   <label for="perfil-senha">Alterar Senha de Acesso</label>
-                  <input
-                    type="password"
-                    id="perfil-senha"
-                    name="perfilSenha"
-                    placeholder="Digite uma nova senha se desejar alterar"
-                  />
+
+                  <div class="input-container">
+                    <input
+                      type="password"
+                      id="perfil-senha"
+                      name="perfilSenha"
+                      placeholder="Digite uma nova senha se desejar alterar"
+                    />
+
+                    <button
+                      type="button"
+                      class="btn-toggle-password"
+                      tabindex="-1"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
 

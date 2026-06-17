@@ -14,7 +14,17 @@ import { buscarFuncionarioPorId } from "../services/api.js";
 
 import { validarEmail, validarTelefone } from "../utils/validators.js";
 
+import {
+  limparErros,
+  limparMensagemFormulario,
+  mostrarMensagemFormulario,
+  configurarToggleSenha,
+  mostrarErro,
+} from "../utils/formUtils.js";
+
 import { atualizarUsuario } from "../services/api.js";
+
+import { abrirModalResultado } from "../utils/modalUtils.js";
 
 // ======================================
 // PERFIS
@@ -106,13 +116,17 @@ async function carregarPerfil() {
 
 function preencherPerfil(funcionario) {
   const nomeInput = document.getElementById("perfil-nome");
+  const sobrenomeInput = document.getElementById("perfil-sobrenome");
   const emailInput = document.getElementById("perfil-email");
   const telefoneInput = document.getElementById("perfil-telefone");
   const cargoInput = document.getElementById("perfil-cargo");
 
   if (nomeInput) {
-    nomeInput.value =
-      `${funcionario.nome} ${funcionario.sobrenome ?? ""}`.trim();
+    nomeInput.value = funcionario.nome ?? "";
+  }
+
+  if (sobrenomeInput) {
+    sobrenomeInput.value = funcionario.sobrenome ?? "";
   }
 
   if (emailInput) {
@@ -141,48 +155,18 @@ function configurarMascaras() {
   }
 }
 
-// ======================================
-// SUBMIT (PREPARAÇÃO)
-// ======================================
-
-function configurarSubmitPerfil() {
-  const form = document.querySelector(".admin-main-form");
-
-  if (!form) return;
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const dados = {
-      nome: document.getElementById("perfil-nome")?.value.trim(),
-
-      email: document.getElementById("perfil-email")?.value.trim(),
-
-      telefone: document
-        .getElementById("perfil-telefone")
-        ?.value.replace(/\D/g, ""),
-
-      senha: document.getElementById("perfil-senha")?.value.trim(),
-    };
-
-    if (!dados.senha) {
-      delete dados.senha;
-    }
-
-    console.log("DADOS PERFIL:", dados);
-
-    // Próximo passo:
-    // await atualizarFuncionario(obterId(), dados);
-  });
-}
-
 function obterDadosFormulario() {
   return {
     nome: document.getElementById("perfil-nome").value.trim(),
+
+    sobrenome: document.getElementById("perfil-sobrenome").value.trim(),
+
     email: document.getElementById("perfil-email").value.trim(),
+
     telefone: document
       .getElementById("perfil-telefone")
       .value.replace(/\D/g, ""),
+
     senha: document.getElementById("perfil-senha").value.trim(),
   };
 }
@@ -192,13 +176,18 @@ function validarFormulario() {
   limparMensagemFormulario();
 
   const nome = document.getElementById("perfil-nome");
+  const sobrenome = document.getElementById("perfil-sobrenome");
   const email = document.getElementById("perfil-email");
   const telefone = document.getElementById("perfil-telefone");
-
   let valido = true;
 
   if (!nome.value.trim()) {
     mostrarErro(nome, "Informe seu nome.");
+    valido = false;
+  }
+
+  if (!sobrenome.value.trim()) {
+    mostrarErro(sobrenome, "Informe seu sobrenome.");
     valido = false;
   }
 
@@ -274,7 +263,12 @@ function configurarSubmit() {
     try {
       await salvarPerfil();
 
-      salvarNome(document.getElementById("perfil-nome").value.trim());
+      const nome = document.getElementById("perfil-nome").value.trim();
+      const sobrenome = document
+        .getElementById("perfil-sobrenome")
+        .value.trim();
+
+      salvarNome(`${nome} ${sobrenome}`.trim());
 
       await abrirModalResultado("Perfil atualizado com sucesso.");
 
@@ -296,9 +290,11 @@ export async function iniciarConfiguracoes() {
 
   iniciarTabsConfiguracoes();
 
+  configurarToggleSenha();
+
   configurarMascaras();
 
   await carregarPerfil();
 
-  configurarSubmitPerfil();
+  configurarSubmit();
 }
