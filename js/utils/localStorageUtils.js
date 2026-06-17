@@ -15,6 +15,7 @@ export function logout() {
 
   removerPerfil();
   removerNome();
+  removerId();
 
   window.location.href = "/login.html?tipo=admin";
 }
@@ -41,4 +42,16 @@ export function obterNome() {
 
 export function removerNome() {
   localStorage.removeItem("nome");
+}
+
+export function salvarId(id) {
+  localStorage.setItem("idUsuario", id);
+}
+
+export function obterId() {
+  return Number(localStorage.getItem("idUsuario"));
+}
+
+export function removerId() {
+  localStorage.removeItem("idUsuario");
 }

@@ -1,4 +1,6 @@
-import { obterPerfil } from "../utils/localStorageUtils.js";
+import { obterPerfil, obterId } from "../utils/localStorageUtils.js";
+
+import { buscarFuncionarioPorId } from "../services/api.js";
 
 export function isAdmin() {
   return obterPerfil() === "ADMIN";
@@ -7,6 +9,10 @@ export function isAdmin() {
 export function isEstoquista() {
   return obterPerfil() === "ESTOQUISTA";
 }
+
+// ======================================
+// CONTROLE DE PERMISSÕES DAS TABS
+// ======================================
 
 function configurarTabsPorPerfil(perfil) {
   const tabsPermitidas = {
@@ -39,7 +45,6 @@ function configurarTabsPorPerfil(perfil) {
 
     const firstContent = document.getElementById(`tab-${primeira}`);
 
-    // limpa estado
     document
       .querySelectorAll(".tab-btn")
       .forEach((t) => t.classList.remove("active"));
@@ -48,11 +53,14 @@ function configurarTabsPorPerfil(perfil) {
       .querySelectorAll(".tab-content")
       .forEach((c) => c.classList.remove("active"));
 
-    // ativa primeira
     firstTab?.classList.add("active");
     firstContent?.classList.add("active");
   }
 }
+
+// ======================================
+// TABS
+// ======================================
 
 function iniciarTabsConfiguracoes() {
   const tabs = document.querySelectorAll(".tab-btn");
@@ -68,6 +76,7 @@ function iniciarTabsConfiguracoes() {
       tab.classList.add("active");
 
       const targetTab = tab.dataset.tab;
+
       const targetContent = document.getElementById(`tab-${targetTab}`);
 
       targetContent?.classList.add("active");
@@ -75,10 +84,55 @@ function iniciarTabsConfiguracoes() {
   });
 }
 
-export function iniciarConfiguracoes() {
+// ======================================
+// PERFIL
+// ======================================
+
+async function carregarPerfilUsuario() {
+  try {
+    const id = obterId();
+
+    if (!id) {
+      console.warn("ID do usuário não encontrado.");
+      return;
+    }
+
+    const funcionario = await buscarFuncionarioPorId(id);
+
+    const nomeInput = document.getElementById("perfil-nome");
+    const emailInput = document.getElementById("perfil-email");
+    const cargoInput = document.getElementById("perfil-cargo");
+
+    if (nomeInput) {
+      nomeInput.value =
+        `${funcionario.nome ?? ""} ${funcionario.sobrenome ?? ""}`.trim();
+    }
+
+    if (emailInput) {
+      emailInput.value = funcionario.email ?? "";
+    }
+
+    if (cargoInput) {
+      cargoInput.value =
+        funcionario.tipoFuncionario === "ADMIN"
+          ? "Administrador"
+          : "Estoquista";
+    }
+  } catch (erro) {
+    console.error("Erro ao carregar perfil:", erro);
+  }
+}
+
+// ======================================
+// START
+// ======================================
+
+export async function iniciarConfiguracoes() {
   const perfil = obterPerfil();
 
   configurarTabsPorPerfil(perfil);
 
   iniciarTabsConfiguracoes();
+
+  await carregarPerfilUsuario();
 }

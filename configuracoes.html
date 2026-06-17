@@ -23,23 +23,19 @@
             </p>
 
             <div class="config-tabs-nav">
-              <button class="tab-btn active" data-tab="mercado">
+              <!-- <button class="tab-btn active" data-tab="mercado">
                 <i class="fa-solid fa-store"></i> Dados do Mercado
               </button>
               <button class="tab-btn" data-tab="delivery">
                 <i class="fa-solid fa-truck"></i> Delivery e Operação
-              </button>
-              <button class="tab-btn" data-tab="perfil">
+              </button> -->
+              <button class="tab-btn active" data-tab="perfil">
                 <i class="fa-solid fa-user-gear"></i> Meu Perfil
               </button>
             </div>
 
-            <form
-              action="/admin/configuracoes/salvar"
-              method="POST"
-              class="admin-main-form"
-            >
-              <div class="tab-content active" id="tab-mercado">
+            <form class="admin-main-form">
+              <!-- <div class="tab-content active" id="tab-mercado">
                 <div class="admin-form-group">
                   <label for="razao-social">Razão Social / Nome Fantasia</label>
                   <input
@@ -145,9 +141,9 @@
                     </select>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="tab-content" id="tab-perfil">
+              <div class="tab-content active" id="tab-perfil">
                 <div class="admin-form-group">
                   <label for="perfil-nome">Seu Nome Completo</label>
                   <input

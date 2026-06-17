@@ -8,6 +8,7 @@ import {
   salvarToken,
   salvarPerfil,
   salvarNome,
+  salvarId,
 } from "../utils/localStorageUtils.js";
 
 import { tiposLogin } from "../config/authConfig.js";
@@ -110,6 +111,8 @@ async function fazerLogin(email, senha) {
   salvarPerfil(resposta.usuario.perfil?.toUpperCase());
 
   salvarNome(resposta.usuario.nome);
+
+  salvarId(resposta.usuario.id);
 
   return resposta;
 }

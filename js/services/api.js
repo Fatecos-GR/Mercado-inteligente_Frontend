@@ -354,6 +354,18 @@ export async function buscarEstatisticas() {
   return request(`/dashboard/estatisticas`);
 }
 
+export async function buscarMarcasEQuantidade() {
+  return request(`/dashboard/produtos/por-marca`);
+}
+
+export async function buscarFornecedorEQuantidade() {
+  return request(`/dashboard/produtos/por-fornecedor`);
+}
+
+export async function buscarCategoriasEQuantidade() {
+  return request(`/dashboard/produtos/por-categoria`);
+}
+
 // ===============================
 // BUSCAR CEP
 // ===============================

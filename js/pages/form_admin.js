@@ -24,6 +24,9 @@ import {
   buscarMarcas,
   buscarCategorias,
   buscarFornecedores,
+  buscarMarcasEQuantidade,
+  buscarFornecedorEQuantidade,
+  buscarCategoriasEQuantidade,
 } from "../services/api.js";
 
 import {
@@ -399,6 +402,37 @@ function configurarSubmit(entidade) {
 }
 
 // ======================================
+// MÉTODO DE MODAL DE EXCLUSÃO
+// ======================================
+async function obterQuantidadeProdutosRelacionados(entidade) {
+  if (!["marcas", "categorias", "fornecedores"].includes(entidade.tipo)) {
+    return null;
+  }
+
+  const registro = await buscarRegistro(entidade, getIdRegistro());
+
+  let dadosQuantidade = [];
+
+  switch (entidade.tipo) {
+    case "marcas":
+      dadosQuantidade = await buscarMarcasEQuantidade();
+      break;
+
+    case "categorias":
+      dadosQuantidade = await buscarCategoriasEQuantidade();
+      break;
+
+    case "fornecedores":
+      dadosQuantidade = await buscarFornecedorEQuantidade();
+      break;
+  }
+
+  const item = dadosQuantidade.find((x) => x.nome === registro.nome);
+
+  return item?.quantidade ?? 0;
+}
+
+// ======================================
 // EXCLUIR
 // ======================================
 async function excluirEntidadeFormulario(entidade, id) {
@@ -413,9 +447,21 @@ function configurarExclusaoFormulario(entidade) {
   if (!btn) return;
 
   btn.addEventListener("click", async () => {
-    const confirmou = await abrirModalConfirmacao(
-      "Deseja realmente excluir este registro?",
-    );
+    let mensagem = "Deseja realmente excluir este registro?";
+
+    const quantidadeProdutos =
+      await obterQuantidadeProdutosRelacionados(entidade);
+
+    if (quantidadeProdutos !== null) {
+      mensagem = `
+    Deseja realmente excluir este ${entidade.singular.toLowerCase()}?
+
+    Existem ${quantidadeProdutos} produto(s)
+    vinculados a este registro.
+  `;
+    }
+
+    const confirmou = await abrirModalConfirmacao(mensagem);
 
     if (!confirmou) return;
 
