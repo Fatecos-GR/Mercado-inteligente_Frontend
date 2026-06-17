@@ -99,47 +99,39 @@
 /* AÇÕES */
 .product-actions {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
-.product-actions a {
-  flex: 1;
+.btn-card-edit,
+.btn-card-stock {
+  width: 38px;
+  height: 38px;
 
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 8px;
-
-  text-decoration: none;
-
-  padding: 10px;
+  justify-content: center;
 
   border-radius: 10px;
 
-  font-size: 0.9rem;
-  font-weight: 600;
+  text-decoration: none;
 
   transition: 0.2s ease;
 }
 
-/* EDITAR */
-.btn-edit {
-  background-color: rgba(90, 125, 101, 0.12);
-
+.btn-card-edit {
+  background: rgba(90, 125, 101, 0.12);
   color: var(--verde-escuro);
 }
 
-.btn-edit:hover {
-  background-color: rgba(90, 125, 101, 0.2);
+.btn-card-edit:hover {
+  background: rgba(90, 125, 101, 0.2);
 }
 
-/* EXCLUIR */
-.btn-delete {
-  background-color: rgba(139, 90, 43, 0.12);
-
-  color: var(--marrom-madeira);
+.btn-card-stock {
+  background: rgba(49, 91, 180, 0.12);
+  color: #315bb4;
 }
 
-.btn-delete:hover {
-  background-color: rgba(139, 90, 43, 0.2);
+.btn-card-stock:hover {
+  background: rgba(49, 91, 180, 0.2);
 }

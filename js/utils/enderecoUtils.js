@@ -4,6 +4,7 @@
 
 import { buscarCep } from "../services/api.js";
 import { aplicarMascaraCEP } from "./mascaras.js";
+import { mostrarErro, limparErros } from "./formUtils.js";
 
 // ======================================
 // CONFIGURAÇÃO DA BUSCA DE CEP
@@ -34,14 +35,30 @@ export function configurarBuscaCEP(modoEdicao = false) {
 
     if (cep.length !== 8) return;
 
+    if (cep.length < 8) {
+      limparEndereco();
+
+      return;
+    }
+
     try {
+      limparErros();
+
       const endereco = await buscarCep(cep);
+
+      if (endereco.cep === null) {
+        throw new Error("CEP não encontrado");
+      }
 
       preencherEndereco(endereco);
 
       liberarCamposEndereco();
     } catch (erro) {
-      console.error("Erro ao buscar CEP:", erro);
+      limparEndereco();
+
+      bloquearCamposEndereco();
+
+      mostrarErro(cepInput, "CEP inválido ou não encontrado.");
     }
   });
 }
@@ -131,4 +148,34 @@ function bloquearCamposEnderecoModoEdicao() {
       campo.disabled = true;
     }
   });
+}
+
+// ======================================
+// MONTAR OBJETO ENDEREÇO
+// ======================================
+
+export function montarEndereco(dados) {
+  return {
+    cep: dados.cep,
+    logradouro: dados.logradouro,
+    numero: dados.numero,
+    complemento: dados.complemento,
+    bairro: dados.bairro,
+    cidade: dados.cidade,
+    estado: dados.estado,
+  };
+}
+
+// ======================================
+// REMOVER CAMPOS SOLTOS DO OBJETO
+// ======================================
+
+export function removerCamposEndereco(dados) {
+  delete dados.cep;
+  delete dados.logradouro;
+  delete dados.numero;
+  delete dados.complemento;
+  delete dados.bairro;
+  delete dados.cidade;
+  delete dados.estado;
 }

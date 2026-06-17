@@ -8,13 +8,10 @@ import { iniciarHeaderCliente } from "./components/header_client.js";
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
 import { iniciarLogin } from "./pages/login.js";
 import { iniciarCadastro } from "./pages/cadastro.js";
-
-// Importação da nova página de configurações
-import { iniciarConfiguracoes } from "./pages/configuracoes.js";
 import { iniciarHeaderAdmin } from "./components/headerAdmin.js";
 import { iniciarSidebarAdmin } from "./components/sidebarAdmin.js";
-
-// Importação da nova página de configurações
+import { iniciarCarrinho } from "./pages/carrinho.js";
+import { iniciarProdutoDetalhes } from "./pages/produto_detalhes.js";
 import { iniciarConfiguracoes } from "./pages/configuracoes.js";
 
 // ===============================
