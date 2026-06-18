@@ -403,6 +403,10 @@ export async function buscarQuantidadeProdutosProximoVencimento() {
 }
 
 // ===============================
+// CRUD CARRINHOS
+// ===============================
+
+// ===============================
 // BUSCAR CEP
 // ===============================
 

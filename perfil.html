@@ -27,7 +27,7 @@
             <a href="#" data-target="tab-enderecos">
               <i class="fas fa-home"></i> Endereços
             </a>
-            <a href="#" data-target="tab-pedidos">
+            <!-- <a href="#" data-target="tab-pedidos">
               <i class="fas fa-box"></i> Meus Pedidos
             </a>
             <a href="#" data-target="tab-cartoes">
@@ -42,7 +42,7 @@
             <hr class="nav-divider" />
             <a href="index.html" class="link-logout">
               <i class="fas fa-sign-out-alt"></i> Sair
-            </a>
+            </a> -->
           </nav>
         </aside>
 
@@ -134,26 +134,60 @@
             class="content-section"
             style="display: none"
           >
-            <header class="tab-header">
-              <h2 class="section-title">Meus Endereços</h2>
-              <button class="btn-add-item">+ Novo Endereço</button>
-            </header>
+            <h2 class="section-title">Meu Endereço</h2>
 
-            <article class="info-data-card">
-              <h4 class="info-item-tag">Casa</h4>
-              <p class="info-item-main">Rua das Flores, 123 - Apto 45</p>
-              <p class="info-item-sub">
-                Bairro Jardim - São Paulo/SP - CEP: 00000-000
-              </p>
-              <div class="item-actions">
-                <a href="#" class="btn-action-edit">Editar</a>
-                <a href="#" class="btn-action-delete">Excluir</a>
+            <form id="form-endereco">
+              <div class="profile-data-card">
+                <div class="data-grid-layout">
+                  <div class="data-field col-span-3">
+                    <label>CEP</label>
+                    <input type="text" id="cep" class="field-input" />
+                  </div>
+
+                  <div class="data-field col-span-6">
+                    <label>Logradouro</label>
+                    <input type="text" id="logradouro" class="field-input" />
+                  </div>
+
+                  <div class="data-field col-span-3">
+                    <label>Número</label>
+                    <input type="text" id="numero" class="field-input" />
+                  </div>
+
+                  <div class="data-field col-span-6">
+                    <label>Complemento</label>
+                    <input type="text" id="complemento" class="field-input" />
+                  </div>
+
+                  <div class="data-field col-span-4">
+                    <label>Bairro</label>
+                    <input type="text" id="bairro" class="field-input" />
+                  </div>
+
+                  <div class="data-field col-span-4">
+                    <label>Cidade</label>
+                    <input type="text" id="cidade" class="field-input" />
+                  </div>
+
+                  <div class="data-field col-span-2">
+                    <label>Estado</label>
+                    <input type="text" id="estado" class="field-input" />
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  id="btn-salvar-endereco"
+                  class="btn-edit-profile"
+                >
+                  Salvar endereço
+                </button>
               </div>
-            </article>
+            </form>
           </section>
 
           <!-- Aba: Pedidos -->
-          <section
+          <!-- <section
             id="tab-pedidos"
             class="content-section"
             style="display: none"
@@ -207,10 +241,10 @@
                 </table>
               </div>
             </div>
-          </section>
+          </section> -->
 
           <!-- Aba: Cartões -->
-          <section
+          <!-- <section
             id="tab-cartoes"
             class="content-section"
             style="display: none"
@@ -228,10 +262,10 @@
               </div>
               <a href="#" class="btn-action-delete">Excluir</a>
             </article>
-          </section>
+          </section> -->
 
           <!-- Aba: Listas -->
-          <section
+          <!-- <section
             id="tab-listas"
             class="content-section"
             style="display: none"
@@ -242,10 +276,10 @@
                 Você ainda não possui listas criadas.
               </p>
             </div>
-          </section>
+          </section> -->
 
           <!-- Aba: Alertas -->
-          <section
+          <!-- <section
             id="tab-alertas"
             class="content-section"
             style="display: none"
@@ -254,11 +288,9 @@
             <div class="info-data-card">
               <p class="empty-state-text">Nenhuma notificação no momento.</p>
             </div>
-          </section>
+          </section> -->
         </section>
       </div>
     </main>
-
-    <footer id="main-footer"></footer>
   </body>
 </html>

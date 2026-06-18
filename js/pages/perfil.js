@@ -10,7 +10,12 @@ import {
   salvarTelefone,
 } from "../utils/localStorageUtils.js";
 
-import { validarEmail, validarTelefone } from "../utils/validators.js";
+import {
+  validarEmail,
+  validarTelefone,
+  validarCep,
+  validarRequired,
+} from "../utils/validators.js";
 
 import { buscarUsuarioPorId, atualizarUsuario } from "../services/api.js";
 
@@ -23,6 +28,8 @@ import {
   mostrarMensagemFormulario,
   configurarToggleSenha,
 } from "../utils/formUtils.js";
+
+import { configurarBuscaCEP, montarEndereco } from "../utils/enderecoUtils.js";
 
 import { abrirModalResultado } from "../utils/modalUtils.js";
 
@@ -37,9 +44,77 @@ export function iniciarPerfil() {
 
   configurarToggleSenha();
 
+  configurarBuscaCEP(true);
+
   carregarDadosPerfil();
 
+  carregarEndereco();
+
   iniciarEdicaoPerfil();
+}
+
+function validarFormularioEndereco() {
+  limparErros();
+
+  let valido = true;
+
+  const cep = document.getElementById("cep");
+  const numero = document.getElementById("numero");
+
+  valido = validarCep(cep) && valido;
+
+  if (!numero.value.trim()) {
+    mostrarErro(numero, "Informe o número.");
+    valido = false;
+  }
+
+  return valido;
+}
+
+function obterEnderecoFormulario() {
+  const dados = {
+    cep: document.getElementById("cep").value,
+    logradouro: document.getElementById("logradouro").value,
+    numero: document.getElementById("numero").value,
+    complemento: document.getElementById("complemento").value,
+    bairro: document.getElementById("bairro").value,
+    cidade: document.getElementById("cidade").value,
+    estado: document.getElementById("estado").value,
+  };
+
+  return montarEndereco(dados);
+}
+
+function tratarErroEndereco(erro) {
+  if (erro.status === 400) {
+    erro.erros?.forEach((item) => {
+      const campo = document.getElementById(item.campo);
+
+      if (campo) {
+        mostrarErro(campo, item.mensagem);
+      }
+    });
+
+    return;
+  }
+
+  mostrarMensagemFormulario(erro.erro || "Erro ao salvar endereço.");
+}
+
+async function salvarEndereco() {
+  if (!validarFormularioEndereco()) {
+    return;
+  }
+
+  try {
+    const endereco = obterEnderecoFormulario();
+
+    await atualizarEnderecoUsuario(obterId(), endereco);
+
+    await abrirModalResultado("Endereço atualizado com sucesso!");
+  } catch (erro) {
+    tratarErroEndereco(erro);
+  }
 }
 
 function carregarDadosPerfil() {

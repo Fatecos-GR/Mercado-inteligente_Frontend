@@ -18,6 +18,8 @@ import {
 
 import { iniciarCarouselBanner } from "../utils/carrosellUtils.js";
 
+let produtosCarregados = [];
+
 function getCategoriaFromURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get("categoria");
@@ -155,6 +157,8 @@ async function renderizarVitrines() {
       const vitrinesHTML = await Promise.all(
         categoriasDoBloco.map(async (categoria) => {
           const produtos = await buscarProdutoPorIdCategoria(categoria.id);
+
+          produtosCarregados.push(...produtos);
           return renderClienteCategoriaSection(categoria, produtos);
         }),
       );
@@ -223,15 +227,31 @@ function iniciarNavegacaoVitrines() {
 
 function iniciarControlesQuantidade() {
   const containers = document.querySelectorAll(".card-quantity-control");
+
   containers.forEach((container) => {
+    const card = container.closest(".product-card");
+
+    const estoque = Number(card.dataset.estoque || 0);
+
     const btnMinus = container.querySelector(".btn-qty-minus");
     const btnPlus = container.querySelector(".btn-qty-plus");
     const input = container.querySelector(".input-qty");
 
     if (!btnMinus || !btnPlus || !input) return;
 
+    if (estoque <= 0) {
+      input.value = 0;
+
+      input.disabled = true;
+      btnPlus.disabled = true;
+      btnMinus.disabled = true;
+
+      return;
+    }
+
     btnMinus.addEventListener("click", () => {
       let val = parseInt(input.value) || 1;
+
       if (val > 1) {
         input.value = val - 1;
       }
@@ -239,14 +259,19 @@ function iniciarControlesQuantidade() {
 
     btnPlus.addEventListener("click", () => {
       let val = parseInt(input.value) || 1;
-      input.value = val + 1;
+
+      if (val < estoque) {
+        input.value = val + 1;
+      }
     });
 
-    input.addEventListener("change", () => {
-      let val = parseInt(input.value);
-      if (isNaN(val) || val < 1) {
-        input.value = 1;
-      }
+    input.addEventListener("input", () => {
+      let val = parseInt(input.value) || 1;
+
+      if (val < 1) val = 1;
+      if (val > estoque) val = estoque;
+
+      input.value = val;
     });
   });
 }
@@ -359,7 +384,10 @@ function iniciarBotoesCarrinho() {
       const produtoId = botao.getAttribute("data-id");
       if (!produtoId) return;
 
-      const produtoEncontrado = produtosMock.find((p) => p.id === produtoId);
+      const produtoEncontrado = produtosCarregados.find(
+        (p) => String(p.id) === String(produtoId),
+      );
+
       if (!produtoEncontrado) return;
 
       const qtyInput = document.getElementById(`qty-${produtoId}`);
@@ -470,8 +498,5 @@ export async function iniciarHome() {
   iniciarTabsRecomendacoes();
   iniciarScrollCategorias();
   iniciarNavegacaoCategorias();
-  iniciarNavegacaoVitrines();
-  iniciarBotoesCarrinho();
   iniciarOrdenacao();
-  iniciarControlesQuantidade();
 }

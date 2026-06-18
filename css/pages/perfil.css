@@ -436,3 +436,11 @@
 
   color: #dc3545;
 }
+
+.admin-form-group {
+  position: relative;
+}
+
+.admin-form-group.error .field-input {
+  border-color: #d63031;
+}

@@ -21,8 +21,13 @@ export function renderClienteProdutoCard(produto) {
 
   const unidade = produto.unidade || "unid";
 
+  const estoque = Number(produto.estoqueDisponivel || 0);
+
+  const semEstoque = estoque <= 0;
+
   return `
-    <div class="product-card">
+    <div class="product-card" data-id="${produto.id}"
+  data-estoque="${produto.estoqueDisponivel || 0}">
 
       <a href="detalhes_prod.html?id=${produto.id}" class="product-link">
 
@@ -52,27 +57,35 @@ export function renderClienteProdutoCard(produto) {
 
       <div class="product-actions-container">
 
-        <div class="card-quantity-control">
-          <button type="button" class="btn-qty-minus">-</button>
+  <div class="card-quantity-control">
+    <button type="button" class="btn-qty-minus">-</button>
 
-          <input
-            type="number"
-            class="input-qty"
-            value="1"
-            min="1"
-            id="qty-${produto.id}"
-          />
+    <input
+      type="number"
+      class="input-qty"
+      value="1"
+      min="1"
+      max="${estoque}"
+      id="qty-${produto.id}"
+    />
 
-          <button type="button" class="btn-qty-plus">+</button>
-        </div>
+    <button type="button" class="btn-qty-plus">+</button>
+  </div>
 
-        <button class="btn-add-cart" data-id="${produto.id}">
-          Adicionar <i class="fa-solid fa-cart-shopping"></i>
-        </button>
+  <button
+    class="btn-add-cart"
+    data-id="${produto.id}"
+    ${semEstoque ? "disabled" : ""}
+  >
+    ${
+      semEstoque
+        ? "Sem estoque"
+        : 'Adicionar <i class="fa-solid fa-cart-shopping"></i>'
+    }
+  </button>
 
-      </div>
-
-    </div>
+</div>
+</div>
   `;
 }
 
