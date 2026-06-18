@@ -940,8 +940,9 @@ export function renderClienteCategoriaCard(categoria) {
 // ======================================
 export function renderClienteCategoriaSection(categoria, produtos) {
   const produtosFiltrados = produtos || [];
-
   const slug = categoria.slug || categoria.id;
+
+  const isVazio = produtosFiltrados.length === 0;
 
   return `
     <section id="sec-${slug}" class="home-vitrine">
@@ -950,19 +951,29 @@ export function renderClienteCategoriaSection(categoria, produtos) {
 
       <div class="vitrine-container">
 
-        <button class="vitrine-nav-btn prev" data-target="grid-${slug}">
-          <i class="fa-solid fa-chevron-left"></i>
-        </button>
+        ${
+          isVazio
+            ? `
+              <div class="vitrine-empty">
+                <p>Nenhum produto disponível nesta seção</p>
+              </div>
+            `
+            : `
+              <button class="vitrine-nav-btn prev" data-target="grid-${slug}">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
 
-        <div class="products-wrapper">
-          <div id="grid-${slug}" class="products-grid">
-            ${produtosFiltrados.map(renderClienteProdutoCard).join("")}
-          </div>
-        </div>
+              <div class="products-wrapper">
+                <div id="grid-${slug}" class="products-grid">
+                  ${produtosFiltrados.map(renderClienteProdutoCard).join("")}
+                </div>
+              </div>
 
-        <button class="vitrine-nav-btn next" data-target="grid-${slug}">
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
+              <button class="vitrine-nav-btn next" data-target="grid-${slug}">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            `
+        }
 
       </div>
 
@@ -984,10 +995,13 @@ export function renderClienteOfertaCard(produto) {
         )
       : 0;
 
+  const estoque = Number(produto.estoqueDisponivel || 0);
+  const semEstoque = estoque <= 0;
+
   return `
     <article
       class="product-card oferta-card"
-      data-estoque="${produto.estoqueDisponivel}"
+      data-estoque="${estoque}"
     >
 
       <span class="oferta-badge">
@@ -1033,9 +1047,13 @@ export function renderClienteOfertaCard(produto) {
       <button
         class="btn-add-cart"
         data-id="${produto.id}"
+        ${semEstoque ? "disabled" : ""}
       >
-        Adicionar
-        <i class="fa-solid fa-cart-shopping"></i>
+        ${
+          semEstoque
+            ? "Sem estoque"
+            : `Adicionar <i class="fa-solid fa-cart-shopping"></i>`
+        }
       </button>
 
     </article>

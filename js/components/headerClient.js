@@ -46,7 +46,7 @@ function renderizarEstadoAuthHeader() {
     containerAuth.innerHTML = `
       <a href="login.html?tipo=cliente" class="action-btn-vertical">
         <i class="fa-solid fa-sign-in"></i>
-        <span>Cliente</span>
+        <span>Entrar</span>
       </a>
     `;
 
