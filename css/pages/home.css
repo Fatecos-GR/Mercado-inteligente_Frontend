@@ -1,7 +1,7 @@
 /* Página Principal --> Index  */
 
-@import "/css/main.css";
-@import "/css/components/cardProduto.css";
+@import "../main.css";
+@import "../components/cardProduto.css";
 
 /* ===============================
    ESTRUTURA GLOBAL (O Segredo do Zoom)
@@ -428,16 +428,71 @@
 }
 
 /* ===============================
-   4. GRID DE PRODUTOS
+   4. GRID DE PRODUTOS (Carrossel)
 =============================== */
+.vitrine-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.products-wrapper {
+  flex: 1;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.products-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
 .products-grid {
-  display: grid;
-  /* Ajustado para os cards ficarem mais finos e caberem mais na tela */
-  grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
+  display: flex; /* Mudei de grid para flex para o carrossel */
   gap: 20px;
-  justify-content: flex-start;
-  align-items: stretch;
   padding: 10px 0;
+  width: max-content; /* Garante que o container cresça horizontalmente */
+}
+
+/* Setas de Navegação da Vitrine */
+.vitrine-nav-btn {
+  background: var(--branco);
+  color: var(--verde-escuro);
+  border: 1px solid #dcd3c1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.vitrine-nav-btn:hover {
+  background: var(--verde-primario);
+  color: var(--branco);
+  transform: scale(1.1);
+}
+
+.vitrine-nav-btn.prev {
+  margin-right: -10px;
+}
+
+.vitrine-nav-btn.next {
+  margin-left: -10px;
+}
+
+/* Reajuste do card para o carrossel */
+.products-grid .product-card {
+  flex: 0 0 250px; /* Largura fixa para os cards no carrossel */
+  margin-left: 0; /* Removendo a margem esquerda anterior que estava estranha */
 }
 
 /* ===============================
