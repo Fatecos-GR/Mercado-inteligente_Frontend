@@ -66,53 +66,22 @@
                     />
                   </div>
                   <div class="data-field col-span-4">
-                    <label for="user-doc">CPF/CNPJ</label>
+                    <label for="user-sobrenome">Sobrenome</label>
                     <input
                       type="text"
                       class="field-input"
-                      id="user-doc"
-                      value="000.000.000-00"
-                      disabled
-                    />
-                  </div>
-                  <div class="data-field col-span-3">
-                    <label for="user-rg">RG</label>
-                    <input
-                      type="text"
-                      class="field-input"
-                      id="user-rg"
-                      value="00.000.000-0"
+                      id="perfil-sobrenome"
+                      value="Sobrenome do usuário"
                       disabled
                     />
                   </div>
 
                   <div class="data-field col-span-4">
-                    <label for="user-nascimento">Data de Nascimento</label>
-                    <input
-                      type="date"
-                      class="field-input"
-                      id="user-nascimento"
-                      disabled
-                    />
-                  </div>
-                  <div class="data-field col-span-4">
-                    <label for="user-genero">Gênero</label>
-                    <select class="field-input" id="user-genero" disabled>
-                      <option value="">Selecione uma opção</option>
-                      <option value="masculino">Masculino</option>
-                      <option value="feminino">Feminino</option>
-                      <option value="outro">Outro</option>
-                      <option value="prefiro_nao_dizer">
-                        Prefiro não dizer
-                      </option>
-                    </select>
-                  </div>
-                  <div class="data-field col-span-4">
                     <label for="user-celular">Celular</label>
                     <input
                       type="tel"
                       class="field-input"
-                      id="user-celular"
+                      id="perfil-telefone"
                       value="(00) 00000-0000"
                       disabled
                     />
@@ -128,17 +97,28 @@
                       disabled
                     />
                   </div>
-                </div>
+                  <div class="data-field col-span-6">
+                    <label for="perfil-senha">Nova Senha</label>
 
-                <div class="marketing-preferences">
-                  <label for="pref-sms" class="custom-checkbox">
-                    <input type="checkbox" id="pref-sms" disabled />
-                    <span>Quero receber ofertas incríveis por SMS.</span>
-                  </label>
-                  <label for="pref-email" class="custom-checkbox">
-                    <input type="checkbox" id="pref-email" disabled />
-                    <span>Quero receber ofertas incríveis por e-mail.</span>
-                  </label>
+                    <div class="password-wrapper">
+                      <input
+                        type="password"
+                        class="field-input"
+                        id="perfil-senha"
+                        placeholder="Digite uma nova senha"
+                        disabled
+                      />
+
+                      <button
+                        type="button"
+                        class="btn-toggle-password"
+                        data-target="perfil-senha"
+                        tabindex="-1"
+                      >
+                        <i class="fa-regular fa-eye"></i>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
 

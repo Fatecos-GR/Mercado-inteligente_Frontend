@@ -25,6 +25,10 @@ export function logoutCliente() {
 
   removerPerfil();
   removerNome();
+  removerSobrenome();
+  removerEmail();
+  removerTelefone();
+  removerImagem();
   removerId();
 
   window.location.href = "/login.html?tipo=cliente";
@@ -52,6 +56,54 @@ export function obterNome() {
 
 export function removerNome() {
   localStorage.removeItem("nome");
+}
+
+export function salvarSobrenome(sobrenome) {
+  localStorage.setItem("sobrenome", sobrenome);
+}
+
+export function obterSobrenome() {
+  return localStorage.getItem("sobrenome") || "";
+}
+
+export function removerSobrenome() {
+  localStorage.removeItem("sobrenome");
+}
+
+export function salvarEmail(email) {
+  localStorage.setItem("email", email);
+}
+
+export function obterEmail() {
+  return localStorage.getItem("email") || "";
+}
+
+export function removerEmail() {
+  localStorage.removeItem("email");
+}
+
+export function salvarTelefone(telefone) {
+  localStorage.setItem("telefone", telefone);
+}
+
+export function obterTelefone() {
+  return localStorage.getItem("telefone") || "";
+}
+
+export function removerTelefone() {
+  localStorage.removeItem("telefone");
+}
+
+export function salvarImagem(imagem) {
+  localStorage.setItem("imagem", imagem);
+}
+
+export function obterImagem() {
+  return localStorage.getItem("imagem") || "";
+}
+
+export function removerImagem() {
+  localStorage.removeItem("imagem");
 }
 
 export function salvarId(id) {

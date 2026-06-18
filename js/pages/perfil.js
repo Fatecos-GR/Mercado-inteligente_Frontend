@@ -1,14 +1,81 @@
+import {
+  obterId,
+  obterNome,
+  obterSobrenome,
+  obterEmail,
+  obterTelefone,
+  salvarNome,
+  salvarSobrenome,
+  salvarEmail,
+  salvarTelefone,
+} from "../utils/localStorageUtils.js";
+
+import { validarEmail, validarTelefone } from "../utils/validators.js";
+
+import { buscarUsuarioPorId, atualizarUsuario } from "../services/api.js";
+
+import { formatarTelefone, aplicarMascaraTelefone } from "../utils/mascaras.js";
+
+import {
+  limparErros,
+  limparMensagemFormulario,
+  mostrarErro,
+  mostrarMensagemFormulario,
+  configurarToggleSenha,
+} from "../utils/formUtils.js";
+
+import { abrirModalResultado } from "../utils/modalUtils.js";
+
 // ==========================
-// INICIALIZAÇÃO DA PÁGINA
+// INIT
 // ==========================
 
 export function iniciarPerfil() {
   iniciarMenuLateral();
+
+  configurarMascaras();
+
+  configurarToggleSenha();
+
+  carregarDadosPerfil();
+
   iniciarEdicaoPerfil();
 }
 
+function carregarDadosPerfil() {
+  const nomeInput = document.getElementById("perfil-nome");
+  const sobrenomeInput = document.getElementById("perfil-sobrenome");
+  const emailInput = document.getElementById("user-email");
+  const telefoneInput = document.getElementById("perfil-telefone");
+
+  if (nomeInput) {
+    nomeInput.value = obterNome();
+  }
+
+  if (sobrenomeInput) {
+    sobrenomeInput.value = obterSobrenome();
+  }
+
+  if (emailInput) {
+    emailInput.value = obterEmail();
+  }
+
+  if (telefoneInput) {
+    telefoneInput.value = formatarTelefone(obterTelefone());
+  }
+}
+
 // ==========================
-// MENU LATERAL (ABAS)
+// MASCARES
+// ==========================
+
+function configurarMascaras() {
+  const telefone = document.getElementById("perfil-telefone");
+  if (telefone) aplicarMascaraTelefone(telefone);
+}
+
+// ==========================
+// MENU LATERAL
 // ==========================
 
 function iniciarMenuLateral() {
@@ -18,56 +85,40 @@ function iniciarMenuLateral() {
 
   const sections = document.querySelectorAll(".content-section");
 
-  if (!navLinks.length) return;
-
   navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
+    link.addEventListener("click", (e) => {
       e.preventDefault();
 
-      // Remove estado ativo
-      navLinks.forEach((nav) => nav.classList.remove("active"));
+      navLinks.forEach((n) => n.classList.remove("active"));
+      sections.forEach((s) => (s.style.display = "none"));
 
-      // Esconde todas as seções
-      sections.forEach((sec) => {
-        sec.style.display = "none";
-      });
+      link.classList.add("active");
 
-      // Ativa menu clicado
-      this.classList.add("active");
+      const target = link.dataset.target;
+      const section = document.getElementById(target);
 
-      // Mostra seção correspondente
-      const targetId = this.getAttribute("data-target");
-      const targetSection = document.getElementById(targetId);
-
-      if (targetSection) {
-        targetSection.style.display = "block";
-      }
+      if (section) section.style.display = "block";
     });
   });
 }
 
 // ==========================
-// EDIÇÃO DE PERFIL
+// EDITAR / SALVAR
 // ==========================
 
 function iniciarEdicaoPerfil() {
-  const btnEdit = document.querySelector(".btn-edit-profile");
-
+  const btn = document.querySelector(".btn-edit-profile");
   const inputs = document.querySelectorAll(".field-input");
 
-  const checkboxes = document.querySelectorAll(
-    '.marketing-preferences input[type="checkbox"]',
-  );
+  if (!btn) return;
 
-  if (!btnEdit) return;
+  btn.addEventListener("click", async () => {
+    const editing = btn.classList.contains("is-editing");
 
-  btnEdit.addEventListener("click", () => {
-    const isEditing = btnEdit.classList.contains("is-editing");
-
-    if (isEditing) {
-      salvarDados(inputs, checkboxes, btnEdit);
+    if (!editing) {
+      habilitarEdicao(inputs, btn);
     } else {
-      habilitarEdicao(inputs, checkboxes, btnEdit);
+      await salvarDados(inputs, btn);
     }
   });
 }
@@ -76,43 +127,129 @@ function iniciarEdicaoPerfil() {
 // HABILITAR EDIÇÃO
 // ==========================
 
-function habilitarEdicao(inputs, checkboxes, btnEdit) {
+function habilitarEdicao(inputs, btn) {
   inputs.forEach((input) => {
-    input.disabled = false;
+    if (input.id !== "user-email") {
+      input.disabled = false;
+    }
   });
 
-  checkboxes.forEach((chk) => {
-    chk.disabled = false;
-  });
-
-  btnEdit.classList.add("is-editing");
-  btnEdit.textContent = "Salvar dados";
-  btnEdit.style.backgroundColor = "var(--marrom-madeira)";
-
-  const nameInput = document.getElementById("user-nome");
-
-  if (nameInput) {
-    nameInput.focus();
-  }
+  btn.classList.add("is-editing");
+  btn.textContent = "Salvar dados";
 }
 
-// ==========================
-// SALVAR DADOS
-// ==========================
+function validarFormulario() {
+  limparErros();
+  limparMensagemFormulario();
 
-function salvarDados(inputs, checkboxes, btnEdit) {
-  inputs.forEach((input) => {
-    input.disabled = true;
-  });
+  const nome = document.getElementById("perfil-nome");
+  const sobrenome = document.getElementById("perfil-sobrenome");
+  const email = document.getElementById("user-email");
+  const telefone = document.getElementById("perfil-telefone");
 
-  checkboxes.forEach((chk) => {
-    chk.disabled = true;
-  });
+  let valido = true;
 
-  btnEdit.classList.remove("is-editing");
-  btnEdit.textContent = "Editar dados";
-  btnEdit.style.backgroundColor = "var(--verde-escuro)";
+  if (!nome.value.trim()) {
+    mostrarErro(nome, "Informe seu nome.");
+    valido = false;
+  }
 
-  // Simulação de salvamento
-  alert("Dados atualizados com sucesso!");
+  if (!sobrenome.value.trim()) {
+    mostrarErro(sobrenome, "Informe seu sobrenome.");
+    valido = false;
+  }
+
+  valido = validarEmail(email) && valido;
+  valido = validarTelefone(telefone) && valido;
+
+  return valido;
+}
+
+function obterDadosFormulario() {
+  const dados = {
+    nome: document.getElementById("perfil-nome").value.trim(),
+    sobrenome: document.getElementById("perfil-sobrenome").value.trim(),
+    email: document.getElementById("user-email").value.trim(),
+    telefone: document
+      .getElementById("perfil-telefone")
+      .value.replace(/\D/g, ""),
+  };
+
+  const senha = document.getElementById("perfil-senha")?.value.trim();
+
+  if (senha) {
+    dados.senha = senha;
+  }
+
+  return dados;
+}
+
+function tratarErroFormulario(erro) {
+  const email = document.getElementById("user-email");
+  const telefone = document.getElementById("perfil-telefone");
+  const senha = document.getElementById("perfil-senha");
+
+  if (erro.status === 400) {
+    erro.erros?.forEach((item) => {
+      switch (item.campo) {
+        case "email":
+          mostrarErro(email, item.mensagem);
+          break;
+
+        case "telefone":
+          mostrarErro(telefone, item.mensagem);
+          break;
+
+        case "senha":
+          mostrarErro(senha, item.mensagem);
+          break;
+      }
+    });
+
+    return;
+  }
+
+  if (erro.status === 409) {
+    mostrarErro(email, "Este e-mail já está em uso.");
+    return;
+  }
+
+  mostrarMensagemFormulario(erro.erro || "Erro ao atualizar perfil.");
+}
+
+async function salvarDados(inputs, btnEdit) {
+  if (!validarFormulario()) {
+    return;
+  }
+
+  try {
+    const id = obterId();
+
+    const dados = obterDadosFormulario();
+
+    await atualizarUsuario(id, dados);
+
+    salvarNome(dados.nome);
+    salvarSobrenome(dados.sobrenome);
+    salvarEmail(dados.email);
+    salvarTelefone(dados.telefone);
+
+    inputs.forEach((input) => {
+      input.disabled = true;
+    });
+
+    btnEdit.classList.remove("is-editing");
+    btnEdit.textContent = "Editar dados";
+    btnEdit.style.backgroundColor = "var(--verde-escuro)";
+
+    mostrarMensagemFormulario("Perfil atualizado com sucesso!", "success");
+
+    const senhaInput = document.getElementById("perfil-senha");
+
+    if (senhaInput) {
+      senhaInput.value = "";
+    }
+  } catch (erro) {
+    tratarErroFormulario(erro);
+  }
 }
