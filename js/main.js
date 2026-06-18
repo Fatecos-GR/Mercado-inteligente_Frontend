@@ -4,7 +4,7 @@
 import { iniciarHome } from "./pages/home.js";
 import { iniciarPerfil } from "./pages/perfil.js";
 import { iniciarGestao } from "./pages/gestao.js";
-import { iniciarHeaderCliente } from "./components/header_client.js";
+import { iniciarHeaderCliente } from "./components/headerClient.js";
 import { iniciarFormularioAdmin } from "./pages/form_admin.js";
 import { iniciarLogin } from "./pages/login.js";
 import { iniciarCadastro } from "./pages/cadastro.js";
@@ -97,6 +97,7 @@ async function carregarLayout() {
 // ===============================
 async function start() {
   // Componentes Modularizados
+  await configurarFavicon();
   await carregarLayout();
   await carregarIcones();
 
@@ -121,7 +122,18 @@ async function start() {
     iniciarFormularioAdmin();
   }
 
-  // Verifica se o usuário está na tela de configurações e ativa as abas
+  const isLoginPage = window.location.pathname.includes("login.html");
+
+  if (isLoginPage) {
+    iniciarLogin();
+  }
+
+  const isCadastroPage = window.location.pathname.includes("cadastro.html");
+
+  if (isCadastroPage) {
+    iniciarCadastro();
+  }
+
   const isConfiguracoesPage =
     window.location.pathname.includes("configuracoes.html");
   if (isConfiguracoesPage) {

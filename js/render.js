@@ -391,11 +391,13 @@ export function renderAdminUsuarioCard(usuario) {
 // RENDER INPUT DE FORMULÁRIO (ADMIN)
 // ======================================
 
-export function renderAdminFornecedorCard(fornecedor) {
+function renderInputFormularioAdmin(campo) {
   return `
-    <article class="brand-card supplier-card">
+    <div class="admin-form-group">
 
-      <div class="brand-card-left">
+      <label for="${campo.name}">
+        ${campo.label}
+      </label>
 
       <input
         type="${campo.type}"
