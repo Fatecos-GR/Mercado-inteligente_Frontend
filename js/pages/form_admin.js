@@ -310,7 +310,20 @@ function tratarErroFormulario(erro) {
 
   const email = document.getElementById("email");
 
-  // Validações do backend
+  // 🔴 ERRO ESPECÍFICO ESTOQUE
+  if (erro.status === 400 && erro.erro?.includes("Estoque insuficiente")) {
+    const quantidade = document.getElementById("quantidade");
+
+    if (quantidade) {
+      mostrarErro(quantidade, erro.erro);
+    } else {
+      mostrarMensagemFormulario(erro.erro, "error");
+    }
+
+    return;
+  }
+
+  // 🔴 Validações do backend (já existente)
   if (erro.status === 400) {
     if (erro.erros?.length) {
       erro.erros.forEach((item) => {
@@ -323,22 +336,13 @@ function tratarErroFormulario(erro) {
 
       return;
     }
-
-    if (erro.erro === "Este endereço já está cadastrado no sistema.") {
-      const numero = document.getElementById("numero");
-
-      mostrarErro(numero, erro.erro);
-
-      return;
-    }
   }
 
-  // E-mail já cadastrado
+  // 🔴 E-mail já cadastrado
   if (erro.status === 409) {
     if (email) {
       mostrarErro(email, "Este e-mail já está em uso.");
     }
-
     return;
   }
 

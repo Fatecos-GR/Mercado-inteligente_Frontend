@@ -27,5 +27,6 @@ export function obterFiltros() {
     categoriaId: params.get("categoriaId") || "",
     fornecedorId: params.get("fornecedorId") || "",
     baixoEstoque: params.get("baixoEstoque") || "",
+    validadeStatus: params.get("validadeStatus") || "",
   };
 }

@@ -174,6 +174,21 @@ export const entidades = {
           },
         ],
       },
+
+      {
+        parametro: "validadeStatus",
+        placeholder: "Todas as validades",
+        opcoes: [
+          {
+            value: "Próximo da validade",
+            label: "Próximo do vencimento",
+          },
+          {
+            value: "VENCIDO",
+            label: "Vencidos",
+          },
+        ],
+      },
     ],
 
     // ======================================

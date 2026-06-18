@@ -8,6 +8,7 @@ import {
   buscarQuantidadeProdutosBaixoEstoque,
   buscarQuantidadeTotalProdutosEstoque,
   buscarQuantidadeDeCadaProduto,
+  buscarQuantidadeDeClientes,
 } from "../services/api.js";
 
 export async function iniciarDashboard() {
@@ -21,6 +22,7 @@ export async function iniciarDashboard() {
       baixoEstoque,
       estoqueTotal,
       produtos,
+      totalClientes,
     ] = await Promise.all([
       buscarEstatisticas(),
       buscarMarcasEQuantidade(),
@@ -29,9 +31,10 @@ export async function iniciarDashboard() {
       buscarQuantidadeProdutosBaixoEstoque(),
       buscarQuantidadeTotalProdutosEstoque(),
       buscarQuantidadeDeCadaProduto(),
+      buscarQuantidadeDeClientes(),
     ]);
 
-    preencherCards(estatisticas, baixoEstoque, estoqueTotal);
+    preencherCards(estatisticas, baixoEstoque, estoqueTotal, totalClientes);
 
     renderProdutos(produtos);
 
@@ -45,13 +48,20 @@ export async function iniciarDashboard() {
   }
 }
 
-function preencherCards(estatisticas, baixoEstoque, estoqueTotal) {
+function preencherCards(
+  estatisticas,
+  baixoEstoque,
+  estoqueTotal,
+  totalClientes,
+) {
   document.getElementById("total-produtos").textContent =
     estatisticas.quantidadeProdutos;
 
   document.getElementById("baixo-estoque").textContent = baixoEstoque.length;
 
   document.getElementById("estoque-total").textContent = estoqueTotal;
+
+  document.getElementById("total-clientes").textContent = totalClientes;
 }
 
 function renderProdutos(produtos) {

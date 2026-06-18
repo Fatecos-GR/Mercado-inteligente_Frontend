@@ -2,6 +2,8 @@ import { possuiPerfil } from "./utils/authGuard.js";
 
 import { formatarTelefone } from "./utils/mascaras.js";
 
+import { getStatusValidade } from "./utils/validadeUtils.js";
+
 // ======================================
 // CARD DE PRODUTO (ADMIN)
 // ======================================
@@ -12,65 +14,89 @@ export function renderAdminProdutoCard(produto) {
 
   const warningClass = produto.estoqueDisponivel <= 10 ? "warning" : "";
 
+  const validadeStatus = getStatusValidade(produto.validade);
+  const validadeClass =
+    validadeStatus === "Vencido"
+      ? "expired"
+      : validadeStatus === "Próximo da validade"
+        ? "warning"
+        : "ok";
+
   const podeEditar = possuiPerfil(["ADMIN"]);
 
   return `
-    <article class="brand-card product-card">
+    <article class="product-card">
 
-      <div class="brand-card-left">
+      <!-- TOPO -->
+      <div class="product-card-top">
 
-        <div class="brand-image">
+        <div class="product-icon">
           <i class="fa-solid fa-box"></i>
         </div>
 
-        <div class="brand-info">
-
-          <h3>${produto.nome}</h3>
-
-          <p>
-            Categoria: ${produto.categoriaNome}
-          </p>
-
-          <p>
-            Marca: ${produto.marcaNome}
-          </p>
-
-          <p>
-            Preço: R$ ${produto.preco}
-          </p>
-
-          <p>
-            Estoque Atual:
-            ${produto.estoqueDisponivel}
-          </p>
-
+        <div class="product-badges">
           <span class="product-status ${warningClass}">
             ${status}
           </span>
 
+          <span class="product-expiry ${validadeClass}">
+            ${validadeStatus}
+          </span>
         </div>
 
       </div>
 
+      <!-- INFO -->
+      <div class="product-info">
+
+        <h3>${produto.nome}</h3>
+
+        <span class="product-category">
+          Categoria: ${produto.categoriaNome}
+        </span>
+
+        <span class="product-brand">
+          Marca: ${produto.marcaNome}
+        </span>
+
+      </div>
+
+      <!-- DETALHES -->
+      <div class="product-details">
+
+        <div class="detail-item">
+          <span>Preço</span>
+          <strong>R$ ${produto.preco}</strong>
+        </div>
+
+        <div class="detail-item">
+          <span>Estoque</span>
+          <strong>${produto.estoqueDisponivel}</strong>
+        </div>
+
+        <div class="detail-item">
+          <span>Validade</span>
+          <strong>${produto.validade}</strong>
+        </div>
+
+      </div>
+
+      <!-- AÇÕES -->
       <div class="product-actions">
 
         ${
           podeEditar
             ? `
-          <a
-            href="form_admin.html?tipo=produtos&id=${produto.id}"
-            class="btn-card-edit"
-          >
+          <a href="form_admin.html?tipo=produtos&id=${produto.id}"
+             class="btn-card-edit">
             <i class="fa-solid fa-pen"></i>
           </a>
         `
             : ""
         }
 
-        <a
-          href="form_admin.html?tipo=estoque&id=${produto.id}"
-          class="btn-card-stock"
-        >
+        <a href="form_admin.html?tipo=estoque&id=${produto.id}"
+           class="btn-card-stock">
           <i class="fa-solid fa-boxes-stacked"></i>
         </a>
 

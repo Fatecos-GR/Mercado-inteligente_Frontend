@@ -378,6 +378,10 @@ export async function buscarQuantidadeDeCadaProduto() {
   return request(`/dashboard/produtos/quantidade-geral`);
 }
 
+export async function buscarQuantidadeDeClientes() {
+  return request(`/usuarios/clientes/count`);
+}
+
 // ===============================
 // BUSCAR CEP
 // ===============================
