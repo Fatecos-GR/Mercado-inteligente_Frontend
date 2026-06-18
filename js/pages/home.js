@@ -18,6 +18,60 @@ import {
 
 import { iniciarCarouselBanner } from "../utils/carrosellUtils.js";
 
+function getCategoriaFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("categoria");
+}
+
+async function aplicarFiltroCategoria() {
+  const params = new URLSearchParams(window.location.search);
+  const categoriaSlug = params.get("categoria");
+
+  if (!categoriaSlug) return false;
+
+  document.body.classList.add("modo-busca");
+
+  const container = document.querySelector(".vitrines-container");
+  if (!container) return false;
+
+  try {
+    const categorias = await buscarCategorias();
+
+    const categoria = categorias.find((c) => slugify(c.nome) === categoriaSlug);
+
+    if (!categoria) {
+      container.innerHTML = "<p>Categoria não encontrada</p>";
+      return true;
+    }
+
+    const produtos = await buscarProdutoPorIdCategoria(categoria.id);
+
+    const categoriaFake = {
+      id: categoria.id,
+      nome: categoria.nome,
+    };
+
+    container.innerHTML = renderClienteCategoriaSection(
+      categoriaFake,
+      produtos,
+    );
+
+    return true;
+  } catch (err) {
+    console.error("Erro filtro categoria:", err);
+    return false;
+  }
+}
+
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9\-]/g, "");
+}
+
 // ==========================
 // RENDERIZAÇÃO DAS CATEGORIAS
 // ==========================
@@ -403,10 +457,11 @@ async function aplicarFiltroBusca() {
 // ==========================
 
 export async function iniciarHome() {
-  const filtrado = await aplicarFiltroBusca();
+  const busca = await aplicarFiltroBusca();
+  if (busca) return;
 
-  // se houver busca, NÃO renderiza vitrines normais
-  if (filtrado) return;
+  const categoria = await aplicarFiltroCategoria();
+  if (categoria) return;
 
   await renderizarVitrines();
   await renderizarCategorias();

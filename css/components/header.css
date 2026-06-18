@@ -360,6 +360,10 @@
   border-radius: 6px;
 }
 
+#perfil-header-btn {
+  display: none;
+}
+
 /* --- CELULARES (até 768px) --- */
 @media (max-width: 768px) {
   /* Permite que os itens quebrem para a linha de baixo */

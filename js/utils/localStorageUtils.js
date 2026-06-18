@@ -20,6 +20,16 @@ export function logout() {
   window.location.href = "/login.html?tipo=admin";
 }
 
+export function logoutCliente() {
+  localStorage.removeItem("token");
+
+  removerPerfil();
+  removerNome();
+  removerId();
+
+  window.location.href = "/login.html?tipo=cliente";
+}
+
 export function salvarPerfil(perfil) {
   localStorage.setItem("perfil", perfil);
 }
