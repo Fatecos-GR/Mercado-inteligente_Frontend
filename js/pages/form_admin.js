@@ -24,6 +24,9 @@ import {
   buscarMarcas,
   buscarCategorias,
   buscarFornecedores,
+  buscarMarcasEQuantidade,
+  buscarFornecedorEQuantidade,
+  buscarCategoriasEQuantidade,
 } from "../services/api.js";
 
 import {
@@ -32,6 +35,7 @@ import {
   formatarMoneyParaView,
   aplicarMascaraTelefone,
   formatarTelefone,
+  formatarDataHoraParaInput,
 } from "../utils/mascaras.js";
 
 import {
@@ -244,8 +248,8 @@ function obterDadosFormulario(entidade) {
 
   if (entidade.tipo === "estoque") {
     return {
-      produtoId: dados.produtoId,
-      quantidade: Number(dados.quantidade),
+      produtoId: parseInt(getIdRegistro(), 10),
+      quantidade: parseInt(dados.quantidade, 10),
       tipo: dados.tipoMovimentacao,
     };
   }
@@ -308,15 +312,25 @@ function tratarErroFormulario(erro) {
 
   // Validações do backend
   if (erro.status === 400) {
-    erro.erros?.forEach((item) => {
-      const campo = document.getElementById(item.campo);
+    if (erro.erros?.length) {
+      erro.erros.forEach((item) => {
+        const campo = document.getElementById(item.campo);
 
-      if (campo) {
-        mostrarErro(campo, item.mensagem);
-      }
-    });
+        if (campo) {
+          mostrarErro(campo, item.mensagem);
+        }
+      });
 
-    return;
+      return;
+    }
+
+    if (erro.erro === "Este endereço já está cadastrado no sistema.") {
+      const numero = document.getElementById("numero");
+
+      mostrarErro(numero, erro.erro);
+
+      return;
+    }
   }
 
   // E-mail já cadastrado
@@ -338,6 +352,10 @@ async function salvarEntidade(entidade, dados) {
   const id = getIdRegistro();
 
   const service = getEntityService(entidade.tipo);
+
+  if (entidade.tipo === "estoque") {
+    return await service.salvar(dados);
+  }
 
   return id ? await service.atualizar(id, dados) : await service.salvar(dados);
 }
@@ -364,13 +382,11 @@ function configurarSubmit(entidade) {
     try {
       const dados = obterDadosFormulario(entidade);
 
-      console.log("DADOS ENVIADOS:", dados);
-
       await salvarEntidade(entidade, dados);
 
       const mensagem = estaEditando()
-        ? `${entidade.singular} atualizada com sucesso.`
-        : `${entidade.singular} cadastrada com sucesso.`;
+        ? `${entidade.singular} atualizado(a) com sucesso.`
+        : `${entidade.singular} cadastrado(a) com sucesso.`;
 
       mostrarMensagemFormulario(mensagem, "success");
 
@@ -383,6 +399,37 @@ function configurarSubmit(entidade) {
       tratarErroFormulario(erro);
     }
   });
+}
+
+// ======================================
+// MÉTODO DE MODAL DE EXCLUSÃO
+// ======================================
+async function obterQuantidadeProdutosRelacionados(entidade) {
+  if (!["marcas", "categorias", "fornecedores"].includes(entidade.tipo)) {
+    return null;
+  }
+
+  const registro = await buscarRegistro(entidade, getIdRegistro());
+
+  let dadosQuantidade = [];
+
+  switch (entidade.tipo) {
+    case "marcas":
+      dadosQuantidade = await buscarMarcasEQuantidade();
+      break;
+
+    case "categorias":
+      dadosQuantidade = await buscarCategoriasEQuantidade();
+      break;
+
+    case "fornecedores":
+      dadosQuantidade = await buscarFornecedorEQuantidade();
+      break;
+  }
+
+  const item = dadosQuantidade.find((x) => x.nome === registro.nome);
+
+  return item?.quantidade ?? 0;
 }
 
 // ======================================
@@ -400,16 +447,30 @@ function configurarExclusaoFormulario(entidade) {
   if (!btn) return;
 
   btn.addEventListener("click", async () => {
-    const confirmou = await abrirModalConfirmacao(
-      "Deseja realmente excluir este registro?",
-    );
+    let mensagem = "Deseja realmente excluir este registro?";
+
+    const quantidadeProdutos =
+      await obterQuantidadeProdutosRelacionados(entidade);
+
+    if (quantidadeProdutos !== null) {
+      mensagem = `
+    Deseja realmente excluir este ${entidade.singular.toLowerCase()}?
+
+    Existem ${quantidadeProdutos} produto(s)
+    vinculados a este registro.
+  `;
+    }
+
+    const confirmou = await abrirModalConfirmacao(mensagem);
 
     if (!confirmou) return;
 
     try {
       await excluirEntidadeFormulario(entidade, getIdRegistro());
 
-      await abrirModalResultado(`${entidade.singular} excluída com sucesso.`);
+      await abrirModalResultado(
+        `${entidade.singular} excluído(a) com sucesso.`,
+      );
 
       window.location.href = entidade.rotaGestao;
     } catch (erro) {
@@ -447,6 +508,50 @@ async function carregarDadosEdicao(entidade) {
 
   // 4. imagem
   preencherPreviewImagem(entidade, registro);
+}
+
+// ======================================
+// PREENCHIMENTO DO FORMULÁRIO (QUANDO ESTÁ EDITANDO)
+// ======================================
+function preencherFormulario(entidade, dados) {
+  entidade.camposFormulario.forEach((campo) => {
+    const elemento = document.getElementById(campo.name);
+
+    if (!elemento) return;
+
+    if (campo.type === "file") {
+      return;
+    }
+
+    if (campo.name === "telefone") {
+      elemento.value = formatarTelefone(dados[campo.name]);
+
+      return;
+    }
+
+    // MONEY (IMPORTANTE)
+    if (campo.type === "money") {
+      elemento.value = formatarMoneyParaView(dados[campo.name]);
+      return;
+    }
+
+    if (entidade.tipo === "fornecedores") {
+      document.getElementById("nome").value = dados.nome ?? "";
+
+      preencherEndereco(dados.endereco);
+
+      return;
+    }
+
+    // DATE DO ESTOQUE
+    if (entidade.tipo === "estoque" && campo.type === "datetime-local") {
+      elemento.value = formatarDataHoraParaInput(dados[campo.name]);
+
+      return;
+    }
+
+    elemento.value = dados[campo.name] ?? "";
+  });
 }
 
 // ======================================

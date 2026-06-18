@@ -1,5 +1,7 @@
 import { possuiPerfil } from "./utils/authGuard.js";
 
+import { formatarTelefone } from "./utils/mascaras.js";
+
 // ======================================
 // CARD DE PRODUTO (CLIENTE)
 // ======================================
@@ -308,6 +310,10 @@ export function renderAdminFuncionarioCard(funcionario) {
   const badgeClass =
     funcionario.tipoFuncionario === "ADMIN" ? "admin" : "estoquista";
 
+  const telefoneFormatado = funcionario.telefone
+    ? formatarTelefone(funcionario.telefone)
+    : "Telefone não informado";
+
   return `
     <a
       href="form_admin.html?tipo=funcionarios&id=${funcionario.id}"
@@ -345,7 +351,7 @@ export function renderAdminFuncionarioCard(funcionario) {
           </p>
 
           <p>
-            ${funcionario.telefone || "Telefone não informado"}
+            ${telefoneFormatado || "Telefone não informado"}
           </p>
 
           <span class="employee-badge ${badgeClass}">
@@ -368,6 +374,10 @@ export function renderAdminFuncionarioCard(funcionario) {
 // CARD DE USUÁRIO (ADMIN)
 // ======================================
 export function renderAdminUsuarioCard(usuario) {
+  // Telefone no formato correto
+  const telefoneFormatado = usuario.telefone
+    ? formatarTelefone(usuario.telefone)
+    : "Telefone não informado";
   return `
     <div class="employee-card">
 
@@ -402,7 +412,7 @@ export function renderAdminUsuarioCard(usuario) {
           </p>
 
           <p>
-            ${usuario.telefone || "Telefone não informado"}
+            ${telefoneFormatado || "Telefone não informado"}
           </p>
 
         </div>
@@ -716,6 +726,69 @@ export function renderModal(config, mensagem) {
 
       </div>
 
+    </div>
+  `;
+}
+
+// ======================================
+// FILTROS PARA TELA DE GESTÃO
+// ======================================
+
+export function renderFiltrosGestao(entidade) {
+  if (!entidade.filtros?.length) {
+    return "";
+  }
+
+  return `
+    <div class="gestao-filtros-wrapper">
+      ${entidade.filtros
+        .map((filtro) => {
+          const id = filtro.parametro.replace("Id", "");
+
+          if (filtro.opcoes?.length) {
+            return `
+              <select
+                id="filtro-${id}"
+                class="gestao-filtro"
+              >
+                <option value="">
+                  ${filtro.placeholder}
+                </option>
+
+                ${filtro.opcoes
+                  .map(
+                    (opcao) => `
+                      <option value="${opcao.value}">
+                        ${opcao.label}
+                      </option>
+                    `,
+                  )
+                  .join("")}
+              </select>
+            `;
+          }
+
+          return `
+            <select
+              id="filtro-${id}"
+              class="gestao-filtro"
+            >
+              <option value="">
+                ${filtro.placeholder}
+              </option>
+            </select>
+          `;
+        })
+        .join("")}
+
+      <button
+        type="button"
+        id="btn-limpar-filtros"
+        class="btn-limpar-filtros"
+      >
+        <i class="fa-solid fa-filter-circle-xmark"></i>
+        Limpar
+      </button>
     </div>
   `;
 }
