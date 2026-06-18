@@ -3,19 +3,67 @@ import {
   atualizarCarrinhoHeader,
   mostrarToastProduto,
 } from "../components/headerClient.js";
+import { renderProdutoCard } from "../render.js";
 
 // ==========================
 // INICIALIZAÇÃO DE PÁGINA
 // ==========================
 
 export function iniciarHome() {
+  renderizarProdutos();
   iniciarCarouselBanner();
   iniciarTabsRecomendacoes();
   iniciarScrollCategorias();
   iniciarNavegacaoCategorias();
+  iniciarNavegacaoVitrines();
   iniciarBotoesCarrinho();
   iniciarOrdenacao();
   iniciarControlesQuantidade();
+}
+
+function renderizarProdutos() {
+  const grids = {
+    "grid-hortifruti": "h",
+    "grid-acougue": "a",
+    "grid-padaria": "p",
+    "grid-bebidas": "b",
+    "grid-limpeza": "l",
+    "grid-higiene": "i",
+    "grid-petshop": "ps",
+    "grid-congelados": "c",
+    "grid-mercearia": "m",
+  };
+
+  Object.entries(grids).forEach(([gridId, prefix]) => {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+
+    // Filtra pelo prefixo (agora sem limite para permitir o carrossel)
+    const produtos = produtosMock.filter((p) => p.id.startsWith(prefix));
+
+    grid.innerHTML = produtos.map(renderProdutoCard).join("");
+  });
+}
+
+function iniciarNavegacaoVitrines() {
+  const btns = document.querySelectorAll(".vitrine-nav-btn");
+
+  btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.dataset.target;
+      const grid = document.getElementById(targetId);
+      if (!grid) return;
+
+      const wrapper = grid.parentElement;
+      const scrollAmount = 300;
+
+      if (btn.classList.contains("prev")) {
+        wrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      } else {
+        wrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    });
+  });
 }
 
 function iniciarControlesQuantidade() {
