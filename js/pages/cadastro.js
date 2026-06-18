@@ -198,9 +198,7 @@ function configurarSubmit() {
 
       await abrirModalResultado("Cadastro realizado com sucesso!");
 
-      window.location.href = "/index.html";
-
-      window.location.href = "/index.html";
+      window.location.href = "index.html";
     } catch (erro) {
       console.log(erro);
       tratarErroCadastro(erro);

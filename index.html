@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -22,6 +22,9 @@
               <img src="img/banner_melior.png" alt="Banner Melior" />
             </div>
             <div class="banner-slide">
+              <img src="img/banner endrick.png" alt="Endrick Melior" />
+            </div>
+            <div class="banner-slide">
               <img src="img/banner_acougue.png" alt="Banner Açougue" />
             </div>
             <div class="banner-slide">
@@ -37,6 +40,7 @@
 
           <div class="carousel-dots">
             <span class="dot active"></span>
+            <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>
             <span class="dot"></span>
@@ -60,73 +64,110 @@
 
           <div id="categories-wrapper">
             <div id="categories-carousel">
-              <button class="category-card">
+              <a href="#sec-hortifruti" class="category-card">
                 <div class="category-circle">
                   <img
-                    src="img/placeholder.png"
-                    alt="Categoria 1"
+                    src="img/hortifruti.png"
+                    alt="Hortifruti"
+                    class="category-img"
+                  />
+                </div>
+                <h3 class="category-title">Hortifruti</h3>
+              </a>
+
+              <a href="#sec-acougue" class="category-card">
+                <div class="category-circle">
+                  <img
+                    src="img/acouguepeixe.png"
+                    alt="Açougue"
+                    class="category-img"
+                  />
+                </div>
+                <h3 class="category-title">Açougue</h3>
+              </a>
+
+              <a href="#sec-padaria" class="category-card">
+                <div class="category-circle">
+                  <img
+                    src="img/padaria.png"
+                    alt="Padaria"
+                    class="category-img"
+                  />
+                </div>
+                <h3 class="category-title">Padaria</h3>
+              </a>
+
+              <a href="#sec-bebidas" class="category-card">
+                <div class="category-circle">
+                  <img
+                    src="img/bebidas.png"
+                    alt="Bebidas"
                     class="category-img"
                   />
                 </div>
                 <h3 class="category-title">Bebidas</h3>
-              </button>
+              </a>
 
-              <button class="category-card">
+              <a href="#sec-limpeza" class="category-card">
                 <div class="category-circle">
                   <img
-                    src="img/placeholder.png"
-                    alt="Categoria 2"
+                    src="img/limpeza.png"
+                    alt="Limpeza"
                     class="category-img"
                   />
                 </div>
                 <h3 class="category-title">Limpeza</h3>
-              </button>
+              </a>
 
-              <button class="category-card">
+              <a href="#sec-higiene" class="category-card">
                 <div class="category-circle">
                   <img
-                    src="img/placeholder.png"
-                    alt="Categoria 3"
+                    src="img/higiene.png"
+                    alt="Higiene"
                     class="category-img"
                   />
                 </div>
                 <h3 class="category-title">Higiene</h3>
-              </button>
+              </a>
 
-              <button class="category-card">
+              <a href="#sec-petshop" class="category-card">
                 <div class="category-circle">
                   <img
-                    src="img/placeholder.png"
-                    alt="Categoria 4"
+                    src="img/petshop.png"
+                    alt="Pet Shop"
                     class="category-img"
                   />
                 </div>
                 <h3 class="category-title">Pet Shop</h3>
-              </button>
+              </a>
 
-              <button class="category-card">
+              <a href="#sec-congelados" class="category-card">
                 <div class="category-circle">
                   <img
-                    src="img/placeholder.png"
-                    alt="Categoria 5"
+                    src="img/congelados.png"
+                    alt="Congelados"
                     class="category-img"
                   />
                 </div>
                 <h3 class="category-title">Congelados</h3>
-              </button>
+              </a>
 
-              <button class="category-card">
+              <a href="#sec-mercearia" class="category-card">
                 <div class="category-circle">
                   <img
-                    src="img/placeholder.png"
-                    alt="Categoria 6"
+                    src="img/mercearia.png"
+                    alt="Mercearia"
                     class="category-img"
                   />
                 </div>
                 <h3 class="category-title">Mercearia</h3>
-              </button>
+              </a>
             </div>
           </div>
+
+          <button class="cat-nav-btn next" id="cat-next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
       </section>
 
@@ -140,12 +181,13 @@
           <div class="select-options">
             <div class="option active" data-value="padrao">Selecione...</div>
             <div class="option" data-value="menor-preco">Menor Preço</div>
-            <div class="option" data-value="maior-preco">Maior Preço</div>
+            <div class="option" data-value="maior-preco">Major Preço</div>
             <div class="option" data-value="a-z">Ordem Alfabética (A-Z)</div>
           </div>
         </div>
       </div>
 
+      <!-- SEÇÃO: OFERTAS MELIOR -->
       <section id="ofertas-melior" class="home-vitrine">
         <h2 class="vitrine-title">Ofertas Melior</h2>
         <div
@@ -169,272 +211,59 @@
         </div>
       </section>
 
-      <section class="banner-promocional-secao">
-        <a href="#" class="banner-link">
-          <img
-            src="img/bannerSonho.png"
-            alt="Declare-se com Sonho de Valsa"
-            class="banner-img-promocional"
-          />
-        </a>
-      </section>
-
-      <section id="recommendations">
-        <div id="recommendations-header">
-          <h2>Hortifruti</h2>
-          <div id="recommendation-tabs">
+      <!-- SEÇÃO: HORTIFRUTI -->
+      <section id="sec-hortifruti" class="home-vitrine">
+        <div class="recommendations-header">
+          <h2 class="vitrine-title">Hortifruti</h2>
+          <div class="recommendation-tabs">
             <button class="tab active" data-tab="ofertas">Ofertas</button>
             <button class="tab" data-tab="mais-vendidos">Mais vendidos</button>
           </div>
         </div>
 
-        <div class="tab-content active" id="ofertas">
-          <div class="products-grid">
-            <div class="product-card">
-              <a href="detalhes_prod.html?id=1" class="product-link">
-                <div class="card-image-wrapper">
-                  <img src="img/placeholder.png" alt="Produto" />
-                </div>
-                <h3 class="product-title">Maçã Gala Nacional</h3>
-              </a>
-              <span class="product-unit">kg</span>
-              <div class="product-pricing">
-                <span class="price-current">R$ 8,90</span>
-              </div>
-              <div class="product-actions-container">
-                <div class="card-quantity-control">
-                  <button type="button" class="btn-qty-minus">-</button>
-                  <input
-                    type="number"
-                    class="input-qty"
-                    value="1"
-                    min="1"
-                    id="qty-h1"
-                  />
-                  <button type="button" class="btn-qty-plus">+</button>
-                </div>
-                <button class="btn-add-cart" data-id="h1">
-                  Adicionar <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <a href="detalhes_prod.html?id=h2" class="product-link">
-                <div class="card-image-wrapper">
-                  <img src="img/placeholder.png" alt="Banana" />
-                </div>
-                <h3 class="product-title">Banana Prata</h3>
-              </a>
-              <span class="product-unit">kg</span>
-              <div class="product-pricing">
-                <span class="price-current">R$ 5,50</span>
-              </div>
-              <div class="product-actions-container">
-                <div class="card-quantity-control">
-                  <button type="button" class="btn-qty-minus">-</button>
-                  <input
-                    type="number"
-                    class="input-qty"
-                    value="1"
-                    min="1"
-                    id="qty-h2"
-                  />
-                  <button type="button" class="btn-qty-plus">+</button>
-                </div>
-                <button class="btn-add-cart" data-id="h2">
-                  Adicionar <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <a href="detalhes_prod.html?id=h3" class="product-link">
-                <div class="card-image-wrapper">
-                  <img src="img/placeholder.png" alt="Laranja" />
-                </div>
-                <h3 class="product-title">Laranja Pera Rio 1kg</h3>
-              </a>
-              <span class="product-unit">unid</span>
-              <div class="product-pricing">
-                <span class="price-current">R$ 4,20</span>
-              </div>
-              <div class="product-actions-container">
-                <div class="card-quantity-control">
-                  <button type="button" class="btn-qty-minus">-</button>
-                  <input
-                    type="number"
-                    class="input-qty"
-                    value="1"
-                    min="1"
-                    id="qty-h3"
-                  />
-                  <button type="button" class="btn-qty-plus">+</button>
-                </div>
-                <button class="btn-add-cart" data-id="h3">
-                  Adicionar <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="product-card">
-              <a href="detalhes_prod.html?id=h4" class="product-link">
-                <div class="card-image-wrapper">
-                  <img src="img/placeholder.png" alt="Tomate" />
-                </div>
-                <h3 class="product-title">Tomate Italiano</h3>
-              </a>
-              <span class="product-unit">kg</span>
-              <div class="product-pricing">
-                <span class="price-current">R$ 7,90</span>
-              </div>
-              <div class="product-actions-container">
-                <div class="card-quantity-control">
-                  <button type="button" class="btn-qty-minus">-</button>
-                  <input
-                    type="number"
-                    class="input-qty"
-                    value="1"
-                    min="1"
-                    id="qty-h4"
-                  />
-                  <button type="button" class="btn-qty-plus">+</button>
-                </div>
-                <button class="btn-add-cart" data-id="h4">
-                  Adicionar <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </div>
-            </div>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-hortifruti">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-hortifruti" class="products-grid"></div>
           </div>
+          <button class="vitrine-nav-btn next" data-target="grid-hortifruti">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
       </section>
 
-      <section class="home-vitrine">
+      <!-- SEÇÃO: AÇOUGUE -->
+      <section id="sec-acougue" class="home-vitrine">
         <h2 class="vitrine-title">Açougue</h2>
-        <div class="products-grid">
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=2" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Produto" />
-              </div>
-
-              <h3 class="product-title">Nome do Produto Exemplo</h3>
-            </a>
-            <span class="product-unit">kg</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 38,90</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-a1"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="a1">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-acougue">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-acougue" class="products-grid"></div>
           </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=a2" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Frango" />
-              </div>
-              <h3 class="product-title">Filé de Frango Swift</h3>
-            </a>
-            <span class="product-unit">kg</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 22,90</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-a2"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="a2">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=a3" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Contra Filé" />
-              </div>
-              <h3 class="product-title">Contra Filé Grill</h3>
-            </a>
-            <span class="product-unit">kg</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 54,00</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-a3"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="a3">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=3" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Produto" />
-              </div>
-
-              <h3 class="product-title">Nome do Produto Exemplo</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 19,90</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-a4"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="a4">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
+          <button class="vitrine-nav-btn next" data-target="grid-acougue">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
       </section>
 
+      <!-- BANNER PROMOCIONAL: COPA -->
+      <section class="banner-promocional-secao">
+        <a href="#" class="banner-link">
+          <img
+            src="img/bannercopa.png"
+            alt="Promoção Copa Melior"
+            class="banner-img-promocional"
+          />
+        </a>
+      </section>
+
+      <!-- SEÇÃO: CLUBE MELIOR -->
       <section id="clube-melior">
         <div class="clube-container">
-          <!-- Lado Esquerdo: Título Principal -->
           <div class="clube-titulo-esq">
             <h2>
               Compre no <span class="destaque">Melior</span> com toda <br />
@@ -442,10 +271,8 @@
             </h2>
           </div>
 
-          <!-- Centro: Imagem e Bolha (Mais à direita) -->
           <div class="clube-imagem-centro">
             <div class="bolha-fundo"></div>
-            <!-- Substitua esse placeholder pela imagem de um celular sem fundo (PNG) -->
             <img
               src="img/celular-mockup.png"
               alt="Aplicativo Clube Melior"
@@ -453,7 +280,6 @@
             />
           </div>
 
-          <!-- Lado Direito: Benefícios e Botão -->
           <div class="clube-beneficios-dir">
             <h3>Ofertas imperdíveis na palma da mão</h3>
             <ul class="clube-beneficios">
@@ -469,248 +295,82 @@
         </div>
       </section>
 
-      <section class="home-vitrine">
+      <!-- SEÇÃO: PADARIA -->
+      <section id="sec-padaria" class="home-vitrine">
         <h2 class="vitrine-title">Padaria</h2>
-        <div class="products-grid">
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=p1" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Pão" />
-              </div>
-              <h3 class="product-title">Pão Francês Crocante</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 0,75</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-p1"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="p1">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-padaria">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-padaria" class="products-grid"></div>
           </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=p2" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Bolo" />
-              </div>
-              <h3 class="product-title">Bolo de Cenoura</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 18,50</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-p2"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="p2">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=p3" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Pão Integral" />
-              </div>
-              <h3 class="product-title">Pão de Forma Integral</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 7,50</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-p3"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="p3">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=p4" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Sonho" />
-              </div>
-              <h3 class="product-title">Sonho de Creme</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 4,50</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-p4"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="p4">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
+          <button class="vitrine-nav-btn next" data-target="grid-padaria">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
       </section>
 
-      <section class="home-vitrine">
+      <!-- SEÇÃO: BEBIDAS -->
+      <section id="sec-bebidas" class="home-vitrine">
+        <h2 class="vitrine-title">Bebidas</h2>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-bebidas">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-bebidas" class="products-grid"></div>
+          </div>
+          <button class="vitrine-nav-btn next" data-target="grid-bebidas">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- BANNER PROMOCIONAL: FANTA -->
+      <section class="banner-promocional-secao">
+        <a href="#" class="banner-link">
+          <img
+            src="img/bannerFanta.png"
+            alt="Promoção Fanta"
+            class="banner-img-promocional"
+          />
+        </a>
+      </section>
+
+      <!-- SEÇÃO: LIMPEZA -->
+      <section id="sec-limpeza" class="home-vitrine">
         <h2 class="vitrine-title">Limpeza</h2>
-        <div class="products-grid">
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=l1" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Detergente" />
-              </div>
-              <h3 class="product-title">Detergente Neutro</h3>
-            </a>
-            <span class="product-unit">500ml</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 2,30</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-l1"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="l1">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-limpeza">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-limpeza" class="products-grid"></div>
           </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=l2" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Sabão" />
-              </div>
-              <h3 class="product-title">Sabão em Pó Omo 1.6kg</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 24,90</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-l2"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="l2">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=l3" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Amaciante" />
-              </div>
-              <h3 class="product-title">Amaciante Downy</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 15,90</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-l3"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="l3">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=l4" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Desinfetante" />
-              </div>
-              <h3 class="product-title">Desinfetante Pinho Sol</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 8,90</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-l4"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="l4">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
+          <button class="vitrine-nav-btn next" data-target="grid-limpeza">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
       </section>
 
+      <!-- SEÇÃO: HIGIENE -->
+      <section id="sec-higiene" class="home-vitrine">
+        <h2 class="vitrine-title">Higiene</h2>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-higiene">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-higiene" class="products-grid"></div>
+          </div>
+          <button class="vitrine-nav-btn next" data-target="grid-higiene">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: SELEÇÃO ESPECIAL -->
       <section id="selecao-especial">
         <div class="selecao-grid">
           <div class="selecao-card card-amarelo">
@@ -765,165 +425,63 @@
         </div>
       </section>
 
-      <section class="home-vitrine">
-        <h2 class="vitrine-title">Mercearia</h2>
-        <div class="products-grid">
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=4" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Produto" />
-              </div>
-
-              <h3 class="product-title">Nome do Produto Exemplo</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 29,90</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-m1"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="m1">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
+      <!-- SEÇÃO: PET SHOP -->
+      <section id="sec-petshop" class="home-vitrine">
+        <h2 class="vitrine-title">Pet Shop</h2>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-petshop">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-petshop" class="products-grid"></div>
           </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=m2" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Feijão" />
-              </div>
-              <h3 class="product-title">Feijão Carioca 1kg</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 7,50</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-m2"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="m2">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=m3" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Óleo" />
-              </div>
-              <h3 class="product-title">Óleo de Soja 900ml</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 6,80</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-m3"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="m3">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=m4" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Açúcar" />
-              </div>
-              <h3 class="product-title">Açúcar Refinado 1kg</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 4,50</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-m4"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="m4">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <a href="detalhes_prod.html?id=m5" class="product-link">
-              <div class="card-image-wrapper">
-                <img src="img/placeholder.png" alt="Café" />
-              </div>
-              <h3 class="product-title">Café Torrado e Moído</h3>
-            </a>
-            <span class="product-unit">unid</span>
-            <div class="product-pricing">
-              <span class="price-current">R$ 14,90</span>
-            </div>
-            <div class="product-actions-container">
-              <div class="card-quantity-control">
-                <button type="button" class="btn-qty-minus">-</button>
-                <input
-                  type="number"
-                  class="input-qty"
-                  value="1"
-                  min="1"
-                  id="qty-m5"
-                />
-                <button type="button" class="btn-qty-plus">+</button>
-              </div>
-              <button class="btn-add-cart" data-id="m5">
-                Adicionar <i class="fa-solid fa-cart-shopping"></i>
-              </button>
-            </div>
-          </div>
+          <button class="vitrine-nav-btn next" data-target="grid-petshop">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
         </div>
       </section>
 
+      <!-- SEÇÃO: CONGELADOS -->
+      <section id="sec-congelados" class="home-vitrine">
+        <h2 class="vitrine-title">Congelados</h2>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-congelados">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-congelados" class="products-grid"></div>
+          </div>
+          <button class="vitrine-nav-btn next" data-target="grid-congelados">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- BANNER PROMOCIONAL: SONHO DE VALSA -->
       <section class="banner-promocional-secao">
         <a href="#" class="banner-link">
           <img
-            src="img/bannerFanta.png"
-            alt="Promoção Fanta"
+            src="img/BannerSonho.png"
+            alt="Declare-se com Sonho de Valsa"
             class="banner-img-promocional"
           />
         </a>
+      </section>
+
+      <!-- SEÇÃO: MERCEARIA -->
+      <section id="sec-mercearia" class="home-vitrine">
+        <h2 class="vitrine-title">Mercearia</h2>
+        <div class="vitrine-container">
+          <button class="vitrine-nav-btn prev" data-target="grid-mercearia">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="products-wrapper">
+            <div id="grid-mercearia" class="products-grid"></div>
+          </div>
+          <button class="vitrine-nav-btn next" data-target="grid-mercearia">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
       </section>
     </main>
 

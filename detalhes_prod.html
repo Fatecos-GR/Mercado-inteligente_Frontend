@@ -14,8 +14,9 @@
 
     <main class="product-details-main">
       <div class="product-details-container">
+        <!-- Galeria Lateral -->
         <section class="product-gallery">
-          <div class="shipping-badge">Frete Grátis</div>
+          <div class="shipping-badge">Qualidade Melior</div>
           <div class="main-image-wrapper">
             <img
               id="detalhe-imagem"
@@ -26,58 +27,77 @@
           </div>
         </section>
 
+        <!-- Informações e Compra -->
         <section class="product-info-section">
+          <div class="product-breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span id="detalhe-categoria-texto">Categoria</span>
+          </div>
+
           <header class="product-info-header">
             <h1 class="product-title" id="detalhe-titulo">
               Carregando produto...
             </h1>
-
-            <div class="product-rating">
-              <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <span class="rating-text">(1 avaliação)</span>
-            </div>
+            <span class="product-unit-label" id="detalhe-unidade">unid</span>
           </header>
 
           <div class="product-pricing">
-            <h2 class="current-price" id="detalhe-preco">R$ 0,00</h2>
+            <div class="price-row">
+              <span class="currency-symbol">R$</span>
+              <h2 class="current-price" id="detalhe-preco">0,00</h2>
+            </div>
             <p class="installments-info" id="detalhe-parcelamento">
               ou 3x de <strong>R$ 0,00</strong> sem juros no cartão
             </p>
           </div>
 
           <div class="product-purchase-actions">
-            <div class="quantity-control">
-              <button class="qty-btn" aria-label="Diminuir quantidade">
-                <i class="fas fa-minus"></i>
-              </button>
-              <input type="number" value="1" min="1" readonly />
-              <button class="qty-btn" aria-label="Aumentar quantidade">
-                <i class="fas fa-plus"></i>
-              </button>
+            <div class="quantity-wrapper">
+              <label>Quantidade:</label>
+              <div class="quantity-control">
+                <button class="qty-btn" aria-label="Diminuir quantidade">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" value="1" min="1" readonly />
+                <button class="qty-btn" aria-label="Aumentar quantidade">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
             </div>
+            
             <button class="btn-buy-now">
-              <i class="fas fa-shopping-cart"></i> Comprar
+              <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
             </button>
+          </div>
+
+          <div class="product-benefits">
+            <div class="benefit-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>Compra 100% Segura</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-leaf"></i>
+              <span>Produtos Selecionados</span>
+            </div>
           </div>
 
           <footer class="product-shipping-footer">
             <div class="shipping-header">
               <i class="fas fa-truck"></i>
-              <span class="shipping-label">Meios de envio</span>
+              <span class="shipping-label">Calcular frete e prazo</span>
             </div>
             <div class="shipping-input-group">
               <input type="text" placeholder="00000-000" id="cep-input" />
               <button class="btn-calculate-shipping">Calcular</button>
             </div>
-            <a href="#" class="zip-code-help">Não sei meu CEP</a>
           </footer>
         </section>
+
+        <!-- Banner Lateral Neymar -->
+        <aside class="product-sidebar-banner">
+          <img src="img/neymarmercado.png" alt="Neymar Melior" class="sidebar-neymar-img" />
+        </aside>
       </div>
     </main>
 

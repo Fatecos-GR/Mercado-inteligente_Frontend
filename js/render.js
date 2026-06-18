@@ -1,6 +1,42 @@
 import { possuiPerfil } from "./utils/authGuard.js";
 
 // ======================================
+// CARD DE PRODUTO (CLIENTE)
+// ======================================
+export function renderProdutoCard(produto) {
+  return `
+    <div class="product-card">
+      <a href="detalhes_prod.html?id=${produto.id}" class="product-link">
+        <div class="card-image-wrapper">
+          <img src="${produto.imagem}" alt="${produto.nome}" />
+        </div>
+        <h3 class="product-title">${produto.nome}</h3>
+      </a>
+      <span class="product-unit">${produto.unidade || "unid"}</span>
+      <div class="product-pricing">
+        <span class="price-current">R$ ${produto.preco.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+      </div>
+      <div class="product-actions-container">
+        <div class="card-quantity-control">
+          <button type="button" class="btn-qty-minus">-</button>
+          <input
+            type="number"
+            class="input-qty"
+            value="1"
+            min="1"
+            id="qty-${produto.id}"
+          />
+          <button type="button" class="btn-qty-plus">+</button>
+        </div>
+        <button class="btn-add-cart" data-id="${produto.id}">
+          Adicionar <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+// ======================================
 // CARD DE PRODUTO (ADMIN)
 // ======================================
 

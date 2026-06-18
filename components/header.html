@@ -1,65 +1,80 @@
-<header id="main-header">
-  <!-- Parte Superior -->
-  <div id="header-top">
-    <!-- Logo -->
-    <div id="title-header">
-      <a href="index.html">
-        <img src="img/logo_Branco.svg" alt="Logo Melior" class="logo-img" />
-      </a>
-    </div>
-
-    <!-- Barra de Pesquisa -->
-    <div id="header-busca">
-      <form autocomplete="off" id="header-search-form">
-        <div class="search-input-wrapper">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="O que você procura hoje?" />
-        </div>
-        <button type="submit">Buscar</button>
-      </form>
-    </div>
-
-    <!-- Botões de Ação -->
-    <div id="header-actions">
-      <!-- Admin -->
-      <a href="login.html?tipo=admin" class="action-btn-vertical">
-        <i class="fa-solid fa-lock"></i>
-        <span>Admin</span>
-      </a>
-
-      <a href="login.html?tipo=cliente" class="action-btn-vertical">
-        <i class="fa-solid fa-lock"></i>
-        <span>Cliente(Teste)</span>
-      </a>
-
-      <!-- Perfil -->
-      <a href="perfil.html" class="action-btn-vertical">
-        <i class="fa-regular fa-user"></i>
-        <span>Conta</span>
-      </a>
-
-      <!-- Carrinho Estilo Pílula -->
-      <a href="carrinho.html" class="cart-pill-btn">
-        <div class="cart-value-box">
-          <span class="currency">R$</span>
-          <span class="value">0,00</span>
-        </div>
-        <div class="cart-icon-circle">
-          <i class="fa-solid fa-cart-shopping"></i>
-        </div>
-      </a>
-    </div>
+<!-- Parte Superior -->
+<div id="header-top">
+  <!-- Logo -->
+  <div id="title-header">
+    <a href="index.html">
+      <img src="img/logo_Branco.svg" alt="Logo Melior" class="logo-img" />
+    </a>
   </div>
 
-  <!-- LINHA INFERIOR (Departamentos) -->
-  <div id="header-bottom">
+  <!-- Barra de Pesquisa -->
+  <div id="header-busca">
+    <form autocomplete="off" id="header-search-form">
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="O que você procura hoje?" />
+      </div>
+      <button type="submit">Buscar</button>
+    </form>
+  </div>
+
+  <!-- Botões de Ação -->
+  <div id="header-actions">
+    <!-- Admin -->
+    <a href="login.html?tipo=admin" class="action-btn-vertical">
+      <i class="fa-solid fa-lock"></i>
+      <span>Admin</span>
+    </a>
+
+    <a href="login.html?tipo=cliente" class="action-btn-vertical">
+      <i class="fa-solid fa-lock"></i>
+      <span>Cliente(Teste)</span>
+    </a>
+
+    <!-- Perfil -->
+    <a href="perfil.html" class="action-btn-vertical">
+      <i class="fa-regular fa-user"></i>
+      <span>Conta</span>
+    </a>
+
+    <!-- Carrinho Estilo Pílula -->
+    <a href="carrinho.html" class="cart-pill-btn">
+      <div class="cart-value-box">
+        <span class="currency">R$</span>
+        <span class="value">0,00</span>
+      </div>
+      <div class="cart-icon-circle">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- LINHA INFERIOR (Departamentos) -->
+<div id="header-bottom">
+  <div class="menu-departamentos-container">
     <button class="btn-departamentos">
       <i class="fa-solid fa-bars"></i>
       Comprar por departamento
     </button>
-
-    <nav class="nav-categorias">
-      <a href="#ofertas-melior">Ofertas Melior</a>
-    </nav>
+    
+    <!-- Menu Suspenso (Dropdown) -->
+    <div id="dropdown-departamentos" class="dropdown-menu">
+      <ul class="lista-departamentos">
+        <li><a href="index.html#sec-hortifruti"><i class="fa-solid fa-apple-whole"></i> Hortifruti</a></li>
+        <li><a href="index.html#sec-acougue"><i class="fa-solid fa-cow"></i> Açougue</a></li>
+        <li><a href="index.html#sec-padaria"><i class="fa-solid fa-bread-slice"></i> Padaria</a></li>
+        <li><a href="index.html#sec-bebidas"><i class="fa-solid fa-bottle-water"></i> Bebidas</a></li>
+        <li><a href="index.html#sec-limpeza"><i class="fa-solid fa-soap"></i> Limpeza</a></li>
+        <li><a href="index.html#sec-higiene"><i class="fa-solid fa-pump-soap"></i> Higiene</a></li>
+        <li><a href="index.html#sec-petshop"><i class="fa-solid fa-paw"></i> Pet Shop</a></li>
+        <li><a href="index.html#sec-congelados"><i class="fa-solid fa-snowflake"></i> Congelados</a></li>
+        <li><a href="index.html#sec-mercearia"><i class="fa-solid fa-basket-shopping"></i> Mercearia</a></li>
+      </ul>
+    </div>
   </div>
-</header>
+
+  <nav class="nav-categorias">
+    <a href="index.html#ofertas-melior">Ofertas Melior</a>
+  </nav>
+</div>

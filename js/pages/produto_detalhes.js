@@ -44,6 +44,27 @@ function getProdutoId() {
 }
 
 // ======================================
+// MAPEAMENTO DE CATEGORIAS
+// ======================================
+function getNomeCategoria(id) {
+    const mapping = {
+        "h": "Hortifruti",
+        "a": "Açougue",
+        "p": "Padaria",
+        "b": "Bebidas",
+        "l": "Limpeza",
+        "i": "Higiene",
+        "ps": "Pet Shop",
+        "c": "Congelados",
+        "m": "Mercearia"
+    };
+
+    // Pega as letras antes dos números no ID (ex: "ps1" -> "ps")
+    const prefix = id.replace(/[0-9]/g, '');
+    return mapping[prefix] || "Produto";
+}
+
+// ======================================
 // CARREGAR PRODUTO
 // ======================================
 
@@ -72,13 +93,23 @@ function preencherTela(produto) {
   const preco = document.getElementById("detalhe-preco");
   const imagem = document.getElementById("detalhe-imagem");
   const parcelamento = document.getElementById("detalhe-parcelamento");
+  const unidade = document.getElementById("detalhe-unidade");
+  const categoriaTexto = document.getElementById("detalhe-categoria-texto");
 
   if (titulo) titulo.textContent = produto.nome;
-  if (preco) preco.textContent = `R$ ${produto.preco.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  if (preco) preco.textContent = produto.preco.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   
   if (imagem) {
     imagem.src = produto.imagem;
     imagem.alt = produto.nome;
+  }
+
+  if (unidade) {
+      unidade.textContent = produto.unidade || "unid";
+  }
+
+  if (categoriaTexto) {
+      categoriaTexto.textContent = getNomeCategoria(produto.id);
   }
 
   if (parcelamento) {
@@ -130,10 +161,14 @@ function adicionarAoCarrinho(produto) {
 
   const btnComprar = document.querySelector(".btn-buy-now");
   if (btnComprar) {
-    btnComprar.innerHTML = '<i class="fas fa-check"></i> Adicionado';
+    const originalContent = btnComprar.innerHTML;
+    btnComprar.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
+    btnComprar.style.backgroundColor = "var(--verde-primario)";
+    
     setTimeout(() => {
-      btnComprar.innerHTML = '<i class="fas fa-shopping-cart"></i> Comprar';
-    }, 1500);
+      btnComprar.innerHTML = originalContent;
+      btnComprar.style.backgroundColor = "";
+    }, 2000);
   }
 
   atualizarCarrinhoHeader();
