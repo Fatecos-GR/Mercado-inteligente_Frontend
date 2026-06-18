@@ -1,0 +1,125 @@
+/* ===============================
+   3. VITRINES E RECOMENDAÇÕES (HEADERS)
+=============================== */
+#recommendations,
+.home-vitrine {
+  margin-top: 40px;
+}
+
+#recommendations-header,
+.vitrine-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#recommendations-header h2,
+.vitrine-title {
+  color: var(--cinza-escuro);
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+/* TABS */
+#recommendation-tabs {
+  display: flex;
+  gap: 10px;
+  background: var(--bg-light);
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.tab {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  background: transparent;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.tab.active {
+  background: var(--verde-escuro);
+  color: var(--branco);
+}
+
+.tab-content {
+  display: none;
+  margin-top: 20px;
+  animation: fade 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ===============================
+   4. GRID DE PRODUTOS (Carrossel)
+=============================== */
+.vitrine-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.products-wrapper {
+  flex: 1;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.products-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.products-grid {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+  width: max-content;
+}
+
+/* Setas de Navegação da Vitrine */
+.vitrine-nav-btn {
+  background: var(--branco);
+  color: var(--verde-escuro);
+  border: 1px solid #dcd3c1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  z-index: 5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.vitrine-nav-btn:hover {
+  background: var(--verde-primario);
+  color: var(--branco);
+  transform: scale(1.1);
+}
+
+.vitrine-nav-btn.prev {
+  margin-right: -10px;
+}
+
+.vitrine-nav-btn.next {
+  margin-left: -10px;
+}
+
+/* Reajuste do card para o carrossel */
+.products-grid .product-card {
+  flex: 0 0 250px;
+  margin-left: 0;
+}

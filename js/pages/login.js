@@ -68,6 +68,17 @@ function configurarCadastro(config) {
   }
 }
 
+function configurarLinkCliente(config) {
+  const link = document.getElementById("link-cliente-extra");
+
+  if (!link) return;
+
+  // esconde se não for cliente
+  if (!config.mostrarLinkCliente) {
+    link.remove();
+  }
+}
+
 // ======================================
 // VALIDAÇÃO DE FORMULÁRIO
 // ======================================
@@ -212,4 +223,6 @@ export function iniciarLogin() {
   configurarLayout(config);
 
   configurarCadastro(config);
+
+  configurarLinkCliente(config);
 }

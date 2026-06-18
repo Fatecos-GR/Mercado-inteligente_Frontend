@@ -147,6 +147,18 @@ export async function buscarProdutoPorId(id) {
   return request(`/produtos/${id}`);
 }
 
+export async function buscarProdutoPorIdCategoria(id) {
+  return request(`/produtos/categoria/${id}`);
+}
+
+export async function buscarProdutoPorIdMarca(id) {
+  return request(`/produtos/marca/${id}`);
+}
+
+export async function buscarProdutoPorIdFornecedor(id) {
+  return request(`/produtos/fornecedor/${id}`);
+}
+
 export async function atualizarProduto(id, dados) {
   return request(`/produtos/${id}`, {
     method: "PUT",
@@ -380,6 +392,14 @@ export async function buscarQuantidadeDeCadaProduto() {
 
 export async function buscarQuantidadeDeClientes() {
   return request(`/usuarios/clientes/count`);
+}
+
+export async function buscarQuantidadeProdutosVencidos() {
+  return request(`/dashboard/produtos/vencidos/contagem`);
+}
+
+export async function buscarQuantidadeProdutosProximoVencimento() {
+  return request(`/dashboard/produtos/vencimento-proximo/contagem`);
 }
 
 // ===============================

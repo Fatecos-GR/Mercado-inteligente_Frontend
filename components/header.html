@@ -9,10 +9,17 @@
 
   <!-- Barra de Pesquisa -->
   <div id="header-busca">
-    <form autocomplete="off" id="header-search-form">
+    <form autocomplete="off" id="header-search-form" novalidate>
       <div class="search-input-wrapper">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="O que você procura hoje?" />
+        <input
+          type="text"
+          id="search-input"
+          placeholder="O que você procura hoje?"
+        />
+
+        <!-- SUGESTÕES -->
+        <div id="search-suggestions" class="search-suggestions"></div>
       </div>
       <button type="submit">Buscar</button>
     </form>
@@ -20,16 +27,7 @@
 
   <!-- Botões de Ação -->
   <div id="header-actions">
-    <!-- Admin -->
-    <a href="login.html?tipo=admin" class="action-btn-vertical">
-      <i class="fa-solid fa-lock"></i>
-      <span>Admin</span>
-    </a>
-
-    <a href="login.html?tipo=cliente" class="action-btn-vertical">
-      <i class="fa-solid fa-lock"></i>
-      <span>Cliente(Teste)</span>
-    </a>
+    <div id="auth-header-btn"></div>
 
     <!-- Perfil -->
     <a href="perfil.html" class="action-btn-vertical">
@@ -57,19 +55,55 @@
       <i class="fa-solid fa-bars"></i>
       Comprar por departamento
     </button>
-    
+
     <!-- Menu Suspenso (Dropdown) -->
     <div id="dropdown-departamentos" class="dropdown-menu">
       <ul class="lista-departamentos">
-        <li><a href="index.html#sec-hortifruti"><i class="fa-solid fa-apple-whole"></i> Hortifruti</a></li>
-        <li><a href="index.html#sec-acougue"><i class="fa-solid fa-cow"></i> Açougue</a></li>
-        <li><a href="index.html#sec-padaria"><i class="fa-solid fa-bread-slice"></i> Padaria</a></li>
-        <li><a href="index.html#sec-bebidas"><i class="fa-solid fa-bottle-water"></i> Bebidas</a></li>
-        <li><a href="index.html#sec-limpeza"><i class="fa-solid fa-soap"></i> Limpeza</a></li>
-        <li><a href="index.html#sec-higiene"><i class="fa-solid fa-pump-soap"></i> Higiene</a></li>
-        <li><a href="index.html#sec-petshop"><i class="fa-solid fa-paw"></i> Pet Shop</a></li>
-        <li><a href="index.html#sec-congelados"><i class="fa-solid fa-snowflake"></i> Congelados</a></li>
-        <li><a href="index.html#sec-mercearia"><i class="fa-solid fa-basket-shopping"></i> Mercearia</a></li>
+        <li>
+          <a href="index.html#sec-hortifruti"
+            ><i class="fa-solid fa-apple-whole"></i> Hortifruti</a
+          >
+        </li>
+        <li>
+          <a href="index.html#sec-acougue"
+            ><i class="fa-solid fa-cow"></i> Açougue</a
+          >
+        </li>
+        <li>
+          <a href="index.html#sec-padaria"
+            ><i class="fa-solid fa-bread-slice"></i> Padaria</a
+          >
+        </li>
+        <li>
+          <a href="index.html#sec-bebidas"
+            ><i class="fa-solid fa-bottle-water"></i> Bebidas</a
+          >
+        </li>
+        <li>
+          <a href="index.html#sec-limpeza"
+            ><i class="fa-solid fa-soap"></i> Limpeza</a
+          >
+        </li>
+        <li>
+          <a href="index.html#sec-higiene"
+            ><i class="fa-solid fa-pump-soap"></i> Higiene</a
+          >
+        </li>
+        <li>
+          <a href="index.html#sec-petshop"
+            ><i class="fa-solid fa-paw"></i> Pet Shop</a
+          >
+        </li>
+        <li>
+          <a href="index.html#sec-congelados"
+            ><i class="fa-solid fa-snowflake"></i> Congelados</a
+          >
+        </li>
+        <li>
+          <a href="index.html#sec-mercearia"
+            ><i class="fa-solid fa-basket-shopping"></i> Mercearia</a
+          >
+        </li>
       </ul>
     </div>
   </div>

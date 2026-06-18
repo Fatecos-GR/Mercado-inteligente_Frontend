@@ -1,48 +1,149 @@
-import { produtosMock } from "../data/produtosMock.js";
 import {
   atualizarCarrinhoHeader,
   mostrarToastProduto,
 } from "../components/headerClient.js";
-import { renderProdutoCard } from "../render.js";
+
+import {
+  renderClienteProdutoCard,
+  renderClienteCategoriaCard,
+  renderClienteCategoriaSection,
+} from "../render.js";
+
+import {
+  buscarCategorias,
+  buscarProdutos,
+  buscarProdutoPorIdCategoria,
+  buscarProdutosPorNome,
+} from "../services/api.js";
+
+import { iniciarCarouselBanner } from "../utils/carrosellUtils.js";
 
 // ==========================
-// INICIALIZAÇÃO DE PÁGINA
+// RENDERIZAÇÃO DAS CATEGORIAS
 // ==========================
+async function renderizarCategorias() {
+  const container = document.getElementById("categories-carousel");
+  if (!container) return;
 
-export function iniciarHome() {
-  renderizarProdutos();
-  iniciarCarouselBanner();
-  iniciarTabsRecomendacoes();
-  iniciarScrollCategorias();
-  iniciarNavegacaoCategorias();
-  iniciarNavegacaoVitrines();
-  iniciarBotoesCarrinho();
-  iniciarOrdenacao();
-  iniciarControlesQuantidade();
+  const categorias = await buscarCategorias();
+
+  container.innerHTML = categorias.map(renderClienteCategoriaCard).join("");
 }
 
-function renderizarProdutos() {
-  const grids = {
-    "grid-hortifruti": "h",
-    "grid-acougue": "a",
-    "grid-padaria": "p",
-    "grid-bebidas": "b",
-    "grid-limpeza": "l",
-    "grid-higiene": "i",
-    "grid-petshop": "ps",
-    "grid-congelados": "c",
-    "grid-mercearia": "m",
-  };
+// ==========================
+// NAVEGAÇÃO DE CATEGORIAS (Setas)
+// ==========================
+function iniciarNavegacaoCategorias() {
+  const wrapper = document.getElementById("categories-wrapper");
+  const btnPrev = document.getElementById("cat-prev");
+  const btnNext = document.getElementById("cat-next");
 
-  Object.entries(grids).forEach(([gridId, prefix]) => {
-    const grid = document.getElementById(gridId);
-    if (!grid) return;
+  if (!wrapper || !btnPrev || !btnNext) return;
 
-    // Filtra pelo prefixo (agora sem limite para permitir o carrossel)
-    const produtos = produtosMock.filter((p) => p.id.startsWith(prefix));
+  const scrollAmount = 300;
 
-    grid.innerHTML = produtos.map(renderProdutoCard).join("");
+  btnNext.addEventListener("click", () => {
+    wrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
   });
+
+  btnPrev.addEventListener("click", () => {
+    wrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  });
+}
+
+// ==========================
+// SCROLL PARA CATEGORIAS (QUANDO CLICAR LEVA PARA A SEÇÃO)
+// ==========================
+function iniciarScrollCategorias() {
+  const cards = document.querySelectorAll(".category-card");
+
+  cards.forEach((card) => {
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const target = card.getAttribute("href");
+      if (!target) return;
+
+      const section = document.querySelector(target);
+      if (!section) return;
+
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+    });
+  });
+}
+
+// ==========================
+// RENDERIZAR AS VITRINES DE PRODUTOS
+// ==========================
+async function renderizarVitrines() {
+  const containers = document.querySelectorAll(".vitrines-container");
+
+  if (!containers.length) return;
+
+  try {
+    // 1. Busca categorias uma vez só
+    const categorias = await buscarCategorias();
+
+    const tamanhoBloco = 3;
+
+    // 2. Renderiza cada container baseado no data-bloco
+    const renders = Array.from(containers).map(async (container) => {
+      const bloco = Number(container.dataset.bloco);
+
+      const start = (bloco - 1) * tamanhoBloco;
+      const end = start + tamanhoBloco;
+
+      const categoriasDoBloco = categorias.slice(start, end);
+
+      const vitrinesHTML = await Promise.all(
+        categoriasDoBloco.map(async (categoria) => {
+          const produtos = await buscarProdutoPorIdCategoria(categoria.id);
+          return renderClienteCategoriaSection(categoria, produtos);
+        }),
+      );
+
+      container.innerHTML = vitrinesHTML.join("");
+    });
+
+    await Promise.all(renders);
+
+    // 3. Eventos globais (executa uma vez só depois de tudo renderizado)
+    iniciarNavegacaoVitrines();
+    iniciarControlesQuantidade();
+    iniciarBotoesCarrinho();
+  } catch (err) {
+    console.error("Erro ao renderizar vitrines:", err);
+    containers.forEach((c) => {
+      c.innerHTML = "<p>Erro ao carregar produtos</p>";
+    });
+  }
+}
+
+async function renderizarProdutos() {
+  const container = document.getElementById("vitrines-container");
+  if (!container) return;
+
+  const categorias = await buscarCategorias();
+
+  const produtosPorCategoria = await Promise.all(
+    categorias.map(async (categoria) => {
+      const produtos = await buscarProdutoPorIdCategoria(categoria.id);
+
+      return {
+        categoria,
+        produtos,
+      };
+    }),
+  );
+
+  container.innerHTML = produtosPorCategoria
+    .map(({ categoria, produtos }) =>
+      renderClienteCategoriaSection(categoria, produtos),
+    )
+    .join("");
 }
 
 function iniciarNavegacaoVitrines() {
@@ -249,138 +350,6 @@ function iniciarBotoesCarrinho() {
   });
 }
 
-// ==========================
-// NAVEGAÇÃO DE CATEGORIAS (Setas)
-// ==========================
-function iniciarNavegacaoCategorias() {
-  const wrapper = document.getElementById("categories-wrapper");
-  const btnPrev = document.getElementById("cat-prev");
-  const btnNext = document.getElementById("cat-next");
-
-  if (!wrapper || !btnPrev || !btnNext) return;
-
-  const scrollAmount = 300;
-
-  btnNext.addEventListener("click", () => {
-    wrapper.scrollBy({ left: scrollAmount, behavior: "smooth" });
-  });
-
-  btnPrev.addEventListener("click", () => {
-    wrapper.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-  });
-}
-
-// ==========================
-// SCROLL PARA CATEGORIAS
-// ==========================
-function iniciarScrollCategorias() {
-  const cards = document.querySelectorAll(".category-card");
-
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const titulo = card.querySelector(".category-title").innerText;
-      const secoes = document.querySelectorAll(
-        ".vitrine-title, #recommendations-header h2",
-      );
-
-      secoes.forEach((secao) => {
-        if (secao.innerText.includes(titulo)) {
-          secao.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-      });
-    });
-  });
-}
-
-// ==========================
-// CARROSSEL BANNER
-// ==========================
-let bannerInterval = null;
-function iniciarCarouselBanner() {
-  const wrapper = document.getElementById("carousel-wrapper");
-  const dots = Array.from(document.querySelectorAll(".dot"));
-
-  if (!wrapper || !dots.length) return;
-
-  const slides = Array.from(wrapper.children);
-  const total = slides.length;
-
-  let index = 0;
-
-  // evita múltiplas inicializações
-  if (wrapper.dataset.init === "true") return;
-  wrapper.dataset.init = "true";
-
-  // garante estado inicial
-  wrapper.style.transform = "translateX(0)";
-
-  function render(animate = true) {
-    wrapper.style.transition = animate ? "transform .6s ease" : "none";
-    wrapper.style.transform = `translateX(-${index * 100}%)`;
-
-    dots.forEach((d) => d.classList.remove("active"));
-    dots[index % total].classList.add("active");
-  }
-
-  function next() {
-    index++;
-
-    // quando chega no final, volta instantaneamente pro início
-    if (index >= total) {
-      index = 0;
-      render(false);
-    }
-
-    render(true);
-  }
-
-  function startAuto() {
-    stopAuto();
-    bannerInterval = setInterval(next, 4000);
-  }
-
-  function stopAuto() {
-    if (bannerInterval) clearInterval(bannerInterval);
-  }
-
-  // clique nos dots
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-      index = i;
-      render();
-      startAuto();
-    });
-  });
-
-  // clique nas setas
-  const btnPrev = document.querySelector(".carousel-btn.prev");
-  const btnNext = document.querySelector(".carousel-btn.next");
-
-  if (btnPrev) {
-    btnPrev.addEventListener("click", () => {
-      index--;
-      if (index < 0) index = total - 1;
-      render();
-      startAuto();
-    });
-  }
-
-  if (btnNext) {
-    btnNext.addEventListener("click", () => {
-      next();
-      startAuto();
-    });
-  }
-
-  // pausa ao interagir (melhor UX)
-  wrapper.addEventListener("mouseenter", stopAuto);
-  wrapper.addEventListener("mouseleave", startAuto);
-
-  // inicia
-  render();
-  startAuto();
-}
-
 function iniciarTabsRecomendacoes() {
   const tabs = document.querySelectorAll(".tab");
   const contents = document.querySelectorAll(".tab-content");
@@ -396,4 +365,58 @@ function iniciarTabsRecomendacoes() {
       document.getElementById(target).classList.add("active");
     });
   });
+}
+
+async function aplicarFiltroBusca() {
+  const params = new URLSearchParams(window.location.search);
+  const query = params.get("q");
+
+  if (!query) return false;
+
+  document.body.classList.add("modo-busca");
+
+  const container = document.querySelector(".vitrines-container");
+  if (!container) return false;
+
+  try {
+    const produtos = await buscarProdutosPorNome(query);
+
+    const lista = Array.isArray(produtos) ? produtos : [];
+
+    // transforma em "categoria fake" só para reutilizar render
+    const categoriaFake = {
+      id: "busca",
+      nome: `Resultados para "${query}"`,
+    };
+
+    container.innerHTML = renderClienteCategoriaSection(categoriaFake, lista);
+
+    return true;
+  } catch (err) {
+    console.error("Erro na busca:", err);
+    return false;
+  }
+}
+
+// ==========================
+// INICIALIZAÇÃO DE PÁGINA
+// ==========================
+
+export async function iniciarHome() {
+  const filtrado = await aplicarFiltroBusca();
+
+  // se houver busca, NÃO renderiza vitrines normais
+  if (filtrado) return;
+
+  await renderizarVitrines();
+  await renderizarCategorias();
+
+  iniciarCarouselBanner();
+  iniciarTabsRecomendacoes();
+  iniciarScrollCategorias();
+  iniciarNavegacaoCategorias();
+  iniciarNavegacaoVitrines();
+  iniciarBotoesCarrinho();
+  iniciarOrdenacao();
+  iniciarControlesQuantidade();
 }

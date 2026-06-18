@@ -1,41 +1,40 @@
-import { produtosMock } from "../data/produtosMock.js";
-import { atualizarCarrinhoHeader, mostrarToastProduto } from "../components/headerClient.js";
+import { buscarProdutoPorId } from "../services/api.js";
 
-// ======================================
-// START
-// ======================================
+import {
+  atualizarCarrinhoHeader,
+  mostrarToastProduto,
+} from "../components/headerClient.js";
 
-export function iniciarProdutoDetalhes() {
-  carregarProduto();
-  configurarControlesQuantidade();
-}
+import { aplicarMascaraCEP } from "../utils/mascaras.js";
 
 // ======================================
 // CONTROLES DE QUANTIDADE
 // ======================================
 
 function configurarControlesQuantidade() {
-  const btnMinus = document.querySelector('button[aria-label="Diminuir quantidade"]');
-  const btnPlus = document.querySelector('button[aria-label="Aumentar quantidade"]');
-  const inputQty = document.querySelector('.quantity-control input');
+  const btnMinus = document.querySelector(
+    'button[aria-label="Diminuir quantidade"]',
+  );
+  const btnPlus = document.querySelector(
+    'button[aria-label="Aumentar quantidade"]',
+  );
+  const inputQty = document.querySelector(".quantity-control input");
 
   if (!btnMinus || !btnPlus || !inputQty) return;
 
   btnMinus.addEventListener("click", () => {
-    let currentValue = parseInt(inputQty.value) || 1;
-    if (currentValue > 1) {
-      inputQty.value = currentValue - 1;
-    }
+    let value = parseInt(inputQty.value) || 1;
+    if (value > 1) inputQty.value = value - 1;
   });
 
   btnPlus.addEventListener("click", () => {
-    let currentValue = parseInt(inputQty.value) || 1;
-    inputQty.value = currentValue + 1;
+    let value = parseInt(inputQty.value) || 1;
+    inputQty.value = value + 1;
   });
 }
 
 // ======================================
-// OBTER ID
+// PEGAR ID DA URL
 // ======================================
 
 function getProdutoId() {
@@ -44,44 +43,36 @@ function getProdutoId() {
 }
 
 // ======================================
-// MAPEAMENTO DE CATEGORIAS
-// ======================================
-function getNomeCategoria(id) {
-    const mapping = {
-        "h": "Hortifruti",
-        "a": "Açougue",
-        "p": "Padaria",
-        "b": "Bebidas",
-        "l": "Limpeza",
-        "i": "Higiene",
-        "ps": "Pet Shop",
-        "c": "Congelados",
-        "m": "Mercearia"
-    };
-
-    // Pega as letras antes dos números no ID (ex: "ps1" -> "ps")
-    const prefix = id.replace(/[0-9]/g, '');
-    return mapping[prefix] || "Produto";
-}
-
-// ======================================
-// CARREGAR PRODUTO
+// CARREGAR PRODUTO (API REAL)
 // ======================================
 
-function carregarProduto() {
+async function carregarProduto() {
   const id = getProdutoId();
 
   if (!id) return;
 
-  const produto = produtosMock.find((p) => p.id === id);
+  try {
+    const produto = await buscarProdutoPorId(id);
 
-  if (!produto) {
-    const titulo = document.getElementById("detalhe-titulo");
-    if (titulo) titulo.textContent = "Produto não encontrado";
-    return;
+    if (!produto) {
+      mostrarErro();
+      return;
+    }
+
+    preencherTela(produto);
+  } catch (err) {
+    console.error("Erro ao buscar produto:", err);
+    mostrarErro();
   }
+}
 
-  preencherTela(produto);
+// ======================================
+// ERRO
+// ======================================
+
+function mostrarErro() {
+  const titulo = document.getElementById("detalhe-titulo");
+  if (titulo) titulo.textContent = "Produto não encontrado";
 }
 
 // ======================================
@@ -97,23 +88,36 @@ function preencherTela(produto) {
   const categoriaTexto = document.getElementById("detalhe-categoria-texto");
 
   if (titulo) titulo.textContent = produto.nome;
-  if (preco) preco.textContent = produto.preco.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  
+
+  if (preco) {
+    preco.textContent = Number(produto.preco).toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
+
   if (imagem) {
-    imagem.src = produto.imagem;
+    const img = produto.imagem?.trim();
+
+    imagem.src = img && img.length > 0 ? img : "/img/placeholder.png";
+
     imagem.alt = produto.nome;
   }
 
   if (unidade) {
-      unidade.textContent = produto.unidade || "unid";
+    unidade.textContent = produto.unidade || "unid";
   }
 
   if (categoriaTexto) {
-      categoriaTexto.textContent = getNomeCategoria(produto.id);
+    categoriaTexto.textContent = produto.categoriaNome || "Categoria";
   }
 
   if (parcelamento) {
-    const valorParcela = (produto.preco / 3).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const valorParcela = (produto.preco / 3).toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
     parcelamento.innerHTML = `ou 3x de <strong>R$ ${valorParcela}</strong> sem juros no cartão`;
   }
 
@@ -121,7 +125,7 @@ function preencherTela(produto) {
 }
 
 // ======================================
-// COMPRAR
+// BOTÃO COMPRAR
 // ======================================
 
 function configurarBotaoComprar(produto) {
@@ -135,42 +139,60 @@ function configurarBotaoComprar(produto) {
 }
 
 // ======================================
-// ADICIONAR AO CARRINHO
+// CARRINHO
 // ======================================
 
 function adicionarAoCarrinho(produto) {
   const carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
+
   const existente = carrinho.find((item) => item.id === produto.id);
-  
-  const inputQty = document.querySelector('.quantity-control input');
-  const qtdAdicional = parseInt(inputQty ? inputQty.value : "1") || 1;
+
+  const inputQty = document.querySelector(".quantity-control input");
+  const qtd = parseInt(inputQty?.value || "1");
 
   if (existente) {
-    existente.quantidade += qtdAdicional;
+    existente.quantidade += qtd;
   } else {
     carrinho.push({
       id: produto.id,
       nome: produto.nome,
       preco: produto.preco,
       imagem: produto.imagem,
-      quantidade: qtdAdicional,
+      quantidade: qtd,
     });
   }
 
   localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
 
-  const btnComprar = document.querySelector(".btn-buy-now");
-  if (btnComprar) {
-    const originalContent = btnComprar.innerHTML;
-    btnComprar.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
-    btnComprar.style.backgroundColor = "var(--verde-primario)";
-    
-    setTimeout(() => {
-      btnComprar.innerHTML = originalContent;
-      btnComprar.style.backgroundColor = "";
-    }, 2000);
-  }
-
   atualizarCarrinhoHeader();
   mostrarToastProduto(produto.nome);
+
+  const btn = document.querySelector(".btn-buy-now");
+
+  if (btn) {
+    const original = btn.innerHTML;
+    btn.innerHTML = "Adicionado ✓";
+
+    setTimeout(() => {
+      btn.innerHTML = original;
+    }, 1500);
+  }
+}
+
+function configurarCEP() {
+  const cepInput = document.getElementById("cep-input");
+
+  if (!cepInput) return;
+
+  aplicarMascaraCEP(cepInput);
+}
+
+// ======================================
+// START
+// ======================================
+
+export function iniciarProdutoDetalhes() {
+  carregarProduto();
+  configurarControlesQuantidade();
+  configurarCEP();
 }

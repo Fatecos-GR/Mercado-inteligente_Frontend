@@ -9,6 +9,8 @@ import {
   buscarQuantidadeTotalProdutosEstoque,
   buscarQuantidadeDeCadaProduto,
   buscarQuantidadeDeClientes,
+  buscarQuantidadeProdutosProximoVencimento,
+  buscarQuantidadeProdutosVencidos,
 } from "../services/api.js";
 
 export async function iniciarDashboard() {
@@ -23,6 +25,8 @@ export async function iniciarDashboard() {
       estoqueTotal,
       produtos,
       totalClientes,
+      proximoVencimento,
+      vencidos,
     ] = await Promise.all([
       buscarEstatisticas(),
       buscarMarcasEQuantidade(),
@@ -32,9 +36,18 @@ export async function iniciarDashboard() {
       buscarQuantidadeTotalProdutosEstoque(),
       buscarQuantidadeDeCadaProduto(),
       buscarQuantidadeDeClientes(),
+      buscarQuantidadeProdutosProximoVencimento(),
+      buscarQuantidadeProdutosVencidos(),
     ]);
 
-    preencherCards(estatisticas, baixoEstoque, estoqueTotal, totalClientes);
+    preencherCards(
+      estatisticas,
+      baixoEstoque,
+      estoqueTotal,
+      totalClientes,
+      proximoVencimento,
+      vencidos,
+    );
 
     renderProdutos(produtos);
 
@@ -53,6 +66,8 @@ function preencherCards(
   baixoEstoque,
   estoqueTotal,
   totalClientes,
+  proximoVencimento,
+  vencidos,
 ) {
   document.getElementById("total-produtos").textContent =
     estatisticas.quantidadeProdutos;
@@ -62,6 +77,11 @@ function preencherCards(
   document.getElementById("estoque-total").textContent = estoqueTotal;
 
   document.getElementById("total-clientes").textContent = totalClientes;
+
+  document.getElementById("total-proximos-vencimento").textContent =
+    proximoVencimento;
+
+  document.getElementById("total-vencidos").textContent = vencidos;
 }
 
 function renderProdutos(produtos) {

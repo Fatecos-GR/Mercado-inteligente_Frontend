@@ -146,9 +146,8 @@ async function start() {
     iniciarCarrinho();
   }
 
-  const isProdutoDetalhesPage = window.location.pathname.includes(
-    "produto_detalhes.html",
-  );
+  const isProdutoDetalhesPage =
+    window.location.pathname.includes("detalhes_prod.html");
 
   if (isProdutoDetalhesPage) {
     iniciarProdutoDetalhes();

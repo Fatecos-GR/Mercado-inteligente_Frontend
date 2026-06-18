@@ -15,6 +15,8 @@ export const tiposLogin = {
 
     mostrarCadastro: true,
 
+    mostrarLinkCliente: true,
+
     rotaLogin: "/login.html?tipo=cliente",
 
     rotaSucesso: "/index.html",

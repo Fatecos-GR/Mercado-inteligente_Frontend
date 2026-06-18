@@ -7,22 +7,54 @@ import { getStatusValidade } from "./utils/validadeUtils.js";
 // ======================================
 // CARD DE PRODUTO (CLIENTE)
 // ======================================
-export function renderProdutoCard(produto) {
+export function renderClienteProdutoCard(produto) {
+  const imagem =
+    produto.imagem && produto.imagem.trim() !== ""
+      ? produto.imagem
+      : "/img/placeholder.png";
+
+  const preco = Number(produto.preco || 0);
+
+  const precoFormatado = preco.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+  });
+
+  const unidade = produto.unidade || "unid";
+
   return `
     <div class="product-card">
+
       <a href="detalhes_prod.html?id=${produto.id}" class="product-link">
+
         <div class="card-image-wrapper">
-          <img src="${produto.imagem}" alt="${produto.nome}" />
+          <img
+            src="${imagem}"
+            alt="${produto.nome || "Produto"}"
+            loading="lazy"
+          />
         </div>
-        <h3 class="product-title">${produto.nome}</h3>
+
+        <h3 class="product-title">
+          ${produto.nome || "Sem nome"}
+        </h3>
+
       </a>
-      <span class="product-unit">${produto.unidade || "unid"}</span>
+
+      <span class="product-unit">
+        ${unidade}
+      </span>
+
       <div class="product-pricing">
-        <span class="price-current">R$ ${produto.preco.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
+        <span class="price-current">
+          R$ ${precoFormatado}
+        </span>
       </div>
+
       <div class="product-actions-container">
+
         <div class="card-quantity-control">
           <button type="button" class="btn-qty-minus">-</button>
+
           <input
             type="number"
             class="input-qty"
@@ -30,12 +62,16 @@ export function renderProdutoCard(produto) {
             min="1"
             id="qty-${produto.id}"
           />
+
           <button type="button" class="btn-qty-plus">+</button>
         </div>
+
         <button class="btn-add-cart" data-id="${produto.id}">
           Adicionar <i class="fa-solid fa-cart-shopping"></i>
         </button>
+
       </div>
+
     </div>
   `;
 }
@@ -853,4 +889,70 @@ export function renderSkeletonGestao(quantidade = 6) {
       `,
     )
     .join("");
+}
+
+// ======================================
+// CARD DE CATEGORIA (CLIENTE)
+// ======================================
+export function renderClienteCategoriaCard(categoria) {
+  const imagem =
+    categoria.imagem && categoria.imagem.trim() !== ""
+      ? categoria.imagem
+      : "/img/placeholder.png";
+
+  return `
+    <a 
+      class="category-card" 
+      data-id="${categoria.id}"
+      data-slug="${categoria.slug || ""}"
+      href="#sec-${categoria.slug || categoria.id}"
+    >
+      <div class="category-circle">
+        <img
+          src="${imagem}"
+          alt="${categoria.nome}"
+          class="category-img"
+        />
+      </div>
+
+      <h3 class="category-title">
+        ${categoria.nome}
+      </h3>
+    </a>
+  `;
+}
+
+// ======================================
+// SEÇÃO DE CATEGORIA (CLIENTE) - DINÂMICA
+// ======================================
+export function renderClienteCategoriaSection(categoria, produtos) {
+  const produtosFiltrados = produtos || [];
+
+  const slug = categoria.slug || categoria.id;
+
+  return `
+    <section id="sec-${slug}" class="home-vitrine">
+
+      <h2 class="vitrine-title">${categoria.nome}</h2>
+
+      <div class="vitrine-container">
+
+        <button class="vitrine-nav-btn prev" data-target="grid-${slug}">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="products-wrapper">
+          <div id="grid-${slug}" class="products-grid">
+            ${produtosFiltrados.map(renderClienteProdutoCard).join("")}
+          </div>
+        </div>
+
+        <button class="vitrine-nav-btn next" data-target="grid-${slug}">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+      </div>
+
+    </section>
+  `;
 }
