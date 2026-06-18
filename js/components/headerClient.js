@@ -1,6 +1,10 @@
 import { obterToken, logoutCliente } from "../utils/localStorageUtils.js";
 
-import { buscarProdutosPorNome, buscarCategorias } from "../services/api.js";
+import {
+  buscarProdutosPorNome,
+  buscarCategorias,
+  obterCarrinhoAtivo,
+} from "../services/api.js";
 import { renderClienteProdutoCard } from "../render.js";
 
 export async function iniciarHeaderCliente() {
@@ -56,20 +60,22 @@ function renderizarEstadoAuthHeader() {
 // ATUALIZAR CARRINHO NO HEADER
 // =========================
 
-export function atualizarCarrinhoHeader() {
-  const carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
-  let valorTotal = 0;
-
-  carrinho.forEach((item) => {
-    valorTotal += item.preco * item.quantidade;
-  });
-
+export async function atualizarCarrinhoHeader() {
   const valueElement = document.querySelector(".cart-pill-btn .value");
-  if (valueElement) {
+
+  if (!valueElement) return;
+
+  try {
+    const carrinho = await obterCarrinhoAtivo();
+
+    const valorTotal = carrinho?.valorTotal || 0;
+
     valueElement.textContent = valorTotal.toLocaleString("pt-BR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
+  } catch (erro) {
+    valueElement.textContent = "0,00";
   }
 }
 

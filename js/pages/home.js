@@ -7,6 +7,7 @@ import {
   renderClienteProdutoCard,
   renderClienteCategoriaCard,
   renderClienteCategoriaSection,
+  renderClienteOfertaCard,
 } from "../render.js";
 
 import {
@@ -14,9 +15,12 @@ import {
   buscarProdutos,
   buscarProdutoPorIdCategoria,
   buscarProdutosPorNome,
+  buscarProdutosComDesconto,
 } from "../services/api.js";
 
 import { iniciarCarouselBanner } from "../utils/carrosellUtils.js";
+
+import { adicionarItemCarrinho } from "../services/api.js";
 
 let produtosCarregados = [];
 
@@ -170,8 +174,6 @@ async function renderizarVitrines() {
 
     // 3. Eventos globais (executa uma vez só depois de tudo renderizado)
     iniciarNavegacaoVitrines();
-    iniciarControlesQuantidade();
-    iniciarBotoesCarrinho();
   } catch (err) {
     console.error("Erro ao renderizar vitrines:", err);
     containers.forEach((c) => {
@@ -379,55 +381,45 @@ function iniciarBotoesCarrinho() {
   const botoesAdd = document.querySelectorAll(".btn-add-cart");
 
   botoesAdd.forEach((botao) => {
-    botao.addEventListener("click", (e) => {
+    botao.addEventListener("click", async (e) => {
       e.preventDefault();
-      const produtoId = botao.getAttribute("data-id");
-      if (!produtoId) return;
 
-      const produtoEncontrado = produtosCarregados.find(
-        (p) => String(p.id) === String(produtoId),
-      );
+      try {
+        const produtoId = botao.dataset.id;
 
-      if (!produtoEncontrado) return;
+        if (!produtoId) return;
 
-      const qtyInput = document.getElementById(`qty-${produtoId}`);
-      const quantidadeAdicionar = qtyInput ? parseInt(qtyInput.value) : 1;
+        const qtyInput = document.getElementById(`qty-${produtoId}`);
 
-      let carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
-      const indexExistente = carrinho.findIndex(
-        (item) => item.id === produtoId,
-      );
+        const quantidade = qtyInput ? Number(qtyInput.value) : 1;
 
-      if (indexExistente >= 0) {
-        carrinho[indexExistente].quantidade += quantidadeAdicionar;
-      } else {
-        carrinho.push({
-          id: produtoEncontrado.id,
-          nome: produtoEncontrado.nome,
-          preco: produtoEncontrado.preco,
-          imagem: produtoEncontrado.imagem,
-          quantidade: quantidadeAdicionar,
-        });
-      }
+        await adicionarItemCarrinho(Number(produtoId), quantidade);
 
-      if (qtyInput) {
-        qtyInput.value = 1;
-      }
+        const produtoEncontrado = produtosCarregados.find(
+          (p) => String(p.id) === String(produtoId),
+        );
 
-      localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
+        if (qtyInput) {
+          qtyInput.value = 1;
+        }
 
-      // Feedback visual simples
-      const icon = botao.querySelector("i");
-      if (icon) {
         botao.innerHTML = 'Adicionado <i class="fa-solid fa-check"></i>';
+
         setTimeout(() => {
           botao.innerHTML =
             'Adicionar <i class="fa-solid fa-cart-shopping"></i>';
         }, 1500);
-      }
 
-      atualizarCarrinhoHeader();
-      mostrarToastProduto(produtoEncontrado.nome);
+        atualizarCarrinhoHeader();
+
+        if (produtoEncontrado) {
+          mostrarToastProduto(produtoEncontrado.nome);
+        }
+      } catch (erro) {
+        console.error("Erro ao adicionar item:", erro);
+
+        window.location.href = "/login.html?tipo=cliente";
+      }
     });
   });
 }
@@ -480,6 +472,39 @@ async function aplicarFiltroBusca() {
   }
 }
 
+async function renderizarOfertasMelior() {
+  const secao = document.getElementById("ofertas-melior");
+
+  if (!secao) return;
+
+  try {
+    const produtos = await buscarProdutosComDesconto();
+
+    if (!produtos?.length) {
+      return;
+    }
+
+    produtosCarregados.push(...produtos);
+
+    secao.innerHTML = `
+      <h2 class="vitrine-title">
+        Ofertas Melior
+      </h2>
+
+      <div class="products-wrapper">
+        <div class="products-grid">
+          ${produtos.map(renderClienteOfertaCard).join("")}
+        </div>
+      </div>
+    `;
+
+    iniciarControlesQuantidade();
+    iniciarBotoesCarrinho();
+  } catch (erro) {
+    console.error("Erro ao carregar ofertas:", erro);
+  }
+}
+
 // ==========================
 // INICIALIZAÇÃO DE PÁGINA
 // ==========================
@@ -493,6 +518,7 @@ export async function iniciarHome() {
 
   await renderizarVitrines();
   await renderizarCategorias();
+  await renderizarOfertasMelior();
 
   iniciarCarouselBanner();
   iniciarTabsRecomendacoes();

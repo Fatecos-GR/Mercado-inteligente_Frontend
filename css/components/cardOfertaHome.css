@@ -1,0 +1,42 @@
+.oferta-card {
+  position: relative;
+}
+
+.oferta-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+
+  background: #e53935;
+  color: white;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.price-old {
+  display: block;
+
+  color: #888;
+  text-decoration: line-through;
+
+  font-size: 0.9rem;
+}
+
+.oferta-validade {
+  display: block;
+  margin-top: 6px;
+
+  color: var(--verde-escuro);
+  font-weight: 600;
+}
+
+.oferta-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  display: block;
+}

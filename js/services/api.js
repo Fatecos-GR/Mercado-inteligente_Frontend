@@ -406,10 +406,67 @@ export async function buscarQuantidadeProdutosProximoVencimento() {
 // CRUD CARRINHOS
 // ===============================
 
+export async function obterCarrinhoAtivo() {
+  return await request("/carrinhos");
+}
+
+export async function excluirCarrinho() {
+  return request(`/carrinhos`, {
+    method: "DELETE",
+  });
+}
+
+export async function adicionarItemCarrinho(produtoId, quantidade) {
+  return request(`/carrinhos/itens`, {
+    method: "POST",
+    body: JSON.stringify({
+      produtoId,
+      quantidade,
+    }),
+  });
+}
+
+export async function atualizarItemCarrinho(produtoId, quantidade) {
+  return request(`/carrinhos/itens`, {
+    method: "PUT",
+    body: JSON.stringify({
+      produtoId,
+      quantidade,
+    }),
+  });
+}
+
+export async function removerItemCarrinho(produtoId) {
+  return request(`/carrinhos/itens/${produtoId}`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      produtoId,
+    }),
+  });
+}
+
 // ===============================
 // BUSCAR CEP
 // ===============================
 
 export async function buscarCep(cep) {
   return request(`/enderecos/cep/${cep}`);
+}
+
+// ===============================
+// BUSCAR CEP
+// ===============================
+export async function atualizarEnderecoUsuario(id, endereco) {
+  return request(`/enderecos/usuario/${id}`, {
+    method: "POST",
+    body: JSON.stringify(endereco),
+  });
+}
+
+// ===============================
+// DESCONTOS (5 ÚLTIMOS)
+// ===============================
+
+export async function buscarProdutosComDesconto() {
+  return request(`/produtos/descontos`);
 }

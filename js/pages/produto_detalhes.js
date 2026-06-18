@@ -1,4 +1,8 @@
-import { buscarProdutoPorId } from "../services/api.js";
+import {
+  buscarProdutoPorId,
+  adicionarItemCarrinho,
+  buscarCep,
+} from "../services/api.js";
 
 import {
   atualizarCarrinhoHeader,
@@ -6,6 +10,8 @@ import {
 } from "../components/headerClient.js";
 
 import { aplicarMascaraCEP } from "../utils/mascaras.js";
+
+import { obterEndereco } from "../utils/localStorageUtils.js";
 
 function configurarLimiteQuantidade(estoqueDisponivel) {
   const estoqueLabel = document.getElementById("detalhe-estoque");
@@ -168,96 +174,97 @@ function configurarBotaoComprar(produto) {
 
   if (!btnComprar) return;
 
-  btnComprar.addEventListener("click", () => {
-    const estoque = Number(produto.estoqueDisponivel ?? 0);
+  btnComprar.addEventListener("click", async () => {
+    try {
+      const estoque = Number(produto.estoqueDisponivel ?? 0);
 
-    if (estoque <= 0) {
-      mostrarToastProduto("Produto sem estoque disponível");
-      return;
+      if (estoque <= 0) {
+        mostrarToastProduto("Produto sem estoque disponível");
+        return;
+      }
+
+      const inputQty = document.querySelector(".quantity-control input");
+
+      const quantidade = parseInt(inputQty?.value || "1");
+
+      await adicionarItemCarrinho(produto.id, quantidade);
+
+      atualizarCarrinhoHeader();
+      mostrarToastProduto(produto.nome);
+
+      const original = btnComprar.innerHTML;
+
+      btnComprar.innerHTML = "Adicionado ✓";
+
+      setTimeout(() => {
+        btnComprar.innerHTML = original;
+      }, 1500);
+
+      if (inputQty) {
+        inputQty.value = 1;
+      }
+    } catch (erro) {
+      console.error("Erro ao adicionar item:", erro);
+
+      const mensagem =
+        erro?.erros?.[0]?.mensagem ||
+        erro?.erro ||
+        "Não foi possível adicionar ao carrinho.";
+
+      window.location.href = "/login.html?tipo=cliente";
     }
-
-    const inputQty = document.querySelector(".quantity-control input");
-    const qtd = parseInt(inputQty?.value || "1");
-
-    const carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
-
-    const existente = carrinho.find((item) => item.id === produto.id);
-    const atual = existente ? existente.quantidade : 0;
-
-    if (atual + qtd > estoque) {
-      mostrarToastProduto(`Estoque máximo: ${estoque}`);
-      return;
-    }
-
-    adicionarAoCarrinho(produto);
   });
-}
-
-// ======================================
-// CARRINHO
-// ======================================
-
-function adicionarAoCarrinho(produto) {
-  const inputQty = document.querySelector(".quantity-control input");
-  const qtdAdicional = parseInt(inputQty ? inputQty.value : "1") || 1;
-
-  const carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
-
-  const itemExistente = carrinho.find((item) => item.id === produto.id);
-  const qtdAtual = itemExistente ? itemExistente.quantidade : 0;
-
-  const totalDesejado = qtdAtual + qtdAdicional;
-
-  const estoque = Number(produto.estoqueDisponivel ?? 0);
-
-  // 🔒 REGRA FINAL DE SEGURANÇA
-  if (estoque <= 0) {
-    mostrarToastProduto("Produto sem estoque disponível");
-    return;
-  }
-
-  if (totalDesejado > estoque) {
-    mostrarToastProduto(
-      `Limite de estoque atingido (${estoque} unidades disponíveis)`,
-    );
-    return;
-  }
-
-  if (itemExistente) {
-    itemExistente.quantidade = totalDesejado;
-  } else {
-    carrinho.push({
-      id: produto.id,
-      nome: produto.nome,
-      preco: produto.preco,
-      imagem: produto.imagem,
-      quantidade: qtdAdicional,
-    });
-  }
-
-  localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
-
-  atualizarCarrinhoHeader();
-  mostrarToastProduto(produto.nome);
-
-  const btn = document.querySelector(".btn-buy-now");
-
-  if (btn) {
-    const original = btn.innerHTML;
-    btn.innerHTML = "Adicionado ✓";
-
-    setTimeout(() => {
-      btn.innerHTML = original;
-    }, 1500);
-  }
 }
 
 function configurarCEP() {
   const cepInput = document.getElementById("cep-input");
+  const btnCalcular = document.querySelector(".btn-calculate-shipping");
+  const mensagem = document.getElementById("shipping-message");
 
   if (!cepInput) return;
 
   aplicarMascaraCEP(cepInput);
+
+  // endereço já salvo
+  const enderecoSalvo = obterEndereco();
+
+  if (enderecoSalvo?.cep) {
+    cepInput.value = enderecoSalvo.cep;
+
+    if (mensagem) {
+      mensagem.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        Entrega disponível para <strong>${enderecoSalvo.cidade}/${enderecoSalvo.estado}</strong>.
+      `;
+    }
+  }
+
+  btnCalcular?.addEventListener("click", async () => {
+    try {
+      const cep = cepInput.value.replace(/\D/g, "");
+
+      const endereco = await buscarCep(cep);
+
+      if (!endereco?.cidade || !endereco?.estado) {
+        mensagem.innerHTML = `
+        <i class="fas fa-times-circle"></i>
+        CEP não encontrado.
+      `;
+        return;
+      }
+
+      mensagem.innerHTML = `
+      <i class="fas fa-check-circle"></i>
+      Entrega disponível para
+      <strong>${endereco.cidade}/${endereco.estado}</strong>.
+    `;
+    } catch {
+      mensagem.innerHTML = `
+      <i class="fas fa-times-circle"></i>
+      CEP não encontrado.
+    `;
+    }
+  });
 }
 
 // ======================================

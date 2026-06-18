@@ -1,0 +1,60 @@
+@import "/css/main.css";
+
+.maintenance-main {
+  min-height: calc(100vh - 200px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+}
+
+.maintenance-container {
+  text-align: center;
+  max-width: 700px;
+}
+
+.maintenance-image {
+  width: 100%;
+  max-width: 450px;
+
+  margin-bottom: 24px;
+}
+
+.maintenance-container h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+
+  color: var(--verde-escuro);
+}
+
+.maintenance-container p {
+  font-size: 1rem;
+  color: #666;
+
+  margin-bottom: 24px;
+}
+
+.btn-voltar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 24px;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  background: var(--verde-escuro);
+  color: white;
+
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.btn-voltar:hover {
+  opacity: 0.9;
+}

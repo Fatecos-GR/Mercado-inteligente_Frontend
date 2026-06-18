@@ -969,3 +969,75 @@ export function renderClienteCategoriaSection(categoria, produtos) {
     </section>
   `;
 }
+
+// ======================================
+// CARD DE OFERTA PARA ABA DA HOME
+// ======================================
+export function renderClienteOfertaCard(produto) {
+  const imagem = produto.imagem?.trim() || "/img/placeholder.png";
+
+  const percentual =
+    produto.precoAnterior > 0
+      ? Math.round(
+          ((produto.precoAnterior - produto.preco) / produto.precoAnterior) *
+            100,
+        )
+      : 0;
+
+  return `
+    <article
+      class="product-card oferta-card"
+      data-estoque="${produto.estoqueDisponivel}"
+    >
+
+      <span class="oferta-badge">
+        -${percentual}%
+      </span>
+
+      <a href="detalhes_prod.html?id=${produto.id}">
+        <img
+          src="${imagem}"
+          alt="${produto.nome}"
+          class="product-image"
+        />
+      </a>
+
+      <div class="product-info">
+
+        <h3 class="product-title">
+          ${produto.nome}
+        </h3>
+
+        <div class="price-box">
+
+          <span class="price-old">
+            R$ ${Number(produto.precoAnterior).toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+            })}
+          </span>
+
+          <span class="price-current">
+            R$ ${Number(produto.preco).toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+            })}
+          </span>
+
+        </div>
+
+        <small class="oferta-validade">
+          Oferta até ${new Date(produto.validade).toLocaleDateString("pt-BR")}
+        </small>
+
+      </div>
+
+      <button
+        class="btn-add-cart"
+        data-id="${produto.id}"
+      >
+        Adicionar
+        <i class="fa-solid fa-cart-shopping"></i>
+      </button>
+
+    </article>
+  `;
+}

@@ -13,6 +13,7 @@ import {
   salvarTelefone,
   salvarImagem,
   salvarId,
+  salvarEndereco,
 } from "../utils/localStorageUtils.js";
 
 import { tiposLogin } from "../config/authConfig.js";
@@ -132,6 +133,7 @@ async function fazerLogin(email, senha) {
   salvarTelefone(usuario.telefone);
   salvarImagem(usuario.imagem);
   salvarPerfil(usuario.perfil?.toUpperCase());
+  salvarEndereco(usuario.endereco);
 
   return resposta;
 }

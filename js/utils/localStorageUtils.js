@@ -30,6 +30,7 @@ export function logoutCliente() {
   removerTelefone();
   removerImagem();
   removerId();
+  removerEndereco();
 
   window.location.href = "/login.html?tipo=cliente";
 }
@@ -116,4 +117,18 @@ export function obterId() {
 
 export function removerId() {
   localStorage.removeItem("idUsuario");
+}
+
+export function salvarEndereco(endereco) {
+  localStorage.setItem("endereco", JSON.stringify(endereco));
+}
+
+export function obterEndereco() {
+  const endereco = localStorage.getItem("endereco");
+
+  return endereco ? JSON.parse(endereco) : null;
+}
+
+export function removerEndereco() {
+  localStorage.removeItem("endereco");
 }

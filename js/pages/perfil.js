@@ -8,6 +8,8 @@ import {
   salvarSobrenome,
   salvarEmail,
   salvarTelefone,
+  salvarEndereco as salvarEnderecoStorage,
+  obterEndereco,
 } from "../utils/localStorageUtils.js";
 
 import {
@@ -17,7 +19,11 @@ import {
   validarRequired,
 } from "../utils/validators.js";
 
-import { buscarUsuarioPorId, atualizarUsuario } from "../services/api.js";
+import {
+  buscarUsuarioPorId,
+  atualizarUsuario,
+  atualizarEnderecoUsuario,
+} from "../services/api.js";
 
 import { formatarTelefone, aplicarMascaraTelefone } from "../utils/mascaras.js";
 
@@ -51,20 +57,90 @@ export function iniciarPerfil() {
   carregarEndereco();
 
   iniciarEdicaoPerfil();
+
+  configurarSalvarEndereco();
+
+  configurarCamposEndereco();
+}
+
+function configurarCamposEndereco() {
+  const numero = document.getElementById("numero");
+  const complemento = document.getElementById("complemento");
+
+  if (numero) numero.disabled = true;
+  if (complemento) complemento.disabled = true;
+}
+
+function configurarSalvarEndereco() {
+  const btnSalvar = document.getElementById("btn-salvar-endereco");
+
+  if (!btnSalvar) return;
+
+  btnSalvar.addEventListener("click", async () => {
+    await salvarEndereco();
+  });
+}
+
+function carregarEndereco() {
+  const endereco = obterEndereco();
+
+  if (!endereco) return;
+
+  document.getElementById("cep").value = endereco.cep || "";
+
+  document.getElementById("logradouro").value = endereco.logradouro || "";
+
+  document.getElementById("numero").value = endereco.numero || "";
+
+  document.getElementById("complemento").value = endereco.complemento || "";
+
+  document.getElementById("bairro").value = endereco.bairro || "";
+
+  document.getElementById("cidade").value = endereco.cidade || "";
+
+  document.getElementById("estado").value = endereco.estado || "";
+
+  document.getElementById("numero").disabled = false;
+  document.getElementById("complemento").disabled = false;
 }
 
 function validarFormularioEndereco() {
   limparErros();
+  limparMensagemFormulario();
 
   let valido = true;
 
   const cep = document.getElementById("cep");
+  const logradouro = document.getElementById("logradouro");
   const numero = document.getElementById("numero");
+  const bairro = document.getElementById("bairro");
+  const cidade = document.getElementById("cidade");
+  const estado = document.getElementById("estado");
 
   valido = validarCep(cep) && valido;
 
+  if (!logradouro.value.trim()) {
+    mostrarErro(logradouro, "Informe o logradouro.");
+    valido = false;
+  }
+
   if (!numero.value.trim()) {
     mostrarErro(numero, "Informe o número.");
+    valido = false;
+  }
+
+  if (!bairro.value.trim()) {
+    mostrarErro(bairro, "Informe o bairro.");
+    valido = false;
+  }
+
+  if (!cidade.value.trim()) {
+    mostrarErro(cidade, "Informe a cidade.");
+    valido = false;
+  }
+
+  if (!estado.value.trim()) {
+    mostrarErro(estado, "Informe o estado.");
     valido = false;
   }
 
@@ -109,10 +185,18 @@ async function salvarEndereco() {
   try {
     const endereco = obterEnderecoFormulario();
 
-    await atualizarEnderecoUsuario(obterId(), endereco);
+    console.log("ENDERECO:", endereco);
+
+    const resposta = await atualizarEnderecoUsuario(obterId(), endereco);
+
+    console.log("RESPOSTA:", resposta);
+
+    salvarEnderecoStorage(endereco);
 
     await abrirModalResultado("Endereço atualizado com sucesso!");
   } catch (erro) {
+    console.error(erro);
+
     tratarErroEndereco(erro);
   }
 }
