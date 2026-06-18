@@ -174,9 +174,7 @@ button:disabled {
   gap: 12px;
   animation: slideInRight 0.3s ease forwards;
   opacity: 1;
-  transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .toast-msg.esconder {

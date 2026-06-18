@@ -52,55 +52,30 @@ function iniciarMenuDepartamentos() {
 // =========================
 
 function iniciarCategoriasNav() {
-  const linksCat = document.querySelectorAll(".nav-categorias a");
+  const linksHeader = document.querySelectorAll(".nav-categorias a, .lista-departamentos a");
 
-  linksCat.forEach((link) => {
+  linksHeader.forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href");
 
-      // Scroll suave para IDs
-      if (href && href.startsWith("#") && href.length > 1) {
-        e.preventDefault();
-
-        const targetId = href.substring(1);
+      // Se for um link de âncora interno (mesma página ou apontando explicitamente para index.html)
+      if (href && (href.startsWith("#") || href.includes("index.html#"))) {
+        const targetId = href.split("#")[1];
         const element = document.getElementById(targetId);
 
+        // Se o elemento existe na página atual, faz o scroll suave
         if (element) {
+          e.preventDefault();
           element.scrollIntoView({
             behavior: "smooth",
             block: "center",
           });
+
+          // Fecha o dropdown se estiver aberto
+          const dropdownDep = document.getElementById("dropdown-departamentos");
+          if (dropdownDep) dropdownDep.classList.remove("show");
         }
-
-        return;
-      }
-
-      // Navegação normal para páginas HTML
-      if (href && href.endsWith(".html")) return;
-
-      e.preventDefault();
-
-      const titulo = link.innerText;
-
-      const secoes = document.querySelectorAll(
-        ".vitrine-title, #recommendations-header h2",
-      );
-
-      let encontrou = false;
-
-      secoes.forEach((secao) => {
-        if (!encontrou && secao.innerText.includes(titulo)) {
-          secao.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-
-          encontrou = true;
-        }
-      });
-
-      if (!encontrou) {
-        window.location.href = "index.html";
+        // Se não existir (estamos em outra página), deixa o navegador seguir o link normalmente para index.html#id
       }
     });
   });
