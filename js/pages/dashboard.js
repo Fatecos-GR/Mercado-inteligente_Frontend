@@ -8,6 +8,9 @@ import {
   buscarQuantidadeProdutosBaixoEstoque,
   buscarQuantidadeTotalProdutosEstoque,
   buscarQuantidadeDeCadaProduto,
+  buscarQuantidadeDeClientes,
+  buscarQuantidadeProdutosProximoVencimento,
+  buscarQuantidadeProdutosVencidos,
 } from "../services/api.js";
 
 export async function iniciarDashboard() {
@@ -21,6 +24,9 @@ export async function iniciarDashboard() {
       baixoEstoque,
       estoqueTotal,
       produtos,
+      totalClientes,
+      proximoVencimento,
+      vencidos,
     ] = await Promise.all([
       buscarEstatisticas(),
       buscarMarcasEQuantidade(),
@@ -29,9 +35,19 @@ export async function iniciarDashboard() {
       buscarQuantidadeProdutosBaixoEstoque(),
       buscarQuantidadeTotalProdutosEstoque(),
       buscarQuantidadeDeCadaProduto(),
+      buscarQuantidadeDeClientes(),
+      buscarQuantidadeProdutosProximoVencimento(),
+      buscarQuantidadeProdutosVencidos(),
     ]);
 
-    preencherCards(estatisticas, baixoEstoque, estoqueTotal);
+    preencherCards(
+      estatisticas,
+      baixoEstoque,
+      estoqueTotal,
+      totalClientes,
+      proximoVencimento,
+      vencidos,
+    );
 
     renderProdutos(produtos);
 
@@ -45,13 +61,27 @@ export async function iniciarDashboard() {
   }
 }
 
-function preencherCards(estatisticas, baixoEstoque, estoqueTotal) {
+function preencherCards(
+  estatisticas,
+  baixoEstoque,
+  estoqueTotal,
+  totalClientes,
+  proximoVencimento,
+  vencidos,
+) {
   document.getElementById("total-produtos").textContent =
     estatisticas.quantidadeProdutos;
 
   document.getElementById("baixo-estoque").textContent = baixoEstoque.length;
 
   document.getElementById("estoque-total").textContent = estoqueTotal;
+
+  document.getElementById("total-clientes").textContent = totalClientes;
+
+  document.getElementById("total-proximos-vencimento").textContent =
+    proximoVencimento;
+
+  document.getElementById("total-vencidos").textContent = vencidos;
 }
 
 function renderProdutos(produtos) {

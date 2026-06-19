@@ -20,6 +20,8 @@ import {
 
 import { popularSelectGenerico } from "../utils/selectUtils.js";
 
+import { getStatusValidade } from "../utils/validadeUtils.js";
+
 // ======================================
 // PEGAR PARÂMETRO DA URL E FUNCIONALIDADES DE URL
 // ======================================
@@ -175,6 +177,18 @@ async function renderCards(entidade) {
     });
   }
 
+  if (filtros.validadeStatus) {
+    dados = dados.filter((item) => {
+      const status = getStatusValidade(item.validade);
+
+      if (filtros.validadeStatus === "TODOS") {
+        return true;
+      }
+
+      return status === filtros.validadeStatus;
+    });
+  }
+
   grid.innerHTML = dados.map(service.renderCard).join("");
 }
 
@@ -240,6 +254,7 @@ function limparFiltros(entidade) {
   atualizarFiltro("categoriaId", "");
   atualizarFiltro("fornecedorId", "");
   atualizarFiltro("baixoEstoque", "");
+  atualizarFiltro("validadeStatus", "");
 
   document.getElementById("search-input").value = "";
 

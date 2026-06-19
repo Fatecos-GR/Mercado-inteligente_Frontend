@@ -31,7 +31,7 @@ export function configurarToggleSenha() {
 // ======================================
 export function limparErros() {
   document
-    .querySelectorAll(".input-container, .admin-form-group")
+    .querySelectorAll(".input-container, .admin-form-group, .data-field")
     .forEach((container) => {
       container.classList.remove("error");
 
@@ -48,7 +48,9 @@ export function limparErros() {
 // ======================================
 export function mostrarErro(input, mensagem) {
   const container =
-    input.closest(".input-container") || input.closest(".admin-form-group");
+    input.closest(".input-container") ||
+    input.closest(".admin-form-group") ||
+    input.closest(".data-field");
 
   if (!container) return;
 

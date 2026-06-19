@@ -4,7 +4,17 @@
 
 import { realizarCadastro } from "../services/api.js";
 
-import { salvarToken } from "../utils/localStorageUtils.js";
+import {
+  salvarToken,
+  salvarPerfil,
+  salvarNome,
+  salvarSobrenome,
+  salvarEmail,
+  salvarTelefone,
+  salvarImagem,
+  salvarId,
+  salvarEndereco,
+} from "../utils/localStorageUtils.js";
 
 import { aplicarMascaraTelefone } from "../utils/mascaras.js";
 
@@ -30,7 +40,18 @@ async function fazerCadastro(nome, sobrenome, email, telefone, senha) {
     senha,
   );
 
+  const usuario = resposta.usuario;
+
   salvarToken(resposta.token);
+
+  salvarId(usuario.id);
+  salvarNome(usuario.nome);
+  salvarSobrenome(usuario.sobrenome);
+  salvarEmail(usuario.email);
+  salvarTelefone(usuario.telefone);
+  salvarImagem(usuario.imagem);
+  salvarPerfil(usuario.perfil?.toUpperCase());
+  salvarEndereco(usuario.endereco);
 
   return resposta;
 }
@@ -195,6 +216,8 @@ function configurarSubmit() {
         telefone,
         senha,
       );
+
+      console.log("Resposta cadastro:", resposta);
 
       await abrirModalResultado("Cadastro realizado com sucesso!");
 

@@ -1,41 +1,86 @@
-import { produtosMock } from "../data/produtosMock.js";
-import { atualizarCarrinhoHeader, mostrarToastProduto } from "../components/headerClient.js";
+import {
+  buscarProdutoPorId,
+  adicionarItemCarrinho,
+  buscarCep,
+} from "../services/api.js";
 
-// ======================================
-// START
-// ======================================
+import {
+  atualizarCarrinhoHeader,
+  mostrarToastProduto,
+} from "../components/headerClient.js";
 
-export function iniciarProdutoDetalhes() {
-  carregarProduto();
-  configurarControlesQuantidade();
-}
+import { aplicarMascaraCEP } from "../utils/mascaras.js";
 
-// ======================================
-// CONTROLES DE QUANTIDADE
-// ======================================
+import { obterEndereco } from "../utils/localStorageUtils.js";
 
-function configurarControlesQuantidade() {
-  const btnMinus = document.querySelector('button[aria-label="Diminuir quantidade"]');
-  const btnPlus = document.querySelector('button[aria-label="Aumentar quantidade"]');
-  const inputQty = document.querySelector('.quantity-control input');
+function configurarLimiteQuantidade(estoqueDisponivel) {
+  const estoqueLabel = document.getElementById("detalhe-estoque");
+  const input = document.querySelector(".quantity-control input");
+  const btnPlus = document.querySelector(
+    'button[aria-label="Aumentar quantidade"]',
+  );
+  const btnMinus = document.querySelector(
+    'button[aria-label="Diminuir quantidade"]',
+  );
+  const btnComprar = document.querySelector(".btn-buy-now");
 
-  if (!btnMinus || !btnPlus || !inputQty) return;
+  const estoque = Number(estoqueDisponivel ?? 0);
 
-  btnMinus.addEventListener("click", () => {
-    let currentValue = parseInt(inputQty.value) || 1;
-    if (currentValue > 1) {
-      inputQty.value = currentValue - 1;
+  // UI do estoque
+  if (estoqueLabel) {
+    estoqueLabel.textContent =
+      estoque > 0
+        ? `${estoque} unidade(s) disponível(is) em estoque`
+        : "Produto sem estoque disponível";
+
+    estoqueLabel.style.color = estoque > 0 ? "var(--verde-escuro)" : "#e53e3e";
+  }
+
+  // ❌ SEM ESTOQUE = TRAVA TUDO
+  if (estoque <= 0) {
+    input.value = 0;
+    input.disabled = true;
+    btnPlus.disabled = true;
+    btnMinus.disabled = true;
+
+    if (btnComprar) {
+      btnComprar.disabled = true;
+      btnComprar.textContent = "Sem estoque";
+    }
+
+    return;
+  }
+
+  const limitar = () => {
+    let val = parseInt(input.value) || 1;
+
+    if (val > estoque) val = estoque;
+    if (val < 1) val = 1;
+
+    input.value = val;
+  };
+
+  btnPlus.addEventListener("click", () => {
+    let current = parseInt(input.value) || 1;
+
+    if (current < estoque) {
+      input.value = current + 1;
     }
   });
 
-  btnPlus.addEventListener("click", () => {
-    let currentValue = parseInt(inputQty.value) || 1;
-    inputQty.value = currentValue + 1;
+  btnMinus.addEventListener("click", () => {
+    let current = parseInt(input.value) || 1;
+
+    if (current > 1) {
+      input.value = current - 1;
+    }
   });
+
+  input.addEventListener("input", limitar);
 }
 
 // ======================================
-// OBTER ID
+// PEGAR ID DA URL
 // ======================================
 
 function getProdutoId() {
@@ -44,44 +89,36 @@ function getProdutoId() {
 }
 
 // ======================================
-// MAPEAMENTO DE CATEGORIAS
-// ======================================
-function getNomeCategoria(id) {
-    const mapping = {
-        "h": "Hortifruti",
-        "a": "Açougue",
-        "p": "Padaria",
-        "b": "Bebidas",
-        "l": "Limpeza",
-        "i": "Higiene",
-        "ps": "Pet Shop",
-        "c": "Congelados",
-        "m": "Mercearia"
-    };
-
-    // Pega as letras antes dos números no ID (ex: "ps1" -> "ps")
-    const prefix = id.replace(/[0-9]/g, '');
-    return mapping[prefix] || "Produto";
-}
-
-// ======================================
-// CARREGAR PRODUTO
+// CARREGAR PRODUTO (API REAL)
 // ======================================
 
-function carregarProduto() {
+async function carregarProduto() {
   const id = getProdutoId();
 
   if (!id) return;
 
-  const produto = produtosMock.find((p) => p.id === id);
+  try {
+    const produto = await buscarProdutoPorId(id);
 
-  if (!produto) {
-    const titulo = document.getElementById("detalhe-titulo");
-    if (titulo) titulo.textContent = "Produto não encontrado";
-    return;
+    if (!produto) {
+      mostrarErro();
+      return;
+    }
+
+    preencherTela(produto);
+  } catch (err) {
+    console.error("Erro ao buscar produto:", err);
+    mostrarErro();
   }
+}
 
-  preencherTela(produto);
+// ======================================
+// ERRO
+// ======================================
+
+function mostrarErro() {
+  const titulo = document.getElementById("detalhe-titulo");
+  if (titulo) titulo.textContent = "Produto não encontrado";
 }
 
 // ======================================
@@ -97,31 +134,39 @@ function preencherTela(produto) {
   const categoriaTexto = document.getElementById("detalhe-categoria-texto");
 
   if (titulo) titulo.textContent = produto.nome;
-  if (preco) preco.textContent = produto.preco.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  
+
+  if (preco) {
+    preco.textContent = Number(produto.preco).toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  }
+
   if (imagem) {
-    imagem.src = produto.imagem;
+    const img = produto.imagem?.trim();
+    imagem.src = img && img.length > 0 ? img : "/img/placeholder.png";
     imagem.alt = produto.nome;
   }
 
-  if (unidade) {
-      unidade.textContent = produto.unidade || "unid";
-  }
-
-  if (categoriaTexto) {
-      categoriaTexto.textContent = getNomeCategoria(produto.id);
-  }
+  if (unidade) unidade.textContent = produto.unidade || "unid";
+  if (categoriaTexto)
+    categoriaTexto.textContent = produto.categoriaNome || "Categoria";
 
   if (parcelamento) {
-    const valorParcela = (produto.preco / 3).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const valorParcela = (produto.preco / 3).toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
     parcelamento.innerHTML = `ou 3x de <strong>R$ ${valorParcela}</strong> sem juros no cartão`;
   }
 
+  configurarLimiteQuantidade(produto.estoqueDisponivel);
   configurarBotaoComprar(produto);
 }
 
 // ======================================
-// COMPRAR
+// BOTÃO COMPRAR
 // ======================================
 
 function configurarBotaoComprar(produto) {
@@ -129,48 +174,104 @@ function configurarBotaoComprar(produto) {
 
   if (!btnComprar) return;
 
-  btnComprar.addEventListener("click", () => {
-    adicionarAoCarrinho(produto);
+  btnComprar.addEventListener("click", async () => {
+    try {
+      const estoque = Number(produto.estoqueDisponivel ?? 0);
+
+      if (estoque <= 0) {
+        mostrarToastProduto("Produto sem estoque disponível");
+        return;
+      }
+
+      const inputQty = document.querySelector(".quantity-control input");
+
+      const quantidade = parseInt(inputQty?.value || "1");
+
+      await adicionarItemCarrinho(produto.id, quantidade);
+
+      atualizarCarrinhoHeader();
+      mostrarToastProduto(produto.nome);
+
+      const original = btnComprar.innerHTML;
+
+      btnComprar.innerHTML = "Adicionado ✓";
+
+      setTimeout(() => {
+        btnComprar.innerHTML = original;
+      }, 1500);
+
+      if (inputQty) {
+        inputQty.value = 1;
+      }
+    } catch (erro) {
+      console.error("Erro ao adicionar item:", erro);
+
+      const mensagem =
+        erro?.erros?.[0]?.mensagem ||
+        erro?.erro ||
+        "Não foi possível adicionar ao carrinho.";
+
+      window.location.href = "/login.html?tipo=cliente";
+    }
+  });
+}
+
+function configurarCEP() {
+  const cepInput = document.getElementById("cep-input");
+  const btnCalcular = document.querySelector(".btn-calculate-shipping");
+  const mensagem = document.getElementById("shipping-message");
+
+  if (!cepInput) return;
+
+  aplicarMascaraCEP(cepInput);
+
+  // endereço já salvo
+  const enderecoSalvo = obterEndereco();
+
+  if (enderecoSalvo?.cep) {
+    cepInput.value = enderecoSalvo.cep;
+
+    if (mensagem) {
+      mensagem.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        Entrega disponível para <strong>${enderecoSalvo.cidade}/${enderecoSalvo.estado}</strong>.
+      `;
+    }
+  }
+
+  btnCalcular?.addEventListener("click", async () => {
+    try {
+      const cep = cepInput.value.replace(/\D/g, "");
+
+      const endereco = await buscarCep(cep);
+
+      if (!endereco?.cidade || !endereco?.estado) {
+        mensagem.innerHTML = `
+        <i class="fas fa-times-circle"></i>
+        CEP não encontrado.
+      `;
+        return;
+      }
+
+      mensagem.innerHTML = `
+      <i class="fas fa-check-circle"></i>
+      Entrega disponível para
+      <strong>${endereco.cidade}/${endereco.estado}</strong>.
+    `;
+    } catch {
+      mensagem.innerHTML = `
+      <i class="fas fa-times-circle"></i>
+      CEP não encontrado.
+    `;
+    }
   });
 }
 
 // ======================================
-// ADICIONAR AO CARRINHO
+// START
 // ======================================
 
-function adicionarAoCarrinho(produto) {
-  const carrinho = JSON.parse(localStorage.getItem("melior_carrinho")) || [];
-  const existente = carrinho.find((item) => item.id === produto.id);
-  
-  const inputQty = document.querySelector('.quantity-control input');
-  const qtdAdicional = parseInt(inputQty ? inputQty.value : "1") || 1;
-
-  if (existente) {
-    existente.quantidade += qtdAdicional;
-  } else {
-    carrinho.push({
-      id: produto.id,
-      nome: produto.nome,
-      preco: produto.preco,
-      imagem: produto.imagem,
-      quantidade: qtdAdicional,
-    });
-  }
-
-  localStorage.setItem("melior_carrinho", JSON.stringify(carrinho));
-
-  const btnComprar = document.querySelector(".btn-buy-now");
-  if (btnComprar) {
-    const originalContent = btnComprar.innerHTML;
-    btnComprar.innerHTML = '<i class="fas fa-check"></i> Adicionado!';
-    btnComprar.style.backgroundColor = "var(--verde-primario)";
-    
-    setTimeout(() => {
-      btnComprar.innerHTML = originalContent;
-      btnComprar.style.backgroundColor = "";
-    }, 2000);
-  }
-
-  atualizarCarrinhoHeader();
-  mostrarToastProduto(produto.nome);
+export function iniciarProdutoDetalhes() {
+  carregarProduto();
+  configurarCEP();
 }

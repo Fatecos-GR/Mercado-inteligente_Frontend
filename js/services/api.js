@@ -147,6 +147,18 @@ export async function buscarProdutoPorId(id) {
   return request(`/produtos/${id}`);
 }
 
+export async function buscarProdutoPorIdCategoria(id) {
+  return request(`/produtos/categoria/${id}`);
+}
+
+export async function buscarProdutoPorIdMarca(id) {
+  return request(`/produtos/marca/${id}`);
+}
+
+export async function buscarProdutoPorIdFornecedor(id) {
+  return request(`/produtos/fornecedor/${id}`);
+}
+
 export async function atualizarProduto(id, dados) {
   return request(`/produtos/${id}`, {
     method: "PUT",
@@ -378,10 +390,83 @@ export async function buscarQuantidadeDeCadaProduto() {
   return request(`/dashboard/produtos/quantidade-geral`);
 }
 
+export async function buscarQuantidadeDeClientes() {
+  return request(`/usuarios/clientes/count`);
+}
+
+export async function buscarQuantidadeProdutosVencidos() {
+  return request(`/dashboard/produtos/vencidos/contagem`);
+}
+
+export async function buscarQuantidadeProdutosProximoVencimento() {
+  return request(`/dashboard/produtos/vencimento-proximo/contagem`);
+}
+
+// ===============================
+// CRUD CARRINHOS
+// ===============================
+
+export async function obterCarrinhoAtivo() {
+  return await request("/carrinhos");
+}
+
+export async function excluirCarrinho() {
+  return request(`/carrinhos`, {
+    method: "DELETE",
+  });
+}
+
+export async function adicionarItemCarrinho(produtoId, quantidade) {
+  return request(`/carrinhos/itens`, {
+    method: "POST",
+    body: JSON.stringify({
+      produtoId,
+      quantidade,
+    }),
+  });
+}
+
+export async function atualizarItemCarrinho(produtoId, quantidade) {
+  return request(`/carrinhos/itens`, {
+    method: "PUT",
+    body: JSON.stringify({
+      produtoId,
+      quantidade,
+    }),
+  });
+}
+
+export async function removerItemCarrinho(produtoId) {
+  return request(`/carrinhos/itens/${produtoId}`, {
+    method: "DELETE",
+    body: JSON.stringify({
+      produtoId,
+    }),
+  });
+}
+
 // ===============================
 // BUSCAR CEP
 // ===============================
 
 export async function buscarCep(cep) {
   return request(`/enderecos/cep/${cep}`);
+}
+
+// ===============================
+// BUSCAR CEP
+// ===============================
+export async function atualizarEnderecoUsuario(id, endereco) {
+  return request(`/enderecos/usuario/${id}`, {
+    method: "POST",
+    body: JSON.stringify(endereco),
+  });
+}
+
+// ===============================
+// DESCONTOS (5 ÚLTIMOS)
+// ===============================
+
+export async function buscarProdutosComDesconto() {
+  return request(`/produtos/descontos`);
 }

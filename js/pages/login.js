@@ -8,7 +8,12 @@ import {
   salvarToken,
   salvarPerfil,
   salvarNome,
+  salvarSobrenome,
+  salvarEmail,
+  salvarTelefone,
+  salvarImagem,
   salvarId,
+  salvarEndereco,
 } from "../utils/localStorageUtils.js";
 
 import { tiposLogin } from "../config/authConfig.js";
@@ -68,6 +73,17 @@ function configurarCadastro(config) {
   }
 }
 
+function configurarLinkCliente(config) {
+  const link = document.getElementById("link-cliente-extra");
+
+  if (!link) return;
+
+  // esconde se não for cliente
+  if (!config.mostrarLinkCliente) {
+    link.remove();
+  }
+}
+
 // ======================================
 // VALIDAÇÃO DE FORMULÁRIO
 // ======================================
@@ -106,13 +122,18 @@ function validarFormulario() {
 async function fazerLogin(email, senha) {
   const resposta = await realizarLogin(email, senha);
 
+  const usuario = resposta.usuario;
+
   salvarToken(resposta.token);
 
-  salvarPerfil(resposta.usuario.perfil?.toUpperCase());
-
-  salvarNome(resposta.usuario.nome);
-
-  salvarId(resposta.usuario.id);
+  salvarId(usuario.id);
+  salvarNome(usuario.nome);
+  salvarSobrenome(usuario.sobrenome);
+  salvarEmail(usuario.email);
+  salvarTelefone(usuario.telefone);
+  salvarImagem(usuario.imagem);
+  salvarPerfil(usuario.perfil?.toUpperCase());
+  salvarEndereco(usuario.endereco);
 
   return resposta;
 }
@@ -212,4 +233,6 @@ export function iniciarLogin() {
   configurarLayout(config);
 
   configurarCadastro(config);
+
+  configurarLinkCliente(config);
 }

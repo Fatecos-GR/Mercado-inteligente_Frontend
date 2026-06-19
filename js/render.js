@@ -2,39 +2,90 @@ import { possuiPerfil } from "./utils/authGuard.js";
 
 import { formatarTelefone } from "./utils/mascaras.js";
 
+import { getStatusValidade } from "./utils/validadeUtils.js";
+
 // ======================================
 // CARD DE PRODUTO (CLIENTE)
 // ======================================
-export function renderProdutoCard(produto) {
+export function renderClienteProdutoCard(produto) {
+  const imagem =
+    produto.imagem && produto.imagem.trim() !== ""
+      ? produto.imagem
+      : "/img/placeholder.png";
+
+  const preco = Number(produto.preco || 0);
+
+  const precoFormatado = preco.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+  });
+
+  const unidade = produto.unidade || "unid";
+
+  const estoque = Number(produto.estoqueDisponivel || 0);
+
+  const semEstoque = estoque <= 0;
+
   return `
-    <div class="product-card">
+    <div class="product-card" data-id="${produto.id}"
+  data-estoque="${produto.estoqueDisponivel || 0}">
+
       <a href="detalhes_prod.html?id=${produto.id}" class="product-link">
+
         <div class="card-image-wrapper">
-          <img src="${produto.imagem}" alt="${produto.nome}" />
-        </div>
-        <h3 class="product-title">${produto.nome}</h3>
-      </a>
-      <span class="product-unit">${produto.unidade || "unid"}</span>
-      <div class="product-pricing">
-        <span class="price-current">R$ ${produto.preco.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}</span>
-      </div>
-      <div class="product-actions-container">
-        <div class="card-quantity-control">
-          <button type="button" class="btn-qty-minus">-</button>
-          <input
-            type="number"
-            class="input-qty"
-            value="1"
-            min="1"
-            id="qty-${produto.id}"
+          <img
+            src="${imagem}"
+            alt="${produto.nome || "Produto"}"
+            loading="lazy"
           />
-          <button type="button" class="btn-qty-plus">+</button>
         </div>
-        <button class="btn-add-cart" data-id="${produto.id}">
-          Adicionar <i class="fa-solid fa-cart-shopping"></i>
-        </button>
+
+        <h3 class="product-title">
+          ${produto.nome || "Sem nome"}
+        </h3>
+
+      </a>
+
+      <span class="product-unit">
+        ${unidade}
+      </span>
+
+      <div class="product-pricing">
+        <span class="price-current">
+          R$ ${precoFormatado}
+        </span>
       </div>
-    </div>
+
+      <div class="product-actions-container">
+
+  <div class="card-quantity-control">
+    <button type="button" class="btn-qty-minus">-</button>
+
+    <input
+      type="number"
+      class="input-qty"
+      value="1"
+      min="1"
+      max="${estoque}"
+      id="qty-${produto.id}"
+    />
+
+    <button type="button" class="btn-qty-plus">+</button>
+  </div>
+
+  <button
+    class="btn-add-cart"
+    data-id="${produto.id}"
+    ${semEstoque ? "disabled" : ""}
+  >
+    ${
+      semEstoque
+        ? "Sem estoque"
+        : 'Adicionar <i class="fa-solid fa-cart-shopping"></i>'
+    }
+  </button>
+
+</div>
+</div>
   `;
 }
 
@@ -48,65 +99,89 @@ export function renderAdminProdutoCard(produto) {
 
   const warningClass = produto.estoqueDisponivel <= 10 ? "warning" : "";
 
+  const validadeStatus = getStatusValidade(produto.validade);
+  const validadeClass =
+    validadeStatus === "Vencido"
+      ? "expired"
+      : validadeStatus === "Próximo da validade"
+        ? "warning"
+        : "ok";
+
   const podeEditar = possuiPerfil(["ADMIN"]);
 
   return `
-    <article class="brand-card product-card">
+    <article class="product-card">
 
-      <div class="brand-card-left">
+      <!-- TOPO -->
+      <div class="product-card-top">
 
-        <div class="brand-image">
+        <div class="product-icon">
           <i class="fa-solid fa-box"></i>
         </div>
 
-        <div class="brand-info">
-
-          <h3>${produto.nome}</h3>
-
-          <p>
-            Categoria: ${produto.categoriaNome}
-          </p>
-
-          <p>
-            Marca: ${produto.marcaNome}
-          </p>
-
-          <p>
-            Preço: R$ ${produto.preco}
-          </p>
-
-          <p>
-            Estoque Atual:
-            ${produto.estoqueDisponivel}
-          </p>
-
+        <div class="product-badges">
           <span class="product-status ${warningClass}">
             ${status}
           </span>
 
+          <span class="product-expiry ${validadeClass}">
+            ${validadeStatus}
+          </span>
         </div>
 
       </div>
 
+      <!-- INFO -->
+      <div class="product-info">
+
+        <h3>${produto.nome}</h3>
+
+        <span class="product-category">
+          Categoria: ${produto.categoriaNome}
+        </span>
+
+        <span class="product-brand">
+          Marca: ${produto.marcaNome}
+        </span>
+
+      </div>
+
+      <!-- DETALHES -->
+      <div class="product-details">
+
+        <div class="detail-item">
+          <span>Preço</span>
+          <strong>R$ ${produto.preco}</strong>
+        </div>
+
+        <div class="detail-item">
+          <span>Estoque</span>
+          <strong>${produto.estoqueDisponivel}</strong>
+        </div>
+
+        <div class="detail-item">
+          <span>Validade</span>
+          <strong>${produto.validade}</strong>
+        </div>
+
+      </div>
+
+      <!-- AÇÕES -->
       <div class="product-actions">
 
         ${
           podeEditar
             ? `
-          <a
-            href="form_admin.html?tipo=produtos&id=${produto.id}"
-            class="btn-card-edit"
-          >
+          <a href="form_admin.html?tipo=produtos&id=${produto.id}"
+             class="btn-card-edit">
             <i class="fa-solid fa-pen"></i>
           </a>
         `
             : ""
         }
 
-        <a
-          href="form_admin.html?tipo=estoque&id=${produto.id}"
-          class="btn-card-stock"
-        >
+        <a href="form_admin.html?tipo=estoque&id=${produto.id}"
+           class="btn-card-stock">
           <i class="fa-solid fa-boxes-stacked"></i>
         </a>
 
@@ -827,4 +902,160 @@ export function renderSkeletonGestao(quantidade = 6) {
       `,
     )
     .join("");
+}
+
+// ======================================
+// CARD DE CATEGORIA (CLIENTE)
+// ======================================
+export function renderClienteCategoriaCard(categoria) {
+  const imagem =
+    categoria.imagem && categoria.imagem.trim() !== ""
+      ? categoria.imagem
+      : "/img/placeholder.png";
+
+  return `
+    <a 
+      class="category-card" 
+      data-id="${categoria.id}"
+      data-slug="${categoria.slug || ""}"
+      href="#sec-${categoria.slug || categoria.id}"
+    >
+      <div class="category-circle">
+        <img
+          src="${imagem}"
+          alt="${categoria.nome}"
+          class="category-img"
+        />
+      </div>
+
+      <h3 class="category-title">
+        ${categoria.nome}
+      </h3>
+    </a>
+  `;
+}
+
+// ======================================
+// SEÇÃO DE CATEGORIA (CLIENTE) - DINÂMICA
+// ======================================
+export function renderClienteCategoriaSection(categoria, produtos) {
+  const produtosFiltrados = produtos || [];
+  const slug = categoria.slug || categoria.id;
+
+  const isVazio = produtosFiltrados.length === 0;
+
+  return `
+    <section id="sec-${slug}" class="home-vitrine">
+
+      <h2 class="vitrine-title">${categoria.nome}</h2>
+
+      <div class="vitrine-container">
+
+        ${
+          isVazio
+            ? `
+              <div class="vitrine-empty">
+                <p>Nenhum produto disponível nesta seção</p>
+              </div>
+            `
+            : `
+              <button class="vitrine-nav-btn prev" data-target="grid-${slug}">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+
+              <div class="products-wrapper">
+                <div id="grid-${slug}" class="products-grid">
+                  ${produtosFiltrados.map(renderClienteProdutoCard).join("")}
+                </div>
+              </div>
+
+              <button class="vitrine-nav-btn next" data-target="grid-${slug}">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            `
+        }
+
+      </div>
+
+    </section>
+  `;
+}
+
+// ======================================
+// CARD DE OFERTA PARA ABA DA HOME
+// ======================================
+export function renderClienteOfertaCard(produto) {
+  const imagem = produto.imagem?.trim() || "/img/placeholder.png";
+
+  const percentual =
+    produto.precoAnterior > 0
+      ? Math.round(
+          ((produto.precoAnterior - produto.preco) / produto.precoAnterior) *
+            100,
+        )
+      : 0;
+
+  const estoque = Number(produto.estoqueDisponivel || 0);
+  const semEstoque = estoque <= 0;
+
+  return `
+    <article
+      class="product-card oferta-card"
+      data-estoque="${estoque}"
+    >
+
+      <span class="oferta-badge">
+        -${percentual}%
+      </span>
+
+      <a href="detalhes_prod.html?id=${produto.id}">
+        <img
+          src="${imagem}"
+          alt="${produto.nome}"
+          class="product-image"
+        />
+      </a>
+
+      <div class="product-info">
+
+        <h3 class="product-title">
+          ${produto.nome}
+        </h3>
+
+        <div class="price-box">
+
+          <span class="price-old">
+            R$ ${Number(produto.precoAnterior).toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+            })}
+          </span>
+
+          <span class="price-current">
+            R$ ${Number(produto.preco).toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+            })}
+          </span>
+
+        </div>
+
+        <small class="oferta-validade">
+          Oferta até ${new Date(produto.validade).toLocaleDateString("pt-BR")}
+        </small>
+
+      </div>
+
+      <button
+        class="btn-add-cart"
+        data-id="${produto.id}"
+        ${semEstoque ? "disabled" : ""}
+      >
+        ${
+          semEstoque
+            ? "Sem estoque"
+            : `Adicionar <i class="fa-solid fa-cart-shopping"></i>`
+        }
+      </button>
+
+    </article>
+  `;
 }

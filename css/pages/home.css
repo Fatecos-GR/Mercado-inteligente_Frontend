@@ -2,6 +2,9 @@
 
 @import "../main.css";
 @import "../components/cardProduto.css";
+@import "../components/cardCategoriaCliente.css";
+@import "../components/sectionVitrineCategoria.css";
+@import "../components/cardOfertaHome.css";
 
 /* ===============================
    ESTRUTURA GLOBAL (O Segredo do Zoom)
@@ -187,55 +190,6 @@
   padding: 0 10px;
 }
 
-/* CARD DE CATEGORIA */
-.category-card {
-  min-width: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  padding: 0;
-}
-
-.category-card:hover {
-  transform: translateY(-5px);
-}
-
-/* BOLA COM FUNDO */
-.category-circle {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: var(--branco);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid var(--verde-primario);
-}
-
-.category-circle .category-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 0px;
-  transform: scale(2);
-}
-
-.category-card .category-title {
-  font-size: 1rem;
-  color: var(--cinza-escuro);
-  font-weight: 800;
-  margin: 0;
-  text-align: center;
-}
-
 /* ===============================
    BANNER PROMOCIONAL
 =============================== */
@@ -367,132 +321,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* ===============================
-   3. VITRINES E RECOMENDAÇÕES (HEADERS)
-=============================== */
-#recommendations,
-.home-vitrine {
-  margin-top: 40px;
-}
-
-#recommendations-header,
-.vitrine-title-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-#recommendations-header h2,
-.vitrine-title {
-  color: var(--cinza-escuro);
-  font-size: 1.8rem;
-  font-weight: 900;
-  margin-bottom: 20px;
-}
-
-/* TABS */
-#recommendation-tabs {
-  display: flex;
-  gap: 10px;
-  background: var(--bg-light);
-  padding: 6px;
-  border-radius: 12px;
-}
-
-.tab {
-  border: none;
-  padding: 8px 16px;
-  border-radius: 10px;
-  cursor: pointer;
-  background: transparent;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.tab.active {
-  background: var(--verde-escuro);
-  color: var(--branco);
-}
-
-.tab-content {
-  display: none;
-  margin-top: 20px;
-  animation: fade 0.3s ease;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-/* ===============================
-   4. GRID DE PRODUTOS (Carrossel)
-=============================== */
-.vitrine-container {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.products-wrapper {
-  flex: 1;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
-}
-
-.products-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-
-.products-grid {
-  display: flex; /* Mudei de grid para flex para o carrossel */
-  gap: 20px;
-  padding: 10px 0;
-  width: max-content; /* Garante que o container cresça horizontalmente */
-}
-
-/* Setas de Navegação da Vitrine */
-.vitrine-nav-btn {
-  background: var(--branco);
-  color: var(--verde-escuro);
-  border: 1px solid #dcd3c1;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  z-index: 5;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.vitrine-nav-btn:hover {
-  background: var(--verde-primario);
-  color: var(--branco);
-  transform: scale(1.1);
-}
-
-.vitrine-nav-btn.prev {
-  margin-right: -10px;
-}
-
-.vitrine-nav-btn.next {
-  margin-left: -10px;
-}
-
-/* Reajuste do card para o carrossel */
-.products-grid .product-card {
-  flex: 0 0 250px; /* Largura fixa para os cards no carrossel */
-  margin-left: 0; /* Removendo a margem esquerda anterior que estava estranha */
 }
 
 /* ===============================
@@ -881,6 +709,16 @@
   z-index: 1;
 }
 
+body.modo-busca #banner,
+body.modo-busca #categorias-section,
+body.modo-busca .filtro-ordenacao,
+body.modo-busca .banner-promocional-secao,
+body.modo-busca #clube-melior,
+body.modo-busca #selecao-especial,
+body.modo-busca #ofertas-melior {
+  display: none !important;
+}
+
 /* ===============================
    RESPONSIVIDADE - SELEÇÃO ESPECIAL
 =============================== */
@@ -1033,4 +871,74 @@
     height: 50px;
     font-size: 1.5rem;
   }
+}
+
+/* ===============================
+   OFERTAS MELIOR (DESTAQUE)
+=============================== */
+
+#ofertas-melior {
+  margin: 80px 0;
+  padding: 20px 0;
+}
+
+#ofertas-melior .vitrine-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--verde-escuro);
+  margin-bottom: 25px;
+  position: relative;
+}
+
+#ofertas-melior .vitrine-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--verde-primario);
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+/* GRID das ofertas */
+.ofertas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* CARD de oferta (reaproveita padrão do produto) */
+.ofertas-container .product-card {
+  border: 2px solid rgba(90, 125, 101, 0.15);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ofertas-container .product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔥 CORREÇÃO PRINCIPAL DA IMAGEM */
+.ofertas-container .product-image img {
+  width: 100%;
+  height: 160px; /* <<< evita imagem gigante */
+  object-fit: contain; /* mantém proporção sem cortar */
+  padding: 10px;
+  background: #fff;
+}
+
+/* Badge de desconto */
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e63946;
+  color: white;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  z-index: 2;
 }

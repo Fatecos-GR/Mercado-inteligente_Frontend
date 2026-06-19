@@ -283,6 +283,7 @@
 .gestao-filtros-wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   gap: 14px;
 

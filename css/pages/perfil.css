@@ -354,6 +354,48 @@
   text-align: center;
 }
 
+/* ==========================
+   CAMPO DE SENHA
+========================== */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper .field-input {
+  padding-right: 50px;
+}
+
+.btn-toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+
+  color: #8d8170;
+
+  font-size: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-toggle-password:hover {
+  color: var(--verde-escuro);
+}
+
+.btn-toggle-password:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
 /* RESPONSIVIDADE */
 @media (max-width: 900px) {
   .profile-container {
@@ -371,4 +413,34 @@
   .col-span-6 {
     grid-column: span 12;
   }
+}
+
+/* ==========================
+   ERROS DE FORMULÁRIO
+========================== */
+
+.data-field.error .field-input {
+  border-color: #dc3545;
+}
+
+.data-field.error label {
+  color: #dc3545;
+}
+
+.field-error {
+  display: block;
+  margin-top: 6px;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  color: #dc3545;
+}
+
+.admin-form-group {
+  position: relative;
+}
+
+.admin-form-group.error .field-input {
+  border-color: #d63031;
 }

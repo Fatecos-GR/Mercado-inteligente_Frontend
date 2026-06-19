@@ -80,7 +80,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fcfbf8; 
+  background-color: #fcfbf8;
   border-radius: 20px;
   padding: 40px;
 }
@@ -342,6 +342,24 @@
 .btn-calculate-shipping:hover {
   background-color: var(--verde-primario);
   color: var(--branco);
+}
+
+.product-stock-info {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cinza-escuro);
+  background: #f7fafc;
+  padding: 10px 15px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-stock-info::before {
+  content: "📦";
+  font-size: 1rem;
 }
 
 /* ===============================

@@ -12,6 +12,7 @@
     <script type="module" src="js/main.js" defer></script>
   </head>
   <body>
+    <!-- HEADER DINÂMICO -->
     <header id="main-header"></header>
 
     <main id="main-container">
@@ -56,6 +57,7 @@
         </div>
       </section>
 
+      <!-- PARTE DAS CATEGORIAS -->
       <section class="home-section" id="categorias-section">
         <div id="categories-container">
           <!-- Setas de navegação das categorias -->
@@ -64,106 +66,8 @@
           </button>
 
           <div id="categories-wrapper">
-            <div id="categories-carousel">
-              <a href="#sec-hortifruti" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/hortifruti.png"
-                    alt="Hortifruti"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Hortifruti</h3>
-              </a>
-
-              <a href="#sec-acougue" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/acouguepeixe.png"
-                    alt="Açougue"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Açougue</h3>
-              </a>
-
-              <a href="#sec-padaria" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/padaria.png"
-                    alt="Padaria"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Padaria</h3>
-              </a>
-
-              <a href="#sec-bebidas" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/bebidas.png"
-                    alt="Bebidas"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Bebidas</h3>
-              </a>
-
-              <a href="#sec-limpeza" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/limpeza.png"
-                    alt="Limpeza"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Limpeza</h3>
-              </a>
-
-              <a href="#sec-higiene" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/higiene.png"
-                    alt="Higiene"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Higiene</h3>
-              </a>
-
-              <a href="#sec-petshop" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/petshop.png"
-                    alt="Pet Shop"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Pet Shop</h3>
-              </a>
-
-              <a href="#sec-congelados" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/congelados.png"
-                    alt="Congelados"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Congelados</h3>
-              </a>
-
-              <a href="#sec-mercearia" class="category-card">
-                <div class="category-circle">
-                  <img
-                    src="img/mercearia.png"
-                    alt="Mercearia"
-                    class="category-img"
-                  />
-                </div>
-                <h3 class="category-title">Mercearia</h3>
-              </a>
-            </div>
+            <!-- CATEGORIAS CARREGADAS DINÂMICAMENTE -->
+            <div id="categories-carousel"></div>
           </div>
 
           <button class="cat-nav-btn next" id="cat-next">
@@ -172,7 +76,8 @@
         </div>
       </section>
 
-      <div class="filtro-ordenacao">
+      <!-- FILTROS -->
+      <!-- <div class="filtro-ordenacao">
         <label>Ordenar por:</label>
         <div class="custom-select" id="sort-select">
           <div class="select-trigger">
@@ -186,70 +91,21 @@
             <div class="option" data-value="a-z">Ordem Alfabética (A-Z)</div>
           </div>
         </div>
-      </div>
+      </div> -->
+
+      <!-- VITRINES CARREGADAS DINAMICAMENTE -->
+      <div class="vitrines-container" data-bloco="1"></div>
 
       <!-- SEÇÃO: OFERTAS MELIOR -->
       <section id="ofertas-melior" class="home-vitrine">
         <h2 class="vitrine-title">Ofertas Melior</h2>
-        <div
-          style="
-            padding: 40px;
-            text-align: center;
-            background: var(--branco);
-            border-radius: 14px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-          "
-        >
-          <p
-            style="
-              color: var(--cinza-escuro);
-              font-weight: 600;
-              font-size: 1.1rem;
-            "
-          >
-            Não há ofertas no momento.
-          </p>
+        <div id="ofertas-melior-container" class="ofertas-container">
+          <p>Não há ofertas no momento.</p>
         </div>
       </section>
 
-      <!-- SEÇÃO: HORTIFRUTI -->
-      <section id="sec-hortifruti" class="home-vitrine">
-        <div class="recommendations-header">
-          <h2 class="vitrine-title">Hortifruti</h2>
-          <div class="recommendation-tabs">
-            <button class="tab active" data-tab="ofertas">Ofertas</button>
-            <button class="tab" data-tab="mais-vendidos">Mais vendidos</button>
-          </div>
-        </div>
-
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-hortifruti">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-hortifruti" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-hortifruti">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-
-      <!-- SEÇÃO: AÇOUGUE -->
-      <section id="sec-acougue" class="home-vitrine">
-        <h2 class="vitrine-title">Açougue</h2>
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-acougue">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-acougue" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-acougue">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
+      <!-- VITRINES CARREGADAS DINAMICAMENTE 2-->
+      <div class="vitrines-container" data-bloco="2"></div>
 
       <!-- BANNER PROMOCIONAL: COPA -->
       <section class="banner-promocional-secao">
@@ -261,6 +117,9 @@
           />
         </a>
       </section>
+
+      <!-- VITRINES CARREGADAS DINAMICAMENTE 3-->
+      <div class="vitrines-container" data-bloco="3"></div>
 
       <!-- SEÇÃO: CLUBE MELIOR -->
       <section id="clube-melior">
@@ -296,37 +155,8 @@
         </div>
       </section>
 
-      <!-- SEÇÃO: PADARIA -->
-      <section id="sec-padaria" class="home-vitrine">
-        <h2 class="vitrine-title">Padaria</h2>
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-padaria">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-padaria" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-padaria">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-
-      <!-- SEÇÃO: BEBIDAS -->
-      <section id="sec-bebidas" class="home-vitrine">
-        <h2 class="vitrine-title">Bebidas</h2>
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-bebidas">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-bebidas" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-bebidas">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
+      <!-- VITRINES CARREGADAS DINAMICAMENTE 4-->
+      <div class="vitrines-container" data-bloco="4"></div>
 
       <!-- BANNER PROMOCIONAL: FANTA -->
       <section class="banner-promocional-secao">
@@ -339,37 +169,8 @@
         </a>
       </section>
 
-      <!-- SEÇÃO: LIMPEZA -->
-      <section id="sec-limpeza" class="home-vitrine">
-        <h2 class="vitrine-title">Limpeza</h2>
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-limpeza">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-limpeza" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-limpeza">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-
-      <!-- SEÇÃO: HIGIENE -->
-      <section id="sec-higiene" class="home-vitrine">
-        <h2 class="vitrine-title">Higiene</h2>
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-higiene">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-higiene" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-higiene">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
+      <!-- VITRINES CARREGADAS DINAMICAMENTE 5-->
+      <div class="vitrines-container" data-bloco="5"></div>
 
       <!-- SEÇÃO: SELEÇÃO ESPECIAL -->
       <section id="selecao-especial">
@@ -426,38 +227,6 @@
         </div>
       </section>
 
-      <!-- SEÇÃO: PET SHOP -->
-      <section id="sec-petshop" class="home-vitrine">
-        <h2 class="vitrine-title">Pet Shop</h2>
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-petshop">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-petshop" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-petshop">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-
-      <!-- SEÇÃO: CONGELADOS -->
-      <section id="sec-congelados" class="home-vitrine">
-        <h2 class="vitrine-title">Congelados</h2>
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-congelados">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-congelados" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-congelados">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
-
       <!-- BANNER PROMOCIONAL: SONHO DE VALSA -->
       <section class="banner-promocional-secao">
         <a href="#" class="banner-link">
@@ -467,22 +236,6 @@
             class="banner-img-promocional"
           />
         </a>
-      </section>
-
-      <!-- SEÇÃO: MERCEARIA -->
-      <section id="sec-mercearia" class="home-vitrine">
-        <h2 class="vitrine-title">Mercearia</h2>
-        <div class="vitrine-container">
-          <button class="vitrine-nav-btn prev" data-target="grid-mercearia">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <div class="products-wrapper">
-            <div id="grid-mercearia" class="products-grid"></div>
-          </div>
-          <button class="vitrine-nav-btn next" data-target="grid-mercearia">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
       </section>
     </main>
 

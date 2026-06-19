@@ -180,7 +180,9 @@
   justify-content: center;
   align-items: center;
   margin-left: 10px;
-  transition: filter 0.2s, transform 0.2s;
+  transition:
+    filter 0.2s,
+    transform 0.2s;
 }
 
 .btn-remover:hover {
@@ -331,6 +333,16 @@
 
 .btn-finalize:hover {
   filter: brightness(1.1);
+}
+
+.shipping-message {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--verde-escuro);
+}
+
+.shipping-message i {
+  margin-right: 6px;
 }
 
 /* Responsividade */
