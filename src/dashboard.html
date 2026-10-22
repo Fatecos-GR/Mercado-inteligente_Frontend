@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard - Admin Melior</title>
+
+    <link rel="stylesheet" href="css/pages/dashboard.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="js/main.js" defer></script>
+  </head>
+  <body>
+    <div id="dashboard-layout">
+      <div id="admin-sidebar"></div>
+
+      <div id="right-layout">
+        <div id="admin-header"></div>
+
+        <main id="main-container">
+          <div class="dashboard-header">
+            <h2>Dashboard</h2>
+
+            <span> Visão geral do estoque e catálogo </span>
+          </div>
+
+          <!-- KPIs -->
+          <section id="dashboard-cards-grid">
+            <div class="dashboard-card">
+              <span class="card-label">Produtos Cadastrados</span>
+              <strong id="total-produtos">--</strong>
+            </div>
+
+            <div class="dashboard-card">
+              <span class="card-label">Itens em Estoque</span>
+              <strong id="estoque-total">--</strong>
+            </div>
+
+            <div class="dashboard-card alerta">
+              <span class="card-label">Baixo Estoque (Abaixo de 10)</span>
+              <strong id="baixo-estoque">--</strong>
+            </div>
+
+            <div class="dashboard-card">
+              <span class="card-label">Clientes Cadastrados</span>
+              <strong id="total-clientes">--</strong>
+            </div>
+            <div class="dashboard-card">
+              <span class="card-label">Produtos Próximos do Vencimento</span>
+              <strong id="total-proximos-vencimento">--</strong>
+            </div>
+            <div class="dashboard-card">
+              <span class="card-label">Produtos Vencidos</span>
+              <strong id="total-vencidos">--</strong>
+            </div>
+          </section>
+
+          <!-- Gráficos -->
+          <section class="dashboard-grid">
+            <div class="dashboard-panel">
+              <h3>Produtos por Categoria</h3>
+
+              <canvas id="chart-categorias"></canvas>
+            </div>
+
+            <div class="dashboard-panel">
+              <h3>Produtos por Marca</h3>
+
+              <canvas id="chart-marcas"></canvas>
+            </div>
+          </section>
+
+          <section class="dashboard-grid">
+            <div class="dashboard-panel">
+              <h3>Produtos por Fornecedor</h3>
+
+              <canvas id="chart-fornecedores"></canvas>
+            </div>
+
+            <div class="dashboard-panel">
+              <h3>Quantidade por Produto</h3>
+
+              <div id="dashboard-produtos-lista"></div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

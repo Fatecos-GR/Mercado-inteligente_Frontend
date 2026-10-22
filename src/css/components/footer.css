@@ -1,0 +1,248 @@
+/* ===============================
+   FOOTER PRINCIPAL
+=============================== */
+#main-footer {
+  background: var(--cinza-escuro);
+  color: var(--branco);
+  padding: 60px 20px 20px; /* Aumentei um pouco o topo para dar respiro */
+  margin-top: 60px;
+}
+
+#inner-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  gap: 30px;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 220px;
+}
+
+/* --- LOGO DO FOOTER --- */
+.logo-img {
+  max-width: 140px;
+  height: auto;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.brand-slogan {
+  color: #bdc3c7;
+  font-size: 0.95rem;
+  margin-top: 10px;
+  line-height: 1.4;
+  max-width: 250px;
+}
+
+.footer-section h4 {
+  color: var(--branco);
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* --- LISTAS E LINKS --- */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-section a {
+  color: var(--branco);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+  color: var(--verde-primario);
+}
+
+/* --- CONTATO E REDES SOCIAIS --- */
+.contact-section p {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-title {
+  margin-top: 25px;
+  font-size: 1rem !important;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: var(--verde-primario);
+  font-size: 1.8rem;
+}
+
+.social-icons a:hover {
+  filter: brightness(1.2);
+}
+
+/* --- NEWSLETTER --- */
+.newsletter-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.newsletter-section input {
+  padding: 14px 15px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+.newsletter-section button {
+  padding: 14px 15px;
+  border-radius: 8px;
+  border: none;
+  background: var(--verde-primario);
+  color: var(--branco);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.newsletter-section button:hover {
+  background: var(--verde-escuro);
+}
+
+/* --- FOOTER BOTTOM --- */
+#footer-bottom {
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.payment-methods h4 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.payment-icons {
+  display: flex;
+  gap: 10px;
+  font-size: 2rem;
+  color: #bdc3c7;
+  margin-bottom: 20px;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: #bdc3c7;
+  width: 100%;
+}
+
+.back-to-top {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  background: var(--branco);
+  color: var(--cinza-escuro);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  background: var(--verde-primario);
+  color: var(--branco);
+}
+
+/* ===============================
+   RESPONSIVIDADE DO FOOTER
+=============================== */
+
+/* --- TABLETS (Até 1024px) --- */
+@media (max-width: 1024px) {
+  #inner-footer {
+    display: grid;
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Divide em 2 blocos de 2 no tablet */
+    gap: 40px;
+  }
+}
+
+/* --- CELULARES (Até 768px) --- */
+@media (max-width: 768px) {
+  #inner-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza tudo no celular */
+    text-align: center;
+    gap: 40px;
+  }
+
+  /* Ajustes para alinhar os elementos centralizados */
+  .footer-section {
+    align-items: center;
+    width: 100%;
+  }
+
+  .brand-slogan {
+    max-width: 100%;
+  }
+
+  .contact-section p {
+    justify-content: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  /* Impede que o form fique gigante na tela inteira */
+  .newsletter-section form {
+    max-width: 300px;
+  }
+
+  /* Ajusta o rodapé final */
+  #footer-bottom {
+    align-items: center;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .payment-icons {
+    justify-content: center;
+  }
+
+  .back-to-top {
+    position: static;
+    margin-top: 30px;
+  }
+}

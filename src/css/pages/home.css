@@ -1,0 +1,944 @@
+/* Página Principal --> Index  */
+
+@import "../main.css";
+@import "../components/cardProduto.css";
+@import "../components/cardCategoriaCliente.css";
+@import "../components/sectionVitrineCategoria.css";
+@import "../components/cardOfertaHome.css";
+
+/* ===============================
+   ESTRUTURA GLOBAL (O Segredo do Zoom)
+=============================== */
+#main-container {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   1. BANNER CARROSSEL (Estilo Arco)
+=============================== */
+#banner {
+  width: 100%;
+}
+
+#carousel-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0 0 50% 50% / 0 0 50px 50px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+#carousel-wrapper {
+  display: flex;
+  width: 100%;
+  transition: transform 1s ease;
+}
+
+.banner-slide {
+  min-width: 100%;
+  height: 450px; /* Altura fixa para blindar contra bugs de zoom e Flexbox */
+  display: block;
+  background-color: var(
+    --verde-escuro
+  ); /* Fundo para preencher espaços em imagens desproporcionais */
+}
+
+.banner-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Garante que a imagem inteira apareça sem cortes */
+  object-position: center;
+  border-radius: 0;
+}
+
+/* --- NAVEGAÇÃO DO CARROSSEL --- */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.4);
+  color: var(--verde-escuro);
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.carousel-btn:hover {
+  background: var(--verde-primario);
+  color: var(--branco);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+  left: 30px;
+}
+
+.carousel-btn.next {
+  right: 30px;
+}
+
+/* ===============================
+   LINK DO PRODUTO (Tira o sublinhado azul)
+=============================== */
+.product-link {
+  text-decoration: none; /* Remove o sublinhado */
+  color: inherit; /* Faz o título manter a cor cinza-escuro original */
+  display: block; /* Garante que a área clicável ocupe o espaço todo da imagem */
+  cursor: pointer;
+}
+
+/* Opcional: Um efeitinho ao passar o mouse no nome do produto */
+.product-link:hover .product-title {
+  color: var(--verde-primario);
+}
+
+/* --- INDICADORES FLUTUANTES --- */
+.carousel-dots {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  bottom: 25px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cinza-escuro);
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 75%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dot.active {
+  background: var(--verde-escuro);
+  transform: scale(1.2);
+}
+
+/* ===============================
+   2. CATEGORIAS
+=============================== */
+#categorias-section {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+#categories-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#categories-wrapper {
+  width: 100%;
+  overflow-x: hidden; /* Mudado para hidden para as setas controlarem */
+  padding: 15px 0;
+  scroll-behavior: smooth;
+}
+
+/* Setas de Navegação das Categorias */
+.cat-nav-btn {
+  background: var(--branco);
+  border: 1px solid var(--verde-primario);
+  color: var(--verde-escuro);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  z-index: 5;
+}
+
+.cat-nav-btn:hover {
+  background: var(--verde-primario);
+  color: var(--branco);
+  transform: scale(1.1);
+}
+
+#categories-carousel {
+  display: flex;
+  gap: 25px;
+  padding: 0 10px;
+}
+
+/* ===============================
+   BANNER PROMOCIONAL
+=============================== */
+.banner-promocional-secao {
+  margin: 40px auto; /* Dá um respiro em cima e embaixo */
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden; /* Garante que a imagem respeite as bordas arredondadas */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.banner-link {
+  display: block;
+  width: 100%;
+  text-decoration: none;
+}
+
+.banner-img-promocional {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Ajuste sutil para telas menores */
+@media (max-width: 768px) {
+  .banner-promocional-secao {
+    margin: 25px auto;
+    border-radius: 8px;
+  }
+}
+
+/* ===============================
+   FILTRO DE ORDENAÇÃO (Custom Select)
+=============================== */
+.filtro-ordenacao {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  margin: 40px 0 25px 40px;
+}
+
+.filtro-ordenacao label {
+  font-weight: 800;
+  color: var(--cinza-escuro);
+  font-size: 1.05rem;
+}
+
+.custom-select {
+  position: relative;
+  width: 240px;
+  user-select: none;
+  z-index: 100;
+}
+
+.select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 25px;
+  background: var(--branco);
+  border: 2px solid var(--verde-primario);
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--cinza-escuro);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.select-trigger i {
+  color: var(--verde-primario);
+  transition: transform 0.3s ease;
+}
+
+.custom-select.open .select-trigger {
+  border-color: var(--verde-escuro);
+}
+
+.custom-select.open .select-trigger i {
+  transform: rotate(180deg);
+}
+
+.select-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: var(--branco);
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.custom-select.open .select-options {
+  display: block;
+}
+
+.option {
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--cinza-escuro);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  background: var(--bg-light);
+  color: var(--verde-escuro);
+  padding-left: 25px;
+}
+
+.option.active {
+  background: var(--verde-primario);
+  color: var(--branco);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   5. CLUBE MELIOR (3 COLUNAS)
+=============================== */
+#clube-melior {
+  margin: 80px 0;
+  background-color: var(--bg-light);
+  border-radius: 20px;
+  padding: 40px 50px;
+  overflow: hidden;
+}
+
+.clube-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* --- LADO ESQUERDO: TÍTULO --- */
+.clube-titulo-esq {
+  flex: 1.2;
+  max-width: 35%;
+}
+
+.clube-titulo-esq h2 {
+  font-size: 2.6rem;
+  color: var(--cinza-escuro);
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.clube-titulo-esq .destaque {
+  color: var(--verde-primario);
+}
+
+/* --- CENTRO: IMAGEM E BOLHA --- */
+.clube-imagem-centro {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Centraliza a bolha perfeitamente */
+  align-items: center;
+  position: relative;
+  min-height: 380px;
+}
+
+.bolha-fundo {
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  background: linear-gradient(
+    135deg,
+    var(--verde-primario),
+    var(--verde-escuro)
+  );
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  z-index: 0;
+  animation: morph 15s ease-in-out infinite;
+}
+
+.celular-mockup {
+  position: relative;
+  z-index: 1;
+  max-width: 220px;
+  height: auto;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+}
+
+/* --- LADO DIREITO: BENEFÍCIOS --- */
+.clube-beneficios-dir {
+  flex: 1;
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.clube-beneficios-dir h3 {
+  font-size: 1.4rem;
+  color: var(--verde-escuro);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.clube-beneficios {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+}
+
+.clube-beneficios li {
+  font-size: 1.1rem;
+  color: var(--cinza-escuro);
+  margin-bottom: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.clube-beneficios i {
+  color: var(--verde-primario);
+  font-size: 1.2rem;
+}
+
+/* ===============================
+   6. ANIMAÇÕES GERAIS
+=============================== */
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+  50% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  100% {
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+}
+
+/* ===============================
+   7. RESPONSIVIDADE GLOBAL
+=============================== */
+
+/* --- TABLETS E NOTEBOOKS MENORES (até 1024px) --- */
+@media (max-width: 1024px) {
+  #main-container {
+    padding-top: 20px;
+  }
+
+  .banner-slide {
+    height: 350px;
+  }
+
+  .clube-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .clube-titulo-esq,
+  .clube-beneficios-dir {
+    max-width: 100%;
+  }
+
+  .clube-titulo-esq h2 {
+    font-size: 2.2rem;
+  }
+
+  .clube-imagem-centro {
+    min-height: 350px;
+  }
+
+  .clube-beneficios li {
+    justify-content: center;
+  }
+}
+
+/* --- CELULARES (até 768px) --- */
+@media (max-width: 768px) {
+  #carousel-container {
+    border-radius: 0 0 20% 20% / 0 0 25px 25px;
+  }
+
+  .banner-slide {
+    height: 200px;
+  }
+
+  .category-circle {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 8px;
+  }
+
+  .category-card {
+    min-width: 90px;
+  }
+
+  .category-card .category-title {
+    font-size: 0.85rem;
+  }
+
+  #recommendations-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  #recommendations-header h2,
+  .vitrine-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  #recommendation-tabs {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    justify-content: center;
+  }
+
+  #clube-melior {
+    padding: 30px 20px;
+    margin: 60px 0;
+  }
+
+  .clube-titulo-esq h2 {
+    font-size: 1.8rem;
+  }
+
+  .clube-imagem-centro {
+    min-height: 280px;
+    margin: 20px 0;
+  }
+
+  .bolha-fundo {
+    width: 250px;
+    height: 250px;
+  }
+
+  .celular-mockup {
+    max-width: 140px;
+  }
+
+  .clube-beneficios-dir h3 {
+    font-size: 1.2rem;
+  }
+
+  .clube-beneficios li {
+    font-size: 1rem;
+  }
+
+  /* 1. COMPENSAÇÃO DO CABEÇALHO GIGANTE NO MOBILE */
+  #main-container {
+    padding-top: 20px;
+  }
+
+  /* 2. CARROSSEL DE CATEGORIAS */
+  #categories-carousel {
+    gap: 12px;
+    padding: 0 15px;
+    flex-wrap: nowrap;
+  }
+
+  .category-card {
+    min-width: 80px;
+    flex: 0 0 auto;
+  }
+
+  .category-circle {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 8px;
+  }
+
+  .category-card .category-title {
+    font-size: 0.8rem;
+  }
+}
+
+/* ===============================
+   SELEÇÃO ESPECIAL (Cards Promocionais)
+=============================== */
+#selecao-especial {
+  margin: 60px 0;
+}
+
+/* Estrutura das 3 Colunas */
+.selecao-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Estrutura Base do Card */
+.selecao-card {
+  border-radius: 12px;
+  padding: 30px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.selecao-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-amarelo {
+  background-color: #f4ebd9;
+  border: 1px solid #ebe0c8;
+}
+
+.card-creme {
+  background-color: var(--branco);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card-verde {
+  background-color: #e6f2eb;
+  border: 1px solid #d5e8dd;
+}
+
+.selecao-content {
+  position: relative;
+  z-index: 2;
+  max-width: 55%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.selecao-tag {
+  font-size: 0.85rem;
+  color: var(--verde-primario);
+  font-weight: 800;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.selecao-highlight {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cinza-escuro);
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.selecao-desc {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.btn-selecao {
+  background-color: var(--verde-escuro);
+  color: var(--branco);
+  padding: 8px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-block;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: auto; /* O SEGREDO: Empurra o botão pro rodapé para alinhas todos! */
+}
+
+.btn-selecao:hover {
+  background-color: var(--verde-primario);
+  transform: scale(1.05);
+  color: var(--branco);
+}
+
+/* 3. Aumentamos a imagem */
+.selecao-img {
+  position: absolute;
+  bottom: 15px;
+  right: 10px;
+  max-width: 175px;
+  max-height: 145px;
+  object-fit: contain;
+  z-index: 1;
+}
+
+body.modo-busca #banner,
+body.modo-busca #categorias-section,
+body.modo-busca .filtro-ordenacao,
+body.modo-busca .banner-promocional-secao,
+body.modo-busca #clube-melior,
+body.modo-busca #selecao-especial,
+body.modo-busca #ofertas-melior {
+  display: none !important;
+}
+
+/* ===============================
+   RESPONSIVIDADE - SELEÇÃO ESPECIAL
+=============================== */
+
+/* Para Tablets e Notebooks menores */
+@media (max-width: 992px) {
+  .selecao-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Muda de 3 para 2 cards por linha */
+  }
+}
+
+/* Para Celulares */
+@media (max-width: 768px) {
+  .selecao-grid {
+    grid-template-columns: 1fr; /* Coloca 1 card por linha (empilhados) */
+  }
+
+  .selecao-card {
+    min-height: 220px; /* Diminui um pouco a altura mínima no celular */
+    padding: 25px 20px;
+  }
+
+  .selecao-content {
+    max-width: 60%; /* Dá mais limite para o texto não encostar na imagem */
+  }
+
+  .selecao-highlight {
+    font-size: 1.25rem; /* Título levemente menor no celular */
+  }
+
+  .selecao-desc {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .selecao-img {
+    max-width: 135px; /* Encolhe a imagem no celular pra caber certinho */
+    max-height: 115px;
+    bottom: 10px;
+    right: 5px; /* Puxa a imagem bem pro cantinho */
+  }
+}
+
+/* Responsividade: Celulares e Tablets */
+@media (max-width: 900px) {
+  .selecao-grid {
+    grid-template-columns: 1fr; /* Volta a empilhar no celular */
+  }
+  .selecao-content {
+    max-width: 70%;
+  }
+}
+
+/* ===============================
+   RESPONSIVIDADE - SELEÇÃO ESPECIAL
+=============================== */
+
+/* Para Tablets e Notebooks menores */
+@media (max-width: 992px) {
+  .selecao-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Muda de 3 para 2 cards por linha */
+  }
+}
+
+/* Para Celulares */
+@media (max-width: 768px) {
+  .selecao-grid {
+    grid-template-columns: 1fr; /* Coloca 1 card por linha (empilhados) */
+  }
+
+  .selecao-card {
+    min-height: 220px; /* Diminui um pouco a altura mínima no celular */
+    padding: 25px 20px;
+  }
+
+  .selecao-content {
+    max-width: 60%; /* Dá mais limite para o texto não encostar na imagem */
+  }
+
+  .selecao-highlight {
+    font-size: 1.25rem; /* Título levemente menor no celular */
+  }
+
+  .selecao-desc {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .selecao-img {
+    max-width: 135px; /* Encolhe a imagem no celular pra caber certinho */
+    max-height: 115px;
+    bottom: 10px;
+    right: 5px; /* Puxa a imagem bem pro cantinho */
+  }
+}
+/* ===============================
+   BOTÃO FLUTUANTE DE AJUDA (?)
+=============================== */
+.help-floating-btn {
+  position: fixed;
+  bottom: 30px; /* Distância do fundo da tela */
+  right: 30px; /* Distância do canto direito da tela */
+  background-color: var(--verde-primario);
+  color: var(--branco);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 9999; /* Garante que ele fique por cima de carrosséis e vitrines */
+  transition: all 0.3s ease;
+  animation: pulse-help 2s infinite; /* Efeito de pulso discreto */
+}
+
+.help-floating-btn:hover {
+  background-color: var(--verde-escuro);
+  transform: scale(1.1) rotate(15deg); /* Dá uma leve inclinada charmosa ao passar o mouse */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animação de pulso para chamar atenção para a acessibilidade */
+@keyframes pulse-help {
+  0% {
+    box-shadow: 0 0 0 0 rgba(90, 125, 101, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(90, 125, 101, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(90, 125, 101, 0);
+  }
+}
+
+/* Responsividade: Diminui um pouco o tamanho em celulares */
+@media (max-width: 768px) {
+  .help-floating-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+/* ===============================
+   OFERTAS MELIOR (DESTAQUE)
+=============================== */
+
+#ofertas-melior {
+  margin: 80px 0;
+  padding: 20px 0;
+}
+
+#ofertas-melior .vitrine-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--verde-escuro);
+  margin-bottom: 25px;
+  position: relative;
+}
+
+#ofertas-melior .vitrine-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: var(--verde-primario);
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+/* GRID das ofertas */
+.ofertas-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* CARD de oferta (reaproveita padrão do produto) */
+.ofertas-container .product-card {
+  border: 2px solid rgba(90, 125, 101, 0.15);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ofertas-container .product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* 🔥 CORREÇÃO PRINCIPAL DA IMAGEM */
+.ofertas-container .product-image img {
+  width: 100%;
+  height: 160px; /* <<< evita imagem gigante */
+  object-fit: contain; /* mantém proporção sem cortar */
+  padding: 10px;
+  background: #fff;
+}
+
+/* Badge de desconto */
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e63946;
+  color: white;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 20px;
+  z-index: 2;
+}

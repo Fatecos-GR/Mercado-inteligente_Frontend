@@ -1,0 +1,440 @@
+/* --- HEADER GERAL --- */
+#main-header {
+  background: var(--cinza-escuro);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Parte Superior */
+#header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  gap: 30px;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Logo */
+#title-header a img {
+  height: 65px;
+  width: auto;
+  display: block;
+  transform: scale(1.2);
+  transform-origin: left center;
+}
+
+/* Busca */
+#header-busca {
+  flex-grow: 1;
+  max-width: 700px;
+}
+
+#header-search-form {
+  display: flex;
+  background: var(--branco);
+  border-radius: 50px; /* Estilo pílula */
+  overflow: visible;
+  height: 48px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+#header-search-form:focus-within {
+  border-color: var(--verde-primario);
+  box-shadow: 0 0 10px rgba(90, 125, 101, 0.2);
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding-left: 25px;
+}
+
+.search-input-wrapper i {
+  color: var(--verde-primario);
+  font-size: 1.1rem;
+}
+
+#header-search-form input {
+  flex-grow: 1;
+  padding: 0 15px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: transparent;
+  color: var(--cinza-escuro);
+}
+
+#header-search-form button {
+  padding: 0 40px;
+  background: var(--verde-primario);
+  color: var(--branco);
+  border: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0 50px 50px 0;
+}
+
+#header-search-form button:hover {
+  background: var(--verde-escuro);
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+/* Botões de Ação */
+#header-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.action-btn-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  text-decoration: none;
+  color: var(--branco);
+  gap: 5px;
+  transition: color 0.2s;
+}
+
+.action-btn-vertical i {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.action-btn-vertical span {
+  font-size: 0.85rem;
+}
+
+.action-btn-vertical:hover {
+  color: var(--verde-primario);
+}
+
+/* Carrinho Estilo Pílula Branca */
+.cart-pill-btn {
+  display: flex;
+  align-items: center;
+  background: var(--branco);
+  border-radius: 50px;
+  height: 45px;
+  text-decoration: none;
+  padding-left: 15px;
+  margin-left: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cart-value-box {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  padding-right: 15px;
+  color: var(--cinza-escuro);
+}
+
+.cart-value-box .currency {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.cart-value-box .value {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.cart-icon-circle {
+  background: var(--verde-primario);
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--branco);
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+
+.cart-pill-btn:hover .cart-icon-circle {
+  transform: scale(1.05);
+  background: var(--verde-escuro);
+}
+
+/* --- LINHA INFERIOR (Menu Secundário) --- */
+#header-bottom {
+  background: rgba(
+    0,
+    0,
+    0,
+    0.15
+  ); /* Cria a separação sutil de cores usando a própria cor do fundo */
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  height: 50px;
+}
+
+/* Botão de Departamentos */
+.menu-departamentos-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.btn-departamentos {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: var(--branco);
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-departamentos:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--branco);
+}
+
+/* Menu Suspenso de Departamentos */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 260px;
+  background: var(--branco);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: none; /* Escondido por padrão */
+  z-index: 2000;
+  overflow: hidden;
+  border-top: 3px solid var(--verde-primario);
+  animation: fadeInDown 0.3s ease;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.lista-departamentos {
+  list-style: none;
+  padding: 10px 0;
+}
+
+.lista-departamentos li a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 25px;
+  text-decoration: none;
+  color: var(--cinza-escuro);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.lista-departamentos li a i {
+  color: var(--verde-primario);
+  width: 20px;
+  text-align: center;
+}
+
+.lista-departamentos li a:hover {
+  background: var(--bg-light);
+  color: var(--verde-escuro);
+  padding-left: 30px;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-categorias {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-categorias a {
+  text-decoration: none;
+  color: var(--branco);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-categorias a:hover {
+  color: var(--verde-primario);
+}
+
+/* ===============================
+   RESPONSIVIDADE DO HEADER
+=============================== */
+
+/* --- TABLETS (até 1024px) --- */
+@media (max-width: 1024px) {
+  #header-top {
+    padding: 15px 20px;
+    gap: 20px;
+  }
+
+  #header-bottom {
+    padding: 0 20px;
+  }
+
+  /* Reduz um pouco o espaçamento das categorias para caberem melhor */
+  .nav-categorias {
+    gap: 15px;
+  }
+}
+
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+
+  background: var(--branco);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+
+  max-height: 300px;
+  overflow-y: auto;
+
+  z-index: 999;
+
+  display: none;
+}
+
+.search-suggestions.show {
+  display: block;
+}
+
+.search-suggestion-item {
+  padding: 12px 15px;
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  transition: 0.2s;
+}
+
+.search-suggestion-item:hover {
+  background: var(--bg-light);
+}
+
+.search-suggestion-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+#perfil-header-btn {
+  display: none;
+}
+
+/* --- CELULARES (até 768px) --- */
+@media (max-width: 768px) {
+  /* Permite que os itens quebrem para a linha de baixo */
+  #header-top {
+    flex-wrap: wrap;
+    padding: 15px 20px;
+    gap: 10px;
+  }
+
+  /* 1. Logo na esquerda (Ordem 1) */
+  #title-header {
+    order: 1;
+  }
+
+  #title-header a img {
+    height: 45px; /* Reduz a logo no celular */
+    transform: scale(1); /* Remove o zoom para não vazar a tela */
+  }
+
+  /* 2. Botões na direita (Ordem 2) */
+  #header-actions {
+    order: 2;
+    gap: 15px;
+    margin-left: auto; /* Empurra os botões para o canto direito */
+  }
+
+  /* Esconde os textos "Admin" e "Conta" no celular para economizar espaço */
+  .action-btn-vertical span {
+    display: none;
+  }
+
+  .action-btn-vertical {
+    margin-top: 0;
+  }
+
+  /* Esconde o valor em Reais do carrinho no celular */
+  .cart-value-box {
+    display: none;
+  }
+
+  /* Transforma a pílula do carrinho em um círculo simples no celular */
+  .cart-pill-btn {
+    padding-left: 0;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  /* 3. Barra de Busca ocupa 100% da linha de baixo (Ordem 3) */
+  #header-busca {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  #header-search-form button {
+    padding: 0 20px; /* Reduz o botão de busca para dar mais espaço ao texto */
+  }
+
+  /* 4. Menu Inferior rolável */
+  #header-bottom {
+    overflow-x: auto; /* Permite rolar os departamentos com o dedo */
+    white-space: nowrap; /* Impede que quebrem linha */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Esconde a barra de rolagem nativa */
+  }
+
+  #header-bottom::-webkit-scrollbar {
+    display: none;
+  }
+}

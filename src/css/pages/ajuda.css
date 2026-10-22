@@ -1,0 +1,258 @@
+/* ==========================================================================
+   CENTRAL DE AJUDA E ACESSIBILIDADE - ESTILOS ESPECÍFICOS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. HERO BANNER (Topo da Página)
+   -------------------------------------------------------------------------- */
+#help-hero {
+  background: linear-gradient(
+    135deg,
+    var(--verde-primario) 0%,
+    var(--verde-escuro) 100%
+  );
+  color: var(--branco);
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.help-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.help-hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  letter-spacing: -0.5px;
+}
+
+.help-hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   2. ESTRUTURA DOS TÓPICOS (Layout Lado a Lado com Espaçamento Forçado)
+   -------------------------------------------------------------------------- */
+.help-topics-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
+.help-row {
+  display: flex;
+  align-items: center;
+  background-color: var(--branco);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 30px;
+  gap: 40px; /* Distância interna entre a imagem e o bloco de texto */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  /* 🌟 FORÇA TOTAL: Garante que os cards se separem e ignora qualquer conflito do projeto */
+  margin-bottom: 35px !important;
+}
+
+.help-row:hover {
+  transform: translateY(-3px);
+  border-color: var(--verde-primario);
+  box-shadow: 0 6px 20px rgba(90, 125, 101, 0.1);
+}
+
+/* Efeito Zigue-Zague: Inverte a ordem dos elementos nas linhas pares */
+.help-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* Remove a margem do último card para o rodapé não ficar com buraco vazio */
+.help-row:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. ÁREA DA MÍDIA (Ajustado para caber qualquer proporção de print)
+   -------------------------------------------------------------------------- */
+.help-media {
+  flex: 0 0 40%; /* Ocupa exatamente 40% da largura da linha */
+  max-width: 450px;
+  height: auto;
+  min-height: 200px; /* Garante uma presença visual consistente */
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fcfbfa; /* Fundo sutil neutro */
+  border: 1px dashed #dcd3c1; /* Borda guia pontilhada estilizada */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px; /* Margem interna de segurança para o print não colar na borda */
+}
+
+.help-step-img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  object-fit: contain; /* Garante que a imagem inteira fique visível sem nenhum corte */
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   4. ÁREA DO TEXTO EXPLICATIVO
+   -------------------------------------------------------------------------- */
+.help-text {
+  flex: 1; /* Ocupa os 60% restantes do espaço da linha */
+}
+
+.help-text h2 {
+  color: var(--cinza-escuro);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.help-text p {
+  color: #555;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.help-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Estilização das tags de Teclado (<kbd>) */
+kbd {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.2),
+    0 0 0 2px var(--branco) inset;
+  color: #333;
+  display: inline-block;
+  font-family: monospace;
+  font-size: 0.9rem;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   5. SEÇÃO DE SUPORTE ADICIONAL (Rodapé da Página)
+   -------------------------------------------------------------------------- */
+#help-support {
+  text-align: center;
+  background-color: #f9f8f6;
+  border-radius: 16px;
+  padding: 40px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+#help-support h2 {
+  color: var(--cinza-escuro);
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+#help-support p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.support-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-support {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--verde-primario);
+  color: var(--branco);
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(90, 125, 101, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-support:hover {
+  background-color: var(--verde-escuro);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(90, 125, 101, 0.3);
+}
+
+/* Variante Secundária do Botão (Ligar no SAC) */
+.btn-support.sec {
+  background-color: var(--branco);
+  color: var(--verde-primario);
+  border: 2px solid var(--verde-primario);
+  box-shadow: none;
+}
+
+.btn-support.sec:hover {
+  background-color: var(--verde-primario);
+  color: var(--branco);
+}
+
+/* --------------------------------------------------------------------------
+   6. RESPONSIVIDADE (Telas de Celular e Tablet)
+   -------------------------------------------------------------------------- */
+@media (max-width: 850px) {
+  #help-hero {
+    padding: 40px 15px;
+  }
+
+  #help-hero h1 {
+    font-size: 2rem;
+  }
+
+  /* Quebra o layout lado a lado e transforma em blocos empilhados verticalmente */
+  .help-row,
+  .help-row:nth-child(even) {
+    flex-direction: column !important;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 25px !important;
+  }
+
+  .help-media {
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    height: 180px;
+  }
+
+  .help-step-img {
+    max-height: 160px;
+  }
+
+  .support-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-support {
+    justify-content: center;
+  }
+}

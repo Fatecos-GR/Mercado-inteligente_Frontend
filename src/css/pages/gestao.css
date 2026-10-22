@@ -1,0 +1,410 @@
+/* =========================================
+   IMPORTS
+========================================= */
+
+@import "/css/components/cardMarcaAdmin.css";
+@import "/css/components/cardProdutoAdmin.css";
+@import "/css/components/admin-header.css";
+@import "/css/main.css";
+@import "/css/components/admin-sidebar.css";
+@import "/css/components/cardFornecedorAdmin.css";
+@import "/css/components/cardFuncionarioAdmin.css";
+
+/* =========================================
+   LAYOUT
+========================================= */
+
+#gestao-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* =========================================
+   ÁREA DIREITA
+========================================= */
+
+#right-layout {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--bg-light);
+}
+
+/* =========================================
+   MAIN
+========================================= */
+
+#main-container {
+  padding: 35px;
+
+  min-height: 100vh;
+}
+
+/* =========================================
+   HEADER DA GESTÃO
+========================================= */
+
+#gestao-header {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+
+  margin-bottom: 35px;
+}
+
+/* =========================================
+   TÍTULOS
+========================================= */
+
+.gestao-title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#gestao-titulo {
+  font-size: 2rem;
+  font-weight: 700;
+
+  color: var(--cinza-escuro);
+}
+
+#gestao-subtitulo {
+  color: #777;
+
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   AÇÕES
+========================================= */
+
+#gestao-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* =========================================
+   ÁREA DE BUSCA
+========================================= */
+
+.gestao-search-area {
+  flex: 1;
+  position: relative;
+}
+
+/* =========================================
+   CONTAINER BUSCA
+========================================= */
+
+#search-container {
+  width: 100%;
+  max-width: 750px;
+
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 18px;
+
+  background-color: var(--branco);
+
+  border-radius: 14px;
+
+  border: 1px solid rgba(61, 90, 68, 0.12);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* FOCUS */
+
+#search-container:focus-within {
+  border-color: var(--verde-primario);
+
+  box-shadow: 0 0 0 4px rgba(90, 125, 101, 0.1);
+}
+
+/* ÍCONE */
+
+#search-container i {
+  color: var(--verde-primario);
+
+  font-size: 0.95rem;
+
+  margin-right: 12px;
+}
+
+/* INPUT */
+
+#search-input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--cinza-escuro);
+
+  font-size: 0.95rem;
+}
+
+/* PLACEHOLDER */
+
+#search-input::placeholder {
+  color: #999;
+}
+
+/* Resultados de busca */
+#search-results {
+  position: absolute;
+
+  top: calc(100% + 8px);
+  left: 0;
+
+  width: 100%;
+  max-width: 750px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+  overflow: hidden;
+
+  display: none;
+
+  z-index: 100;
+}
+
+.search-result-item {
+  padding: 14px 18px;
+
+  cursor: pointer;
+
+  border-bottom: 1px solid #f2f2f2;
+
+  transition: background-color 0.2s;
+}
+
+.search-result-item:hover {
+  background-color: #f8f8f8;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-title {
+  font-weight: 600;
+  color: var(--cinza-escuro);
+}
+
+.search-result-description {
+  font-size: 0.85rem;
+  color: #777;
+
+  margin-top: 3px;
+}
+
+/* =========================================
+   BOTÃO ADICIONAR
+========================================= */
+
+#btn-adicionar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 13px 18px;
+
+  border-radius: 12px;
+
+  background-color: var(--verde-primario);
+
+  color: var(--branco);
+
+  text-decoration: none;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* HOVER */
+
+#btn-adicionar-item:hover {
+  background-color: var(--verde-escuro);
+
+  transform: translateY(-2px);
+}
+
+/* ÍCONE */
+
+#btn-adicionar-item i {
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+#gestao-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================
+   FILTROS
+========================================= */
+
+#gestao-filtros {
+  width: 100%;
+}
+
+.gestao-filtros-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 14px;
+
+  padding: 18px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  border: 1px solid rgba(61, 90, 68, 0.08);
+
+  border-radius: 16px;
+
+  backdrop-filter: blur(6px);
+}
+
+/* =========================================
+   SELECT
+========================================= */
+
+.gestao-filtro {
+  min-width: 240px;
+
+  height: 48px;
+
+  padding: 0 16px;
+  padding-right: 42px;
+
+  border-radius: 12px;
+
+  border: 1px solid rgba(61, 90, 68, 0.12);
+
+  background-color: var(--branco);
+
+  color: var(--cinza-escuro);
+
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%235a7d65' viewBox='0 0 256 256'%3E%3Cpath d='M208.49 88.49a12 12 0 0 0-17 0L128 151l-63.51-62.51a12 12 0 0 0-17 17l72 72a12 12 0 0 0 17 0l72-72a12 12 0 0 0 0-17Z'/%3E%3C/svg%3E");
+
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+
+/* =========================================
+   HOVER
+========================================= */
+
+.gestao-filtro:hover {
+  border-color: var(--verde-primario);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   FOCUS
+========================================= */
+
+.gestao-filtro:focus {
+  border-color: var(--verde-primario);
+
+  box-shadow: 0 0 0 4px rgba(90, 125, 101, 0.15);
+}
+
+/* =========================================
+   OPTION
+========================================= */
+
+.gestao-filtro option {
+  background-color: var(--branco);
+
+  color: var(--cinza-escuro);
+}
+
+/* =========================================
+   BOTÃO LIMPAR FILTROS
+========================================= */
+
+.btn-limpar-filtros {
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0 18px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: rgba(139, 90, 43, 0.08);
+
+  color: var(--marrom-madeira);
+
+  font-size: 0.92rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn-limpar-filtros:hover {
+  background: rgba(139, 90, 43, 0.16);
+
+  transform: translateY(-1px);
+}
+
+.btn-limpar-filtos i {
+  font-size: 0.95rem;
+}

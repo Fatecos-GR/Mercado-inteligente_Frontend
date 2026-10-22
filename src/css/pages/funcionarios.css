@@ -1,0 +1,177 @@
+/* ==========================================================================
+   1. IMPORTS E ESTRUTURA BASE (Mantendo o padrão Melior)
+   ========================================================================== */
+@import "/css/components/admin-sidebar.css";
+@import "/css/components/admin-header.css";
+@import "/css/main.css";
+
+/* Container do layout total */
+#funcionarios-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Parte da Direita */
+#right-layout {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; /* Fundo branco para destacar o wrapper creme */
+}
+
+/* Conteúdo Principal */
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  font-family: sans-serif;
+}
+
+/* Alinhamento do conteúdo interno */
+.admin-layout-content {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Cabeçalho da página (Título + Botão lado a lado) */
+.admin-content-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.admin-content-heading h2 {
+  font-size: 1.6rem;
+  color: #1a2421;
+  margin: 0;
+}
+
+/* Botão de adicionar novo (Verde escuro do projeto) */
+.admin-btn-add {
+  display: inline-block;
+  background-color: #38513d;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: background-color 0.2s;
+}
+
+.admin-btn-add:hover {
+  background-color: #2b3f30;
+}
+
+/* ==========================================================================
+   2. ENVELOPE DA TABELA (ESTILO CARD CREME)
+   ========================================================================== */
+.admin-table-wrapper {
+  background-color: #f7f6f0; /* Fundo creme suave padrão */
+  padding: 25px;
+  border-radius: 16px; /* Cantos arredondados padrão */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.01);
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Estrutura interna da Tabela */
+.admin-data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* Espaçamento para criar o efeito de blocos */
+  text-align: left;
+}
+
+/* Títulos das colunas */
+.admin-data-table th {
+  color: #7a827f;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+}
+
+/* Linhas da tabela (Brancas para simular cartões flutuantes) */
+.admin-data-table tbody tr {
+  background-color: #ffffff;
+}
+
+/* Arredondando as pontas externas das linhas */
+.admin-data-table tbody tr td:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.admin-data-table tbody tr td:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Células de dados */
+.admin-data-table td {
+  padding: 16px;
+  color: #1a2421;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   3. BADGES DE NÍVEL DE ACESSO
+   ========================================================================== */
+.access-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Administrador (Tom esverdeado protetor) */
+.access-admin {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+/* Operador (Tom azulado/acinzentado sutil) */
+.access-operator {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+/* ==========================================================================
+   4. BOTÕES DE AÇÃO
+   ========================================================================== */
+.admin-btn-action {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin-right: 5px;
+  transition: background-color 0.2s;
+}
+
+/* Botão Editar (Cinza esverdeado claro do projeto) */
+.btn-edit {
+  background-color: #e4e8e4;
+  color: #21342c;
+}
+
+.btn-edit:hover {
+  background-color: #d5dad5;
+}
+
+/* Botão Remover (Tom pastel avermelhado para alertas de exclusão) */
+.btn-delete {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.btn-delete:hover {
+  background-color: #fca5a5;
+}

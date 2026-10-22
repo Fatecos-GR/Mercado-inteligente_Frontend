@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Melior | Seu Mercado Online</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/pages/home.css" />
+
+    <script type="module" src="js/main.js" defer></script>
+  </head>
+  <body>
+    <!-- HEADER DINÂMICO -->
+    <header id="main-header"></header>
+
+    <main id="main-container">
+      <section id="banner">
+        <div id="carousel-container">
+          <div id="carousel-wrapper">
+            <div class="banner-slide">
+              <img src="img/banner_melior.png" alt="Banner Melior" />
+            </div>
+            <div class="banner-slide">
+              <img src="img/banner endrick.png" alt="Endrick Melior" />
+            </div>
+            <div class="banner-slide">
+              <img src="img/banner_acougue.png" alt="Banner Açougue" />
+            </div>
+            <div class="banner-slide">
+              <img src="img/banner_higiene.png" alt="Banner Higiene" />
+            </div>
+            <div class="banner-slide">
+              <img src="img/banner_hortifruti.png" alt="Banner Hortifruti" />
+            </div>
+            <div class="banner-slide">
+              <img src="img/banner_pet.png" alt="Banner PET" />
+            </div>
+          </div>
+
+          <div class="carousel-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <button class="carousel-btn prev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- PARTE DAS CATEGORIAS -->
+      <section class="home-section" id="categorias-section">
+        <div id="categories-container">
+          <!-- Setas de navegação das categorias -->
+          <button class="cat-nav-btn prev" id="cat-prev">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div id="categories-wrapper">
+            <!-- CATEGORIAS CARREGADAS DINÂMICAMENTE -->
+            <div id="categories-carousel"></div>
+          </div>
+
+          <button class="cat-nav-btn next" id="cat-next">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- FILTROS -->
+      <!-- <div class="filtro-ordenacao">
+        <label>Ordenar por:</label>
+        <div class="custom-select" id="sort-select">
+          <div class="select-trigger">
+            <span>Selecione...</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="select-options">
+            <div class="option active" data-value="padrao">Selecione...</div>
+            <div class="option" data-value="menor-preco">Menor Preço</div>
+            <div class="option" data-value="maior-preco">Major Preço</div>
+            <div class="option" data-value="a-z">Ordem Alfabética (A-Z)</div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- VITRINES CARREGADAS DINAMICAMENTE -->
+      <div class="vitrines-container" data-bloco="1"></div>
+
+      <!-- SEÇÃO: OFERTAS MELIOR -->
+      <section id="ofertas-melior" class="home-vitrine">
+        <h2 class="vitrine-title">Ofertas Melior</h2>
+        <div id="ofertas-melior-container" class="ofertas-container">
+          <p>Não há ofertas no momento.</p>
+        </div>
+      </section>
+
+      <!-- VITRINES CARREGADAS DINAMICAMENTE 2-->
+      <div class="vitrines-container" data-bloco="2"></div>
+
+      <!-- BANNER PROMOCIONAL: COPA -->
+      <section class="banner-promocional-secao">
+        <a href="#" class="banner-link">
+          <img
+            src="img/bannercopa.png"
+            alt="Promoção Copa Melior"
+            class="banner-img-promocional"
+          />
+        </a>
+      </section>
+
+      <!-- VITRINES CARREGADAS DINAMICAMENTE 3-->
+      <div class="vitrines-container" data-bloco="3"></div>
+
+      <!-- SEÇÃO: CLUBE MELIOR -->
+      <section id="clube-melior">
+        <div class="clube-container">
+          <div class="clube-titulo-esq">
+            <h2>
+              Compre no <span class="destaque">Melior</span> com toda <br />
+              a facilidade que você merece!
+            </h2>
+          </div>
+
+          <div class="clube-imagem-centro">
+            <div class="bolha-fundo"></div>
+            <img
+              src="img/celular-mockup.png"
+              alt="Aplicativo Clube Melior"
+              class="celular-mockup"
+            />
+          </div>
+
+          <div class="clube-beneficios-dir">
+            <h3>Ofertas imperdíveis na palma da mão</h3>
+            <ul class="clube-beneficios">
+              <li>
+                <i class="fa-solid fa-circle-check"></i> No conforto da sua casa
+              </li>
+              <li><i class="fa-solid fa-circle-check"></i> Fácil e prático</li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Muito mais economia
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- VITRINES CARREGADAS DINAMICAMENTE 4-->
+      <div class="vitrines-container" data-bloco="4"></div>
+
+      <!-- BANNER PROMOCIONAL: FANTA -->
+      <section class="banner-promocional-secao">
+        <a href="#" class="banner-link">
+          <img
+            src="img/bannerFanta.png"
+            alt="Promoção Fanta"
+            class="banner-img-promocional"
+          />
+        </a>
+      </section>
+
+      <!-- VITRINES CARREGADAS DINAMICAMENTE 5-->
+      <div class="vitrines-container" data-bloco="5"></div>
+
+      <!-- SEÇÃO: SELEÇÃO ESPECIAL -->
+      <section id="selecao-especial">
+        <div class="selecao-grid">
+          <div class="selecao-card card-amarelo">
+            <div class="selecao-content">
+              <span class="selecao-tag">— Para o fim de semana</span>
+              <h3 class="selecao-highlight">A melhor seleção de carnes</h3>
+              <p class="selecao-desc">
+                Qualidade, maciez e muito sabor garantidos para o seu churrasco.
+              </p>
+              <button class="btn-selecao btn-add-cart" data-id="a3">
+                Eu quero
+              </button>
+            </div>
+            <img
+              src="img/janelaCarnes.png"
+              alt="Promoção Praticidade"
+              class="selecao-img"
+            />
+          </div>
+
+          <div class="selecao-card card-creme">
+            <div class="selecao-content">
+              <span class="selecao-tag">— Seleção de congelados</span>
+              <h3 class="selecao-highlight">Com até 10% off</h3>
+              <p class="selecao-desc">essencial para seu dia a dia!</p>
+              <button class="btn-selecao btn-add-cart" data-id="h2">
+                Eu quero
+              </button>
+            </div>
+            <img
+              src="img/janelaCongelados.png"
+              alt="Promoção Congelados"
+              class="selecao-img"
+            />
+          </div>
+
+          <div class="selecao-card card-verde">
+            <div class="selecao-content">
+              <span class="selecao-tag">— Super Ofertas</span>
+              <h3 class="selecao-highlight">Bebidas para você torcer!</h3>
+              <p class="selecao-desc">garanta já seu estoque.</p>
+              <button class="btn-selecao btn-add-cart" data-id="m3">
+                Eu quero
+              </button>
+            </div>
+            <img
+              src="img/janelaBebidas.png"
+              alt="Promoção Bebidas"
+              class="selecao-img"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- BANNER PROMOCIONAL: SONHO DE VALSA -->
+      <section class="banner-promocional-secao">
+        <a href="#" class="banner-link">
+          <img
+            src="img/BannerSonho.png"
+            alt="Declare-se com Sonho de Valsa"
+            class="banner-img-promocional"
+          />
+        </a>
+      </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+    <a
+      href="ajuda.html"
+      class="help-floating-btn"
+      title="Página de Ajuda e Acessibilidade"
+      aria-label="Acessar página de ajuda e acessibilidade"
+    >
+      <i class="fa-solid fa-question"></i>
+    </a>
+  </body>
+</html>

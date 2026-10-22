@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Título da página -->
+    <title>Melior | Carrinho</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/pages/carrinho.css" />
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script type="module" src="js/main.js" defer></script>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="cart-main">
+      <section class="cart-container">
+        <header class="cart-header">
+          <h1 class="page-title">Carrinho</h1>
+          <div class="steps-container">
+            <div class="step active">
+              <span class="step-num">1</span>
+              <p>Carrinho</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <span class="step-num">2</span>
+              <p>Identificação</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <span class="step-num">3</span>
+              <p>Pagamento</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+              <span class="step-num">4</span>
+              <p>Concluído</p>
+            </div>
+          </div>
+        </header>
+
+        <section class="cart-content">
+          <div class="cart-table">
+            <header class="table-header">
+              <span class="col-product">Produto</span>
+              <span class="col-quantity">Quantidade</span>
+              <span class="col-value">Valor</span>
+            </header>
+
+            <div id="cart-items-list" class="cart-items-container"></div>
+          </div>
+
+          <footer class="cart-summary-section">
+            <div class="shipping-calculator">
+              <div class="shipping-header">
+                <i class="fas fa-truck"></i>
+                <p>Cálculo de Frete</p>
+              </div>
+              <div class="cep-input-group">
+                <input type="text" placeholder="00000-000" id="cep-input" />
+                <button class="btn-calc">Calcular</button>
+              </div>
+
+              <div id="shipping-message" class="shipping-message"></div>
+            </div>
+
+            <div class="cart-total-container">
+              <div class="total-row">
+                <span class="total-label">Total</span>
+                <span class="total-value" id="total-carrinho">R$ 0,00</span>
+              </div>
+              <div class="cart-actions">
+                <a href="index.html" class="link-continue"
+                  >Continuar Comprando</a
+                >
+                <a href="manutencao.html" class="btn-finalize">
+                  Finalizar Compra
+                </a>
+              </div>
+            </div>
+          </footer>
+        </section>
+      </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+  </body>
+</html>

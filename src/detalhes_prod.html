@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Melior | Detalhes do Produto</title>
+
+    <link rel="stylesheet" href="css/pages/detalhes_prod.css" />
+
+    <script type="module" src="js/main.js" defer></script>
+  </head>
+  <body>
+    <header id="main-header"></header>
+
+    <main class="product-details-main">
+      <div class="product-details-container">
+        <!-- Galeria Lateral -->
+        <section class="product-gallery">
+          <div class="shipping-badge">Qualidade Melior</div>
+          <div class="main-image-wrapper">
+            <img
+              id="detalhe-imagem"
+              src="img/placeholder.png"
+              alt="Carregando imagem..."
+              class="product-image"
+            />
+          </div>
+        </section>
+
+        <!-- Informações e Compra -->
+        <section class="product-info-section">
+          <div class="product-breadcrumb">
+            <a href="index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span id="detalhe-categoria-texto">Categoria</span>
+          </div>
+
+          <header class="product-info-header">
+            <h1 class="product-title" id="detalhe-titulo">
+              Carregando produto...
+            </h1>
+            <span class="product-unit-label" id="detalhe-unidade">unid</span>
+          </header>
+
+          <div class="product-stock-info" id="detalhe-estoque">
+            <!-- preenchido via JS -->
+          </div>
+
+          <div class="product-pricing">
+            <div class="price-row">
+              <span class="currency-symbol">R$</span>
+              <h2 class="current-price" id="detalhe-preco">0,00</h2>
+            </div>
+            <p class="installments-info" id="detalhe-parcelamento">
+              ou 3x de <strong>R$ 0,00</strong> sem juros no cartão
+            </p>
+          </div>
+
+          <div class="product-purchase-actions">
+            <div class="quantity-wrapper">
+              <label>Quantidade:</label>
+              <div class="quantity-control">
+                <button class="qty-btn" aria-label="Diminuir quantidade">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="number" value="1" min="1" readonly />
+                <button class="qty-btn" aria-label="Aumentar quantidade">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+
+            <button class="btn-buy-now">
+              <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+            </button>
+          </div>
+
+          <div class="product-benefits">
+            <div class="benefit-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>Compra 100% Segura</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-leaf"></i>
+              <span>Produtos Selecionados</span>
+            </div>
+          </div>
+
+          <footer class="product-shipping-footer">
+            <div class="shipping-header">
+              <i class="fas fa-truck"></i>
+              <span class="shipping-label">Calcular frete e prazo</span>
+            </div>
+            <div class="shipping-input-group">
+              <input type="text" placeholder="00000-000" id="cep-input" />
+              <button class="btn-calculate-shipping">Calcular</button>
+            </div>
+
+            <div id="shipping-message" class="shipping-message"></div>
+          </footer>
+        </section>
+
+        <!-- Banner Lateral Neymar -->
+        <aside class="product-sidebar-banner">
+          <img
+            src="img/neymarmercado.png"
+            alt="Neymar Melior"
+            class="sidebar-neymar-img"
+          />
+        </aside>
+      </div>
+    </main>
+
+    <footer id="main-footer"></footer>
+  </body>
+</html>

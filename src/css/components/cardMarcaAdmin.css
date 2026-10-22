@@ -1,0 +1,184 @@
+/* =========================================
+   CARD DE MARCA - FORMATO LINHA
+========================================= */
+
+.brand-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 24px;
+  border-radius: 18px;
+  background-color: var(--branco);
+  border: 1px solid rgba(61, 90, 68, 0.08);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* HOVER */
+
+.brand-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================================
+   ESQUERDA
+========================================= */
+
+.brand-card-left {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  flex: 1;
+}
+
+/* =========================================
+   IMAGEM
+========================================= */
+
+.brand-image {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  background-color: rgba(90, 125, 101, 0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+/* IMG */
+
+.brand-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* FALLBACK ÍCONE */
+
+.brand-image i {
+  font-size: 1.4rem;
+
+  color: var(--verde-escuro);
+}
+
+/* =========================================
+   INFO
+========================================= */
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+/* NOME */
+
+.brand-info h3 {
+  margin: 0;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  color: var(--cinza-escuro);
+}
+
+/* DESCRIÇÃO */
+
+.brand-info p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 0.92rem;
+
+  line-height: 1.5;
+}
+
+/* =========================================
+   DIREITA
+========================================= */
+
+.brand-card-right {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+/* =========================================
+   BOTÕES
+========================================= */
+
+.brand-card-right a {
+  height: 42px;
+
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border-radius: 10px;
+
+  text-decoration: none;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* =========================================
+   EDITAR
+========================================= */
+
+.brand-btn-edit {
+  background-color: rgba(90, 125, 101, 0.12);
+  color: var(--verde-escuro);
+}
+
+.brand-btn-edit:hover {
+  background-color: rgba(90, 125, 101, 0.2);
+
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   EXCLUIR
+========================================= */
+
+.brand-btn-delete {
+  background-color: rgba(139, 90, 43, 0.12);
+
+  color: var(--marrom-madeira);
+}
+
+.brand-btn-delete:hover {
+  background-color: rgba(139, 90, 43, 0.2);
+
+  transform: translateY(-1px);
+}

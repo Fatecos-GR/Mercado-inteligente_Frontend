@@ -1,0 +1,68 @@
+<!-- Parte Superior -->
+<div id="header-top">
+  <!-- Logo -->
+  <div id="title-header">
+    <a href="index.html">
+      <img src="img/logo_Branco.svg" alt="Logo Melior" class="logo-img" />
+    </a>
+  </div>
+
+  <!-- Barra de Pesquisa -->
+  <div id="header-busca">
+    <form autocomplete="off" id="header-search-form" novalidate>
+      <div class="search-input-wrapper">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="O que você procura hoje?"
+        />
+
+        <!-- SUGESTÕES -->
+        <div id="search-suggestions" class="search-suggestions"></div>
+      </div>
+      <button type="submit">Buscar</button>
+    </form>
+  </div>
+
+  <!-- Botões de Ação -->
+  <div id="header-actions">
+    <div id="auth-header-btn"></div>
+
+    <!-- Perfil -->
+    <a href="perfil.html" class="action-btn-vertical" id="perfil-header-btn">
+      <i class="fa-regular fa-user"></i>
+      <span>Conta</span>
+    </a>
+
+    <!-- Carrinho Estilo Pílula -->
+    <a href="carrinho.html" class="cart-pill-btn" id="carrinho-btn">
+      <div class="cart-value-box">
+        <span class="currency">R$</span>
+        <span class="value">0,00</span>
+      </div>
+      <div class="cart-icon-circle">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- LINHA INFERIOR (Departamentos) -->
+<div id="header-bottom">
+  <div class="menu-departamentos-container">
+    <button class="btn-departamentos">
+      <i class="fa-solid fa-bars"></i>
+      Comprar por departamento
+    </button>
+
+    <!-- Menu Suspenso (Dropdown) -->
+    <div id="dropdown-departamentos" class="dropdown-menu">
+      <ul class="lista-departamentos"></ul>
+    </div>
+  </div>
+
+  <nav class="nav-categorias">
+    <a href="index.html#ofertas-melior">Ofertas Melior</a>
+  </nav>
+</div>

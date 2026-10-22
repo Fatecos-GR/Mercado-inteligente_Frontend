@@ -1,0 +1,235 @@
+/* ===============================
+   SIDEBAR ADMIN - MELIOR STYLE
+=============================== */
+
+#admin-sidebar {
+  width: 260px;
+  max-height: 100%;
+  background: linear-gradient(180deg, var(--verde-escuro), #2f4636);
+  color: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  /* Descer junto a página */
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+/* ==========================================================================
+   ESTILIZAÇÃO DA LOGO NO TOPO DA SIDEBAR
+   ========================================================================== */
+
+.admin-sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px; /* Cria um respiro elegante acima e abaixo da logo */
+  box-sizing: border-box;
+}
+
+/* Se optar por usar o Texto H1 */
+.admin-sidebar-logo h1 {
+  color: var(--branco, #ffffff);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 3px; /* Espaçamento moderno entre as letras */
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Se optar por usar Imagem no futuro */
+.admin-brand-img {
+  max-width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+/* ===============================
+   LOGO
+=============================== */
+
+.admin-sidebar-logo {
+  padding: 24px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-sidebar-logo h1 {
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: var(--bg-light);
+}
+
+/* ===============================
+   LINKS
+=============================== */
+
+.admin-sidebar-links {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 6px;
+}
+
+.admin-sidebar-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 14px;
+  border-radius: 10px;
+
+  text-decoration: none;
+  color: var(--bg-light);
+
+  font-weight: 500;
+
+  transition: all 0.25s ease;
+
+  opacity: 0.9;
+}
+
+/* ÍCONES */
+.admin-sidebar-links a i {
+  width: 22px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* HOVER MODERNO */
+.admin-sidebar-links a:hover {
+  background: rgba(242, 237, 228, 0.12);
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+/* ITEM ATIVO */
+.admin-sidebar-links a.active {
+  background: var(--bg-light);
+  color: var(--verde-escuro);
+  font-weight: 600;
+}
+
+/* ÍCONE NO ACTIVE */
+.admin-sidebar-links a.active i {
+  color: var(--marrom-madeira);
+}
+
+/* ===============================
+   GRUPO DA SIDEBAR
+=============================== */
+
+.admin-sidebar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ===============================
+   TÍTULO DO GRUPO
+=============================== */
+
+.admin-sidebar-group-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  color: var(--bg-light);
+
+  font-weight: 500;
+
+  opacity: 0.9;
+}
+
+/* ÍCONE */
+.admin-sidebar-group-title i {
+  width: 22px;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* ===============================
+   SUBMENU
+=============================== */
+
+.admin-sidebar-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  margin-left: 12px;
+  padding-left: 12px;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ===============================
+   SUBITEMS
+=============================== */
+
+.admin-sidebar-subitem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px !important;
+
+  border-radius: 8px;
+
+  font-size: 0.95rem;
+}
+
+/* ÍCONES DOS SUBITEMS */
+.admin-sidebar-subitem i {
+  font-size: 14px !important;
+}
+
+/* HOVER */
+.admin-sidebar-subitem:hover {
+  background: rgba(242, 237, 228, 0.08);
+}
+
+/* ACTIVE */
+.admin-sidebar-subitem.active {
+  background: var(--bg-light);
+  color: var(--verde-escuro);
+}
+
+.admin-sidebar-subitem.active i {
+  color: var(--marrom-madeira);
+}
+
+.admin-sidebar-links {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 12px;
+  gap: 6px;
+}
+
+.admin-sidebar-footer {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0px;
+}
+
+.admin-sidebar-footer a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 12px 20px;
+  transition: 0.2s ease;
+}
+
+.admin-sidebar-footer a:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
