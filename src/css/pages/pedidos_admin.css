@@ -2,8 +2,7 @@
 @import "/css/components/card_dashboard.css";
 @import "/css/components/admin-sidebar.css";
 @import "/css/components/admin-header.css";
-@import "/css/main.css";
-
+@import "../main.css";
 /* Container do layout total */
 #pedidos-admin-layout {
   display: flex;
