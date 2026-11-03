@@ -2,13 +2,13 @@
    IMPORTS
 ========================================= */
 
-@import "/css/components/cardMarcaAdmin.css";
-@import "/css/components/cardProdutoAdmin.css";
-@import "/css/components/admin-header.css";
-@import "/css/main.css";
-@import "/css/components/admin-sidebar.css";
-@import "/css/components/cardFornecedorAdmin.css";
-@import "/css/components/cardFuncionarioAdmin.css";
+@import "../components/cardMarcaAdmin.css";
+@import "../components/cardProdutoAdmin.css";
+@import "../components/admin-header.css";
+@import "../main.css";
+@import "../components/admin-sidebar.css";
+@import "../components/cardFornecedorAdmin.css";
+@import "../components/cardFuncionarioAdmin.css";
 
 /* =========================================
    LAYOUT
