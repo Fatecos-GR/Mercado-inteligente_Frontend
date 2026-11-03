@@ -1,9 +1,9 @@
 /* ==========================================================================
    1. IMPORTS E ESTRUTURA BASE (Padrão Melior)
    ========================================================================== */
-@import "/css/components/admin-sidebar.css";
-@import "/css/components/admin-header.css";
-@import "/css/main.css";
+@import "../components/admin-sidebar.css";
+@import "../components/admin-header.css";
+@import "../main.css";
 
 /* Container do layout total */
 #adicionar-funcionario-layout {
