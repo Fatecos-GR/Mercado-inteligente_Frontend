@@ -1,4 +1,4 @@
-@import "/css/main.css";
+@import "../main.css";
 
 .maintenance-main {
   min-height: calc(100vh - 200px);
